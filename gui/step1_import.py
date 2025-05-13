@@ -55,7 +55,7 @@ class ScanWorker(QObject):
     
     @pyqtSlot()
     def scan_folder(self):
-        """Scan the folder for CAM folders and video files."""
+        """Scan the folder for CAM folders and video files using the known structure."""
         try:
             # Reset signal
             self.cancel_requested = False
@@ -64,35 +64,38 @@ class ScanWorker(QObject):
             if not os.path.exists(self.folder_path):
                 self.error_occurred.emit(f"Folder does not exist: {self.folder_path}")
                 return
-            
-            # Check if folder has contents
-            try:
-                contents = os.listdir(self.folder_path)
-                if not contents:
-                    self.status_update.emit("Folder is empty", "orange")
-                    self.task_completed.emit()
-                    return
-            except Exception as e:
-                self.error_occurred.emit(f"Error listing folder contents: {str(e)}")
-                return
-            
-            # Find '03 MEDIA/01 VIDEO' structure
+                
+            # Direct path to the expected video location (standard wedding folder structure)
             media_path = os.path.join(self.folder_path, "03 MEDIA")
             video_path = os.path.join(media_path, "01 VIDEO")
             
-            self.status_update.emit("Checking for '03 MEDIA/01 VIDEO' structure...", "#666")
+            self.status_update.emit("Checking for standard folder structure...", "#666")
             
+            # Quick validation of the standard structure
             if not os.path.exists(media_path):
                 self.error_occurred.emit("'03 MEDIA' folder not found")
                 return
-            
+                
             if not os.path.exists(video_path):
                 self.error_occurred.emit("'01 VIDEO' folder not found in '03 MEDIA'")
                 return
             
-            # Find CAM folders
-            self.status_update.emit("Searching for CAM folders...", "#666")
-            cam_folders = find_cam_folders(video_path)
+            # Find CAM folders - expected to be direct children of the video path
+            self.status_update.emit("Finding CAM folders...", "#666")
+            
+            # Get CAM folders without walking the entire directory tree
+            try:
+                # Direct list of folders rather than full recursive search
+                potential_cam_folders = []
+                for item in os.listdir(video_path):
+                    item_path = os.path.join(video_path, item)
+                    if os.path.isdir(item_path) and "CAM" in item.upper():
+                        potential_cam_folders.append(item_path)
+                        
+                cam_folders = potential_cam_folders
+            except Exception as e:
+                self.error_occurred.emit(f"Error listing CAM folders: {str(e)}")
+                return
             
             if not cam_folders:
                 self.status_update.emit("No CAM folders found in '01 VIDEO'", "orange")
@@ -108,24 +111,35 @@ class ScanWorker(QObject):
                 self.task_completed.emit()
                 return
             
-            # Scan for video files
+            # Process files - scan only the direct CAM folders without deep recursion
             valid_files = []
             self.status_update.emit("Scanning for video files...", "#666")
             
+            # Create a list to track progress
             total_folders = len(cam_folders)
+            
+            # For each CAM folder, only look at direct files (no deep recursion)
             for i, cam_folder in enumerate(cam_folders):
                 if self.cancel_requested:
                     break
-                    
-                self.status_update.emit(f"Scanning folder {i+1}/{total_folders}: {os.path.basename(cam_folder)}", "#666")
+                
+                folder_name = os.path.basename(cam_folder)
+                self.status_update.emit(f"Scanning {folder_name} ({i+1}/{total_folders})", "#666")
                 self.progress_update.emit(i, total_folders)
                 
+                # Skip FFmpeg validation during initial scan - just check extensions
                 try:
-                    # Use a timeout for FFmpeg operations
-                    files = scan_directory(cam_folder)
-                    valid_files.extend(files)
+                    for file_name in os.listdir(cam_folder):
+                        if self.cancel_requested:
+                            break
+                            
+                        file_path = os.path.join(cam_folder, file_name)
+                        if os.path.isfile(file_path):
+                            _, ext = os.path.splitext(file_path)
+                            if ext.lower() in ['.mov', '.mp4']:
+                                valid_files.append(file_path)
                 except Exception as e:
-                    logger.error(f"Error scanning directory {cam_folder}: {str(e)}", exc_info=True)
+                    logger.error(f"Error scanning CAM folder {cam_folder}: {str(e)}", exc_info=True)
             
             # Report final results
             if self.cancel_requested:
@@ -183,9 +197,6 @@ class ImportPanel(QWidget):
         
         # Connect thread start to worker processing slot
         self.worker_thread.started.connect(self.worker.scan_folder)
-        
-        # Start the worker thread
-        self.worker_thread.start()
         
         # Progress dialog
         self.progress_dialog = None

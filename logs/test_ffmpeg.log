@@ -1,8 +1,0 @@
-2025-05-13 17:42:06,142 - core.file_preparation - INFO - Validating video file: test_video.mp4
-2025-05-13 17:42:06,142 - __main__ - INFO - Simulating FFmpeg not found
-2025-05-13 17:42:06,142 - core.file_preparation - ERROR - FFmpeg not found. Please install FFmpeg and add it to your PATH.
-2025-05-13 17:42:06,142 - __main__ - INFO - Test PASSED: validate_video_file returned True when FFmpeg is unavailable
-2025-05-13 17:42:36,519 - core.file_preparation - INFO - Validating video file: test_video.mp4
-2025-05-13 17:42:36,520 - __main__ - INFO - Simulating FFmpeg not found
-2025-05-13 17:42:36,520 - core.file_preparation - ERROR - FFmpeg not found. Please install FFmpeg and add it to your PATH.
-2025-05-13 17:42:36,520 - __main__ - INFO - Test PASSED: validate_video_file returned True when FFmpeg is unavailable

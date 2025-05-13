@@ -1,8 +1,0 @@
-2025-05-13 17:53:50,112 - __main__ - INFO - Starting FFmpeg fix verifier
-2025-05-13 17:54:02,802 - __main__ - INFO - Checking FFmpeg availability
-2025-05-13 17:54:02,946 - __main__ - INFO - FFmpeg is available
-2025-05-13 17:54:09,535 - __main__ - INFO - Testing FFmpeg not available fix
-2025-05-13 17:54:09,538 - core.file_preparation - INFO - Validating video file: test_video.mp4
-2025-05-13 17:54:09,538 - __main__ - INFO - Simulating FFmpeg not found
-2025-05-13 17:54:09,538 - core.file_preparation - ERROR - FFmpeg not found. Please install FFmpeg and add it to your PATH.
-2025-05-13 17:54:09,538 - __main__ - INFO - Test PASSED: validate_video_file returned True when FFmpeg is unavailable
