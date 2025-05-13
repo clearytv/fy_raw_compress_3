@@ -60,7 +60,7 @@ Ensure the output includes `--enable-videotoolbox` in the configuration options.
 
 2. Install the required Python dependencies:
    ```bash
-   pip install -r requirements.txt
+   pip install -r docs/requirements.txt
    ```
 
 ## 🚀 Quick Start Guide
@@ -101,8 +101,12 @@ Ensure the output includes `--enable-videotoolbox` in the configuration options.
 │   └── queue_manager.py      # Compression queue management
 ├── logs/                     # Log files
 │   └── compress.log          # Application log
-├── requirements.txt          # Python dependencies
-└── USER_GUIDE.md             # Detailed usage instructions
+├── docs/                     # Documentation files
+│   ├── forever_yours_compression_spec.md  # Compression specifications
+│   ├── PROJECT_RULES.md       # Development guidelines
+│   ├── python_fy_compress_files.md  # Python implementation details
+│   ├── requirements.txt       # Python dependencies
+│   └── USER_GUIDE.md          # Detailed usage instructions
 ```
 
 ## 🎞️ Compression Details
@@ -126,7 +130,7 @@ For developers looking to contribute or modify the tool:
 1. Fork and clone the repository
 2. Install dependencies:
    ```bash
-   pip install -r requirements.txt
+   pip install -r docs/requirements.txt
    ```
 3. Run the application in development mode:
    ```bash
@@ -142,7 +146,7 @@ This project follows strict development rules:
 - Strict separation of UI and core logic
 - Comprehensive logging
 
-For detailed development guidelines, see [PROJECT_RULES.md](PROJECT_RULES.md).
+For detailed development guidelines, see [PROJECT_RULES.md](docs/PROJECT_RULES.md).
 
 ## 📄 License
 

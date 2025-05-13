@@ -4,3 +4,9 @@
 2025-05-13 16:03:55,102 - gui.step1_import - INFO - Initializing import panel
 2025-05-13 16:03:55,221 - gui.step2_convert - INFO - Initializing conversion panel
 2025-05-13 16:03:55,226 - gui.step3_results - INFO - Initializing results panel
+2025-05-13 16:20:54,803 - __main__ - INFO - Starting Forever Yours Compression Tool
+2025-05-13 16:20:54,970 - __main__ - INFO - Creating main application window
+2025-05-13 16:20:54,970 - core.queue_manager - INFO - Queue manager initialized
+2025-05-13 16:20:54,973 - gui.step1_import - INFO - Initializing import panel
+2025-05-13 16:20:55,087 - gui.step2_convert - INFO - Initializing conversion panel
+2025-05-13 16:20:55,092 - gui.step3_results - INFO - Initializing results panel

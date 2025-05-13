@@ -197,7 +197,7 @@ Follow these guidelines to get the best results from the compression tool:
 #### Application Won't Start
 
 - **Python Version**: Ensure you're using Python 3.8 or higher
-- **Missing Dependencies**: Try reinstalling requirements with `pip install -r requirements.txt`
+- **Missing Dependencies**: Try reinstalling requirements with `pip install -r docs/requirements.txt`
 - **Permission Issues**: Make sure the application directory is accessible
 
 #### Files Not Detected
