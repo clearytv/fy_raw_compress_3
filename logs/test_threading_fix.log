@@ -1,0 +1,49 @@
+2025-05-13 18:02:18,564 - __main__ - INFO - Starting threading fix test
+2025-05-13 18:02:18,564 - __main__ - INFO - Creating test directory structure
+2025-05-13 18:02:18,567 - __main__ - INFO - Test directory structure created
+2025-05-13 18:02:18,567 - __main__ - INFO - Test directory created at: /Users/chriscleary/Sites/Github/fy_raw_compress_3/test_directory
+2025-05-13 18:02:18,731 - gui.step1_import - INFO - Initializing import panel
+2025-05-13 18:02:18,845 - __main__ - INFO - Test window initialized
+2025-05-13 18:02:26,793 - gui.step1_import - INFO - Browse button clicked, calling select_folder
+2025-05-13 18:02:26,793 - gui.step1_import - INFO - Opening folder selection dialog
+2025-05-13 18:02:33,227 - gui.step1_import - INFO - Folder selection dialog returned: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-10-21 Kelly & Chris
+2025-05-13 18:02:33,228 - gui.step1_import - INFO - Selected folder: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-10-21 Kelly & Chris
+2025-05-13 18:03:16,599 - __main__ - INFO - UI updated. Counter: 1
+2025-05-13 18:03:18,104 - __main__ - INFO - UI updated. Counter: 2
+2025-05-13 18:03:18,769 - __main__ - INFO - UI updated. Counter: 3
+2025-05-13 18:03:22,596 - gui.step1_import - INFO - Browse button clicked, calling select_folder
+2025-05-13 18:03:22,596 - gui.step1_import - INFO - Opening folder selection dialog
+2025-05-13 18:03:28,226 - gui.step1_import - INFO - Folder selection dialog returned: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-10-07 Abbie & Rory
+2025-05-13 18:03:28,226 - gui.step1_import - INFO - Selected folder: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-10-07 Abbie & Rory
+2025-05-13 18:05:34,744 - __main__ - INFO - Test directory removed
+2025-05-13 18:41:37,515 - __main__ - INFO - Starting threading fix test
+2025-05-13 18:41:37,516 - __main__ - INFO - Creating test directory structure
+2025-05-13 18:41:37,519 - __main__ - INFO - Test directory structure created
+2025-05-13 18:41:37,519 - __main__ - INFO - Test directory created at: /Users/chriscleary/Sites/Github/fy_raw_compress_3/test_directory
+2025-05-13 18:41:37,682 - gui.step1_import - INFO - Initializing import panel
+2025-05-13 18:41:37,791 - __main__ - INFO - Test window initialized
+2025-05-13 18:41:44,484 - __main__ - INFO - UI updated. Counter: 1
+2025-05-13 18:41:45,880 - gui.step1_import - INFO - Browse button clicked, calling select_folder
+2025-05-13 18:41:45,881 - gui.step1_import - INFO - Opening folder selection dialog
+2025-05-13 18:41:52,171 - gui.step1_import - INFO - Folder selection dialog returned: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-10-21 Kelly & Chris
+2025-05-13 18:41:52,172 - gui.step1_import - INFO - Selected folder: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-10-21 Kelly & Chris
+2025-05-13 18:41:52,207 - core.file_preparation - INFO - Searching for CAM folders in: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-10-21 Kelly & Chris/03 MEDIA/01 VIDEO
+2025-05-13 18:41:52,217 - core.file_preparation - INFO - Found CAM folder: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-10-21 Kelly & Chris/03 MEDIA/01 VIDEO/CAM 1
+2025-05-13 18:41:52,218 - core.file_preparation - INFO - Found CAM folder: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-10-21 Kelly & Chris/03 MEDIA/01 VIDEO/CAM 3
+2025-05-13 18:41:52,218 - core.file_preparation - INFO - Found CAM folder: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-10-21 Kelly & Chris/03 MEDIA/01 VIDEO/CAM 2
+2025-05-13 18:41:52,243 - core.file_preparation - INFO - Found 3 CAM folders
+2025-05-13 18:41:52,249 - core.file_preparation - INFO - Scanning directory: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-10-21 Kelly & Chris/03 MEDIA/01 VIDEO/CAM 1 (recursive=True)
+2025-05-13 18:41:52,249 - core.file_preparation - INFO - Validating video file: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-10-21 Kelly & Chris/03 MEDIA/01 VIDEO/CAM 1/A001_04080754_C241.mov
+2025-05-13 18:41:53,560 - core.file_preparation - INFO - Validating video file: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-10-21 Kelly & Chris/03 MEDIA/01 VIDEO/CAM 1/A001_04080346_C146.mov
+2025-05-13 18:41:54,657 - core.file_preparation - INFO - Validating video file: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-10-21 Kelly & Chris/03 MEDIA/01 VIDEO/CAM 1/A001_04080324_C112.mov
+2025-05-13 18:41:55,522 - core.file_preparation - INFO - Validating video file: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-10-21 Kelly & Chris/03 MEDIA/01 VIDEO/CAM 1/A001_04080744_C222.mov
+2025-05-13 18:41:56,320 - core.file_preparation - INFO - Validating video file: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-10-21 Kelly & Chris/03 MEDIA/01 VIDEO/CAM 1/A001_04080744_C223.mov
+2025-05-13 18:41:57,354 - core.file_preparation - INFO - Validating video file: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-10-21 Kelly & Chris/03 MEDIA/01 VIDEO/CAM 1/A001_04080325_C113.mov
+2025-05-13 18:41:58,408 - core.file_preparation - INFO - Validating video file: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-10-21 Kelly & Chris/03 MEDIA/01 VIDEO/CAM 1/A001_04080346_C147.mov
+2025-05-13 18:41:59,820 - core.file_preparation - INFO - Validating video file: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-10-21 Kelly & Chris/03 MEDIA/01 VIDEO/CAM 1/A001_04080754_C242.mov
+2025-05-13 18:42:00,955 - core.file_preparation - INFO - Validating video file: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-10-21 Kelly & Chris/03 MEDIA/01 VIDEO/CAM 1/A001_04080346_C145.mov
+2025-05-13 18:42:03,673 - core.file_preparation - INFO - Validating video file: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-10-21 Kelly & Chris/03 MEDIA/01 VIDEO/CAM 1/A001_04080441_C190.mov
+2025-05-13 18:42:07,711 - core.file_preparation - INFO - Validating video file: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-10-21 Kelly & Chris/03 MEDIA/01 VIDEO/CAM 1/A001_04080725_C193.mov
+2025-05-13 18:42:08,559 - core.file_preparation - INFO - Validating video file: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-10-21 Kelly & Chris/03 MEDIA/01 VIDEO/CAM 1/A001_04080744_C221.mov
+2025-05-13 18:42:09,185 - core.file_preparation - INFO - Validating video file: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-10-21 Kelly & Chris/03 MEDIA/01 VIDEO/CAM 1/A001_04080324_C111.mov
+2025-05-13 18:42:10,853 - core.file_preparation - INFO - Validating video file: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-10-21 Kelly & Chris/03 MEDIA/01 VIDEO/CAM 1/A001_04080732_C208.mov

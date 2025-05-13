@@ -1,0 +1,18 @@
+2025-05-13 17:43:01,220 - gui.step1_import - INFO - Initializing import panel
+2025-05-13 17:43:01,342 - __main__ - INFO - Calling select_folder method
+2025-05-13 17:43:01,342 - gui.step1_import - INFO - Opening folder selection dialog
+2025-05-13 17:43:01,342 - __main__ - INFO - Mock file dialog returning test directory
+2025-05-13 17:43:01,342 - gui.step1_import - INFO - Folder selection dialog returned: /Users/chriscleary/Sites/Github/fy_raw_compress_3/test_directory
+2025-05-13 17:43:01,342 - gui.step1_import - INFO - Selected folder: /Users/chriscleary/Sites/Github/fy_raw_compress_3/test_directory
+2025-05-13 17:43:01,342 - gui.step1_import - INFO - Folder contains 1 items
+2025-05-13 17:43:01,342 - gui.step1_import - INFO - Finding CAM folders in: /Users/chriscleary/Sites/Github/fy_raw_compress_3/test_directory/03 MEDIA/01 VIDEO
+2025-05-13 17:43:01,342 - core.file_preparation - INFO - Searching for CAM folders in: /Users/chriscleary/Sites/Github/fy_raw_compress_3/test_directory/03 MEDIA/01 VIDEO
+2025-05-13 17:43:01,342 - core.file_preparation - INFO - Found CAM folder: /Users/chriscleary/Sites/Github/fy_raw_compress_3/test_directory/03 MEDIA/01 VIDEO/CAM 1
+2025-05-13 17:43:01,342 - core.file_preparation - INFO - Found 1 CAM folders
+2025-05-13 17:43:01,343 - gui.step1_import - INFO - Scanning directory: /Users/chriscleary/Sites/Github/fy_raw_compress_3/test_directory/03 MEDIA/01 VIDEO/CAM 1
+2025-05-13 17:43:01,343 - core.file_preparation - INFO - Scanning directory: /Users/chriscleary/Sites/Github/fy_raw_compress_3/test_directory/03 MEDIA/01 VIDEO/CAM 1 (recursive=True)
+2025-05-13 17:43:01,343 - core.file_preparation - INFO - Validating video file: /Users/chriscleary/Sites/Github/fy_raw_compress_3/test_directory/03 MEDIA/01 VIDEO/CAM 1/test_video.mp4
+2025-05-13 17:43:01,343 - __main__ - INFO - Simulating FFmpeg not found
+2025-05-13 17:43:01,343 - core.file_preparation - ERROR - FFmpeg not found. Please install FFmpeg and add it to your PATH.
+2025-05-13 17:43:01,343 - core.file_preparation - INFO - Found 1 valid video files
+2025-05-13 17:43:01,343 - __main__ - INFO - Test PASSED: Application did not crash when browse button was clicked

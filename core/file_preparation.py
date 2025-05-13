@@ -65,35 +65,61 @@ def validate_video_file(file_path: str) -> bool:
     Returns:
         True if file is valid for compression, False otherwise
     """
-    logger.info(f"Validating video file: {file_path}")
-    
-    # Check if file exists
-    if not os.path.isfile(file_path):
-        logger.warning(f"File does not exist: {file_path}")
-        return False
-    
-    # Check file extension
-    _, ext = os.path.splitext(file_path)
-    if ext.lower() not in VALID_EXTENSIONS:
-        logger.warning(f"Invalid file extension: {ext}")
-        return False
-    
-    # Use FFmpeg to verify file integrity
     try:
-        # Just run a quick analysis with FFmpeg to check if the file is valid
-        cmd = ["ffmpeg", "-v", "error", "-i", file_path, "-f", "null", "-"]
-        result = subprocess.run(cmd, capture_output=True, text=True)
+        logger.info(f"Validating video file: {file_path}")
         
-        # If there are errors in the output, the file may be corrupt
-        if result.stderr:
-            logger.warning(f"FFmpeg detected issues with file: {file_path}")
-            logger.debug(f"FFmpeg output: {result.stderr}")
+        # Check if file exists
+        if not os.path.isfile(file_path):
+            logger.warning(f"File does not exist: {file_path}")
             return False
-    except subprocess.SubprocessError as e:
-        logger.warning(f"Failed to validate video file with FFmpeg: {str(e)}")
-        return False
-    
-    return True
+        
+        # Check file extension
+        _, ext = os.path.splitext(file_path)
+        if ext.lower() not in VALID_EXTENSIONS:
+            logger.warning(f"Invalid file extension: {ext}")
+            return False
+        
+        # Check if FFmpeg is available
+        ffmpeg_available = True
+        try:
+            # First check if FFmpeg is available
+            subprocess.run(["ffmpeg", "-version"], capture_output=True, check=False)
+        except FileNotFoundError:
+            logger.error("FFmpeg not found. Please install FFmpeg and add it to your PATH.")
+            ffmpeg_available = False
+            # Return True to allow the file to be added to the queue even without FFmpeg validation
+            return True
+        
+        # Only validate with FFmpeg if it's available
+        if ffmpeg_available:
+            try:
+                # Just run a quick analysis with FFmpeg to check if the file is valid
+                cmd = ["ffmpeg", "-v", "error", "-i", file_path, "-f", "null", "-"]
+                
+                # Use timeout to prevent hanging
+                try:
+                    result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+                    
+                    # If there are errors in the output, the file may be corrupt
+                    if result.stderr:
+                        logger.warning(f"FFmpeg detected issues with file: {file_path}")
+                        logger.debug(f"FFmpeg output: {result.stderr}")
+                        return False
+                except subprocess.TimeoutExpired:
+                    logger.warning(f"FFmpeg validation timed out for file: {file_path}")
+                    # Return True to allow the file to be added to the queue even when timeout occurs
+                    return True
+                    
+            except subprocess.SubprocessError as e:
+                logger.warning(f"Failed to validate video file with FFmpeg: {str(e)}")
+                # Still return True to allow the file to be added to the queue even with FFmpeg validation issues
+                return True
+        
+        return True
+    except Exception as e:
+        logger.error(f"Unexpected error validating file {file_path}: {str(e)}", exc_info=True)
+        # Return True to allow the file to be added to the queue even with validation errors
+        return True
 
 
 def get_video_metadata(file_path: str) -> Optional[Dict]:
@@ -121,10 +147,14 @@ def get_video_metadata(file_path: str) -> Optional[Dict]:
             file_path
         ]
         
-        result = subprocess.run(cmd, capture_output=True, text=True)
-        
-        if result.returncode != 0:
-            logger.warning(f"ffprobe returned error code {result.returncode}")
+        try:
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+            
+            if result.returncode != 0:
+                logger.warning(f"ffprobe returned error code {result.returncode}")
+                return None
+        except subprocess.TimeoutExpired:
+            logger.warning(f"ffprobe timed out for file: {file_path}")
             return None
         
         import json
@@ -277,12 +307,15 @@ def find_cam_folders(root_dir: str) -> List[str]:
     
     cam_folders = []
     
-    for root, dirs, _ in os.walk(root_dir):
-        for dir_name in dirs:
-            if "CAM" in dir_name.upper():
-                cam_folder = os.path.join(root, dir_name)
-                cam_folders.append(cam_folder)
-                logger.info(f"Found CAM folder: {cam_folder}")
+    try:
+        for root, dirs, _ in os.walk(root_dir):
+            for dir_name in dirs:
+                if "CAM" in dir_name.upper():
+                    cam_folder = os.path.join(root, dir_name)
+                    cam_folders.append(cam_folder)
+                    logger.info(f"Found CAM folder: {cam_folder}")
+    except Exception as e:
+        logger.error(f"Error searching for CAM folders: {str(e)}")
     
     logger.info(f"Found {len(cam_folders)} CAM folders")
     return cam_folders

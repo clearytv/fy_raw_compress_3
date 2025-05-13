@@ -1,0 +1,5 @@
+2025-05-13 17:48:15,561 - __main__ - INFO - Starting minimal dialog test application
+2025-05-13 17:48:30,466 - __main__ - INFO - Testing directory selection dialog
+2025-05-13 17:48:36,335 - __main__ - INFO - Directory dialog returned: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-10-21 Kelly & Chris
+2025-05-13 17:48:38,084 - __main__ - INFO - Testing file selection dialog
+2025-05-13 17:48:52,629 - __main__ - INFO - File dialog returned: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-10-21 Kelly & Chris/03 MEDIA/01 VIDEO/CAM 1/A001_04080116_C001.mov
