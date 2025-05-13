@@ -66,11 +66,15 @@ class MainWindow(QMainWindow):
         self.stacked_widget.addWidget(self.convert_panel)
         self.stacked_widget.addWidget(self.results_panel)
         
+        # Set queue manager in panels that need it
+        self.convert_panel.set_queue_manager(self.queue_manager)
+        
         # Connect signals between panels
         self._connect_signals()
         
         # Start with first panel
         self.stacked_widget.setCurrentIndex(0)
+        logger.info(f"Starting application with panel index set to {self.stacked_widget.currentIndex()}")
         
     def _connect_signals(self):
         """Connect signals between panels for workflow navigation."""
@@ -89,20 +93,33 @@ class MainWindow(QMainWindow):
     def on_files_selected(self, files):
         """Handle files selected from import panel."""
         logger.info(f"Main window received {len(files)} files from import panel")
+        
+        # Verify that we have valid files before proceeding
+        if not files:
+            logger.warning("No valid files received, not proceeding to next step")
+            return
+            
         self.queue_manager.add_files(files)
         self.convert_panel.set_queued_files(files)
         
     def on_compression_complete(self, results):
         """Handle compression completion from convert panel."""
         logger.info("Main window received compression complete signal")
+        
+        # Verify that we have valid results before proceeding
+        if not results:
+            logger.warning("No compression results received, not advancing to results panel")
+            return
+            
         self.results_panel.set_compression_results(results)
         self.stacked_widget.setCurrentIndex(2)
         
     def reset_workflow(self):
         """Reset the workflow to start a new job."""
-        logger.info("Resetting workflow")
+        logger.info("Resetting workflow - clearing queue and going to step 1")
         self.queue_manager.clear_queue()
         self.stacked_widget.setCurrentIndex(0)
+        logger.info(f"Current index set to {self.stacked_widget.currentIndex()}")
 
 
 def main():

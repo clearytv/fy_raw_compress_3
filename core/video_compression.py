@@ -15,6 +15,7 @@ import subprocess
 import logging
 import re
 import shlex
+import tempfile
 from typing import Dict, List, Tuple, Optional, Callable
 
 logger = logging.getLogger(__name__)
@@ -39,7 +40,10 @@ def get_compression_settings() -> Dict:
         },
         "tag": "hvc1",
         "faststart": True,
-        "audio_codec": "copy"  # Pass through original audio
+        "audio_codec": "aac",
+        "audio_bitrate": "320k",
+        "audio_sample_rate": "48000",
+        "audio_channels": "2"
     }
 
 
@@ -71,6 +75,8 @@ def build_ffmpeg_command(input_path: str, output_path: str, settings: Optional[D
         "-c:v", settings["codec"],
         "-profile:v", settings["profile"],
         "-b:v", settings["bitrate"],
+        "-maxrate", settings["bitrate"],
+        "-bufsize", f"{int(settings['bitrate'][:-1])*2}M",
         "-pix_fmt", settings["pixel_format"]
     ])
     
@@ -88,7 +94,12 @@ def build_ffmpeg_command(input_path: str, output_path: str, settings: Optional[D
         cmd.extend(["-movflags", "+faststart"])
     
     # Audio settings
-    cmd.extend(["-c:a", settings["audio_codec"]])
+    cmd.extend([
+        "-c:a", settings["audio_codec"],
+        "-b:a", settings["audio_bitrate"],
+        "-ar", settings["audio_sample_rate"],
+        "-ac", settings["audio_channels"]
+    ])
     
     # Output path
     cmd.append(output_path)
@@ -102,7 +113,7 @@ def compress_video(
     output_path: str,
     settings: Optional[Dict] = None,
     progress_callback: Optional[Callable[[float], None]] = None,
-    temp_dir: str = "/Volumes/Media HD/tmp/"
+    temp_dir: str = None
 ) -> bool:
     """
     Compress a video file using FFmpeg.
@@ -129,14 +140,37 @@ def compress_video(
     except Exception as e:
         logger.warning(f"Could not get video duration: {str(e)}")
     
+    # Use a reliable temporary directory
+    if temp_dir is None:
+        # If no temp directory specified, use system's temp directory or a local project subdirectory
+        try:
+            # First attempt: Use Python's tempfile module for a guaranteed accessible temp directory
+            temp_dir = tempfile.gettempdir()
+            logger.info(f"Using system temp directory: {temp_dir}")
+        except Exception as e:
+            # Fallback: Use a local 'temp' directory within the project
+            temp_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'temp')
+            logger.info(f"Using local temp directory: {temp_dir}")
+    
     # Ensure temp directory exists
-    os.makedirs(temp_dir, exist_ok=True)
+    try:
+        os.makedirs(temp_dir, exist_ok=True)
+        logger.debug(f"Ensuring temp directory exists: {temp_dir}")
+    except PermissionError as e:
+        logger.error(f"Permission error creating temp directory {temp_dir}: {str(e)}")
+        return False
+    except OSError as e:
+        logger.error(f"OS error creating temp directory {temp_dir}: {str(e)}")
+        return False
     
     # Create temporary output path
     temp_output = os.path.join(temp_dir, os.path.basename(output_path))
     
     # Build command using temporary output
     cmd = build_ffmpeg_command(input_path, temp_output, settings)
+    
+    # Log command for debugging quality issues
+    logger.debug(f"FFmpeg command: {' '.join(cmd)}")
     
     try:
         # Use Popen to get real-time output
@@ -218,7 +252,7 @@ def get_video_duration(input_path: str) -> float:
     ]
     
     try:
-        result = subprocess.run(cmd, capture_output=True, text=True, check=True)
+        result = subprocess.run(cmd, capture_output=True, text=True, check=True, timeout=30)
         duration = float(result.stdout.strip())
         return duration
     except (subprocess.SubprocessError, ValueError) as e:
@@ -346,7 +380,7 @@ def check_hardware_acceleration():
     cmd = ["ffmpeg", "-encoders"]
     
     try:
-        result = subprocess.run(cmd, capture_output=True, text=True)
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
         
         # Check for videotoolbox support
         if "hevc_videotoolbox" in result.stdout:

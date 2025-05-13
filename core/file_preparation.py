@@ -222,7 +222,24 @@ def generate_output_filename(input_path: str, output_dir: Optional[str] = None) 
         os.makedirs(output_dir, exist_ok=True)
         output_path = os.path.join(output_dir, new_name)
     else:
-        output_path = os.path.join(os.path.dirname(input_path), new_name)
+        # Handle the case where input is in "/01 VIDEO.old/" but output should be in "/01 VIDEO/"
+        dir_path = os.path.dirname(input_path)
+        
+        # Check for different OS path separators and the "01 VIDEO.old" pattern
+        # This will work with both Unix-style and Windows-style paths
+        video_old_pattern = os.path.sep + "01 VIDEO.old" + os.path.sep
+        video_old_end_pattern = os.path.sep + "01 VIDEO.old"
+        video_pattern = os.path.sep + "01 VIDEO" + os.path.sep
+        
+        # Handle paths that contain the pattern
+        if video_old_pattern in dir_path or dir_path.endswith(video_old_end_pattern):
+            # Create the corresponding "/01 VIDEO/" directory
+            new_dir_path = dir_path.replace("01 VIDEO.old", "01 VIDEO")
+            logger.info(f"Converting path from '{dir_path}' to '{new_dir_path}'")
+            os.makedirs(new_dir_path, exist_ok=True)
+            output_path = os.path.join(new_dir_path, new_name)
+        else:
+            output_path = os.path.join(dir_path, new_name)
     
     logger.info(f"Generated output filename: {output_path}")
     return output_path

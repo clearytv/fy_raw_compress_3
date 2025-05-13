@@ -414,13 +414,23 @@ class ImportPanel(QWidget):
         self.valid_files = files
         self.file_list.clear()
         
+        file_count = len(files)
+        
+        if file_count == 0:
+            logger.warning("No valid files found during scan")
+            self.status_update.emit("No valid video files found in the selected folders", "red")
+            self.next_button.setEnabled(False)
+            self.file_count_label.setText("0 files found")
+            return
+            
+        # Add files to the list
         for file_path in files:
             item = QListWidgetItem(os.path.basename(file_path))
             self.file_list.addItem(item)
         
-        file_count = len(files)
         self.file_count_label.setText(f"{file_count} files found")
-        self.next_button.setEnabled(file_count > 0)
+        self.next_button.setEnabled(True)
+        logger.info(f"Found {file_count} valid video files")
     
     def on_status_update(self, message, color):
         """Handle status updates."""
@@ -465,6 +475,7 @@ class ImportPanel(QWidget):
             return
         
         # If rename option is selected, prompt user to confirm
+        renamed = False
         if self.rename_folders:
             reply = QMessageBox.question(
                 self,
@@ -479,10 +490,30 @@ class ImportPanel(QWidget):
                 video_path = os.path.join(self.parent_folder, "03 MEDIA", "01 VIDEO")
                 renamed_path = rename_video_folder(video_path)
                 logger.info(f"Renamed video folder: {video_path} to {renamed_path}")
+                renamed = True
+        
+        # If we renamed folders, update the file paths
+        updated_files = []
+        if renamed:
+            for file_path in self.valid_files:
+                if "/01 VIDEO/" in file_path:
+                    updated_path = file_path.replace("/01 VIDEO/", "/01 VIDEO.old/")
+                    if os.path.exists(updated_path):
+                        logger.info(f"Updated path after rename: {file_path} -> {updated_path}")
+                        updated_files.append(updated_path)
+                    else:
+                        # Still include the original path - the queue manager will handle it
+                        logger.warning(f"Could not find updated path for: {file_path}")
+                        updated_files.append(file_path)
+                else:
+                    updated_files.append(file_path)
+            logger.info(f"Updated {len(updated_files)} file paths after renaming directory")
+        else:
+            updated_files = self.valid_files
         
         # Emit signal with validated files
-        logger.info(f"Adding {len(self.valid_files)} files to queue")
-        self.files_selected.emit(self.valid_files)
+        logger.info(f"Adding {len(updated_files)} files to queue")
+        self.files_selected.emit(updated_files)
         
         # Emit signal to navigate to next panel
         self.next_clicked.emit()

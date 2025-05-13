@@ -18,9 +18,10 @@ from PyQt6.QtWidgets import (
     QWidget, QPushButton, QVBoxLayout, QHBoxLayout,
     QLabel, QProgressBar, QComboBox, QFileDialog, QListWidget,
     QGroupBox, QSplitter, QTextEdit, QCheckBox, QFrame,
-    QListWidgetItem, QRadioButton, QButtonGroup
+    QListWidgetItem, QRadioButton, QButtonGroup,
+    QProgressDialog
 )
-from PyQt6.QtCore import pyqtSignal, Qt, QTimer
+from PyQt6.QtCore import pyqtSignal, Qt, QTimer, QThread, QObject, pyqtSlot
 from PyQt6.QtGui import QFont
 
 # Import core functionality
@@ -28,6 +29,78 @@ from core.video_compression import get_compression_settings, estimate_file_size,
 from core.queue_manager import QueueStatus
 
 logger = logging.getLogger(__name__)
+
+
+class EstimationWorker(QObject):
+    """
+    Worker class for running file size estimation in a background thread.
+    """
+    # Signal for estimation result
+    estimation_complete = pyqtSignal(float, float, float)  # savings_mb, savings_percent, success
+    # Signal for progress updates
+    progress_update = pyqtSignal(str)
+    
+    def __init__(self):
+        super().__init__()
+        self.queued_files = []
+        
+    def set_files(self, files):
+        """Set the queued files to estimate."""
+        self.queued_files = files
+    
+    @pyqtSlot()
+    def calculate_size_estimate(self):
+        """Calculate size estimates in a background thread."""
+        try:
+            if not self.queued_files:
+                self.estimation_complete.emit(0, 0, 0)
+                return
+                
+            self.progress_update.emit("Calculating total input size...")
+            
+            # Calculate total input size
+            total_input_size = 0
+            for i, file_path in enumerate(self.queued_files):
+                try:
+                    total_input_size += os.path.getsize(file_path)
+                except OSError:
+                    pass
+                
+                if i % 5 == 0:  # Update progress every 5 files
+                    self.progress_update.emit(f"Checking input file {i+1}/{len(self.queued_files)}...")
+            
+            # Estimate output size using default settings
+            settings = get_compression_settings()
+            estimated_output_size = 0
+            
+            self.progress_update.emit("Estimating output sizes...")
+            
+            for i, file_path in enumerate(self.queued_files):
+                try:
+                    estimated_output_size += estimate_file_size(file_path, settings)
+                except:
+                    # If estimation fails, use a rough calculation (about 25% of original)
+                    try:
+                        estimated_output_size += os.path.getsize(file_path) * 0.25
+                    except OSError:
+                        pass
+                        
+                if i % 5 == 0:  # Update progress every 5 files
+                    self.progress_update.emit(f"Estimating file {i+1}/{len(self.queued_files)}...")
+            
+            # Calculate savings
+            if total_input_size > 0:
+                savings = total_input_size - estimated_output_size
+                savings_mb = savings / (1024 * 1024)
+                savings_percent = (savings / total_input_size) * 100
+                
+                self.estimation_complete.emit(savings_mb, savings_percent, 1.0)
+            else:
+                self.estimation_complete.emit(0, 0, 0)
+                
+        except Exception as e:
+            logger.error(f"Error in calculate_size_estimate: {str(e)}", exc_info=True)
+            self.estimation_complete.emit(0, 0, 0)
 
 
 class ConvertPanel(QWidget):
@@ -52,6 +125,22 @@ class ConvertPanel(QWidget):
         self.start_time = 0
         self.current_file = ""
         self.timer = None
+        self.queue_manager = None
+        
+        # Create worker thread and estimation worker
+        self.estimation_thread = QThread()
+        self.estimation_worker = EstimationWorker()
+        self.estimation_worker.moveToThread(self.estimation_thread)
+        
+        # Connect worker signals
+        self.estimation_worker.estimation_complete.connect(self.on_estimation_complete)
+        self.estimation_worker.progress_update.connect(self.on_estimation_progress)
+        
+        # Connect thread start to worker slots
+        self.estimation_thread.started.connect(self.estimation_worker.calculate_size_estimate)
+        
+        # Progress dialog
+        self.progress_dialog = None
         
         # Create UI components
         self._init_ui()
@@ -235,6 +324,16 @@ class ConvertPanel(QWidget):
         """Toggle the visibility of the log output window."""
         self.log_output.setVisible(bool(state))
     
+    def set_queue_manager(self, queue_manager):
+        """
+        Set the queue manager reference.
+        
+        Args:
+            queue_manager: The queue manager instance to use
+        """
+        self.queue_manager = queue_manager
+        logger.info("Queue manager set in ConvertPanel")
+        
     def set_queued_files(self, files):
         """
         Set the list of files queued for compression.
@@ -259,39 +358,49 @@ class ConvertPanel(QWidget):
         logger.info(f"Queue updated with {len(files)} files")
     
     def _update_size_estimate(self):
-        """Calculate and display estimated size savings."""
+        """
+        Start calculating estimated size savings in a background thread.
+        Shows a progress dialog while calculating.
+        """
         if not self.queued_files:
             self.size_estimate_label.setText("Estimated savings: 0 MB")
             return
+        
+        # Show progress dialog
+        self.progress_dialog = QProgressDialog("Calculating file sizes...", "Cancel", 0, 0, self)
+        self.progress_dialog.setWindowTitle("Size Estimation")
+        self.progress_dialog.setWindowModality(Qt.WindowModality.WindowModal)
+        self.progress_dialog.setMinimumDuration(500)  # Only show for operations > 500ms
+        self.progress_dialog.canceled.connect(self.cancel_estimation)
+        
+        # Configure worker
+        self.estimation_worker.set_files(self.queued_files)
+        
+        # Start the thread if not already running
+        if not self.estimation_thread.isRunning():
+            self.estimation_thread.start()
             
-        # Calculate total input size
-        total_input_size = 0
-        for file_path in self.queued_files:
-            try:
-                total_input_size += os.path.getsize(file_path)
-            except OSError:
-                pass
+    def cancel_estimation(self):
+        """Cancel the ongoing estimation."""
+        if self.estimation_thread.isRunning():
+            self.estimation_thread.quit()
+            if not self.estimation_thread.wait(1000):
+                self.estimation_thread.terminate()
+    
+    def on_estimation_progress(self, message):
+        """Handle progress updates during estimation."""
+        if self.progress_dialog is not None:
+            self.progress_dialog.setLabelText(message)
+    
+    def on_estimation_complete(self, savings_mb, savings_percent, success):
+        """Handle completion of size estimation."""
+        # Close the progress dialog
+        if self.progress_dialog is not None:
+            self.progress_dialog.close()
+            self.progress_dialog = None
         
-        # Estimate output size using default settings
-        settings = get_compression_settings()
-        estimated_output_size = 0
-        
-        for file_path in self.queued_files:
-            try:
-                estimated_output_size += estimate_file_size(file_path, settings)
-            except:
-                # If estimation fails, use a rough calculation (about 25% of original)
-                try:
-                    estimated_output_size += os.path.getsize(file_path) * 0.25
-                except OSError:
-                    pass
-        
-        # Calculate savings
-        if total_input_size > 0:
-            savings = total_input_size - estimated_output_size
-            savings_mb = savings / (1024 * 1024)
-            savings_percent = (savings / total_input_size) * 100
-            
+        # Update the UI with results
+        if success > 0:
             self.size_estimate_label.setText(f"Est. savings: {savings_mb:.2f} MB ({savings_percent:.1f}%)")
         else:
             self.size_estimate_label.setText("Estimated savings: Unknown")
@@ -331,6 +440,25 @@ class ConvertPanel(QWidget):
             logger.warning("Cannot start compression: No files in queue")
             return
         
+        # Verify that queue manager actually has files
+        if not self.queue_manager or not self.queue_manager.queue:
+            error_msg = "No files in compression queue. This may happen if files were not found after directory rename."
+            logger.error(error_msg)
+            self.log_output.append(f"ERROR: {error_msg}")
+            
+            # Make log visible automatically when error occurs
+            self.show_log_checkbox.setChecked(True)
+            self._toggle_log_visibility(True)
+            
+            # Show error to the user
+            from PyQt6.QtWidgets import QMessageBox
+            QMessageBox.critical(
+                self,
+                "Queue Error",
+                error_msg + "\n\nPlease go back to Step 1 and re-select the folder with the renamed structure."
+            )
+            return
+        
         # Update UI to processing state
         self.processing = True
         self.start_button.setText("Cancel Compression")
@@ -348,8 +476,18 @@ class ConvertPanel(QWidget):
         self.timer.timeout.connect(self._update_elapsed_time)
         self.timer.start(1000)  # Update every second
         
-        # Get queue manager from main window
-        queue_manager = self.parent().queue_manager
+        # Use the queue manager that was set
+        if not self.queue_manager:
+            logger.error("Queue manager not set in ConvertPanel")
+            self.log_output.append("ERROR: Queue manager not set")
+            self.processing = False
+            return
+            
+        queue_manager = self.queue_manager
+        
+        # Log queue status
+        stats = queue_manager.get_queue_status()
+        self.log_output.append(f"Queue status: {stats['total']} files in queue")
         
         # Get output directory (or None for default)
         output_dir = self.output_dir if self.output_dir else None
@@ -386,19 +524,39 @@ class ConvertPanel(QWidget):
             
         except Exception as e:
             logger.error(f"Error during compression: {str(e)}", exc_info=True)
-            self.log_output.append(f"ERROR: {str(e)}")
+            # Update log in UI thread
+            from PyQt6.QtCore import QMetaObject, Q_ARG, Qt
+            QMetaObject.invokeMethod(
+                self.log_output,
+                "append",
+                Qt.ConnectionType.QueuedConnection,
+                Q_ARG(str, f"ERROR: {str(e)}")
+            )
         finally:
-            # Update UI back to idle state
-            self.processing = False
-            self.back_button.setEnabled(True)
-            self.output_dir_button.setEnabled(True)
-            self.use_defaults_checkbox.setEnabled(True)
-            self.start_button.setText("Start Compression")
-            self.next_button.setEnabled(True)
+            # Update UI back to idle state using thread-safe method
+            from PyQt6.QtCore import QMetaObject, Qt
             
-            # Stop timer
-            if self.timer:
-                self.timer.stop()
+            # Signal UI update via a queued connection
+            QMetaObject.invokeMethod(
+                self,
+                "finish_compression",
+                Qt.ConnectionType.QueuedConnection
+            )
+                
+    def closeEvent(self, event):
+        """Handle the close event - clean up threads."""
+        # Cancel any ongoing operations
+        if hasattr(self, 'estimation_worker'):
+            self.cancel_estimation()
+        
+        # Quit the estimation thread properly
+        if hasattr(self, 'estimation_thread') and self.estimation_thread:
+            if self.estimation_thread.isRunning():
+                self.estimation_thread.quit()
+                if not self.estimation_thread.wait(3000):  # Wait up to 3 seconds
+                    self.estimation_thread.terminate()
+        
+        super().closeEvent(event)
     
     def update_progress(self, current_file, progress_percentage):
         """
@@ -461,6 +619,22 @@ class ConvertPanel(QWidget):
                 Q_ARG(str, remaining)
             )
     
+    @pyqtSlot()
+    def finish_compression(self):
+        """Thread-safe method to update UI after compression completes."""
+        # Update UI back to idle state
+        self.processing = False
+        self.back_button.setEnabled(True)
+        self.output_dir_button.setEnabled(True)
+        self.use_defaults_checkbox.setEnabled(True)
+        self.start_button.setText("Start Compression")
+        self.next_button.setEnabled(True)
+            
+        # Stop timer
+        if self.timer:
+            self.timer.stop()
+            self.timer = None
+    
     def _update_elapsed_time(self):
         """Update the elapsed time display."""
         if self.processing and self.start_time > 0:
@@ -480,5 +654,7 @@ class ConvertPanel(QWidget):
         self.log_output.append("Cancelling compression...")
         
         # Cancel via queue manager
-        queue_manager = self.parent().queue_manager
-        queue_manager.cancel_processing()
+        if self.queue_manager:
+            self.queue_manager.cancel_processing()
+        else:
+            logger.error("Queue manager not available for cancellation")

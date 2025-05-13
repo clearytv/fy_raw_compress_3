@@ -61,11 +61,27 @@ class QueueManager:
         added_count = 0
         
         for path in file_paths:
-            if path not in self.queue and os.path.isfile(path):
+            original_path = path
+            
+            # Check if file exists
+            if not os.path.isfile(path):
+                # Handle renamed directory case (01 VIDEO -> 01 VIDEO.old)
+                old_path = path
+                if "/01 VIDEO/" in path:
+                    # Try with renamed directory
+                    new_path = path.replace("/01 VIDEO/", "/01 VIDEO.old/")
+                    if os.path.isfile(new_path):
+                        path = new_path
+                        logger.info(f"Found renamed file: {path}")
+                else:
+                    logger.warning(f"File not found: {path}")
+                    continue
+            
+            if path not in self.queue:
                 self.queue.append(path)
                 self.status[path] = QueueStatus.PENDING
                 added_count += 1
-        
+            
         logger.info(f"Added {added_count} files to queue")
         return added_count
     
@@ -122,6 +138,11 @@ class QueueManager:
             logger.warning("Queue is already being processed")
             return False
         
+        # Check if queue is empty
+        if not self.queue:
+            logger.warning("Cannot process queue: Queue is empty")
+            return False
+            
         # Initialize processing
         self.is_processing = True
         self.current_index = 0
