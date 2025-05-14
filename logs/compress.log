@@ -65,3 +65,5 @@
 2025-05-14 12:15:03,937 - __main__ - INFO - Restored window geometry and state from settings
 2025-05-14 12:15:04,042 - __main__ - INFO - Starting application with panel index set to 0
 2025-05-14 12:15:31,192 - __main__ - INFO - Main window received 6 files from import panel
+2025-05-14 13:20:44,609 - __main__ - INFO - Main window received compression complete signal
+2025-05-14 13:23:29,636 - __main__ - INFO - Saved window geometry and state

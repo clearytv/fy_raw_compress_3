@@ -213,8 +213,8 @@ def generate_output_filename(input_path: str, output_dir: Optional[str] = None) 
     filename = os.path.basename(input_path)
     name, ext = os.path.splitext(filename)
     
-    # Preserve original extension instead of converting to .mp4
-    new_name = filename
+    # Always use .mp4 extension for output files
+    new_name = name + ".mp4"
     
     # Determine output directory
     if output_dir:

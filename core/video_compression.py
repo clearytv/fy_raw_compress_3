@@ -31,8 +31,8 @@ def get_compression_settings() -> Dict:
         "codec": "libx265",
         "profile": "main10",
         "preset": "medium",  # Encoding speed/quality tradeoff
-        "bitrate": "24M",    # Target bitrate (24 Mbps)
-        "x265_params": "profile=main10:vbv-maxrate=24000:vbv-bufsize=48000",
+        "crf": 18,           # Constant Rate Factor (quality-based)
+        "x265_params": "profile=main10",
         "pixel_format": "yuv420p10le",
         "color_settings": {
             "primaries": "bt709",
@@ -41,7 +41,8 @@ def get_compression_settings() -> Dict:
         },
         "tag": "hvc1",
         "faststart": True,
-        "audio_codec": "copy"  # Audio pass-through as per specification
+        "audio_codec": "aac",  # AAC audio encoding
+        "audio_bitrate": "320k"  # 320kbps audio bitrate
     }
 
 
@@ -73,7 +74,7 @@ def build_ffmpeg_command(input_path: str, output_path: str, settings: Optional[D
         "-c:v", settings["codec"],
         "-profile:v", settings["profile"],
         "-preset", settings["preset"],
-        "-b:v", settings["bitrate"],
+        "-crf", str(settings["crf"]),
         "-pix_fmt", settings["pixel_format"]
     ])
     
@@ -94,9 +95,10 @@ def build_ffmpeg_command(input_path: str, output_path: str, settings: Optional[D
     if settings["faststart"]:
         cmd.extend(["-movflags", "+faststart"])
     
-    # Audio settings - use copy for passthrough
+    # Audio settings - use AAC with specified bitrate
     cmd.extend([
-        "-c:a", settings["audio_codec"]
+        "-c:a", settings["audio_codec"],
+        "-b:a", settings["audio_bitrate"]
     ])
     
     # Output path
@@ -301,34 +303,39 @@ def estimate_file_size(input_path: str, settings: Optional[Dict] = None) -> int:
     # This is an estimate since quality-based encoding produces variable bitrates
     video_bitrate = 0
     
-    # Estimate bitrate based on quality value (0-100)
-    # Higher quality = higher bitrate
-    quality = settings.get("quality", 100)
+    # For CRF-based encoding, estimate bitrate based on CRF value
+    # Lower CRF = higher quality = higher bitrate
+    crf = settings.get("crf", 23)  # Default CRF in FFmpeg is 23
     
-    if "bitrate" in settings:
-        # If bitrate is explicitly provided, use it for estimation
-        video_bitrate_str = settings["bitrate"]
-        
-        # Parse bitrate value (e.g., "24M" to 24000000)
-        if video_bitrate_str.endswith('K') or video_bitrate_str.endswith('k'):
-            video_bitrate = int(float(video_bitrate_str[:-1]) * 1000)
-        elif video_bitrate_str.endswith('M') or video_bitrate_str.endswith('m'):
-            video_bitrate = int(float(video_bitrate_str[:-1]) * 1000000)
-        else:
-            try:
-                video_bitrate = int(video_bitrate_str)
-            except ValueError:
-                logger.error(f"Could not parse bitrate: {video_bitrate_str}")
-                return 0
+    # CRF scale is logarithmic:
+    # - CRF 18 (high quality) ≈ 20-30 Mbps for 1080p content
+    # - CRF 23 (default) ≈ 8-12 Mbps for 1080p content
+    # - CRF 28 (lower quality) ≈ 3-5 Mbps for 1080p content
+    
+    # Base estimation on the CRF value (lower = higher bitrate)
+    if crf <= 18:  # Very high quality
+        video_bitrate = 25000000  # ~25 Mbps
+    elif crf <= 21:  # High quality
+        video_bitrate = 15000000  # ~15 Mbps
+    elif crf <= 25:  # Medium quality
+        video_bitrate = 8000000   # ~8 Mbps
+    else:  # Lower quality
+        video_bitrate = 4000000   # ~4 Mbps
+    
+    # Get audio bitrate from settings or use default
+    audio_bitrate_str = settings.get("audio_bitrate", "320k")
+    
+    # Parse audio bitrate value
+    if audio_bitrate_str.endswith('K') or audio_bitrate_str.endswith('k'):
+        audio_bitrate = int(float(audio_bitrate_str[:-1]) * 1000)
+    elif audio_bitrate_str.endswith('M') or audio_bitrate_str.endswith('m'):
+        audio_bitrate = int(float(audio_bitrate_str[:-1]) * 1000000)
     else:
-        # For quality-based encoding, estimate bitrate based on quality
-        # Quality 100 (best) = approximately 40Mbps for 4K content
-        # Quality 50 (medium) = approximately 15Mbps
-        # Quality 0 (worst) = approximately 5Mbps
-        video_bitrate = int((quality / 100.0) * 35000000 + 5000000)
-    
-    # Assume audio bitrate (typically much smaller than video)
-    audio_bitrate = 320000  # 320 kbps AAC
+        try:
+            audio_bitrate = int(audio_bitrate_str)
+        except ValueError:
+            logger.info(f"Using default audio bitrate: 320000")
+            audio_bitrate = 320000  # 320 kbps AAC
     
     # Calculate based on bitrate and duration
     total_bitrate = video_bitrate + audio_bitrate
