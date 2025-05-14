@@ -15,7 +15,6 @@ import subprocess
 import logging
 import re
 import shlex
-import tempfile
 from typing import Dict, List, Tuple, Optional, Callable
 
 logger = logging.getLogger(__name__)
@@ -107,7 +106,7 @@ def compress_video(
     output_path: str,
     settings: Optional[Dict] = None,
     progress_callback: Optional[Callable[[float], None]] = None,
-    temp_dir: str = None
+    temp_dir: str = None  # Kept for backward compatibility but no longer used
 ) -> bool:
     """
     Compress a video file using FFmpeg.
@@ -117,7 +116,7 @@ def compress_video(
         output_path: Path for output compressed file
         settings: Optional custom settings
         progress_callback: Optional callback function for progress updates
-        temp_dir: Directory to use for temporary files
+        temp_dir: No longer used - files are written directly to output location
         
     Returns:
         True if compression was successful, False otherwise
@@ -134,46 +133,20 @@ def compress_video(
     except Exception as e:
         logger.warning(f"Could not get video duration: {str(e)}")
     
-    # Use the external Media HD drive for temporary storage
-    if temp_dir is None:
-        # Default to Media HD drive temp directory
-        media_hd_temp = "/Volumes/Media HD/temp"
-        try:
-            # Ensure the Media HD drive is mounted and accessible
-            if os.path.exists("/Volumes/Media HD"):
-                # Create the temp directory if it doesn't exist
-                temp_dir = media_hd_temp
-                if not os.path.exists(temp_dir):
-                    logger.info(f"Creating Media HD temp directory: {temp_dir}")
-                    os.makedirs(temp_dir, exist_ok=True)
-                logger.info(f"Using Media HD temp directory: {temp_dir}")
-            else:
-                # Fallback if drive is not mounted
-                logger.warning("Media HD drive not found. Using system temp directory instead.")
-                temp_dir = tempfile.gettempdir()
-                logger.info(f"Using system temp directory: {temp_dir}")
-        except Exception as e:
-            # Final fallback: Use a local 'temp' directory within the project
-            logger.error(f"Error accessing Media HD temp directory: {str(e)}")
-            temp_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'temp')
-            logger.info(f"Using local temp directory: {temp_dir}")
-    
-    # Ensure temp directory exists
+    # Ensure output directory exists
     try:
-        os.makedirs(temp_dir, exist_ok=True)
-        logger.debug(f"Ensuring temp directory exists: {temp_dir}")
+        output_dir = os.path.dirname(output_path)
+        os.makedirs(output_dir, exist_ok=True)
+        logger.debug(f"Ensuring output directory exists: {output_dir}")
     except PermissionError as e:
-        logger.error(f"Permission error creating temp directory {temp_dir}: {str(e)}")
+        logger.error(f"Permission error creating output directory {output_dir}: {str(e)}")
         return False
     except OSError as e:
-        logger.error(f"OS error creating temp directory {temp_dir}: {str(e)}")
+        logger.error(f"OS error creating output directory {output_dir}: {str(e)}")
         return False
     
-    # Create temporary output path
-    temp_output = os.path.join(temp_dir, os.path.basename(output_path))
-    
-    # Build command using temporary output
-    cmd = build_ffmpeg_command(input_path, temp_output, settings)
+    # Build command to write directly to output path
+    cmd = build_ffmpeg_command(input_path, output_path, settings)
     
     # Log command for debugging quality issues
     logger.debug(f"FFmpeg command: {' '.join(cmd)}")
@@ -207,29 +180,23 @@ def compress_video(
         
         if return_code != 0:
             logger.error(f"FFmpeg process failed with return code {return_code}")
-            # Clean up temp file if exists
-            if os.path.exists(temp_output):
-                os.remove(temp_output)
+            # Clean up partial output file if it exists
+            if os.path.exists(output_path):
+                try:
+                    os.remove(output_path)
+                    logger.info(f"Removed failed output file: {output_path}")
+                except Exception as e:
+                    logger.error(f"Failed to remove failed output file: {str(e)}")
             return False
         
-        # Move from temp location to final destination
-        try:
-            # Ensure output directory exists
-            os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        # File is already at final destination since we wrote directly to it
+        logger.info(f"Successfully compressed to {output_path}")
+        
+        # Update callback with 100% completion
+        if progress_callback:
+            progress_callback(1.0)
             
-            # Move file
-            import shutil
-            shutil.move(temp_output, output_path)
-            logger.info(f"Successfully compressed and moved to {output_path}")
-            
-            # Update callback with 100% completion
-            if progress_callback:
-                progress_callback(1.0)
-                
-            return True
-        except Exception as e:
-            logger.error(f"Failed to move from temp to final location: {str(e)}")
-            return False
+        return True
             
     except subprocess.SubprocessError as e:
         logger.error(f"Subprocess error during compression: {str(e)}")
