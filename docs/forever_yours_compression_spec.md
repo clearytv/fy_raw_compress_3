@@ -1,4 +1,4 @@
-# 🗜️ Forever Yours – RAW Compression Spec
+# 🗜️ Forever Yours – RAW Compression Spec (Updated)
 
 ## 🎯 Purpose
 
@@ -20,10 +20,10 @@ Compress large RAW wedding video files into **smaller H.265 HEVC versions** usin
 - **Codec**: HEVC (H.265)
 - **Encoder**: `hevc_videotoolbox` (Apple Silicon hardware acceleration)
 - **Profile**: Main 10
-- **Bitrate**: VBR, target 24 Mbps
+- **Bitrate**: VBR, target 24 Mbps (with enforced constraints)
 - **Color Settings**: Rec. 709 (`bt709`)
 - **Pixel Format**: `yuv420p10le`
-- **Audio**: `copy` (pass-through)
+- **Audio**: `copy` (pass-through, e.g. PCM or AAC from source)
 - **Tag**: `hvc1` (for Apple compatibility)
 - **Faststart**: Yes (for streamable MP4)
 
@@ -31,21 +31,28 @@ Compress large RAW wedding video files into **smaller H.265 HEVC versions** usin
 
 ## 🧾 FFmpeg Command Template
 
-```bash
+\`\`\`bash
 ffmpeg -hide_banner -y \
 -i "input.mov" \
 -c:v hevc_videotoolbox \
 -profile:v main10 \
 -b:v 24M \
+-maxrate 24M \
+-bufsize 48M \
 -pix_fmt yuv420p10le \
 -color_primaries bt709 -color_trc bt709 -colorspace bt709 \
 -tag:v hvc1 \
 -movflags +faststart \
 -c:a copy \
 "output_folder/input.mov"
-```
+\`\`\`
 
-> ⚠️ Note: You should not use `"input.mov"` or `"output_folder/input.mov"` literally. Your script should detect the real input file and dynamically generate the output path to match it — keeping the **original filename exactly the same**, but saving it to the new folder.
+> ⚠️ **Important**: Do **not** use `"input.mov"` or `"output_folder/input.mov"` literally.
+>
+> Your script should **dynamically detect** the actual input filename and ensure the **output filename is identical**, just saved to a new location. For example:
+>
+> - **Input**: `/path/to/raw/A001_C001.mov`
+> - **Output**: `/converted/A001_C001.mov`
 
 ---
 
@@ -65,6 +72,6 @@ ffmpeg -hide_banner -y \
 
 Build a script, CLI tool, or drag-and-drop utility that:
 1. Accepts input files or folders
-2. Applies the above encoding
+2. Applies the above encoding using Apple’s hardware acceleration
 3. **Preserves the original filename**
 4. Optionally stores output in a user-selected or auto-structured folder

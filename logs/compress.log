@@ -8019,3 +8019,5 @@
 2025-05-14 04:50:27,346 - __main__ - INFO - Main window received compression complete signal
 2025-05-14 04:50:27,347 - gui.step3_results - INFO - Results display updated
 2025-05-14 04:50:27,347 - gui.step3_results - INFO - Compression results updated in UI
+2025-05-14 04:52:01,703 - gui.step3_results - INFO - User requested application exit
+2025-05-14 04:52:01,706 - __main__ - INFO - Saved window geometry and state
