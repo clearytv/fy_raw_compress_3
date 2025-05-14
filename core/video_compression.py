@@ -28,9 +28,11 @@ def get_compression_settings() -> Dict:
         Dictionary of compression settings
     """
     return {
-        "codec": "hevc_videotoolbox",
+        "codec": "libx265",
         "profile": "main10",
-        "quality": 75,  # Quality value (0-100), higher is better quality
+        "preset": "medium",  # Encoding speed/quality tradeoff
+        "bitrate": "24M",    # Target bitrate (24 Mbps)
+        "x265_params": "profile=main10:vbv-maxrate=24000:vbv-bufsize=48000",
         "pixel_format": "yuv420p10le",
         "color_settings": {
             "primaries": "bt709",
@@ -70,9 +72,14 @@ def build_ffmpeg_command(input_path: str, output_path: str, settings: Optional[D
     cmd.extend([
         "-c:v", settings["codec"],
         "-profile:v", settings["profile"],
-        "-q:v", str(settings["quality"]),
+        "-preset", settings["preset"],
+        "-b:v", settings["bitrate"],
         "-pix_fmt", settings["pixel_format"]
     ])
+    
+    # x265-specific parameters
+    if "x265_params" in settings:
+        cmd.extend(["-x265-params", settings["x265_params"]])
     
     # Color settings
     color = settings["color_settings"]
@@ -426,24 +433,24 @@ def terminate_current_compression():
 
 def check_hardware_acceleration():
     """
-    Check if hardware acceleration is available for video encoding.
+    Check if libx265 codec is available for video encoding.
     
     Returns:
-        True if hardware acceleration is available, False otherwise
+        True if libx265 is available, False otherwise
     """
     cmd = ["ffmpeg", "-encoders"]
     
     try:
         result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
         
-        # Check for videotoolbox support
-        if "hevc_videotoolbox" in result.stdout:
-            logger.info("Hardware acceleration (VideoToolbox) is available")
+        # Check for libx265 support
+        if "libx265" in result.stdout:
+            logger.info("libx265 codec is available")
             return True
         else:
-            logger.warning("Hardware acceleration (VideoToolbox) not found")
+            logger.warning("libx265 codec not found")
             return False
             
     except subprocess.SubprocessError as e:
-        logger.error(f"Failed to check hardware acceleration: {str(e)}")
+        logger.error(f"Failed to check codec availability: {str(e)}")
         return False

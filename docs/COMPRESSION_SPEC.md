@@ -1,78 +1,72 @@
-# 🗜️ Forever Yours – RAW Compression Specification
+# 🗜️ Forever Yours – RAW Compression Spec (Final – libx265 Controlled)
 
 ## 🎯 Purpose
 
-Compress large RAW wedding video files into **smaller H.265 HEVC versions** using **Apple's VideoToolbox hardware encoder**. These files are **archival-quality proxies**: no effects, no color grading, no overlays. They look and sound exactly like the original — just smaller in size.
+Compress large Apple ProRes `.mov` wedding video files into **full-resolution H.265 versions** using `libx265`. These files preserve the original quality while achieving predictable, controllable file sizes — unlike Apple's `videotoolbox` which fails to honor bitrate settings.
 
 ---
 
 ## ✅ Input Expectations
 
-- **Format**: `.mov`, `.mp4`
-- **Resolution, framerate, bit depth**: Preserved exactly
-- **Audio**: Pass through untouched (preserves original codec, bitrate, sample rate, and channels)
-- **Filename**: Preserved exactly (but converted to .mp4 extension for consistency)
+- Format: `.mov` (ProRes 422 HQ or similar)
+- Resolution, framerate, bit depth: **preserve exactly**
+- **Audio**: Pass through untouched (preserve original codec, bitrate, sample rate, and channels)
+- **Filename**: Preserve original filename exactly
 
 ---
 
 ## 🧪 Output Target
 
 - **Codec**: HEVC (H.265)
-- **Encoder**: `hevc_videotoolbox` (Apple Silicon hardware acceleration)
+- **Encoder**: `libx265` (software)
 - **Profile**: Main 10
-- **Quality**: High quality (75) using variable bit rate
+- **Bitrate**: Constant, target ~24 Mbps
+- **Rate Control**: `-b:v` + `-maxrate` + `-bufsize` enforced properly
 - **Color Settings**: Rec. 709 (`bt709`)
 - **Pixel Format**: `yuv420p10le`
-- **Audio**: `copy` (pass-through, preserves original audio)
+- **Audio**: `copy` (e.g., PCM, AAC — untouched)
 - **Tag**: `hvc1` (for Apple compatibility)
-- **Faststart**: Enabled (for streamable MP4)
+- **Faststart**: Yes (for streamable MP4)
 
 ---
 
-## 🧾 FFmpeg Command Used
+## 🧾 FFmpeg Command Template (libx265)
 
 ```bash
 ffmpeg -hide_banner -y \
 -i "input.mov" \
--c:v hevc_videotoolbox \
--profile:v main10 \
--q:v 75 \
+-c:v libx265 \
+-preset medium \
+-x265-params "profile=main10:vbv-maxrate=24000:vbv-bufsize=48000" \
+-b:v 24M \
 -pix_fmt yuv420p10le \
 -color_primaries bt709 -color_trc bt709 -colorspace bt709 \
 -tag:v hvc1 \
 -movflags +faststart \
 -c:a copy \
-"output.mp4"
+"output_folder/input.mov"
 ```
 
-> **Note**: The actual implementation dynamically handles file paths. For example:
->
-> - **Input**: `/path/to/raw/A001_C001.mov`
-> - **Output**: `/path/to/compressed/A001_C001.mp4`
+> ⚠️ **Important**: Replace `input.mov` and output path dynamically in your script. Preserve filenames but change folder as needed.
 
 ---
 
-## 🛑 What Is Not Applied
+## 🛑 Do Not Apply
 
-- LUTs or color grading
+- LUTs
 - Tone mapping
-- Overlays (text, image, timecode)
+- Overlays
+- Audio filters
 - Loudness normalization
-- Audio filters or remapping
 - Frame interpolation
-- Resolution, framerate, or color space changes
+- Resolution or framerate changes
 
 ---
 
-## 🛠 Implementation Summary
+## 🛠 Goal
 
-The Forever Yours RAW Compression Tool provides:
-
-1. User-friendly GUI with a three-step workflow
-2. Automatic detection of CAM folders within wedding media structure
-3. Hardware-accelerated encoding using Apple's VideoToolbox
-4. Detailed compression statistics for each file
-5. Batch processing capability for multiple files
-6. Export of detailed compression reports
-
-The implementation follows strict development guidelines to ensure maintainability and reliability, including modular code organization, comprehensive logging, and clear separation between UI and core logic.
+Build a batch `.sh` or `.py` script that:
+1. Accepts input files or folders
+2. Applies the above encoding using `libx265`
+3. **Preserves original filename**
+4. Outputs to a user-specified or auto-structured folder
