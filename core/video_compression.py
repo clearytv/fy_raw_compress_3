@@ -30,8 +30,8 @@ def get_compression_settings() -> Dict:
     return {
         "codec": "libx265",
         "profile": "main10",
-        "preset": "faster",  # Encoding speed/quality tradeoff
-        "crf": 11,           # Constant Rate Factor (quality-based)
+        "preset": "veryfast",  # Encoding speed/quality tradeoff
+        "crf": 10,           # Constant Rate Factor (quality-based)
         "x265_params": "profile=main10",
         "pixel_format": "yuv420p10le",
         "color_settings": {
