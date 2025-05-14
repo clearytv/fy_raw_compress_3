@@ -1,0 +1,66 @@
+General
+Complete name                            : /Volumes/Media HD/Tests/01 Test Project (AME) 1/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mp4
+Format                                   : MPEG-4
+Format profile                           : Base Media / Version 2
+Codec ID                                 : mp42 (mp42/mp41)
+File size                                : 48.4 MiB
+Duration                                 : 18 s 167 ms
+Overall bit rate mode                    : Variable
+Overall bit rate                         : 22.3 Mb/s
+Frame rate                               : 24.000 FPS
+Encoded date                             : 2025-05-14 02:00:49 UTC
+Tagged date                              : 2025-05-14 02:00:50 UTC
+TIM                                      : 18:58:04:21
+TSC                                      : 24
+TSZ                                      : 1
+
+Video
+ID                                       : 1
+Format                                   : HEVC
+Format/Info                              : High Efficiency Video Coding
+Format profile                           : Main 10@L5@Main
+Codec ID                                 : hvc1
+Codec ID/Info                            : High Efficiency Video Coding
+Duration                                 : 18 s 167 ms
+Bit rate                                 : 22.0 Mb/s
+Width                                    : 4 096 pixels
+Height                                   : 2 160 pixels
+Display aspect ratio                     : 1.896
+Frame rate mode                          : Constant
+Frame rate                               : 24.000 FPS
+Color space                              : YUV
+Chroma subsampling                       : 4:2:0
+Bit depth                                : 10 bits
+Bits/(Pixel*Frame)                       : 0.104
+Stream size                              : 47.7 MiB (99%)
+Writing library                          : HEVC Coding
+Language                                 : English
+Encoded date                             : 2025-05-14 02:00:49 UTC
+Tagged date                              : 2025-05-14 02:00:49 UTC
+Color range                              : Limited
+Color primaries                          : BT.709
+Transfer characteristics                 : BT.709
+Matrix coefficients                      : BT.709
+Codec configuration box                  : hvcC
+
+Audio
+ID                                       : 2
+Format                                   : AAC LC
+Format/Info                              : Advanced Audio Codec Low Complexity
+Codec ID                                 : mp4a-40-2
+Duration                                 : 18 s 167 ms
+Source duration                          : 18 s 197 ms
+Bit rate mode                            : Variable
+Bit rate                                 : 317 kb/s
+Maximum bit rate                         : 361 kb/s
+Channel(s)                               : 2 channels
+Channel layout                           : L R
+Sampling rate                            : 48.0 kHz
+Frame rate                               : 46.875 FPS (1024 SPF)
+Compression mode                         : Lossy
+Stream size                              : 704 KiB (1%)
+Source stream size                       : 704 KiB (1%)
+Language                                 : English
+Encoded date                             : 2025-05-14 02:00:49 UTC
+Tagged date                              : 2025-05-14 02:00:49 UTC
+

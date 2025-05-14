@@ -152,7 +152,7 @@ The Forever Yours RAW Compression Tool uses optimized H.265 (HEVC) settings to a
 | Codec | HEVC (H.265) | Modern codec with superior compression |
 | Encoder | hevc_videotoolbox | Uses Apple Silicon hardware acceleration |
 | Profile | Main 10 | Supports 10-bit color depth |
-| Bitrate | 24 Mbps | Balanced quality vs. file size |
+| Quality | 82 (High) | High quality with optimal file size |
 | Color Settings | Rec. 709 (bt709) | Standard color space for HD video |
 | Pixel Format | yuv420p10le | 10-bit color depth with 4:2:0 chroma subsampling |
 | Tag | hvc1 | Ensures compatibility with Apple devices |
@@ -187,7 +187,7 @@ Follow these guidelines to get the best results from the compression tool:
 
 - **Verify Results**: Always check at least a few compressed files to ensure quality meets expectations
 - **Backup Original Files**: Keep originals until you've verified the compressed versions
-- **Naming Convention**: The tool adds "_24mbps" to filenames to distinguish compressed versions
+- **Naming Convention**: The tool preserves original filenames in the output folder
 - **Export Reports**: Save reports for client documentation and reference
 
 ## Troubleshooting

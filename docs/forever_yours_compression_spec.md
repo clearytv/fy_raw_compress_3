@@ -20,7 +20,7 @@ Compress large RAW wedding video files into **smaller H.265 HEVC versions** usin
 - **Codec**: HEVC (H.265)
 - **Encoder**: `hevc_videotoolbox` (Apple Silicon hardware acceleration)
 - **Profile**: Main 10
-- **Bitrate**: VBR, target 24 Mbps (with enforced constraints)
+- **Quality**: High quality (82) using variable bit rate
 - **Color Settings**: Rec. 709 (`bt709`)
 - **Pixel Format**: `yuv420p10le`
 - **Audio**: `copy` (pass-through, e.g. PCM or AAC from source)
@@ -36,9 +36,7 @@ ffmpeg -hide_banner -y \
 -i "input.mov" \
 -c:v hevc_videotoolbox \
 -profile:v main10 \
--b:v 24M \
--maxrate 24M \
--bufsize 48M \
+-q:v 82 \
 -pix_fmt yuv420p10le \
 -color_primaries bt709 -color_trc bt709 -colorspace bt709 \
 -tag:v hvc1 \

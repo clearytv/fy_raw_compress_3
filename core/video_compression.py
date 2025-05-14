@@ -30,7 +30,7 @@ def get_compression_settings() -> Dict:
     return {
         "codec": "hevc_videotoolbox",
         "profile": "main10",
-        "bitrate": "24M",
+        "quality": 82,  # Quality value (0-100), higher is better quality
         "pixel_format": "yuv420p10le",
         "color_settings": {
             "primaries": "bt709",
@@ -70,9 +70,7 @@ def build_ffmpeg_command(input_path: str, output_path: str, settings: Optional[D
     cmd.extend([
         "-c:v", settings["codec"],
         "-profile:v", settings["profile"],
-        "-b:v", settings["bitrate"],
-        "-maxrate", settings["bitrate"],
-        "-bufsize", f"{int(settings['bitrate'][:-1])*2}M",
+        "-q:v", str(settings["quality"]),
         "-pix_fmt", settings["pixel_format"]
     ])
     
@@ -291,21 +289,36 @@ def estimate_file_size(input_path: str, settings: Optional[Dict] = None) -> int:
         logger.warning("Could not determine video duration for size estimation")
         return 0
     
-    # Extract bitrate from settings
-    video_bitrate_str = settings["bitrate"]
+    # For quality-based encoding, estimate a bitrate based on quality setting
+    # Quality 100 typically produces files similar to the original quality
+    # This is an estimate since quality-based encoding produces variable bitrates
     video_bitrate = 0
     
-    # Parse bitrate value (e.g., "24M" to 24000000)
-    if video_bitrate_str.endswith('K') or video_bitrate_str.endswith('k'):
-        video_bitrate = int(float(video_bitrate_str[:-1]) * 1000)
-    elif video_bitrate_str.endswith('M') or video_bitrate_str.endswith('m'):
-        video_bitrate = int(float(video_bitrate_str[:-1]) * 1000000)
+    # Estimate bitrate based on quality value (0-100)
+    # Higher quality = higher bitrate
+    quality = settings.get("quality", 100)
+    
+    if "bitrate" in settings:
+        # If bitrate is explicitly provided, use it for estimation
+        video_bitrate_str = settings["bitrate"]
+        
+        # Parse bitrate value (e.g., "24M" to 24000000)
+        if video_bitrate_str.endswith('K') or video_bitrate_str.endswith('k'):
+            video_bitrate = int(float(video_bitrate_str[:-1]) * 1000)
+        elif video_bitrate_str.endswith('M') or video_bitrate_str.endswith('m'):
+            video_bitrate = int(float(video_bitrate_str[:-1]) * 1000000)
+        else:
+            try:
+                video_bitrate = int(video_bitrate_str)
+            except ValueError:
+                logger.error(f"Could not parse bitrate: {video_bitrate_str}")
+                return 0
     else:
-        try:
-            video_bitrate = int(video_bitrate_str)
-        except ValueError:
-            logger.error(f"Could not parse bitrate: {video_bitrate_str}")
-            return 0
+        # For quality-based encoding, estimate bitrate based on quality
+        # Quality 100 (best) = approximately 40Mbps for 4K content
+        # Quality 50 (medium) = approximately 15Mbps
+        # Quality 0 (worst) = approximately 5Mbps
+        video_bitrate = int((quality / 100.0) * 35000000 + 5000000)
     
     # Assume audio bitrate (typically much smaller than video)
     audio_bitrate = 320000  # 320 kbps AAC
