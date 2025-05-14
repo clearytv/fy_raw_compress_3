@@ -30,7 +30,7 @@ def get_compression_settings() -> Dict:
     return {
         "codec": "hevc_videotoolbox",
         "profile": "main10",
-        "quality": 82,  # Quality value (0-100), higher is better quality
+        "quality": 75,  # Quality value (0-100), higher is better quality
         "pixel_format": "yuv420p10le",
         "color_settings": {
             "primaries": "bt709",

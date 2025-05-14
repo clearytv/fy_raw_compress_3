@@ -36,7 +36,7 @@ ffmpeg -hide_banner -y \
 -i "input.mov" \
 -c:v hevc_videotoolbox \
 -profile:v main10 \
--q:v 82 \
+-q:v 75 \
 -pix_fmt yuv420p10le \
 -color_primaries bt709 -color_trc bt709 -colorspace bt709 \
 -tag:v hvc1 \
