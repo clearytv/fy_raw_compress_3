@@ -26,141 +26,7 @@ from core.file_preparation import scan_directory, validate_video_file, find_cam_
 logger = logging.getLogger(__name__)
 
 
-class ScanWorker(QObject):
-    """
-    Worker class for running folder scanning and file validation in a background thread.
-    """
-    # Signal to report found CAM folders
-    cam_folders_found = pyqtSignal(list)
-    # Signal to report found files
-    files_found = pyqtSignal(list)
-    # Signal to report status updates
-    status_update = pyqtSignal(str, str)
-    # Signal to report progress
-    progress_update = pyqtSignal(int, int)
-    # Signal to report completion
-    task_completed = pyqtSignal()
-    # Signal to report errors
-    error_occurred = pyqtSignal(str)
-    
-    def __init__(self):
-        super().__init__()
-        self.folder_path = ""
-        self.cancel_requested = False
-    
-    def set_folder(self, folder_path):
-        """Set the folder path to scan."""
-        self.folder_path = folder_path
-        self.cancel_requested = False
-    
-    @pyqtSlot()
-    def scan_folder(self):
-        """Scan the folder for CAM folders and video files using the known structure."""
-        try:
-            # Reset signal
-            self.cancel_requested = False
-            
-            # Check if folder exists
-            if not os.path.exists(self.folder_path):
-                self.error_occurred.emit(f"Folder does not exist: {self.folder_path}")
-                return
-                
-            # Direct path to the expected video location (standard wedding folder structure)
-            media_path = os.path.join(self.folder_path, "03 MEDIA")
-            video_path = os.path.join(media_path, "01 VIDEO")
-            
-            self.status_update.emit("Checking for standard folder structure...", "#666")
-            
-            # Quick validation of the standard structure
-            if not os.path.exists(media_path):
-                self.error_occurred.emit("'03 MEDIA' folder not found")
-                return
-                
-            if not os.path.exists(video_path):
-                self.error_occurred.emit("'01 VIDEO' folder not found in '03 MEDIA'")
-                return
-            
-            # Find CAM folders - expected to be direct children of the video path
-            self.status_update.emit("Finding CAM folders...", "#666")
-            
-            # Get CAM folders without walking the entire directory tree
-            try:
-                # Direct list of folders rather than full recursive search
-                potential_cam_folders = []
-                for item in os.listdir(video_path):
-                    item_path = os.path.join(video_path, item)
-                    if os.path.isdir(item_path) and "CAM" in item.upper():
-                        potential_cam_folders.append(item_path)
-                        
-                cam_folders = potential_cam_folders
-            except Exception as e:
-                self.error_occurred.emit(f"Error listing CAM folders: {str(e)}")
-                return
-            
-            if not cam_folders:
-                self.status_update.emit("No CAM folders found in '01 VIDEO'", "orange")
-                self.task_completed.emit()
-                return
-            
-            self.status_update.emit(f"Found {len(cam_folders)} CAM folders", "green")
-            self.cam_folders_found.emit(cam_folders)
-            
-            # Check if operation was cancelled
-            if self.cancel_requested:
-                self.status_update.emit("Operation cancelled", "orange")
-                self.task_completed.emit()
-                return
-            
-            # Process files - scan only the direct CAM folders without deep recursion
-            valid_files = []
-            self.status_update.emit("Scanning for video files...", "#666")
-            
-            # Create a list to track progress
-            total_folders = len(cam_folders)
-            
-            # For each CAM folder, only look at direct files (no deep recursion)
-            for i, cam_folder in enumerate(cam_folders):
-                if self.cancel_requested:
-                    break
-                
-                folder_name = os.path.basename(cam_folder)
-                self.status_update.emit(f"Scanning {folder_name} ({i+1}/{total_folders})", "#666")
-                self.progress_update.emit(i, total_folders)
-                
-                # Skip FFmpeg validation during initial scan - just check extensions
-                try:
-                    for file_name in os.listdir(cam_folder):
-                        if self.cancel_requested:
-                            break
-                            
-                        file_path = os.path.join(cam_folder, file_name)
-                        if os.path.isfile(file_path):
-                            _, ext = os.path.splitext(file_path)
-                            if ext.lower() in ['.mov', '.mp4']:
-                                valid_files.append(file_path)
-                except Exception as e:
-                    logger.error(f"Error scanning CAM folder {cam_folder}: {str(e)}", exc_info=True)
-            
-            # Report final results
-            if self.cancel_requested:
-                self.status_update.emit("Operation cancelled", "orange")
-            else:
-                if valid_files:
-                    self.status_update.emit(f"Found {len(valid_files)} valid video files", "green")
-                    self.files_found.emit(valid_files)
-                else:
-                    self.status_update.emit("No valid video files found", "orange")
-            
-            self.task_completed.emit()
-            
-        except Exception as e:
-            logger.error(f"Error in scan_folder: {str(e)}", exc_info=True)
-            self.error_occurred.emit(f"Error: {str(e)}")
-            self.task_completed.emit()
-    
-    def cancel(self):
-        """Cancel the current operation."""
-        self.cancel_requested = True
+# No need for ScanWorker class as we're handling folder scanning synchronously now
 
 
 class ImportPanel(QWidget):
@@ -182,25 +48,7 @@ class ImportPanel(QWidget):
         self.cam_folders = []
         self.valid_files = []
         self.rename_folders = True
-        
-        # Create worker thread and worker
-        self.worker_thread = QThread()
-        self.worker = ScanWorker()
-        self.worker.moveToThread(self.worker_thread)
-        
-        # Connect worker signals
-        self.worker.cam_folders_found.connect(self.on_cam_folders_found)
-        self.worker.files_found.connect(self.on_files_found)
-        self.worker.status_update.connect(self.on_status_update)
-        self.worker.error_occurred.connect(self.on_error)
-        self.worker.task_completed.connect(self.on_task_completed)
-        
-        # Connect thread start to worker processing slot
-        self.worker_thread.started.connect(self.worker.scan_folder)
-        
-        # Progress dialog
-        self.progress_dialog = None
-        
+
         # Create UI components
         self._init_ui()
         # Connect signals and slots
@@ -381,38 +229,84 @@ class ImportPanel(QWidget):
                 self.folder_path_label.setText(folder)
                 logger.info(f"Selected folder: {folder}")
                 
-                # Update status
-                self.status_label.setText("Scanning for CAM folders...")
-                self.status_label.setStyleSheet("color: #666;")
-                
                 # Clear previous data
                 self.cam_list.clear()
                 self.file_list.clear()
                 self.cam_folders = []
                 self.valid_files = []
                 self.file_count_label.setText("0 files found")
-                self.next_button.setEnabled(False)
                 
-                # Use worker to scan the folder in a background thread
-                self.worker.set_folder(folder)
+                # Direct path to the expected video location (standard wedding folder structure)
+                media_path = os.path.join(folder, "03 MEDIA")
+                video_path = os.path.join(media_path, "01 VIDEO")
                 
-                # Create progress dialog
-                self.progress_dialog = QProgressDialog("Scanning for video files...", "Cancel", 0, 100, self)
-                self.progress_dialog.setWindowTitle("Scanning")
-                self.progress_dialog.setWindowModality(Qt.WindowModality.WindowModal)
-                self.progress_dialog.setMinimumDuration(500)  # Only show for operations > 500ms
-                self.progress_dialog.canceled.connect(self.worker.cancel)
+                # Validate the standard structure
+                if not os.path.exists(media_path):
+                    self.status_label.setText("'03 MEDIA' folder not found")
+                    self.status_label.setStyleSheet("color: red;")
+                    return
+                    
+                if not os.path.exists(video_path):
+                    self.status_label.setText("'01 VIDEO' folder not found in '03 MEDIA'")
+                    self.status_label.setStyleSheet("color: red;")
+                    return
                 
-                # Connect progress update signal
-                self.worker.progress_update.connect(self.update_progress)
+                # Find CAM folders directly without scanning
+                cam_folders = []
+                try:
+                    for item in os.listdir(video_path):
+                        item_path = os.path.join(video_path, item)
+                        if os.path.isdir(item_path) and "CAM" in item.upper():
+                            cam_folders.append(item_path)
+                except Exception as e:
+                    self.status_label.setText(f"Error accessing folders: {str(e)}")
+                    self.status_label.setStyleSheet("color: red;")
+                    logger.error(f"Error listing CAM folders: {str(e)}")
+                    return
                 
-                # Start the worker (if not already running)
-                if not self.worker_thread.isRunning():
-                    self.worker_thread.start()
+                self.cam_folders = cam_folders
+                
+                # Update CAM folders list
+                self.cam_list.clear()
+                for cam_folder in cam_folders:
+                    item = QListWidgetItem(os.path.basename(cam_folder))
+                    self.cam_list.addItem(item)
+                
+                # Get valid video files directly from CAM folders
+                valid_files = []
+                for cam_folder in cam_folders:
+                    try:
+                        for file_name in os.listdir(cam_folder):
+                            file_path = os.path.join(cam_folder, file_name)
+                            if os.path.isfile(file_path):
+                                _, ext = os.path.splitext(file_path)
+                                if ext.lower() in ['.mov', '.mp4']:
+                                    valid_files.append(file_path)
+                    except Exception as e:
+                        logger.error(f"Error scanning CAM folder {cam_folder}: {str(e)}")
+                
+                self.valid_files = valid_files
+                
+                # Update file list
+                self.file_list.clear()
+                for file_path in valid_files:
+                    item = QListWidgetItem(os.path.basename(file_path))
+                    self.file_list.addItem(item)
+                
+                file_count = len(valid_files)
+                self.file_count_label.setText(f"{file_count} files found")
+                
+                # Update status
+                if file_count > 0:
+                    self.status_label.setText(f"Found {len(cam_folders)} CAM folders with {file_count} video files")
+                    self.status_label.setStyleSheet("color: green;")
+                    self.next_button.setEnabled(True)
                 else:
-                    # Thread already running, just trigger scan_folder directly
-                    QApplication.processEvents()  # Ensure UI updates
-                    self.worker.scan_folder()
+                    self.status_label.setText("No valid video files found")
+                    self.status_label.setStyleSheet("color: orange;")
+                    self.next_button.setEnabled(False)
+                
+                logger.info(f"Found {len(cam_folders)} CAM folders with {file_count} video files")
                 
         except Exception as e:
             logger.error(f"Error in select_folder: {str(e)}", exc_info=True)
@@ -420,62 +314,7 @@ class ImportPanel(QWidget):
             self.status_label.setStyleSheet("color: red;")
             raise  # Re-raise the exception to be caught by safe_select_folder
     
-    def update_progress(self, current, total):
-        """Update the progress dialog."""
-        if self.progress_dialog is not None:
-            progress_percent = int((current / max(1, total)) * 100)
-            self.progress_dialog.setValue(progress_percent)
-            QApplication.processEvents()  # Ensure UI updates
-    
-    def on_cam_folders_found(self, cam_folders):
-        """Handle found CAM folders."""
-        self.cam_folders = cam_folders
-        self.cam_list.clear()
-        
-        for cam_folder in cam_folders:
-            item = QListWidgetItem(os.path.basename(cam_folder))
-            self.cam_list.addItem(item)
-    
-    def on_files_found(self, files):
-        """Handle found video files."""
-        self.valid_files = files
-        self.file_list.clear()
-        
-        file_count = len(files)
-        
-        if file_count == 0:
-            logger.warning("No valid files found during scan")
-            self.status_update.emit("No valid video files found in the selected folders", "red")
-            self.next_button.setEnabled(False)
-            self.file_count_label.setText("0 files found")
-            return
-            
-        # Add files to the list
-        for file_path in files:
-            item = QListWidgetItem(os.path.basename(file_path))
-            self.file_list.addItem(item)
-        
-        self.file_count_label.setText(f"{file_count} files found")
-        self.next_button.setEnabled(True)
-        logger.info(f"Found {file_count} valid video files")
-    
-    def on_status_update(self, message, color):
-        """Handle status updates."""
-        self.status_label.setText(message)
-        self.status_label.setStyleSheet(f"color: {color};")
-    
-    def on_error(self, error_message):
-        """Handle errors."""
-        self.status_label.setText(error_message)
-        self.status_label.setStyleSheet("color: red;")
-    
-    def on_task_completed(self):
-        """Handle task completion."""
-        # Close the progress dialog
-        if self.progress_dialog is not None:
-            self.progress_dialog.setValue(100)  # Ensure dialog shows 100% before closing
-            self.progress_dialog.close()
-            self.progress_dialog = None
+    # All worker-related methods have been removed as we now handle folder scanning synchronously
     
     def validate_selections(self):
         """
@@ -572,19 +411,8 @@ class ImportPanel(QWidget):
         self.next_clicked.emit()
     
     def closeEvent(self, event):
-        """Handle the close event - clean up threads."""
-        # Cancel any ongoing operations
-        if hasattr(self, 'worker') and self.worker:
-            self.worker.cancel()
-        
-        # Quit the worker thread properly
-        if hasattr(self, 'worker_thread') and self.worker_thread:
-            if self.worker_thread.isRunning():
-                self.worker_thread.quit()
-                if not self.worker_thread.wait(3000):  # Wait up to 3 seconds for thread to finish
-                    self.worker_thread.terminate()
-                    self.worker_thread.wait()
-        
+        """Handle the close event."""
+        # No worker threads to clean up
         super().closeEvent(event)
 
 # Add a check to prevent direct execution

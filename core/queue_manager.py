@@ -211,8 +211,13 @@ class QueueManager:
                 # Import compression function here to avoid circular imports
                 from core.video_compression import compress_video
                 start_time = time.time()
+                # Create a function to check if cancellation was requested
+                def check_cancelled():
+                    return self._cancelled
+                
                 success = compress_video(
-                    current_file, file_output, settings, file_progress_callback)
+                    current_file, file_output, settings, file_progress_callback,
+                    check_cancelled=check_cancelled)
                 end_time = time.time()
                 
                 # Update status and result
@@ -338,6 +343,20 @@ class QueueManager:
             
         logger.info("Cancelling queue processing")
         self._cancelled = True
+        
+        # Also terminate any active compression process
+        from core.video_compression import terminate_current_compression
+        process_terminated = terminate_current_compression()
+        
+        if process_terminated:
+            logger.info("Active compression process terminated")
+            
+            # Mark the current file as cancelled if it exists
+            if 0 <= self.current_index < len(self.queue):
+                current_file = self.queue[self.current_index]
+                self.status[current_file] = QueueStatus.CANCELLED
+                logger.info(f"Marked current file as cancelled: {current_file}")
+        
         return True
     
     def _format_file_size(self, size_bytes: int) -> str:

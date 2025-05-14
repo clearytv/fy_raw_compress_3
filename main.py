@@ -11,6 +11,7 @@ import sys
 import os
 import logging
 from PyQt6.QtWidgets import QApplication, QMainWindow, QStackedWidget, QVBoxLayout, QWidget
+from PyQt6.QtCore import QSettings, Qt
 
 # Set up logging
 os.makedirs('logs', exist_ok=True)
@@ -42,7 +43,15 @@ class MainWindow(QMainWindow):
         logger.info("Creating main application window")
         
         self.setWindowTitle("Forever Yours Compression")
+        
+        # Set window to stay on top
+        self.setWindowFlags(self.windowFlags() | Qt.WindowType.WindowStaysOnTopHint)
+        
+        # Initialize with default size if settings don't exist
         self.resize(800, 600)
+        
+        # Restore window geometry from previous session
+        self.restore_window_geometry()
         
         # Create queue manager to share between panels
         self.queue_manager = QueueManager()
@@ -120,6 +129,28 @@ class MainWindow(QMainWindow):
         self.queue_manager.clear_queue()
         self.stacked_widget.setCurrentIndex(0)
         logger.info(f"Current index set to {self.stacked_widget.currentIndex()}")
+    
+    def save_window_geometry(self):
+        """Save the window's geometry (size and position)"""
+        settings = QSettings("ForeverYours", "CompressionTool")
+        settings.setValue("geometry", self.saveGeometry())
+        settings.setValue("windowState", self.saveState())
+        logger.info("Saved window geometry and state")
+    
+    def restore_window_geometry(self):
+        """Restore the window's geometry from saved settings"""
+        settings = QSettings("ForeverYours", "CompressionTool")
+        if settings.contains("geometry"):
+            self.restoreGeometry(settings.value("geometry"))
+            self.restoreState(settings.value("windowState"))
+            logger.info("Restored window geometry and state from settings")
+        else:
+            logger.info("No saved window geometry found, using defaults")
+    
+    def closeEvent(self, event):
+        """Override close event to save window geometry before closing"""
+        self.save_window_geometry()
+        super().closeEvent(event)
 
 
 def main():

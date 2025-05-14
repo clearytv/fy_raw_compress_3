@@ -635,7 +635,12 @@ class ConvertPanel(QWidget):
         self.output_dir_button.setEnabled(True)
         self.use_defaults_checkbox.setEnabled(True)
         self.start_button.setText("Start Compression")
+        self.start_button.setEnabled(True)
         self.next_button.setEnabled(True)
+        
+        # If compression was cancelled, log it
+        if self.queue_manager and hasattr(self.queue_manager, '_cancelled') and self.queue_manager._cancelled:
+            self.log_output.append("Compression was cancelled by user")
             
         # Stop timer
         if self.timer:
@@ -660,8 +665,21 @@ class ConvertPanel(QWidget):
         logger.info("Cancelling compression")
         self.log_output.append("Cancelling compression...")
         
+        # Update UI to show cancellation is in progress
+        self.start_button.setText("Cancelling...")
+        self.start_button.setEnabled(False)
+        
         # Cancel via queue manager
         if self.queue_manager:
-            self.queue_manager.cancel_processing()
+            cancelled = self.queue_manager.cancel_processing()
+            if cancelled:
+                self.log_output.append("Compression cancelled. Cleaning up and stopping process...")
+                # Show log automatically when cancellation occurs
+                self.show_log_checkbox.setChecked(True)
+                self._toggle_log_visibility(True)
+            else:
+                self.log_output.append("Failed to cancel compression")
+                logger.error("Failed to cancel compression process")
         else:
             logger.error("Queue manager not available for cancellation")
+            self.log_output.append("ERROR: Queue manager not available for cancellation")

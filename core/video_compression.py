@@ -101,12 +101,17 @@ def build_ffmpeg_command(input_path: str, output_path: str, settings: Optional[D
     return cmd
 
 
+# Global variable to store the current compression process
+_current_compression_process = None
+_compression_cancelled = False
+
 def compress_video(
     input_path: str,
     output_path: str,
     settings: Optional[Dict] = None,
     progress_callback: Optional[Callable[[float], None]] = None,
-    temp_dir: str = None  # Kept for backward compatibility but no longer used
+    temp_dir: str = None,  # Kept for backward compatibility but no longer used
+    check_cancelled: Optional[Callable[[], bool]] = None  # Function to check if compression was cancelled
 ) -> bool:
     """
     Compress a video file using FFmpeg.
@@ -152,6 +157,10 @@ def compress_video(
     logger.debug(f"FFmpeg command: {' '.join(cmd)}")
     
     try:
+        # Reset the cancellation flag
+        global _compression_cancelled
+        _compression_cancelled = False
+        
         # Use Popen to get real-time output
         process = subprocess.Popen(
             cmd,
@@ -161,9 +170,35 @@ def compress_video(
             bufsize=1
         )
         
+        # Store reference to the current process
+        global _current_compression_process
+        _current_compression_process = process
+        
         # Process output in real-time
         last_progress = 0
         for line in process.stderr:
+            # Check if cancellation was requested
+            if check_cancelled and check_cancelled() or _compression_cancelled:
+                logger.info("Cancelling compression due to user request")
+                process.terminate()
+                # Allow some time for process to terminate
+                try:
+                    process.wait(timeout=5)
+                except subprocess.TimeoutExpired:
+                    process.kill()  # Force kill if it doesn't terminate
+                
+                # Clean up partial output file
+                if os.path.exists(output_path):
+                    try:
+                        os.remove(output_path)
+                        logger.info(f"Removed partial output file due to cancellation: {output_path}")
+                    except Exception as e:
+                        logger.error(f"Failed to remove partial output file: {str(e)}")
+                
+                # Reset current process reference
+                _current_compression_process = None
+                return False
+                
             # Parse progress and update callback
             progress = parse_progress(line, duration)
             if progress is not None and progress > last_progress:
@@ -204,6 +239,9 @@ def compress_video(
     except Exception as e:
         logger.error(f"Unexpected error during compression: {str(e)}")
         return False
+    finally:
+        # Reset current process reference
+        _current_compression_process = None
 
 
 def get_video_duration(input_path: str) -> float:
@@ -341,6 +379,36 @@ def calculate_time_remaining(progress: float, start_time: float, current_time: f
         return f"{int(minutes)}m {int(seconds)}s"
     else:
         return f"{int(seconds)}s"
+
+
+def terminate_current_compression():
+    """
+    Terminate the current compression process if one is running.
+    
+    Returns:
+        True if a process was terminated, False otherwise
+    """
+    global _current_compression_process, _compression_cancelled
+    
+    if _current_compression_process is not None:
+        logger.info("Terminating active compression process")
+        _compression_cancelled = True
+        
+        try:
+            _current_compression_process.terminate()
+            # Allow some time for the process to terminate gracefully
+            try:
+                _current_compression_process.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                logger.warning("Process did not terminate in time, force killing")
+                _current_compression_process.kill()
+                
+            return True
+        except Exception as e:
+            logger.error(f"Error terminating compression process: {str(e)}")
+            return False
+    
+    return False
 
 
 def check_hardware_acceleration():
