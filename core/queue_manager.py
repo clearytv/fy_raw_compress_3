@@ -227,10 +227,16 @@ class QueueManager:
                     self.results[current_file] = compression_result
                     logger.info(f"Successfully compressed {current_file}")
                 else:
-                    self.status[current_file] = QueueStatus.FAILED
-                    self.results[current_file] = {"error": "Compression failed"}
-                    logger.error(f"Failed to compress {current_file}")
-                    all_success = False
+                    # Check if failure was due to cancellation
+                    if self._cancelled:
+                        self.status[current_file] = QueueStatus.CANCELLED
+                        self.results[current_file] = {"error": "Cancelled By User"}
+                        logger.info(f"Compression of {current_file} was cancelled by user")
+                    else:
+                        self.status[current_file] = QueueStatus.FAILED
+                        self.results[current_file] = {"error": "Compression failed"}
+                        logger.error(f"Failed to compress {current_file}")
+                        all_success = False
                 
                 # Move to next file
                 self.current_index += 1

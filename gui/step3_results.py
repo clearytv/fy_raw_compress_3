@@ -113,7 +113,10 @@ class ResultsWorker(QObject):
                         file_name = os.path.basename(file_path)
                         
                         if 'error' in result:
-                            f.write(f'"{file_name}",Failed,,,,,\n')
+                            if result['error'] == "Cancelled By User":
+                                f.write(f'"{file_name}",Cancelled,,,,,\n')
+                            else:
+                                f.write(f'"{file_name}",Failed,,,,,\n')
                         else:
                             f.write(
                                 f'"{file_name}",Completed,{result["input_size_human"]},{result["output_size_human"]},'
@@ -262,8 +265,10 @@ class ResultsPanel(QWidget):
         files_summary_layout = QHBoxLayout()
         self.success_label = QLabel("Successful: 0")
         self.failed_label = QLabel("Failed: 0")
+        self.cancelled_label = QLabel("Cancelled: 0")
         files_summary_layout.addWidget(self.success_label)
         files_summary_layout.addWidget(self.failed_label)
+        files_summary_layout.addWidget(self.cancelled_label)
         files_summary_layout.addStretch()
         results_layout.addLayout(files_summary_layout)
         
@@ -324,6 +329,7 @@ class ResultsPanel(QWidget):
         total_files = len(self.compression_results)
         successful_files = 0
         failed_files = 0
+        cancelled_files = 0
         total_input_size = 0
         total_output_size = 0
         total_duration = 0
@@ -341,17 +347,32 @@ class ResultsPanel(QWidget):
             
             # Check if there was an error
             if 'error' in result:
-                status_item = QTableWidgetItem("Failed")
-                status_item.setForeground(QColor(255, 0, 0))  # Red text
-                self.results_table.setItem(row, 1, status_item)
-                
-                # Fill rest of row with error message
-                error_item = QTableWidgetItem(str(result['error']))
-                error_item.setForeground(QColor(255, 0, 0))
-                self.results_table.setItem(row, 2, error_item)
-                self.results_table.setSpan(row, 2, 1, 4)  # Span across remaining columns
-                
-                failed_files += 1
+                if result['error'] == "Cancelled By User":
+                    # Handle cancelled files
+                    status_item = QTableWidgetItem("Cancelled")
+                    status_item.setForeground(QColor(255, 0, 0))  # Red text
+                    self.results_table.setItem(row, 1, status_item)
+                    
+                    # Fill rest of row with cancellation message
+                    error_item = QTableWidgetItem("Cancelled By User")
+                    error_item.setForeground(QColor(255, 0, 0))
+                    self.results_table.setItem(row, 2, error_item)
+                    self.results_table.setSpan(row, 2, 1, 4)  # Span across remaining columns
+                    
+                    cancelled_files += 1  # Count as cancelled for statistics
+                else:
+                    # Handle regular failures
+                    status_item = QTableWidgetItem("Failed")
+                    status_item.setForeground(QColor(255, 0, 0))  # Red text
+                    self.results_table.setItem(row, 1, status_item)
+                    
+                    # Fill rest of row with error message
+                    error_item = QTableWidgetItem(str(result['error']))
+                    error_item.setForeground(QColor(255, 0, 0))
+                    self.results_table.setItem(row, 2, error_item)
+                    self.results_table.setSpan(row, 2, 1, 4)  # Span across remaining columns
+                    
+                    failed_files += 1
             else:
                 # Process successful compression
                 successful_files += 1
@@ -388,6 +409,7 @@ class ResultsPanel(QWidget):
         self.files_count.setText(str(total_files))
         self.success_label.setText(f"Successful: {successful_files}")
         self.failed_label.setText(f"Failed: {failed_files}")
+        self.cancelled_label.setText(f"Cancelled: {cancelled_files}")
         
         # Format total time
         hours, remainder = divmod(int(total_duration), 3600)
