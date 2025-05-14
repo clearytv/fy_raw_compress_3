@@ -22,6 +22,7 @@ from PyQt6.QtGui import QFont, QIcon
 
 # Import core functionality
 from core.file_preparation import scan_directory, validate_video_file, find_cam_folders, rename_video_folder, copy_non_cam_folders
+from core.macos_utils import set_finder_label
 
 logger = logging.getLogger(__name__)
 
@@ -228,6 +229,12 @@ class ImportPanel(QWidget):
                 self.parent_folder = folder
                 self.folder_path_label.setText(folder)
                 logger.info(f"Selected folder: {folder}")
+
+                # Set Finder label to Orange
+                if self.parent_folder:
+                    logger.info(f"Attempting to set 'Orange' Finder label for {self.parent_folder}")
+                    if not set_finder_label(self.parent_folder, "Orange"):
+                        logger.warning(f"Could not set 'Orange' Finder label for {self.parent_folder}")
                 
                 # Clear previous data
                 self.cam_list.clear()

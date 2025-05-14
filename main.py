@@ -93,7 +93,8 @@ class MainWindow(QMainWindow):
         """Connect signals between panels for workflow navigation."""
         # Import panel signals
         self.import_panel.files_selected.connect(self.on_files_selected)
-        self.import_panel.next_clicked.connect(lambda: self.stacked_widget.setCurrentIndex(1))
+        # self.import_panel.next_clicked.connect(lambda: self.stacked_widget.setCurrentIndex(1)) # Old direct connection
+        self.import_panel.next_clicked.connect(self.go_to_convert_panel) # New method
         
         # Convert panel signals
         self.convert_panel.compression_complete.connect(self.on_compression_complete)
@@ -114,6 +115,17 @@ class MainWindow(QMainWindow):
             
         self.queue_manager.add_files(files)
         self.convert_panel.set_queued_files(files)
+
+    def go_to_convert_panel(self):
+        """Transition from Import panel to Convert panel, passing necessary data."""
+        parent_folder = self.import_panel.parent_folder
+        if parent_folder:
+            self.convert_panel.set_parent_folder_path(parent_folder)
+            logger.info(f"Passing parent folder path to ConvertPanel: {parent_folder}")
+        else:
+            logger.warning("No parent folder path available from ImportPanel to pass to ConvertPanel.")
+        
+        self.stacked_widget.setCurrentIndex(1)
         
     def on_compression_complete(self, results):
         """Handle compression completion from convert panel."""
@@ -123,6 +135,14 @@ class MainWindow(QMainWindow):
         if not results:
             logger.warning("No compression results received, not advancing to results panel")
             return
+
+        # Pass the parent folder path to the results panel
+        parent_folder_path_for_results = self.convert_panel.parent_folder_path
+        if parent_folder_path_for_results:
+            self.results_panel.set_parent_folder_path(parent_folder_path_for_results)
+            logger.info(f"Passing parent folder path to ResultsPanel: {parent_folder_path_for_results}")
+        else:
+            logger.warning("No parent folder path available from ConvertPanel to pass to ResultsPanel.")
             
         self.results_panel.set_compression_results(results)
         self.stacked_widget.setCurrentIndex(2)

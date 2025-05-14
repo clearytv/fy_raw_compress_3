@@ -19,6 +19,8 @@ from PyQt6.QtWidgets import (
 from PyQt6.QtCore import pyqtSignal, Qt
 from PyQt6.QtGui import QFont, QColor
 
+from core.macos_utils import set_finder_label # Import for Finder labels
+
 logger = logging.getLogger(__name__)
 
 
@@ -36,6 +38,7 @@ class ResultsPanel(QWidget):
         logger.info("Initializing results panel")
         
         self.compression_results = {}
+        self.parent_folder_path = "" # To store the path from Step 1
         
         # Create UI components
         self._init_ui()
@@ -162,6 +165,11 @@ class ResultsPanel(QWidget):
         """Connect UI signals to their respective slots."""
         # Connections are handled in _init_ui
         pass
+
+    def set_parent_folder_path(self, path: str):
+        """Sets the path of the parent folder being processed."""
+        self.parent_folder_path = path
+        logger.info(f"Parent folder path set in ResultsPanel: {path}")
     
     def set_compression_results(self, results):
         """
@@ -170,6 +178,14 @@ class ResultsPanel(QWidget):
         Args:
             results (dict): Dictionary containing compression results and statistics
         """
+        # Set Finder label to Green for the parent folder when results are set
+        if self.parent_folder_path:
+            logger.info(f"Attempting to set 'Green' Finder label for {self.parent_folder_path}")
+            if not set_finder_label(self.parent_folder_path, "Green"):
+                logger.warning(f"Could not set 'Green' Finder label for {self.parent_folder_path}")
+        else:
+            logger.warning("Parent folder path not set in ResultsPanel, cannot set 'Green' label.")
+
         self.compression_results = results
         self._update_results_display()
         logger.info("Compression results updated in UI")
@@ -317,6 +333,7 @@ class ResultsPanel(QWidget):
         
         # Reset stored data
         self.compression_results = {}
+        self.parent_folder_path = "" # Reset parent folder path
         
         # Reset UI elements
         self.files_count.setText("0")

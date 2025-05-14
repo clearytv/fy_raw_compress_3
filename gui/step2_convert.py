@@ -27,6 +27,7 @@ from PyQt6.QtGui import QFont
 # Import core functionality
 from core.video_compression import get_compression_settings, estimate_file_size, calculate_time_remaining
 from core.queue_manager import QueueStatus
+from core.macos_utils import set_finder_label
 
 logger = logging.getLogger(__name__)
 
@@ -126,6 +127,7 @@ class ConvertPanel(QWidget):
         self.current_file = ""
         self.timer = None
         self.queue_manager = None
+        self.parent_folder_path = "" # To store the path from Step 1
         
         # Create worker thread and estimation worker
         self.estimation_thread = QThread()
@@ -557,6 +559,11 @@ class ConvertPanel(QWidget):
                     self.estimation_thread.terminate()
         
         super().closeEvent(event)
+
+    def set_parent_folder_path(self, path: str):
+        """Sets the path of the parent folder being processed."""
+        self.parent_folder_path = path
+        logger.info(f"Parent folder path set in ConvertPanel: {path}")
     
     def reset_panel(self):
         """Reset the panel to initial state when starting a new job."""
@@ -568,6 +575,7 @@ class ConvertPanel(QWidget):
         self.processing = False
         self.start_time = 0
         self.current_file = ""
+        # self.parent_folder_path = "" # Reset parent folder path # This line was already present, ensuring it's correct
         
         # Reset UI elements
         self.queue_list.clear()
