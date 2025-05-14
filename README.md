@@ -59,8 +59,10 @@ Ensure the output includes `--enable-videotoolbox` in the configuration options.
 
 2. Install the required Python dependencies:
    ```bash
-   pip install -r docs/requirements.txt
+   pip install -r requirements.txt
    ```
+
+   For details on required packages, see the [System Requirements](docs/USER_GUIDE.md#system-requirements) section of the User Guide.
 
 ## 🚀 Quick Start Guide
 
@@ -99,10 +101,9 @@ Ensure the output includes `--enable-videotoolbox` in the configuration options.
 ├── logs/                     # Log files
 │   └── compress.log          # Application log
 ├── docs/                     # Documentation files
-│   ├── forever_yours_compression_spec.md  # Compression specifications
+│   ├── COMPRESSION_SPEC.md  # Compression specifications
 │   ├── PROJECT_RULES.md      # Development guidelines
-│   ├── requirements.txt      # Python dependencies
-│   └── USER_GUIDE.md         # Detailed usage instructions
+│   └── USER_GUIDE.md         # Detailed usage instructions (includes system requirements)
 ```
 
 ## 🎞️ Compression Details

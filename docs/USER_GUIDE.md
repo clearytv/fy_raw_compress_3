@@ -170,7 +170,7 @@ Follow these guidelines to get the best results from the compression tool:
 #### Application Won't Start
 
 - **Python Version**: Ensure you're using Python 3.8 or higher
-- **Missing Dependencies**: Try reinstalling requirements with `pip install -r docs/requirements.txt`
+- **Missing Dependencies**: Try reinstalling requirements with the packages listed in the [System Requirements](#system-requirements) section
 - **Permission Issues**: Make sure the application directory is accessible
 
 #### Files Not Detected
@@ -220,4 +220,4 @@ psutil>=5.9.0
 ffmpeg-python>=0.2.0
 ```
 
-To install these requirements, run: `pip install -r docs/requirements.txt`
+To install these requirements, run: `pip install -r requirements.txt`
