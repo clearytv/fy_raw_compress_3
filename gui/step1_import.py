@@ -15,9 +15,9 @@ from PyQt6.QtWidgets import (
     QWidget, QPushButton, QVBoxLayout, QHBoxLayout,
     QLabel, QFileDialog, QListWidget, QListWidgetItem,
     QFrame, QCheckBox, QMessageBox, QSplitter, QGroupBox,
-    QProgressDialog, QApplication
+    QProgressDialog, QApplication, QProgressBar
 )
-from PyQt6.QtCore import pyqtSignal, Qt, QThread, QObject, pyqtSlot
+from PyQt6.QtCore import pyqtSignal, Qt, QThread, QObject, pyqtSlot, QTimer
 from PyQt6.QtGui import QFont, QIcon
 
 # Import core functionality
@@ -286,6 +286,33 @@ class ImportPanel(QWidget):
         
         layout.addWidget(files_group)
         
+        # Progress section - initially hidden
+        progress_group = QGroupBox("Copy Progress")
+        progress_group.setVisible(False)  # Hide initially
+        self.progress_group = progress_group
+        progress_layout = QVBoxLayout(progress_group)
+        
+        # Progress bar
+        self.copy_progress_bar = QProgressBar()
+        progress_bar_style = """
+        QProgressBar {
+            border: 1px solid #bbb;
+            border-radius: 4px;
+            text-align: center;
+        }
+        QProgressBar::chunk {
+            background-color: #4a86e8;
+        }
+        """
+        self.copy_progress_bar.setStyleSheet(progress_bar_style)
+        progress_layout.addWidget(self.copy_progress_bar)
+        
+        # Status label
+        self.copy_status_label = QLabel("Ready")
+        progress_layout.addWidget(self.copy_status_label)
+        
+        layout.addWidget(progress_group)
+        
         # Navigation buttons
         nav_layout = QHBoxLayout()
         nav_layout.addStretch()
@@ -488,9 +515,30 @@ class ImportPanel(QWidget):
                 # Create the new '01 VIDEO' directory
                 os.makedirs(video_path, exist_ok=True)
                 
+                # Show progress section
+                self.progress_group.setVisible(True)
+                self.copy_progress_bar.setValue(0)
+                self.copy_status_label.setText("Preparing to copy folders...")
+                self.next_button.setEnabled(False)  # Disable next button during copy
+                QApplication.processEvents()  # Ensure UI updates
+                
+                # Progress callback for folder copying
+                def update_copy_progress(percent, message):
+                    self.copy_progress_bar.setValue(int(percent))
+                    self.copy_status_label.setText(message)
+                    QApplication.processEvents()  # Ensure UI updates
+                
                 # Copy contents of non-CAM subfolders from '01 VIDEO.old' to '01 VIDEO'
-                copied = copy_non_cam_folders(renamed_path, video_path)
+                copied = copy_non_cam_folders(renamed_path, video_path, update_copy_progress)
                 logger.info(f"Copied {copied} non-CAM folders from {renamed_path} to {video_path}")
+                
+                # Update progress to show completion
+                self.copy_progress_bar.setValue(100)
+                self.copy_status_label.setText(f"Completed copying {copied} folders")
+                QApplication.processEvents()  # Ensure UI updates
+                
+                # Re-enable next button
+                self.next_button.setEnabled(True)
         
         # If we renamed folders, update the file paths
         updated_files = []
@@ -515,6 +563,11 @@ class ImportPanel(QWidget):
         logger.info(f"Adding {len(updated_files)} files to queue")
         self.files_selected.emit(updated_files)
         
+        # Hide the progress bar after completion (if it was shown)
+        if self.progress_group.isVisible():
+            # Keep it visible for a moment so the user can see it completed
+            QTimer.singleShot(1500, lambda: self.progress_group.setVisible(False))
+        
         # Emit signal to navigate to next panel
         self.next_clicked.emit()
     
@@ -533,3 +586,9 @@ class ImportPanel(QWidget):
                     self.worker_thread.wait()
         
         super().closeEvent(event)
+
+# Add a check to prevent direct execution
+if __name__ == "__main__":
+    print("\nError: This file is part of the Forever Yours Compression Tool and should not be run directly.")
+    print("Please run the application using the main.py file in the root directory:")
+    print("  python main.py\n")

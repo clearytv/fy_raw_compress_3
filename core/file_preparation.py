@@ -338,13 +338,14 @@ def find_cam_folders(root_dir: str) -> List[str]:
     return cam_folders
 
 
-def copy_non_cam_folders(old_dir: str, new_dir: str) -> int:
+def copy_non_cam_folders(old_dir: str, new_dir: str, progress_callback=None) -> int:
     """
     Copy contents of non-CAM subfolders from old directory to new directory.
     
     Args:
         old_dir: Path to the '01 VIDEO.old' directory
         new_dir: Path to the new '01 VIDEO' directory
+        progress_callback: Optional callback function for progress updates
         
     Returns:
         Number of folders processed
@@ -363,10 +364,23 @@ def copy_non_cam_folders(old_dir: str, new_dir: str) -> int:
         # Filter out folders containing 'CAM' in their name
         non_cam_folders = [d for d in subdirs if "CAM" not in d.upper()]
         
+        # If there are no folders to process, return early
+        if not non_cam_folders:
+            logger.info("No non-CAM folders found to copy")
+            return 0
+            
+        # Total steps for progress tracking
+        total_folders = len(non_cam_folders)
+        
         # Process each non-CAM folder
-        for folder_name in non_cam_folders:
+        for folder_index, folder_name in enumerate(non_cam_folders):
             src_folder = os.path.join(old_dir, folder_name)
             dst_folder = os.path.join(new_dir, folder_name)
+            
+            # Update progress
+            if progress_callback:
+                progress_percent = (folder_index / total_folders) * 100
+                progress_callback(progress_percent, f"Copying folder: {folder_name}")
             
             logger.info(f"Processing non-CAM folder: {folder_name}")
             
@@ -375,9 +389,22 @@ def copy_non_cam_folders(old_dir: str, new_dir: str) -> int:
             
             # Copy contents
             import shutil
-            for item in os.listdir(src_folder):
+            
+            # Count items for detailed progress
+            items = list(os.listdir(src_folder))
+            total_items = len(items)
+            
+            for item_index, item in enumerate(items):
                 src_item = os.path.join(src_folder, item)
                 dst_item = os.path.join(dst_folder, item)
+                
+                # Update detailed progress
+                if progress_callback and total_items > 0:
+                    sub_progress = (item_index / total_items) * 100
+                    sub_message = f"Copying {folder_name}/{item}"
+                    # Fold this into the overall progress
+                    overall_progress = ((folder_index + (item_index / total_items)) / total_folders) * 100
+                    progress_callback(overall_progress, sub_message)
                 
                 if os.path.isdir(src_item):
                     # Recursively copy directory
@@ -390,6 +417,11 @@ def copy_non_cam_folders(old_dir: str, new_dir: str) -> int:
             
             folders_copied += 1
             logger.info(f"Completed copying folder: {folder_name}")
+            
+            # Update progress after completing a folder
+            if progress_callback:
+                progress_percent = ((folder_index + 1) / total_folders) * 100
+                progress_callback(progress_percent, f"Completed folder: {folder_name}")
         
         logger.info(f"Copied {folders_copied} non-CAM folders")
         return folders_copied
