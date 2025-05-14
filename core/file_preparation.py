@@ -18,7 +18,7 @@ from typing import List, Dict, Tuple, Optional, Union
 logger = logging.getLogger(__name__)
 
 # Valid file extensions for input
-VALID_EXTENSIONS = ['.mov', '.mp4']
+VALID_EXTENSIONS = ['.mov']
 
 
 def scan_directory(directory_path: str, recursive: bool = True) -> List[str]:

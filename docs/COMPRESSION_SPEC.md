@@ -1,8 +1,8 @@
-# 🗜️ Forever Yours – RAW Compression Spec (Final – libx265 CRF Matched to AME)
+# 🗜️ Forever Yours – RAW Compression Spec (Final – libx265 CRF 12, Closely Matches AME)
 
 ## 🎯 Purpose
 
-Compress large Apple ProRes `.mov` wedding video files into **full-resolution H.265 versions** using `libx265`, matching the behavior of Adobe Media Encoder (AME). These files preserve the original quality while achieving scene-aware bitrate scaling — just like AME's variable bitrate approach.
+Compress large Apple ProRes `.mov` wedding video files into **full-resolution H.265 versions** using `libx265`, now tuned to match Adobe Media Encoder (AME) output more closely in both file size and visual quality. These files preserve original quality while adjusting bitrate per scene complexity.
 
 ---
 
@@ -20,8 +20,8 @@ Compress large Apple ProRes `.mov` wedding video files into **full-resolution H.
 - **Codec**: HEVC (H.265)
 - **Encoder**: `libx265` (software)
 - **Profile**: Main 10
-- **Bitrate Strategy**: CRF-based variable bitrate (targeting AME visual quality)
-- **CRF**: `18` (visually lossless / AME equivalent)
+- **Bitrate Strategy**: CRF-based variable bitrate (targeting AME behavior)
+- **CRF**: `12` (very high quality; closely matches AME file sizes)
 - **Color Settings**: Rec. 709 (`bt709`)
 - **Pixel Format**: `yuv420p10le`
 - **Audio**: AAC 320k (lossy but high-quality, matches AME)
@@ -30,14 +30,14 @@ Compress large Apple ProRes `.mov` wedding video files into **full-resolution H.
 
 ---
 
-## 🧾 FFmpeg Command Template (CRF Based)
+## 🧾 FFmpeg Command Template (CRF 12 Matched to AME)
 
 ```bash
 ffmpeg -hide_banner -y \
 -i "input.mov" \
 -c:v libx265 \
 -preset medium \
--crf 18 \
+-crf 12 \
 -x265-params "profile=main10" \
 -pix_fmt yuv420p10le \
 -color_primaries bt709 -color_trc bt709 -colorspace bt709 \
