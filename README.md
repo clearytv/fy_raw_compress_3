@@ -113,7 +113,7 @@ The tool uses the following FFmpeg settings for optimal compression:
 - **Codec**: HEVC (H.265)
 - **Encoder**: `hevc_videotoolbox` (Apple Silicon hardware acceleration)
 - **Profile**: Main 10
-- **Quality**: 75 (using quality-based VBR)
+- **Quality**: 80 (using quality-based VBR)
 - **Color Settings**: Rec. 709 (`bt709`)
 - **Pixel Format**: `yuv420p10le`
 - **Audio**: Original audio preserved (pass-through)
