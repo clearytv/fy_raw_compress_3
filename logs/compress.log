@@ -1,100 +1,100 @@
-2025-05-14 18:35:11,644 - core.video_compression - INFO - Estimated output size: 52.09 MB
-2025-05-14 18:35:11,744 - core.video_compression - INFO - Estimated output size: 173.18 MB
-2025-05-14 18:35:11,859 - core.video_compression - INFO - Estimated output size: 319.45 MB
-2025-05-14 18:35:11,962 - core.video_compression - INFO - Estimated output size: 35.19 MB
-2025-05-14 18:35:12,058 - core.video_compression - INFO - Estimated output size: 281.16 MB
-2025-05-14 18:35:12,161 - core.video_compression - INFO - Estimated output size: 173.53 MB
-2025-05-14 18:35:12,265 - core.video_compression - INFO - Estimated output size: 95.21 MB
-2025-05-14 18:35:12,369 - core.video_compression - INFO - Estimated output size: 201.81 MB
-2025-05-14 18:35:12,468 - core.video_compression - INFO - Estimated output size: 47.26 MB
-2025-05-14 18:35:12,567 - core.video_compression - INFO - Estimated output size: 188.36 MB
-2025-05-14 18:35:12,669 - core.video_compression - INFO - Estimated output size: 416.39 MB
-2025-05-14 18:35:12,772 - core.video_compression - INFO - Estimated output size: 123.85 MB
-2025-05-14 18:35:12,873 - core.video_compression - INFO - Estimated output size: 273.92 MB
-2025-05-14 18:35:12,978 - core.video_compression - INFO - Estimated output size: 128.33 MB
-2025-05-14 18:35:13,079 - core.video_compression - INFO - Estimated output size: 49.33 MB
-2025-05-14 18:35:13,179 - core.video_compression - INFO - Estimated output size: 526.10 MB
-2025-05-14 18:35:13,283 - core.video_compression - INFO - Estimated output size: 336.01 MB
-2025-05-14 18:35:13,386 - core.video_compression - INFO - Estimated output size: 91.08 MB
-2025-05-14 18:35:13,487 - core.video_compression - INFO - Estimated output size: 50.71 MB
-2025-05-14 18:35:13,586 - core.video_compression - INFO - Estimated output size: 252.53 MB
-2025-05-14 18:35:13,690 - core.video_compression - INFO - Estimated output size: 124.19 MB
-2025-05-14 18:35:13,792 - core.video_compression - INFO - Estimated output size: 115.22 MB
-2025-05-14 18:35:13,894 - core.video_compression - INFO - Estimated output size: 63.48 MB
-2025-05-14 18:35:13,997 - core.video_compression - INFO - Estimated output size: 63.82 MB
-2025-05-14 18:35:14,100 - core.video_compression - INFO - Estimated output size: 379.82 MB
-2025-05-14 18:35:14,201 - core.video_compression - INFO - Estimated output size: 1532.41 MB
-2025-05-14 18:35:14,306 - core.video_compression - INFO - Estimated output size: 850.04 MB
-2025-05-14 18:35:14,410 - core.video_compression - INFO - Estimated output size: 309.45 MB
-2025-05-14 18:35:14,510 - core.video_compression - INFO - Estimated output size: 192.84 MB
-2025-05-14 18:35:14,609 - core.video_compression - INFO - Estimated output size: 457.10 MB
-2025-05-14 18:35:14,709 - core.video_compression - INFO - Estimated output size: 169.39 MB
-2025-05-14 18:35:14,808 - core.video_compression - INFO - Estimated output size: 81.76 MB
-2025-05-14 18:35:14,913 - core.video_compression - INFO - Estimated output size: 224.24 MB
-2025-05-14 18:35:15,011 - core.video_compression - INFO - Estimated output size: 594.40 MB
-2025-05-14 18:35:15,114 - core.video_compression - INFO - Estimated output size: 84.52 MB
-2025-05-14 18:35:15,216 - core.video_compression - INFO - Estimated output size: 259.43 MB
-2025-05-14 18:35:15,317 - core.video_compression - INFO - Estimated output size: 414.67 MB
-2025-05-14 18:35:15,419 - core.video_compression - INFO - Estimated output size: 151.10 MB
-2025-05-14 18:35:15,517 - core.video_compression - INFO - Estimated output size: 176.63 MB
-2025-05-14 18:35:15,618 - core.video_compression - INFO - Estimated output size: 57.96 MB
-2025-05-14 18:35:15,720 - core.video_compression - INFO - Estimated output size: 126.61 MB
-2025-05-14 18:35:15,823 - core.video_compression - INFO - Estimated output size: 357.06 MB
-2025-05-14 18:35:15,926 - core.video_compression - INFO - Estimated output size: 212.16 MB
-2025-05-14 18:35:16,028 - core.video_compression - INFO - Estimated output size: 258.74 MB
-2025-05-14 18:35:16,134 - core.video_compression - INFO - Estimated output size: 454.00 MB
-2025-05-14 18:35:16,243 - core.video_compression - INFO - Estimated output size: 719.63 MB
-2025-05-14 18:35:16,345 - core.video_compression - INFO - Estimated output size: 166.28 MB
-2025-05-14 18:35:16,446 - core.video_compression - INFO - Estimated output size: 217.68 MB
-2025-05-14 18:35:16,570 - core.video_compression - INFO - Estimated output size: 111.77 MB
-2025-05-14 18:35:16,703 - core.video_compression - INFO - Estimated output size: 248.73 MB
-2025-05-14 18:35:16,804 - core.video_compression - INFO - Estimated output size: 255.98 MB
-2025-05-14 18:35:16,912 - core.video_compression - INFO - Estimated output size: 37.95 MB
-2025-05-14 18:35:17,013 - core.video_compression - INFO - Estimated output size: 269.09 MB
-2025-05-14 18:35:17,114 - core.video_compression - INFO - Estimated output size: 119.02 MB
-2025-05-14 18:35:17,216 - core.video_compression - INFO - Estimated output size: 103.49 MB
-2025-05-14 18:35:17,313 - core.video_compression - INFO - Estimated output size: 151.45 MB
-2025-05-14 18:35:17,413 - core.video_compression - INFO - Estimated output size: 25.18 MB
-2025-05-14 18:35:17,520 - core.video_compression - INFO - Estimated output size: 332.22 MB
-2025-05-14 18:35:17,625 - core.video_compression - INFO - Estimated output size: 185.95 MB
-2025-05-14 18:35:17,729 - core.video_compression - INFO - Estimated output size: 44.16 MB
-2025-05-14 18:35:17,828 - core.video_compression - INFO - Estimated output size: 119.71 MB
-2025-05-14 18:35:17,930 - core.video_compression - INFO - Estimated output size: 312.90 MB
-2025-05-14 18:35:18,034 - core.video_compression - INFO - Estimated output size: 209.75 MB
-2025-05-14 18:35:18,145 - core.video_compression - INFO - Estimated output size: 55.89 MB
-2025-05-14 18:35:18,243 - core.video_compression - INFO - Estimated output size: 58.99 MB
-2025-05-14 18:35:18,348 - core.video_compression - INFO - Estimated output size: 275.64 MB
-2025-05-14 18:35:18,447 - core.video_compression - INFO - Estimated output size: 310.83 MB
-2025-05-14 18:35:18,561 - core.video_compression - INFO - Estimated output size: 166.97 MB
-2025-05-14 18:35:18,667 - core.video_compression - INFO - Estimated output size: 900.40 MB
-2025-05-14 18:35:18,770 - core.video_compression - INFO - Estimated output size: 313.59 MB
-2025-05-14 18:35:18,870 - core.video_compression - INFO - Estimated output size: 81.76 MB
-2025-05-14 18:35:18,979 - core.video_compression - INFO - Estimated output size: 293.23 MB
-2025-05-14 18:35:19,083 - core.video_compression - INFO - Estimated output size: 54.51 MB
-2025-05-14 18:35:19,197 - core.video_compression - INFO - Estimated output size: 37.95 MB
-2025-05-14 18:35:19,300 - core.video_compression - INFO - Estimated output size: 164.21 MB
-2025-05-14 18:35:19,405 - core.video_compression - INFO - Estimated output size: 126.61 MB
-2025-05-14 18:35:19,504 - core.video_compression - INFO - Estimated output size: 43.81 MB
-2025-05-14 18:35:19,605 - core.video_compression - INFO - Estimated output size: 507.12 MB
-2025-05-14 18:35:19,710 - core.video_compression - INFO - Estimated output size: 100.73 MB
-2025-05-14 18:35:19,814 - core.video_compression - INFO - Estimated output size: 232.86 MB
-2025-05-14 18:35:19,915 - core.video_compression - INFO - Estimated output size: 284.61 MB
-2025-05-14 18:35:20,024 - core.video_compression - INFO - Estimated output size: 42.78 MB
-2025-05-14 18:35:20,133 - core.video_compression - INFO - Estimated output size: 32.43 MB
-2025-05-14 18:35:20,236 - core.video_compression - INFO - Estimated output size: 264.60 MB
-2025-05-14 18:35:20,341 - core.video_compression - INFO - Estimated output size: 74.86 MB
-2025-05-14 18:35:20,444 - core.video_compression - INFO - Estimated output size: 34.50 MB
-2025-05-14 18:35:20,546 - core.video_compression - INFO - Estimated output size: 373.27 MB
-2025-05-14 18:35:20,655 - core.video_compression - INFO - Estimated output size: 62.79 MB
-2025-05-14 18:35:20,759 - core.video_compression - INFO - Estimated output size: 227.69 MB
-2025-05-14 18:35:20,889 - core.video_compression - INFO - Estimated output size: 13852.40 MB
-2025-05-14 18:35:21,000 - core.video_compression - INFO - Estimated output size: 8620.06 MB
-2025-05-14 18:35:21,102 - core.video_compression - INFO - Estimated output size: 306.00 MB
-2025-05-14 18:35:21,201 - core.video_compression - INFO - Estimated output size: 19.32 MB
-2025-05-14 18:35:21,305 - core.video_compression - INFO - Estimated output size: 47.26 MB
-2025-05-14 18:35:21,409 - core.video_compression - INFO - Estimated output size: 96.59 MB
-2025-05-14 18:35:21,512 - core.video_compression - INFO - Estimated output size: 93.15 MB
-2025-05-14 18:35:21,612 - core.video_compression - INFO - Estimated output size: 229.41 MB
-2025-05-14 18:35:21,713 - core.video_compression - INFO - Estimated output size: 249.42 MB
-2025-05-14 18:35:21,816 - core.video_compression - INFO - Estimated output size: 95.21 MB
-2025-05-14 18:35:21,925 - core.video_compression - INFO - Estimated output size: 27.60 MB
+2025-05-14 19:34:25,515 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2' to '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2'
+2025-05-14 19:34:25,516 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05222143_C111.mp4
+2025-05-14 19:34:25,516 - core.queue_manager - INFO - Processing file 360/369: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222143_C111.mov
+2025-05-14 19:34:25,516 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222143_C111.mov
+2025-05-14 19:34:25,640 - core.video_compression - INFO - Video duration: 51.916667 seconds
+2025-05-14 19:34:25,641 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222143_C111.mov
+2025-05-14 19:34:32,938 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05222143_C111.mp4
+2025-05-14 19:34:32,939 - core.queue_manager - INFO - Compression result: 88.5% reduction, saved 483.10 MB
+2025-05-14 19:34:32,939 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222143_C111.mov
+2025-05-14 19:34:32,940 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2' to '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2'
+2025-05-14 19:34:32,940 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05222144_C112.mp4
+2025-05-14 19:34:32,940 - core.queue_manager - INFO - Processing file 361/369: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222144_C112.mov
+2025-05-14 19:34:32,941 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222144_C112.mov
+2025-05-14 19:34:33,068 - core.video_compression - INFO - Video duration: 48.75 seconds
+2025-05-14 19:34:33,069 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222144_C112.mov
+2025-05-14 19:34:39,959 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05222144_C112.mp4
+2025-05-14 19:34:39,960 - core.queue_manager - INFO - Compression result: 90.5% reduction, saved 501.53 MB
+2025-05-14 19:34:39,960 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222144_C112.mov
+2025-05-14 19:34:39,961 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2' to '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2'
+2025-05-14 19:34:39,961 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05222145_C113.mp4
+2025-05-14 19:34:39,961 - core.queue_manager - INFO - Processing file 362/369: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222145_C113.mov
+2025-05-14 19:34:39,961 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222145_C113.mov
+2025-05-14 19:34:40,087 - core.video_compression - INFO - Video duration: 41.833333 seconds
+2025-05-14 19:34:40,088 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222145_C113.mov
+2025-05-14 19:34:46,080 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05222145_C113.mp4
+2025-05-14 19:34:46,081 - core.queue_manager - INFO - Compression result: 90.1% reduction, saved 413.03 MB
+2025-05-14 19:34:46,081 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222145_C113.mov
+2025-05-14 19:34:46,081 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2' to '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2'
+2025-05-14 19:34:46,082 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05222145_C114.mp4
+2025-05-14 19:34:46,082 - core.queue_manager - INFO - Processing file 363/369: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222145_C114.mov
+2025-05-14 19:34:46,082 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222145_C114.mov
+2025-05-14 19:34:46,205 - core.video_compression - INFO - Video duration: 74.75 seconds
+2025-05-14 19:34:46,206 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222145_C114.mov
+2025-05-14 19:34:56,326 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05222145_C114.mp4
+2025-05-14 19:34:56,327 - core.queue_manager - INFO - Compression result: 90.0% reduction, saved 475.80 MB
+2025-05-14 19:34:56,327 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222145_C114.mov
+2025-05-14 19:34:56,328 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2' to '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2'
+2025-05-14 19:34:56,328 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05222146_C115.mp4
+2025-05-14 19:34:56,328 - core.queue_manager - INFO - Processing file 364/369: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222146_C115.mov
+2025-05-14 19:34:56,328 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222146_C115.mov
+2025-05-14 19:34:56,448 - core.video_compression - INFO - Video duration: 40.333333 seconds
+2025-05-14 19:34:56,449 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222146_C115.mov
+2025-05-14 19:35:02,271 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05222146_C115.mp4
+2025-05-14 19:35:02,273 - core.queue_manager - INFO - Compression result: 89.1% reduction, saved 444.12 MB
+2025-05-14 19:35:02,273 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222146_C115.mov
+2025-05-14 19:35:02,273 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2' to '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2'
+2025-05-14 19:35:02,274 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05222222_C116.mp4
+2025-05-14 19:35:02,274 - core.queue_manager - INFO - Processing file 365/369: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222222_C116.mov
+2025-05-14 19:35:02,274 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222222_C116.mov
+2025-05-14 19:35:02,403 - core.video_compression - INFO - Video duration: 217.5 seconds
+2025-05-14 19:35:02,404 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222222_C116.mov
+2025-05-14 19:35:31,073 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05222222_C116.mp4
+2025-05-14 19:35:31,075 - core.queue_manager - INFO - Compression result: 87.6% reduction, saved 2.42 GB
+2025-05-14 19:35:31,075 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222222_C116.mov
+2025-05-14 19:35:31,075 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2' to '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2'
+2025-05-14 19:35:31,075 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05230030_C117.mp4
+2025-05-14 19:35:31,076 - core.queue_manager - INFO - Processing file 366/369: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05230030_C117.mov
+2025-05-14 19:35:31,076 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05230030_C117.mov
+2025-05-14 19:35:31,207 - core.video_compression - INFO - Video duration: 109.666667 seconds
+2025-05-14 19:35:31,207 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05230030_C117.mov
+2025-05-14 19:35:46,206 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05230030_C117.mp4
+2025-05-14 19:35:46,207 - core.queue_manager - INFO - Compression result: 83.8% reduction, saved 1.36 GB
+2025-05-14 19:35:46,207 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05230030_C117.mov
+2025-05-14 19:35:46,207 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2' to '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2'
+2025-05-14 19:35:46,207 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05230032_C118.mp4
+2025-05-14 19:35:46,208 - core.queue_manager - INFO - Processing file 367/369: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05230032_C118.mov
+2025-05-14 19:35:46,208 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05230032_C118.mov
+2025-05-14 19:35:46,342 - core.video_compression - INFO - Video duration: 70.833333 seconds
+2025-05-14 19:35:46,343 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05230032_C118.mov
+2025-05-14 19:35:56,505 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05230032_C118.mp4
+2025-05-14 19:35:56,506 - core.queue_manager - INFO - Compression result: 79.3% reduction, saved 986.40 MB
+2025-05-14 19:35:56,506 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05230032_C118.mov
+2025-05-14 19:35:56,507 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2' to '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2'
+2025-05-14 19:35:56,507 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05230034_C119.mp4
+2025-05-14 19:35:56,507 - core.queue_manager - INFO - Processing file 368/369: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05230034_C119.mov
+2025-05-14 19:35:56,507 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05230034_C119.mov
+2025-05-14 19:35:56,637 - core.video_compression - INFO - Video duration: 65.0 seconds
+2025-05-14 19:35:56,638 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05230034_C119.mov
+2025-05-14 19:36:05,621 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05230034_C119.mp4
+2025-05-14 19:36:05,622 - core.queue_manager - INFO - Compression result: 85.2% reduction, saved 823.09 MB
+2025-05-14 19:36:05,622 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05230034_C119.mov
+2025-05-14 19:36:05,622 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2' to '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2'
+2025-05-14 19:36:05,622 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05230131_C120.mp4
+2025-05-14 19:36:05,623 - core.queue_manager - INFO - Processing file 369/369: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05230131_C120.mov
+2025-05-14 19:36:05,623 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05230131_C120.mov
+2025-05-14 19:36:05,793 - core.video_compression - INFO - Video duration: 3346.166667 seconds
+2025-05-14 19:36:05,794 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05230131_C120.mov
+2025-05-14 19:43:23,556 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05230131_C120.mp4
+2025-05-14 19:43:23,574 - core.queue_manager - INFO - Compression result: 86.0% reduction, saved 38.98 GB
+2025-05-14 19:43:23,575 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05230131_C120.mov
+2025-05-14 19:43:23,575 - core.queue_manager - INFO - Queue processing completed
+2025-05-14 19:43:23,575 - __main__ - INFO - Main window received compression complete signal
+2025-05-14 19:43:23,576 - gui.step3_results - INFO - Parent folder path set in ResultsPanel: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah
+2025-05-14 19:43:23,576 - __main__ - INFO - Passing parent folder path to ResultsPanel: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah
+2025-05-14 19:43:23,576 - gui.step3_results - INFO - Attempting to set 'Green' Finder label for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah
+2025-05-14 19:43:24,121 - core.macos_utils - INFO - Successfully set Finder label 'Green' for folder: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah (with update command)
+2025-05-14 19:43:24,176 - gui.step3_results - INFO - Results display updated
+2025-05-14 19:43:24,176 - gui.step3_results - INFO - Compression results updated in UI
+2025-05-14 19:45:51,067 - gui.step3_results - INFO - User requested application exit
+2025-05-14 19:45:51,070 - __main__ - INFO - Saved window geometry and state

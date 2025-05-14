@@ -113,7 +113,8 @@ class ConvertPanel(QWidget):
     compression_complete = pyqtSignal(dict)
     # Signals for navigation
     back_clicked = pyqtSignal()
-    next_clicked = pyqtSignal()
+    next_clicked = pyqtSignal() # This might be deprecated or repurposed if VerifyPanel always follows
+    verification_needed = pyqtSignal(str, str, str) # main_project_path, original_media_path, converted_media_path
     
     def __init__(self, parent=None):
         """Initialize the conversion panel with compression options."""
@@ -680,16 +681,59 @@ class ConvertPanel(QWidget):
         self.use_defaults_checkbox.setEnabled(True)
         self.start_button.setText("Start Compression")
         self.start_button.setEnabled(True)
-        self.next_button.setEnabled(True)
-        
+        self.next_button.setEnabled(False) # Next step is now verification, handled by main window
+
         # If compression was cancelled, log it
         if self.queue_manager and hasattr(self.queue_manager, '_cancelled') and self.queue_manager._cancelled:
             self.log_output.append("Compression was cancelled by user")
-            
+            # Stop timer if cancelled
+            if self.timer:
+                self.timer.stop()
+                self.timer = None
+            logger.info("Compression was cancelled. Verification step will be skipped.")
+            # Potentially emit next_clicked here to go to a final results/summary if verification is skipped.
+            # Or rely on main window to decide based on lack of verification_needed signal.
+            # For now, just ensure UI is reset.
+            return # Do not proceed to emit verification_needed if cancelled
+
         # Stop timer
         if self.timer:
             self.timer.stop()
             self.timer = None
+
+        self.log_output.append("Compression process finished.") # Moved here, only if not cancelled
+        logger.info("Compression process finished.")
+
+        # Emit completion signal (standard procedure)
+        self.compression_complete.emit({})
+
+        # Determine paths for verification
+        main_project_path = self.parent_folder_path
+        original_media_path = os.path.join(self.parent_folder_path, "01 VIDEO.old")
+        
+        if self.queue_manager and hasattr(self.queue_manager, 'output_directory') and self.queue_manager.output_directory:
+            converted_media_path = self.queue_manager.output_directory
+            logger.info(f"Queue manager output directory for verification: {converted_media_path}")
+        elif self.output_dir: # User specified a custom output directory
+             converted_media_path = self.output_dir
+             logger.info(f"Custom output directory used for converted files for verification: {converted_media_path}")
+        else:
+            converted_media_path = os.path.join(self.parent_folder_path, "02 VIDEO")
+            logger.warning(f"Falling back to default converted path for verification: {converted_media_path}. Ensure this is correct.")
+
+        if not main_project_path or not os.path.isdir(main_project_path):
+            logger.error(f"Main project path is invalid ('{main_project_path}') or not set for verification.")
+            # Optionally, inform user via QMessageBox
+            from PyQt6.QtWidgets import QMessageBox
+            QMessageBox.critical(self, "Path Error", f"Main project folder path '{main_project_path}' is invalid. Verification cannot proceed.")
+            return
+
+        # It's okay if original_media_path doesn't exist yet (e.g. first run before rename)
+        # or if converted_media_path doesn't exist (conversion failed to create it).
+        # The verification utility is designed to handle these cases.
+
+        logger.info(f"Emitting verification_needed signal with paths: Main='{main_project_path}', Orig='{original_media_path}', Conv='{converted_media_path}'")
+        self.verification_needed.emit(main_project_path, original_media_path, converted_media_path)
     
     def _update_elapsed_time(self):
         """Update the elapsed time display."""

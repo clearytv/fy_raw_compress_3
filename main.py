@@ -34,6 +34,7 @@ logger = logging.getLogger(__name__)
 # Import GUI components
 from gui.step1_import import ImportPanel
 from gui.step2_convert import ConvertPanel
+from gui.step2b_verify import VerifyPanel # New verification panel
 from gui.step3_results import ResultsPanel
 
 # Import core functionality
@@ -77,12 +78,14 @@ class MainWindow(QMainWindow):
         # Create workflow step panels
         self.import_panel = ImportPanel(self)
         self.convert_panel = ConvertPanel(self)
+        self.verify_panel = VerifyPanel(self) # Instantiate new panel
         self.results_panel = ResultsPanel(self)
         
         # Add panels to stacked widget
-        self.stacked_widget.addWidget(self.import_panel)
-        self.stacked_widget.addWidget(self.convert_panel)
-        self.stacked_widget.addWidget(self.results_panel)
+        self.stacked_widget.addWidget(self.import_panel)  # Index 0
+        self.stacked_widget.addWidget(self.convert_panel) # Index 1
+        self.stacked_widget.addWidget(self.verify_panel)  # Index 2
+        self.stacked_widget.addWidget(self.results_panel) # Index 3
         
         # Set queue manager in panels that need it
         self.convert_panel.set_queue_manager(self.queue_manager)
@@ -102,9 +105,17 @@ class MainWindow(QMainWindow):
         self.import_panel.next_clicked.connect(self.go_to_convert_panel) # New method
         
         # Convert panel signals
+        # self.convert_panel.compression_complete.connect(self.on_compression_complete) # This might still be useful for logging
+        self.convert_panel.verification_needed.connect(self.go_to_verify_panel) # New signal for verification
+        self.convert_panel.back_clicked.connect(lambda: self.stacked_widget.setCurrentIndex(1)) # Corrected: ConvertPanel is index 1
+        # self.convert_panel.next_clicked is no longer directly connected here for forward navigation
+        
+        # Connect the compression_complete signal for logging or data handling if needed
         self.convert_panel.compression_complete.connect(self.on_compression_complete)
-        self.convert_panel.back_clicked.connect(lambda: self.stacked_widget.setCurrentIndex(0))
-        self.convert_panel.next_clicked.connect(lambda: self.stacked_widget.setCurrentIndex(2))
+
+        # Verify panel signals
+        self.verify_panel.back_clicked.connect(lambda: self.stacked_widget.setCurrentIndex(1)) # Back to ConvertPanel (index 1)
+        self.verify_panel.next_clicked.connect(self.go_to_results_panel)
         
         # Results panel signals
         self.results_panel.new_job_requested.connect(self.reset_workflow)
@@ -130,28 +141,62 @@ class MainWindow(QMainWindow):
         else:
             logger.warning("No parent folder path available from ImportPanel to pass to ConvertPanel.")
         
-        self.stacked_widget.setCurrentIndex(1)
-        
-    def on_compression_complete(self, results):
-        """Handle compression completion from convert panel."""
-        logger.info("Main window received compression complete signal")
-        
-        # Verify that we have valid results before proceeding
-        if not results:
-            logger.warning("No compression results received, not advancing to results panel")
-            return
+        self.stacked_widget.setCurrentIndex(1) # ConvertPanel is index 1
 
-        # Pass the parent folder path to the results panel
+    def go_to_verify_panel(self, main_path, original_path, converted_path):
+        """Transition from Convert panel to Verify panel."""
+        logger.info(f"Transitioning to Verify Panel. Main: {main_path}, Orig: {original_path}, Conv: {converted_path}")
+        if not main_path or not original_path or not converted_path:
+            logger.error(f"Cannot go to verify panel, one or more paths are missing. Main='{main_path}', Orig='{original_path}', Conv='{converted_path}'")
+            # Optionally show a message to the user
+            from PyQt6.QtWidgets import QMessageBox
+            QMessageBox.critical(self, "Path Error", "Cannot proceed to verification due to missing folder path information.")
+            return
+        self.verify_panel.set_paths(main_path, original_path, converted_path)
+        self.stacked_widget.setCurrentIndex(2) # Verify Panel is index 2
+        # Verification is triggered by a button inside VerifyPanel now.
+
+    def go_to_results_panel(self):
+        """Transition to the Results panel, typically from Verify panel."""
+        logger.info("Transitioning to Results Panel.")
+        
         parent_folder_path_for_results = self.convert_panel.parent_folder_path
+        # Or, if VerifyPanel modifies/confirms the main project path, get it from there:
+        # parent_folder_path_for_results = self.verify_panel.main_project_folder_path
+        
         if parent_folder_path_for_results:
             self.results_panel.set_parent_folder_path(parent_folder_path_for_results)
             logger.info(f"Passing parent folder path to ResultsPanel: {parent_folder_path_for_results}")
         else:
-            logger.warning("No parent folder path available from ConvertPanel to pass to ResultsPanel.")
-            
-        self.results_panel.set_compression_results(results)
-        self.stacked_widget.setCurrentIndex(2)
+            logger.warning("No parent folder path available to pass to ResultsPanel.")
         
+        # If VerifyPanel generates a summary or status, pass it to ResultsPanel
+        # For example:
+        # verification_summary = self.verify_panel.get_summary()
+        # self.results_panel.set_verification_summary(verification_summary)
+        
+        # For now, set_compression_results might be less relevant if verification is the primary source of truth
+        # self.results_panel.set_compression_results({}) # Pass an empty dict or relevant data
+        
+        self.stacked_widget.setCurrentIndex(3) # Results Panel is index 3
+        
+    def on_compression_complete(self, results):
+        """
+        Handle compression completion from convert panel.
+        This signal is emitted by ConvertPanel when its processing queue finishes,
+        BEFORE it emits 'verification_needed'.
+        Its primary role now is for logging or if any immediate data from 'results'
+        (currently an empty dict) needs to be handled.
+        Actual navigation to the next step (VerifyPanel) is triggered by 'verification_needed'.
+        """
+        logger.info(f"Main window received 'compression_complete' signal from ConvertPanel. Results: {results}")
+        # No direct navigation from here anymore.
+        # ConvertPanel.finish_compression will emit 'verification_needed' if successful,
+        # which then calls self.go_to_verify_panel.
+        # This method can be used if there's any specific action to take right after
+        # the queue_manager finishes, but before verification paths are determined.
+        pass
+
     def reset_workflow(self):
         """Reset the workflow to start a new job."""
         logger.info("Resetting workflow - clearing queue and going to step 1")
@@ -160,6 +205,8 @@ class MainWindow(QMainWindow):
         # Reset all panel states
         self.import_panel.reset_panel()
         self.convert_panel.reset_panel()
+        if hasattr(self, 'verify_panel'): # Check if verify_panel exists
+            self.verify_panel.reset_panel_state()
         self.results_panel.reset_panel()
         
         self.stacked_widget.setCurrentIndex(0)
