@@ -18,13 +18,18 @@ from core.log_rotation import get_line_limited_logger
 os.makedirs('logs', exist_ok=True)
 # Use custom line count rotating logger instead of basic config
 # This will limit the log file to 100 lines maximum
-logger = get_line_limited_logger(
-    __name__,
+# Configure the root logger so all modules use this handler by default
+root_logger = logging.getLogger() # Get the root logger
+get_line_limited_logger(
+    None, # Pass None or "" to configure the root logger via our custom function
     'logs/compress.log',
-    max_lines=100,
+    max_lines=100, # Or a higher number for debugging like 500
     level=logging.INFO,
     log_format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
+# Get a logger for the current module, which will now use the root's handlers
+logger = logging.getLogger(__name__)
+
 
 # Import GUI components
 from gui.step1_import import ImportPanel

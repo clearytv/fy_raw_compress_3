@@ -230,6 +230,12 @@ class ImportPanel(QWidget):
                 self.folder_path_label.setText(folder)
                 logger.info(f"Selected folder: {folder}")
 
+                # Clear existing Finder labels first
+                if self.parent_folder:
+                    logger.info(f"Attempting to clear existing Finder labels for {self.parent_folder}")
+                    if not set_finder_label(self.parent_folder, "None"): # "None" clears existing labels
+                        logger.warning(f"Could not clear existing Finder labels for {self.parent_folder}")
+                
                 # Set Finder label to Orange
                 if self.parent_folder:
                     logger.info(f"Attempting to set 'Orange' Finder label for {self.parent_folder}")

@@ -48,9 +48,9 @@ def set_finder_label(folder_path: str, color_name: str) -> bool:
     color_index = FINDER_LABEL_COLORS[color_name]
     
     try:
-        script = f'tell application "Finder" to set label index of (POSIX file "{folder_path}" as alias) to {color_index}'
+        script = f'tell application "Finder"\nset p_file to (POSIX file "{folder_path}" as alias)\nset label index of p_file to {color_index}\nupdate p_file\nend tell'
         process = subprocess.run(['osascript', '-e', script], capture_output=True, text=True, check=True)
-        logger.info(f"Successfully set Finder label '{color_name}' for folder: {folder_path}")
+        logger.info(f"Successfully set Finder label '{color_name}' for folder: {folder_path} (with update command)")
         if process.stderr:
             logger.warning(f"AppleScript stderr for setting label on {folder_path}: {process.stderr.strip()}")
         return True
