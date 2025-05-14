@@ -11,21 +11,22 @@ Compress large RAW wedding video files into **smaller H.265 HEVC versions** usin
 - **Format**: `.mov`, `.mp4`
 - **Resolution, framerate, bit depth**: Preserved exactly
 - **Audio**: Pass through untouched (preserves original codec, bitrate, sample rate, and channels)
-- **Filename**: Preserved exactly (but converted to .mp4 extension for consistency)
+- **Filename**: Preserved exactly (but converted to `.mp4` extension for consistency)
 
 ---
 
 ## 🧪 Output Target
 
 - **Codec**: HEVC (H.265)
-- **Encoder**: `hevc_videotoolbox` (Apple Silicon hardware acceleration)
+- **Encoder**: `hevc_videotoolbox` (Apple Silicon hardware acceleration only – no fallback)
 - **Profile**: Main 10
-- **Quality**: High quality (80) using variable bit rate
+- **Bitrate**: 64 Mbps average, 64 Mbps max
+- **Pixel Format**: `yuv420p10le` (10-bit 4:2:0)
 - **Color Settings**: Rec. 709 (`bt709`)
-- **Pixel Format**: `yuv420p10le`
-- **Audio**: `copy` (pass-through, preserves original audio)
+- **Audio**: `copy` (pass-through)
 - **Tag**: `hvc1` (for Apple compatibility)
 - **Faststart**: Enabled (for streamable MP4)
+- **Hardware Enforcement**: Forced hardware usage with error on fallback
 
 ---
 
@@ -33,10 +34,11 @@ Compress large RAW wedding video files into **smaller H.265 HEVC versions** usin
 
 ```bash
 ffmpeg -hide_banner -y \
+-init_hw_device videotoolbox -hwaccel videotoolbox \
 -i "input.mov" \
 -c:v hevc_videotoolbox \
 -profile:v main10 \
--q:v 80 \
+-b:v 64M -maxrate 64M
 -pix_fmt yuv420p10le \
 -color_primaries bt709 -color_trc bt709 -colorspace bt709 \
 -tag:v hvc1 \

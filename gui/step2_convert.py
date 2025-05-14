@@ -204,7 +204,7 @@ class ConvertPanel(QWidget):
         settings_layout.addLayout(dir_layout)
         
         # Use default settings
-        self.use_defaults_checkbox = QCheckBox("Use recommended compression settings (Max Quality HEVC)")
+        self.use_defaults_checkbox = QCheckBox("Use recommended archival settings (HEVC Main10, 64Mbps Avg)")
         self.use_defaults_checkbox.setChecked(True)
         settings_layout.addWidget(self.use_defaults_checkbox)
         

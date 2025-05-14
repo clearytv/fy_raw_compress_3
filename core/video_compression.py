@@ -30,7 +30,10 @@ def get_compression_settings() -> Dict:
     return {
         "codec": "hevc_videotoolbox",
         "profile": "main10",
-        "quality": 80,  # Quality value (0-100), higher is better quality
+        # "quality": 80,  # Replaced by specific bitrate settings as per COMPRESSION_SPEC.md
+        "bitrate_v": "64M", # Average video bitrate - Updated as per COMPRESSION_SPEC.md
+        "maxrate": "64M",   # Maximum video bitrate - Updated as per COMPRESSION_SPEC.md
+        "bufsize": "64M",   # Video buffer size - Added as per COMPRESSION_SPEC.md
         "pixel_format": "yuv420p10le",
         "color_settings": {
             "primaries": "bt709",
@@ -63,6 +66,7 @@ def build_ffmpeg_command(input_path: str, output_path: str, settings: Optional[D
     # Base command
     cmd = [
         "ffmpeg", "-hide_banner", "-y",
+        "-init_hw_device", "videotoolbox", "-hwaccel", "videotoolbox", # Added as per COMPRESSION_SPEC.md
         "-i", input_path
     ]
 
@@ -70,7 +74,10 @@ def build_ffmpeg_command(input_path: str, output_path: str, settings: Optional[D
     cmd.extend([
         "-c:v", settings["codec"],
         "-profile:v", settings["profile"],
-        "-q:v", str(settings["quality"]),
+        # "-q:v", str(settings["quality"]), # Replaced by bitrate settings
+        "-b:v", settings["bitrate_v"],
+        "-maxrate", settings["maxrate"],
+        "-bufsize", settings["bufsize"], # Added as per COMPRESSION_SPEC.md
         "-pix_fmt", settings["pixel_format"]
     ])
 
@@ -296,11 +303,11 @@ def estimate_file_size(input_path: str, settings: Optional[Dict] = None) -> int:
 
     # Estimate bitrate based on quality value (0-100)
     # Higher quality = higher bitrate
-    quality = settings.get("quality", 100)
+    quality = settings.get("quality", 100) # This line is no longer used for primary estimation logic
 
-    if "bitrate" in settings:
+    if settings.get("bitrate_v"): # Changed from "bitrate" to "bitrate_v"
         # If bitrate is explicitly provided, use it for estimation
-        video_bitrate_str = settings["bitrate"]
+        video_bitrate_str = settings["bitrate_v"] # Changed from "bitrate" to "bitrate_v"
 
         # Parse bitrate value (e.g., "24M" to 24000000)
         if video_bitrate_str.endswith('K') or video_bitrate_str.endswith('k'):
@@ -313,14 +320,14 @@ def estimate_file_size(input_path: str, settings: Optional[Dict] = None) -> int:
             except ValueError:
                 logger.error(f"Could not parse bitrate: {video_bitrate_str}")
                 return 0
-    else:
-        # For quality-based encoding, estimate bitrate based on quality
-        # Quality 100 (best) = approximately 40Mbps for 4K content
-        # Quality 50 (medium) = approximately 15Mbps
-        # Quality 0 (worst) = approximately 5Mbps
-        video_bitrate = int((quality / 100.0) * 35000000 + 5000000)
+   # else: # This block is removed as quality-based estimation is no longer the primary method
+   #     # For quality-based encoding, estimate bitrate based on quality
+   #     # Quality 100 (best) = approximately 40Mbps for 4K content
+   #     # Quality 50 (medium) = approximately 15Mbps
+   #     # Quality 0 (worst) = approximately 5Mbps
+   #     video_bitrate = int((quality / 100.0) * 35000000 + 5000000) # Fallback removed
 
-    # Assume audio bitrate (typically much smaller than video)
+   # Assume audio bitrate (typically much smaller than video)
     audio_bitrate = 320000  # 320 kbps AAC
 
     # Calculate based on bitrate and duration
