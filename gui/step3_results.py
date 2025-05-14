@@ -6,139 +6,21 @@ Results Panel Module
 This module handles the third step of the compression workflow:
 - Displaying compression results
 - Showing file size comparisons
-- Providing options to view output files
 - Options to start a new compression job
 """
 
 import os
 import logging
-import subprocess
-import platform
 from PyQt6.QtWidgets import (
     QWidget, QPushButton, QVBoxLayout, QHBoxLayout,
     QLabel, QTableWidget, QTableWidgetItem, QHeaderView,
-    QGroupBox, QFrame, QSplitter, QFileDialog, QMessageBox,
-    QProgressDialog
+    QGroupBox, QMessageBox
 )
-from PyQt6.QtCore import pyqtSignal, Qt, QThread, QObject, pyqtSlot
+from PyQt6.QtCore import pyqtSignal, Qt
 from PyQt6.QtGui import QFont, QColor
 
 logger = logging.getLogger(__name__)
 
-
-class ResultsWorker(QObject):
-    """
-    Worker class for running potentially blocking operations in a background thread.
-    """
-    # Signal for task completion
-    task_completed = pyqtSignal(bool, str)
-    # Signal for progress updates
-    progress_update = pyqtSignal(str)
-    
-    def __init__(self):
-        super().__init__()
-        self.working = False
-        self.folder_path = ""
-        self.report_path = ""
-        self.report_data = {}
-    
-    def set_folder_path(self, path):
-        """Set the folder path to open."""
-        self.folder_path = path
-    
-    def set_report_params(self, path, data):
-        """Set report parameters."""
-        self.report_path = path
-        self.report_data = data
-    
-    @pyqtSlot()
-    def open_folder(self):
-        """Open the folder in a background thread."""
-        try:
-            self.working = True
-            self.progress_update.emit(f"Opening folder: {self.folder_path}")
-            
-            # Open directory using the appropriate command for the platform
-            success = False
-            error_msg = ""
-            
-            try:
-                if platform.system() == "Windows":
-                    os.startfile(self.folder_path)
-                    success = True
-                elif platform.system() == "Darwin":  # macOS
-                    subprocess.run(["open", self.folder_path], timeout=30)
-                    success = True
-                else:  # Linux
-                    subprocess.run(["xdg-open", self.folder_path], timeout=30)
-                    success = True
-                    
-                logger.info(f"Opened output folder: {self.folder_path}")
-            except Exception as e:
-                logger.error(f"Failed to open output folder: {str(e)}")
-                error_msg = str(e)
-                success = False
-            
-            self.working = False
-            self.task_completed.emit(success, error_msg)
-            
-        except Exception as e:
-            logger.error(f"Error in open_folder: {str(e)}", exc_info=True)
-            self.working = False
-            self.task_completed.emit(False, str(e))
-    
-    @pyqtSlot()
-    def export_report(self):
-        """Export a report in a background thread."""
-        try:
-            self.working = True
-            self.progress_update.emit(f"Exporting report to: {self.report_path}")
-            
-            success = False
-            error_msg = ""
-            
-            try:
-                with open(self.report_path, 'w') as f:
-                    # Write header
-                    f.write("File,Status,Original Size,Compressed Size,Space Saved,Reduction,Duration\n")
-                    self.progress_update.emit("Writing header...")
-                    
-                    # Write each file's results
-                    count = 0
-                    total = len(self.report_data)
-                    for file_path, result in self.report_data.items():
-                        count += 1
-                        self.progress_update.emit(f"Writing data {count}/{total}...")
-                        
-                        file_name = os.path.basename(file_path)
-                        
-                        if 'error' in result:
-                            if result['error'] == "Cancelled By User":
-                                f.write(f'"{file_name}",Cancelled,,,,,\n')
-                            else:
-                                f.write(f'"{file_name}",Failed,,,,,\n')
-                        else:
-                            f.write(
-                                f'"{file_name}",Completed,{result["input_size_human"]},{result["output_size_human"]},'
-                                f'{result["size_diff_human"]},{result["reduction_percent"]:.1f}%,{result["duration"]:.1f}s\n'
-                            )
-                
-                success = True
-                error_msg = "export_report"
-                logger.info(f"Exported compression report to {self.report_path}")
-                
-            except Exception as e:
-                logger.error(f"Failed to export report: {str(e)}")
-                error_msg = str(e)
-                success = False
-            
-            self.working = False
-            self.task_completed.emit(success, error_msg)
-            
-        except Exception as e:
-            logger.error(f"Error in export_report: {str(e)}", exc_info=True)
-            self.working = False
-            self.task_completed.emit(False, str(e))
 
 class ResultsPanel(QWidget):
     """
@@ -154,21 +36,6 @@ class ResultsPanel(QWidget):
         logger.info("Initializing results panel")
         
         self.compression_results = {}
-        
-        # Create worker thread and worker
-        self.worker_thread = QThread()
-        self.worker = ResultsWorker()
-        self.worker.moveToThread(self.worker_thread)
-        
-        # Connect worker signals
-        self.worker.task_completed.connect(self.on_task_completed)
-        self.worker.progress_update.connect(self.on_progress_update)
-        
-        # Connect thread start to worker slots
-        self.worker_thread.started.connect(self.worker.open_folder)  # Default connection
-        
-        # Progress dialog
-        self.progress_dialog = None
         
         # Create UI components
         self._init_ui()
@@ -277,20 +144,12 @@ class ResultsPanel(QWidget):
         # Action buttons
         actions_layout = QHBoxLayout()
         
-        self.open_folder_button = QPushButton("Open Output Folder")
-        self.open_folder_button.clicked.connect(self.open_output_folder)
-        
-        self.export_report_button = QPushButton("Export Report")
-        self.export_report_button.clicked.connect(self.export_report)
-        
         self.new_job_button = QPushButton("Start New Job")
         self.new_job_button.clicked.connect(self.start_new_job)
         
         self.quit_button = QPushButton("Quit")
         self.quit_button.clicked.connect(self.quit_application)
         
-        actions_layout.addWidget(self.open_folder_button)
-        actions_layout.addWidget(self.export_report_button)
         actions_layout.addStretch()
         actions_layout.addWidget(self.new_job_button)
         actions_layout.addWidget(self.quit_button)
@@ -436,52 +295,6 @@ class ResultsPanel(QWidget):
             
         logger.info("Results display updated")
     
-    def open_output_folder(self):
-        """
-        Open the folder containing the compressed output files.
-        
-        Uses system file browser to open the output directory.
-        Uses a background thread to avoid UI freezing.
-        """
-        # Find the first output path
-        output_path = None
-        for result in self.compression_results.values():
-            if 'output_path' in result:
-                output_path = result['output_path']
-                break
-        
-        if not output_path:
-            QMessageBox.warning(
-                self,
-                "No Output Files",
-                "No output files were found to open."
-            )
-            return
-        
-        # Get the directory
-        output_dir = os.path.dirname(output_path)
-        
-        # Show progress dialog
-        self.progress_dialog = QProgressDialog("Opening folder...", "Cancel", 0, 0, self)
-        self.progress_dialog.setWindowTitle("Opening")
-        self.progress_dialog.setWindowModality(Qt.WindowModality.WindowModal)
-        self.progress_dialog.setMinimumDuration(500)  # Only show for operations > 500ms
-        
-        # Configure worker for folder opening
-        self.worker.set_folder_path(output_dir)
-        
-        # Disconnect any previous connections
-        try:
-            self.worker_thread.started.disconnect()
-        except TypeError:
-            pass  # No connections to disconnect
-        
-        # Connect thread start to open_folder
-        self.worker_thread.started.connect(self.worker.open_folder)
-        
-        # Start thread if not already running
-        if not self.worker_thread.isRunning():
-            self.worker_thread.start()
     
     def start_new_job(self):
         """
@@ -492,96 +305,10 @@ class ResultsPanel(QWidget):
         logger.info("New compression job requested")
         self.new_job_requested.emit()
     
-    def export_report(self):
-        """
-        Export a compression report as a text or CSV file.
-        
-        Saves detailed information about the compression results.
-        Uses a background thread to avoid UI freezing.
-        """
-        if not self.compression_results:
-            QMessageBox.warning(
-                self,
-                "No Results",
-                "There are no results to export."
-            )
-            return
-        
-        # Ask for save location
-        file_path, _ = QFileDialog.getSaveFileName(
-            self,
-            "Export Compression Report",
-            os.path.expanduser("~/compression_report.csv"),
-            "CSV Files (*.csv);;Text Files (*.txt)"
-        )
-        
-        if not file_path:
-            return
-        
-        # Show progress dialog
-        self.progress_dialog = QProgressDialog("Exporting report...", "Cancel", 0, 0, self)
-        self.progress_dialog.setWindowTitle("Exporting")
-        self.progress_dialog.setWindowModality(Qt.WindowModality.WindowModal)
-        self.progress_dialog.setMinimumDuration(500)  # Only show for operations > 500ms
-        
-        # Configure worker for report export
-        self.worker.set_report_params(file_path, self.compression_results)
-        
-        # Disconnect any previous connections
-        try:
-            self.worker_thread.started.disconnect()
-        except TypeError:
-            pass  # No connections to disconnect
-        
-        # Connect thread start to export_report
-        self.worker_thread.started.connect(self.worker.export_report)
-        
-        # Start thread if not already running
-        if not self.worker_thread.isRunning():
-            self.worker_thread.start()
     
-    def on_progress_update(self, message):
-        """Update progress dialog message."""
-        if self.progress_dialog is not None:
-            self.progress_dialog.setLabelText(message)
-    
-    def on_task_completed(self, success, error_msg):
-        """Handle task completion."""
-        # Close the progress dialog
-        if self.progress_dialog is not None:
-            self.progress_dialog.close()
-            self.progress_dialog = None
-        
-        # Show success/error message
-        if success:
-            if "expor" in error_msg.lower() or "report" in error_msg.lower():
-                # This is an export completion
-                QMessageBox.information(
-                    self,
-                    "Report Exported",
-                    f"The compression report has been saved successfully."
-                )
-        else:
-            if error_msg:
-                QMessageBox.warning(
-                    self,
-                    "Operation Failed",
-                    f"Operation failed: {error_msg}"
-                )
     
     def closeEvent(self, event):
-        """Handle the close event - clean up threads."""
-        # Cancel any ongoing operations
-        if hasattr(self, 'worker') and self.worker:
-            self.worker.working = False
-        
-        # Quit the worker thread properly
-        if hasattr(self, 'worker_thread') and self.worker_thread:
-            if self.worker_thread.isRunning():
-                self.worker_thread.quit()
-                if not self.worker_thread.wait(3000):  # Wait up to 3 seconds for thread to finish
-                    self.worker_thread.terminate()
-        
+        """Handle the close event."""
         super().closeEvent(event)
     
     def quit_application(self):
