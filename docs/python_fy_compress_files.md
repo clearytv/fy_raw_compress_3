@@ -1,67 +1,181 @@
-# 🗜️ Forever Yours – RAW Compression Spec
+# 🐍 Python Implementation Guide - Forever Yours Compression
 
-## 🎯 Purpose
+This document provides implementation details and best practices for working with the Forever Yours RAW Compression Tool codebase.
 
-Compress large RAW wedding video files into **smaller H.265 HEVC versions** using **Apple's VideoToolbox hardware encoder**. These files are **archival-quality proxies**: no effects, no color grading, no overlays. They must look and sound exactly like the original — just smaller in size.
+## 📚 Code Structure
 
----
+The application follows a modular design pattern with clear separation of concerns:
 
-## ✅ Input Expectations
+### Core Modules
 
-- Format: `.mov`, `.mp4`
-- Resolution, framerate, bit depth: **preserve exactly**
-- **Audio**: Pass through untouched (preserve original codec, bitrate, sample rate, and channels)
+- **`file_preparation.py`**: Handles scanning directories, validating files, and preparing file paths
+- **`video_compression.py`**: Manages FFmpeg interaction, compression settings, and process execution
+- **`queue_manager.py`**: Controls the compression queue, file status tracking, and results management
 
----
+### GUI Components
 
-## 🧪 Output Target
+- **`step1_import.py`**: First step UI for folder selection and file import
+- **`step2_convert.py`**: Second step UI for compression settings and execution
+- **`step3_results.py`**: Third step UI for displaying compression results and statistics
 
-- **Codec**: HEVC (H.265)
-- **Encoder**: `hevc_videotoolbox` (Apple Silicon hardware acceleration)
-- **Profile**: Main 10
-- **Quality**: High quality (82) using variable bit rate
-- **Color Settings**: Rec. 709 (`bt709`)
-- **Pixel Format**: `yuv420p10le`
-- **Audio**: `copy` (pass-through)
-- **Tag**: `hvc1` (for Apple compatibility)
-- **Faststart**: Yes (for streamable MP4)
+## 🧠 Key Implementation Details
 
----
+### Video Compression Process
 
-## 🧾 FFmpeg Command Template
+The compression process is implemented as follows:
 
-```bash
-ffmpeg -hide_banner -y \
--i "input.mov" \
--c:v hevc_videotoolbox \
--profile:v main10 \
--q:v 75 \
--pix_fmt yuv420p10le \
--color_primaries bt709 -color_trc bt709 -colorspace bt709 \
--tag:v hvc1 \
--movflags +faststart \
--c:a copy \
-"output.mov"
+1. **File Validation**:
+   ```python
+   def validate_video_file(file_path: str) -> bool:
+       # Check file exists and has valid extension
+       # Optionally verify with FFmpeg that file is not corrupted
+   ```
+
+2. **Command Generation**:
+   ```python
+   def build_ffmpeg_command(input_path: str, output_path: str, settings: Optional[Dict] = None) -> List[str]:
+       # Construct FFmpeg command with proper parameters
+       # Apply all necessary video and audio settings
+   ```
+
+3. **Compression Execution**:
+   ```python
+   def compress_video(input_path: str, output_path: str, settings: Optional[Dict] = None, 
+                      progress_callback: Optional[Callable] = None) -> bool:
+       # Execute FFmpeg process
+       # Monitor progress and provide updates via callback
+       # Handle errors and return success/failure
+   ```
+
+### Progress Tracking
+
+Real-time progress tracking is implemented by:
+
+1. Parsing FFmpeg output with regex to extract time information:
+   ```python
+   def parse_progress(line: str, total_duration: float) -> Optional[float]:
+       """Extract progress information from FFmpeg output line."""
+       time_match = re.search(r'time=(\d+):(\d+):(\d+\.\d+)', line)
+       if time_match:
+           hours, minutes, seconds = map(float, time_match.groups())
+           current_time = hours * 3600 + minutes * 60 + seconds
+           progress = min(current_time / total_duration, 1.0)
+           return progress
+   ```
+
+2. Providing nested progress callbacks:
+   - File-level progress
+   - Overall queue progress
+
+### Queue Management
+
+The queue system manages multiple files through:
+
+1. **File Status Tracking**:
+   ```python
+   class QueueStatus(Enum):
+       PENDING = "pending"
+       PROCESSING = "processing"
+       COMPLETED = "completed"
+       FAILED = "failed"
+       CANCELLED = "cancelled"
+   ```
+
+2. **Sequential Processing**:
+   ```python
+   def process_queue(self, output_dir: Optional[str] = None, 
+                   settings: Optional[Dict] = None,
+                   progress_callback: Optional[Callable] = None) -> bool:
+       # Process each file sequentially
+       # Update status as files complete
+       # Collect results for reporting
+   ```
+
+## 🔄 Signal and Slot Connections
+
+The application uses PyQt's signal and slot mechanism for communication between components:
+
+```python
+# In main.py
+self.import_panel.files_selected.connect(self.on_files_selected)
+self.import_panel.next_clicked.connect(lambda: self.stacked_widget.setCurrentIndex(1))
+self.convert_panel.compression_complete.connect(self.on_compression_complete)
 ```
 
----
+## 🧪 Error Handling
 
-## 🛑 Do Not Apply
+Error handling follows these guidelines:
 
-- LUTs
-- Tone mapping
-- Overlays (text, image, timecode)
-- Loudness normalization
-- Audio filters or remapping
-- Frame interpolation
-- Resolution, framerate, or color space changes
+1. **Graceful Failures**:
+   - Comprehensive try/except blocks
+   - Detailed error logging
+   - User-friendly error messages
 
----
+2. **Process Termination**:
+   ```python
+   def terminate_current_compression():
+       """Safely terminate running compression process."""
+       if _current_compression_process is not None:
+           _compression_cancelled = True
+           _current_compression_process.terminate()
+   ```
 
-## 🛠 Goal
+3. **File Validation Fallbacks**:
+   - Files that fail validation can still be added to the queue
+   - Runtime errors don't block the entire workflow
 
-Build a script, CLI tool, or drag-and-drop utility that:
-1. Accepts input files or folders
-2. Applies the above encoding
-3. **Preserves the original filename exactly**
-4. Optionally stores output in a user-selected or automatically determined folder
+## 📊 Results and Statistics
+
+Compression results are calculated and formatted as:
+
+```python
+def _calculate_compression_result(self, input_path: str, output_path: str, duration: float) -> Dict:
+    """Calculate compression metrics for a file."""
+    input_size = os.path.getsize(input_path)
+    output_size = os.path.getsize(output_path)
+    size_diff = input_size - output_size
+    percentage = (size_diff / input_size) * 100 if input_size > 0 else 0
+    
+    # Return detailed statistics dictionary
+```
+
+## 🖌️ UI Best Practices
+
+The user interface follows these patterns:
+
+1. **Three-Step Workflow**:
+   - Each step is a distinct panel in a QStackedWidget
+   - Navigation controlled by signal emissions
+
+2. **Progress Feedback**:
+   - Individual file progress
+   - Overall job progress
+   - Time remaining estimates
+   - Real-time statistics updates
+
+3. **Responsive Design**:
+   - QTableWidget for displaying results
+   - QProgressBar components for visual feedback
+   - Proper layout management for resizable windows
+
+## 🛠️ Testing and Debugging
+
+For development and testing:
+
+1. **Enable Debug Logging**:
+   ```python
+   logging.basicConfig(
+       filename='logs/compress.log',
+       level=logging.DEBUG,  # Change from INFO to DEBUG
+       format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+   )
+   ```
+
+2. **Monitor Real-Time Output**:
+   - Check `logs/compress.log` for detailed operation logs
+   - Use the "Show Log Output" option in the UI during compression
+
+3. **Handling Edge Cases**:
+   - Test with very large files
+   - Test with short video clips
+   - Test with various audio configurations

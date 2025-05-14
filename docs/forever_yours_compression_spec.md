@@ -1,17 +1,17 @@
-# 🗜️ Forever Yours – RAW Compression Spec (Updated)
+# 🗜️ Forever Yours – RAW Compression Specification
 
 ## 🎯 Purpose
 
-Compress large RAW wedding video files into **smaller H.265 HEVC versions** using **Apple's VideoToolbox hardware encoder**. These files are **archival-quality proxies**: no effects, no color grading, no overlays. They must look and sound exactly like the original — just smaller in size.
+Compress large RAW wedding video files into **smaller H.265 HEVC versions** using **Apple's VideoToolbox hardware encoder**. These files are **archival-quality proxies**: no effects, no color grading, no overlays. They look and sound exactly like the original — just smaller in size.
 
 ---
 
 ## ✅ Input Expectations
 
-- Format: `.mov`, `.mp4`
-- Resolution, framerate, bit depth: **preserve exactly**
-- **Audio**: Pass through untouched (preserve original codec, bitrate, sample rate, and channels)
-- **Filename**: Preserve original filename exactly
+- **Format**: `.mov`, `.mp4`
+- **Resolution, framerate, bit depth**: Preserved exactly
+- **Audio**: Pass through untouched (preserves original codec, bitrate, sample rate, and channels)
+- **Filename**: Preserved exactly (but converted to .mp4 extension for consistency)
 
 ---
 
@@ -20,18 +20,18 @@ Compress large RAW wedding video files into **smaller H.265 HEVC versions** usin
 - **Codec**: HEVC (H.265)
 - **Encoder**: `hevc_videotoolbox` (Apple Silicon hardware acceleration)
 - **Profile**: Main 10
-- **Quality**: High quality (82) using variable bit rate
+- **Quality**: High quality (75) using variable bit rate
 - **Color Settings**: Rec. 709 (`bt709`)
 - **Pixel Format**: `yuv420p10le`
-- **Audio**: `copy` (pass-through, e.g. PCM or AAC from source)
+- **Audio**: `copy` (pass-through, preserves original audio)
 - **Tag**: `hvc1` (for Apple compatibility)
-- **Faststart**: Yes (for streamable MP4)
+- **Faststart**: Enabled (for streamable MP4)
 
 ---
 
-## 🧾 FFmpeg Command Template
+## 🧾 FFmpeg Command Used
 
-\`\`\`bash
+```bash
 ffmpeg -hide_banner -y \
 -i "input.mov" \
 -c:v hevc_videotoolbox \
@@ -42,21 +42,19 @@ ffmpeg -hide_banner -y \
 -tag:v hvc1 \
 -movflags +faststart \
 -c:a copy \
-"output_folder/input.mov"
-\`\`\`
+"output.mp4"
+```
 
-> ⚠️ **Important**: Do **not** use `"input.mov"` or `"output_folder/input.mov"` literally.
->
-> Your script should **dynamically detect** the actual input filename and ensure the **output filename is identical**, just saved to a new location. For example:
+> **Note**: The actual implementation dynamically handles file paths. For example:
 >
 > - **Input**: `/path/to/raw/A001_C001.mov`
-> - **Output**: `/converted/A001_C001.mov`
+> - **Output**: `/path/to/compressed/A001_C001.mp4`
 
 ---
 
-## 🛑 Do Not Apply
+## 🛑 What Is Not Applied
 
-- LUTs
+- LUTs or color grading
 - Tone mapping
 - Overlays (text, image, timecode)
 - Loudness normalization
@@ -66,10 +64,15 @@ ffmpeg -hide_banner -y \
 
 ---
 
-## 🛠 Goal
+## 🛠 Implementation Summary
 
-Build a script, CLI tool, or drag-and-drop utility that:
-1. Accepts input files or folders
-2. Applies the above encoding using Apple’s hardware acceleration
-3. **Preserves the original filename**
-4. Optionally stores output in a user-selected or auto-structured folder
+The Forever Yours RAW Compression Tool provides:
+
+1. User-friendly GUI with a three-step workflow
+2. Automatic detection of CAM folders within wedding media structure
+3. Hardware-accelerated encoding using Apple's VideoToolbox
+4. Detailed compression statistics for each file
+5. Batch processing capability for multiple files
+6. Export of detailed compression reports
+
+The implementation follows strict development guidelines to ensure maintainability and reliability, including modular code organization, comprehensive logging, and clear separation between UI and core logic.

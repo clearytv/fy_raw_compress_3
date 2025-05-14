@@ -13,16 +13,16 @@
 
 ## Introduction
 
-Forever Yours RAW Compression Tool is designed to convert large RAW video files into significantly smaller files while maintaining the same visual quality. This guide will walk you through every aspect of using the tool effectively.
+Forever Yours RAW Compression Tool is designed specifically for wedding videographers who need to compress large RAW video files while maintaining visual quality. The tool leverages Apple's VideoToolbox hardware encoder to create significantly smaller files with the same resolution, frame rate, and audio quality.
 
 ## Getting Started
 
-Before you begin using the application, ensure you have:
+Before using the application, ensure you have:
 
 - A Mac with Apple Silicon (M1/M2/M3) processor
-- FFmpeg installed (see the README.md for installation instructions)
-- Sufficient storage space (for both original and compressed files)
-- Video files in .mov or .mp4 format
+- FFmpeg installed with VideoToolbox support (see README.md for installation)
+- Sufficient storage space for both original and compressed files
+- Video files in .mov or .mp4 format, preferably in a standard wedding folder structure
 
 To launch the application:
 
@@ -38,17 +38,15 @@ The compression workflow consists of three simple steps:
 
 This first screen allows you to select and validate the source files for compression.
 
-![Import Screen](https://placeholder-image-link/import_screen.png)
+#### Key Features:
 
-#### Key Elements:
-
-- **Folder Selection**: Click the "Browse" button to select the parent folder containing your wedding footage. The tool works best with the standard wedding folder structure (03 MEDIA/01 VIDEO/CAM folders).
+- **Folder Selection**: Click the "Browse" button to select the parent folder containing your wedding footage. The tool works best with the standard wedding folder structure (typically 03 MEDIA/01 VIDEO/CAM folders).
 
 - **CAM Folders**: After selecting a folder, the tool automatically scans for and displays any CAM folders found within the structure.
 
 - **Files to Process**: All valid video files (.mov, .mp4) found in the selected folders will be displayed here.
 
-- **Rename Option**: The "Rename '01 VIDEO' folders to '01 VIDEO.old'" checkbox allows you to automatically rename the original folders after compression (recommended for keeping your file structure organized).
+- **Rename Option**: The "Rename '01 VIDEO' folders to '01 VIDEO.old'" checkbox allows you to automatically rename the original folders after compression, keeping your file structure organized.
 
 #### Instructions:
 
@@ -58,23 +56,11 @@ This first screen allows you to select and validate the source files for compres
 4. Decide whether to rename original folders (checked by default)
 5. Click "Next" when ready to proceed
 
-#### Validation:
-
-During this step, the application:
-- Verifies the folder structure
-- Checks that files are valid video formats
-- Tests files for corruption or incompatibility
-- Counts the total files to be processed
-
-If no valid files are found, you'll see a warning message and cannot proceed until valid files are selected.
-
 ### Step 2: Convert Files
 
 This screen manages the compression process itself.
 
-![Convert Screen](https://placeholder-image-link/convert_screen.png)
-
-#### Key Elements:
+#### Key Features:
 
 - **Files Queued**: Shows all files ready for compression, with estimated size savings.
 
@@ -97,24 +83,14 @@ This screen manages the compression process itself.
 3. Keep the recommended compression settings (checked by default)
 4. Click "Start Compression" to begin the process
 5. Monitor progress through the progress bars
-6. Wait for the compression to complete (this may take some time depending on file count and size)
+6. Wait for compression to complete
 7. Click "Next" to view results
-
-#### During Compression:
-
-- The application processes files one by one
-- Each file is first analyzed for metadata
-- The compression then runs using hardware acceleration
-- Progress updates in real-time
-- You can cancel the process at any time by clicking "Cancel Compression"
 
 ### Step 3: Results
 
 This screen provides detailed information about the compression results.
 
-![Results Screen](https://placeholder-image-link/results_screen.png)
-
-#### Key Elements:
+#### Key Features:
 
 - **Compression Summary**: Shows key statistics:
   - Files Processed: Total number of files compressed
@@ -130,8 +106,6 @@ This screen provides detailed information about the compression results.
   - Status: Shows "Completed" or "Failed" for each file
 
 - **Action Buttons**:
-  - "Open Output Folder": Opens the folder containing compressed files
-  - "Export Report": Saves a CSV file with detailed compression results
   - "Start New Job": Begins a new compression process
   - "Quit": Exits the application
 
@@ -152,7 +126,7 @@ The Forever Yours RAW Compression Tool uses optimized H.265 (HEVC) settings to a
 | Codec | HEVC (H.265) | Modern codec with superior compression |
 | Encoder | hevc_videotoolbox | Uses Apple Silicon hardware acceleration |
 | Profile | Main 10 | Supports 10-bit color depth |
-| Quality | 82 (High) | High quality with optimal file size |
+| Quality | 75 (High) | High quality with optimal file size |
 | Color Settings | Rec. 709 (bt709) | Standard color space for HD video |
 | Pixel Format | yuv420p10le | 10-bit color depth with 4:2:0 chroma subsampling |
 | Tag | hvc1 | Ensures compatibility with Apple devices |
@@ -185,9 +159,8 @@ Follow these guidelines to get the best results from the compression tool:
 
 ### After Compression
 
-- **Verify Results**: Always check at least a few compressed files to ensure quality meets expectations
+- **Verify Results**: Always check a few compressed files to ensure quality meets expectations
 - **Backup Original Files**: Keep originals until you've verified the compressed versions
-- **Naming Convention**: The tool preserves original filenames in the output folder
 - **Export Reports**: Save reports for client documentation and reference
 
 ## Troubleshooting
@@ -208,7 +181,7 @@ Follow these guidelines to get the best results from the compression tool:
 
 #### Compression Errors
 
-- **FFmpeg Missing**: Make sure FFmpeg is installed properly
+- **FFmpeg Missing**: Make sure FFmpeg is installed properly with VideoToolbox support
 - **Hardware Compatibility**: Verify you're using an Apple Silicon Mac
 - **Disk Space**: Ensure sufficient free space on the output drive
 - **File Access**: Check that files aren't being used by other applications

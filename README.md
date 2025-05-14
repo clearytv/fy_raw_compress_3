@@ -19,7 +19,6 @@ The result is a significantly smaller file that looks and sounds exactly like th
 - **Wedding-Focused Workflow**: Automatically detects CAM folders within wedding media structure
 - **Detailed Statistics**: Track file size savings and compression performance
 - **User-Friendly Interface**: Simple three-step workflow with clear progress indicators
-- **Export Reports**: Generate detailed compression reports for client documentation
 
 ## 🖥️ System Requirements
 
@@ -83,8 +82,6 @@ Ensure the output includes `--enable-videotoolbox` in the configuration options.
 
 4. **Step 3: Results**
    - Review compression statistics and file size savings
-   - Export compression report (optional)
-   - Open output folder to access compressed files
    - Start a new job or exit the application
 
 ## 🏗️ Project Structure
@@ -103,10 +100,9 @@ Ensure the output includes `--enable-videotoolbox` in the configuration options.
 │   └── compress.log          # Application log
 ├── docs/                     # Documentation files
 │   ├── forever_yours_compression_spec.md  # Compression specifications
-│   ├── PROJECT_RULES.md       # Development guidelines
-│   ├── python_fy_compress_files.md  # Python implementation details
-│   ├── requirements.txt       # Python dependencies
-│   └── USER_GUIDE.md          # Detailed usage instructions
+│   ├── PROJECT_RULES.md      # Development guidelines
+│   ├── requirements.txt      # Python dependencies
+│   └── USER_GUIDE.md         # Detailed usage instructions
 ```
 
 ## 🎞️ Compression Details
@@ -116,28 +112,14 @@ The tool uses the following FFmpeg settings for optimal compression:
 - **Codec**: HEVC (H.265)
 - **Encoder**: `hevc_videotoolbox` (Apple Silicon hardware acceleration)
 - **Profile**: Main 10
-- **Bitrate**: VBR, target 24 Mbps
+- **Quality**: 75 (using quality-based VBR)
 - **Color Settings**: Rec. 709 (`bt709`)
 - **Pixel Format**: `yuv420p10le`
 - **Audio**: Original audio preserved (pass-through)
 - **Tag**: `hvc1` (for Apple compatibility)
 - **Faststart**: Enabled (for streamable MP4)
 
-## 💻 Development Setup
-
-For developers looking to contribute or modify the tool:
-
-1. Fork and clone the repository
-2. Install dependencies:
-   ```bash
-   pip install -r docs/requirements.txt
-   ```
-3. Run the application in development mode:
-   ```bash
-   python main.py
-   ```
-
-### Development Guidelines
+## 💻 Development
 
 This project follows strict development rules:
 - Modular code (max 150 lines per file)
