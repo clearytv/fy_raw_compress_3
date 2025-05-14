@@ -42,3 +42,7 @@
 2025-05-13 19:23:55,048 - core.file_preparation - INFO - Attempting to rename folder: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-10-21 Kelly & Chris/03 MEDIA/01 VIDEO
 2025-05-13 19:23:55,048 - core.file_preparation - INFO - Renamed folder to: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-10-21 Kelly & Chris/03 MEDIA/01 VIDEO.old
 2025-05-13 19:23:55,048 - gui.step1_import - INFO - Renamed video folder: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-10-21 Kelly & Chris/03 MEDIA/01 VIDEO to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-10-21 Kelly & Chris/03 MEDIA/01 VIDEO.old
+2025-05-14 10:16:41,306 - __main__ - INFO - Starting Forever Yours Compression Tool
+2025-05-14 10:16:41,427 - __main__ - INFO - Creating main application window
+2025-05-14 10:16:41,442 - __main__ - INFO - Restored window geometry and state from settings
+2025-05-14 10:16:41,546 - __main__ - INFO - Starting application with panel index set to 0
