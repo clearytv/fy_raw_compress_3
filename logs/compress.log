@@ -7220,3 +7220,106 @@
 2025-05-14 02:10:44,015 - __main__ - INFO - Main window received compression complete signal
 2025-05-14 02:10:44,018 - gui.step3_results - INFO - Results display updated
 2025-05-14 02:10:44,018 - gui.step3_results - INFO - Compression results updated in UI
+2025-05-14 02:22:47,537 - gui.step3_results - INFO - Opened output folder: /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1
+2025-05-14 02:23:24,402 - gui.step3_results - INFO - User requested application exit
+2025-05-14 02:23:32,437 - __main__ - INFO - Starting Forever Yours Compression Tool
+2025-05-14 02:23:32,582 - __main__ - INFO - Creating main application window
+2025-05-14 02:23:32,582 - core.queue_manager - INFO - Queue manager initialized
+2025-05-14 02:23:32,584 - gui.step1_import - INFO - Initializing import panel
+2025-05-14 02:23:32,697 - gui.step2_convert - INFO - Initializing conversion panel
+2025-05-14 02:23:32,701 - gui.step3_results - INFO - Initializing results panel
+2025-05-14 02:23:32,725 - gui.step2_convert - INFO - Queue manager set in ConvertPanel
+2025-05-14 02:23:32,725 - __main__ - INFO - Starting application with panel index set to 0
+2025-05-14 02:25:23,806 - gui.step1_import - INFO - Browse button clicked, calling select_folder
+2025-05-14 02:25:23,807 - gui.step1_import - INFO - Opening folder selection dialog
+2025-05-14 02:25:52,567 - gui.step1_import - INFO - Folder selection dialog returned: /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah
+2025-05-14 02:25:52,568 - gui.step1_import - INFO - Selected folder: /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah
+2025-05-14 02:25:52,577 - gui.step1_import - INFO - Found 6 valid video files
+2025-05-14 02:26:04,512 - core.file_preparation - INFO - Attempting to rename folder: /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO
+2025-05-14 02:26:04,513 - core.file_preparation - INFO - Renamed folder to: /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old
+2025-05-14 02:26:04,513 - gui.step1_import - INFO - Renamed video folder: /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO to /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old
+2025-05-14 02:26:04,513 - gui.step1_import - INFO - Updated path after rename: /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mov -> /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01240755_C001.mov
+2025-05-14 02:26:04,513 - gui.step1_import - INFO - Updated path after rename: /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mov -> /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C003.mov
+2025-05-14 02:26:04,513 - gui.step1_import - INFO - Updated path after rename: /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mov -> /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C002.mov
+2025-05-14 02:26:04,513 - gui.step1_import - INFO - Updated path after rename: /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_04080255_C079.mov -> /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_04080255_C079.mov
+2025-05-14 02:26:04,513 - gui.step1_import - INFO - Updated path after rename: /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_01242130_C086.mov -> /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_01242130_C086.mov
+2025-05-14 02:26:04,513 - gui.step1_import - INFO - Updated path after rename: /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_01250456_C219.mov -> /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_01250456_C219.mov
+2025-05-14 02:26:04,513 - gui.step1_import - INFO - Updated 6 file paths after renaming directory
+2025-05-14 02:26:04,513 - gui.step1_import - INFO - Adding 6 files to queue
+2025-05-14 02:26:04,513 - __main__ - INFO - Main window received 6 files from import panel
+2025-05-14 02:26:04,513 - core.queue_manager - INFO - Sorting files by camera number and file number
+2025-05-14 02:26:04,513 - core.queue_manager - INFO - Added 6 files to queue
+2025-05-14 02:26:04,513 - gui.step2_convert - INFO - Queue updated with 6 files
+2025-05-14 02:26:04,710 - core.video_compression - INFO - Estimated output size: 13.02 MB
+2025-05-14 02:26:04,813 - core.video_compression - INFO - Estimated output size: 55.81 MB
+2025-05-14 02:26:04,914 - core.video_compression - INFO - Estimated output size: 57.94 MB
+2025-05-14 02:26:05,019 - core.video_compression - INFO - Estimated output size: 176.99 MB
+2025-05-14 02:26:05,126 - core.video_compression - INFO - Estimated output size: 7818.05 MB
+2025-05-14 02:26:05,233 - core.video_compression - INFO - Estimated output size: 1818.31 MB
+2025-05-14 02:26:16,612 - gui.step2_convert - INFO - Starting compression process
+2025-05-14 02:26:16,612 - core.queue_manager - INFO - Starting queue processing
+2025-05-14 02:26:16,612 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1' to '/Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1'
+2025-05-14 02:26:16,612 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mp4
+2025-05-14 02:26:16,613 - core.queue_manager - INFO - Processing file 1/6: /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01240755_C001.mov
+2025-05-14 02:26:16,613 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01240755_C001.mov
+2025-05-14 02:26:16,704 - core.video_compression - INFO - Video duration: 4.083333 seconds
+2025-05-14 02:26:16,704 - core.video_compression - INFO - Creating Media HD temp directory: /Volumes/Media HD/temp
+2025-05-14 02:26:16,705 - core.video_compression - INFO - Using Media HD temp directory: /Volumes/Media HD/temp
+2025-05-14 02:26:16,705 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01240755_C001.mov
+2025-05-14 02:26:18,665 - core.video_compression - INFO - Successfully compressed and moved to /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mp4
+2025-05-14 02:26:18,666 - core.queue_manager - INFO - Compression result: 93.7% reduction, saved 16.68 MB
+2025-05-14 02:26:18,666 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01240755_C001.mov
+2025-05-14 02:26:18,666 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1' to '/Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1'
+2025-05-14 02:26:18,666 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mp4
+2025-05-14 02:26:18,666 - core.queue_manager - INFO - Processing file 2/6: /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C002.mov
+2025-05-14 02:26:18,666 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C002.mov
+2025-05-14 02:26:18,782 - core.video_compression - INFO - Video duration: 18.166667 seconds
+2025-05-14 02:26:18,782 - core.video_compression - INFO - Using Media HD temp directory: /Volumes/Media HD/temp
+2025-05-14 02:26:18,783 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C002.mov
+2025-05-14 02:26:25,673 - core.video_compression - INFO - Successfully compressed and moved to /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mp4
+2025-05-14 02:26:25,674 - core.queue_manager - INFO - Compression result: 94.8% reduction, saved 217.63 MB
+2025-05-14 02:26:25,674 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C002.mov
+2025-05-14 02:26:25,674 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1' to '/Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1'
+2025-05-14 02:26:25,674 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mp4
+2025-05-14 02:26:25,674 - core.queue_manager - INFO - Processing file 3/6: /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C003.mov
+2025-05-14 02:26:25,674 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C003.mov
+2025-05-14 02:26:25,796 - core.video_compression - INFO - Video duration: 17.5 seconds
+2025-05-14 02:26:25,796 - core.video_compression - INFO - Using Media HD temp directory: /Volumes/Media HD/temp
+2025-05-14 02:26:25,796 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C003.mov
+2025-05-14 02:26:32,432 - core.video_compression - INFO - Successfully compressed and moved to /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mp4
+2025-05-14 02:26:32,432 - core.queue_manager - INFO - Compression result: 93.0% reduction, saved 126.54 MB
+2025-05-14 02:26:32,432 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C003.mov
+2025-05-14 02:26:32,432 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2' to '/Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2'
+2025-05-14 02:26:32,432 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_01242130_C086.mp4
+2025-05-14 02:26:32,432 - core.queue_manager - INFO - Processing file 4/6: /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_01242130_C086.mov
+2025-05-14 02:26:32,433 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_01242130_C086.mov
+2025-05-14 02:26:32,554 - core.video_compression - INFO - Video duration: 2451.5 seconds
+2025-05-14 02:26:32,554 - core.video_compression - INFO - Using Media HD temp directory: /Volumes/Media HD/temp
+2025-05-14 02:26:32,554 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_01242130_C086.mov
+2025-05-14 02:41:06,097 - core.video_compression - INFO - Successfully compressed and moved to /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_01242130_C086.mp4
+2025-05-14 02:41:06,103 - core.queue_manager - INFO - Compression result: 92.8% reduction, saved 31.18 GB
+2025-05-14 02:41:06,103 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_01242130_C086.mov
+2025-05-14 02:41:06,103 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2' to '/Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2'
+2025-05-14 02:41:06,103 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_01250456_C219.mp4
+2025-05-14 02:41:06,103 - core.queue_manager - INFO - Processing file 5/6: /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_01250456_C219.mov
+2025-05-14 02:41:06,103 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_01250456_C219.mov
+2025-05-14 02:41:06,250 - core.video_compression - INFO - Video duration: 570.166667 seconds
+2025-05-14 02:41:06,250 - core.video_compression - INFO - Using Media HD temp directory: /Volumes/Media HD/temp
+2025-05-14 02:41:06,250 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_01250456_C219.mov
+2025-05-14 02:44:38,543 - core.video_compression - INFO - Successfully compressed and moved to /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_01250456_C219.mp4
+2025-05-14 02:44:38,545 - core.queue_manager - INFO - Compression result: 87.4% reduction, saved 8.48 GB
+2025-05-14 02:44:38,545 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_01250456_C219.mov
+2025-05-14 02:44:38,545 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2' to '/Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2'
+2025-05-14 02:44:38,545 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_04080255_C079.mp4
+2025-05-14 02:44:38,545 - core.queue_manager - INFO - Processing file 6/6: /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_04080255_C079.mov
+2025-05-14 02:44:38,546 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_04080255_C079.mov
+2025-05-14 02:44:38,694 - core.video_compression - INFO - Video duration: 55.5 seconds
+2025-05-14 02:44:38,694 - core.video_compression - INFO - Using Media HD temp directory: /Volumes/Media HD/temp
+2025-05-14 02:44:38,694 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_04080255_C079.mov
+2025-05-14 02:44:59,758 - core.video_compression - INFO - Successfully compressed and moved to /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_04080255_C079.mp4
+2025-05-14 02:44:59,759 - core.queue_manager - INFO - Compression result: 88.6% reduction, saved 913.51 MB
+2025-05-14 02:44:59,759 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_04080255_C079.mov
+2025-05-14 02:44:59,759 - core.queue_manager - INFO - Queue processing completed
+2025-05-14 02:44:59,761 - __main__ - INFO - Main window received compression complete signal
+2025-05-14 02:44:59,763 - gui.step3_results - INFO - Results display updated
+2025-05-14 02:44:59,763 - gui.step3_results - INFO - Compression results updated in UI

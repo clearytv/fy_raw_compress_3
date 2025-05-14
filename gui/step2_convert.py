@@ -558,14 +558,19 @@ class ConvertPanel(QWidget):
         
         super().closeEvent(event)
     
-    def update_progress(self, current_file, progress_percentage):
+    def update_progress(self, current_file, file_progress_percentage, overall_progress_percentage=None):
         """
         Update the progress indicators for the current file.
         
         Args:
             current_file (str): Path to the current file being processed
-            progress_percentage (float): Percentage of completion (0-1)
+            file_progress_percentage (float): File percentage completion (0-1)
+            overall_progress_percentage (float, optional): Overall progress percentage (0-1).
+                                                          If None, uses file_progress_percentage.
         """
+        # For backward compatibility
+        if overall_progress_percentage is None:
+            overall_progress_percentage = file_progress_percentage
         # Update in UI thread
         from PyQt6.QtCore import QMetaObject, Q_ARG, Qt
         
@@ -579,19 +584,21 @@ class ConvertPanel(QWidget):
         )
         
         # Update progress bars (scale to percentage)
-        file_progress = int(progress_percentage * 100)
+        file_progress = int(file_progress_percentage * 100)
+        overall_progress = int(overall_progress_percentage * 100)
+        
         QMetaObject.invokeMethod(
-            self.file_progress_bar, 
-            "setValue", 
+            self.file_progress_bar,
+            "setValue",
             Qt.ConnectionType.QueuedConnection,
             Q_ARG(int, file_progress)
         )
         
         QMetaObject.invokeMethod(
-            self.overall_progress_bar, 
-            "setValue", 
+            self.overall_progress_bar,
+            "setValue",
             Qt.ConnectionType.QueuedConnection,
-            Q_ARG(int, file_progress)
+            Q_ARG(int, overall_progress)
         )
         
         # Update log
@@ -604,11 +611,11 @@ class ConvertPanel(QWidget):
         )
         
         # Calculate time remaining
-        if progress_percentage > 0:
+        if overall_progress_percentage > 0:
             current_time = time.time()
             remaining = calculate_time_remaining(
-                progress_percentage, 
-                self.start_time, 
+                overall_progress_percentage,
+                self.start_time,
                 current_time
             )
             

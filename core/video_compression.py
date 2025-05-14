@@ -40,10 +40,7 @@ def get_compression_settings() -> Dict:
         },
         "tag": "hvc1",
         "faststart": True,
-        "audio_codec": "aac",
-        "audio_bitrate": "320k",
-        "audio_sample_rate": "48000",
-        "audio_channels": "2"
+        "audio_codec": "copy"  # Audio pass-through as per specification
     }
 
 
@@ -93,12 +90,9 @@ def build_ffmpeg_command(input_path: str, output_path: str, settings: Optional[D
     if settings["faststart"]:
         cmd.extend(["-movflags", "+faststart"])
     
-    # Audio settings
+    # Audio settings - use copy for passthrough
     cmd.extend([
-        "-c:a", settings["audio_codec"],
-        "-b:a", settings["audio_bitrate"],
-        "-ar", settings["audio_sample_rate"],
-        "-ac", settings["audio_channels"]
+        "-c:a", settings["audio_codec"]
     ])
     
     # Output path
@@ -140,15 +134,27 @@ def compress_video(
     except Exception as e:
         logger.warning(f"Could not get video duration: {str(e)}")
     
-    # Use a reliable temporary directory
+    # Use the external Media HD drive for temporary storage
     if temp_dir is None:
-        # If no temp directory specified, use system's temp directory or a local project subdirectory
+        # Default to Media HD drive temp directory
+        media_hd_temp = "/Volumes/Media HD/temp"
         try:
-            # First attempt: Use Python's tempfile module for a guaranteed accessible temp directory
-            temp_dir = tempfile.gettempdir()
-            logger.info(f"Using system temp directory: {temp_dir}")
+            # Ensure the Media HD drive is mounted and accessible
+            if os.path.exists("/Volumes/Media HD"):
+                # Create the temp directory if it doesn't exist
+                temp_dir = media_hd_temp
+                if not os.path.exists(temp_dir):
+                    logger.info(f"Creating Media HD temp directory: {temp_dir}")
+                    os.makedirs(temp_dir, exist_ok=True)
+                logger.info(f"Using Media HD temp directory: {temp_dir}")
+            else:
+                # Fallback if drive is not mounted
+                logger.warning("Media HD drive not found. Using system temp directory instead.")
+                temp_dir = tempfile.gettempdir()
+                logger.info(f"Using system temp directory: {temp_dir}")
         except Exception as e:
-            # Fallback: Use a local 'temp' directory within the project
+            # Final fallback: Use a local 'temp' directory within the project
+            logger.error(f"Error accessing Media HD temp directory: {str(e)}")
             temp_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'temp')
             logger.info(f"Using local temp directory: {temp_dir}")
     

@@ -202,7 +202,8 @@ class QueueManager:
                     # and position in queue
                     overall_progress = (self.current_index + progress) / len(self.queue)
                     if progress_callback:
-                        progress_callback(current_file, overall_progress)
+                        # Pass both the file progress and overall progress
+                        progress_callback(current_file, progress, overall_progress)
                 
                 # Process current file
                 logger.info(f"Processing file {self.current_index + 1}/{len(self.queue)}: {current_file}")
@@ -231,8 +232,10 @@ class QueueManager:
                 
                 # Update progress
                 if progress_callback:
+                    # When a file is completed, update with 100% file progress and correct overall progress
+                    file_progress = 1.0  # File is 100% complete
                     overall_progress = self.current_index / len(self.queue)
-                    progress_callback(current_file, overall_progress)
+                    progress_callback(current_file, file_progress, overall_progress)
                     
             # If cancelled, mark remaining files
             if self._cancelled:
