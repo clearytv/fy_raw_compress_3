@@ -414,6 +414,27 @@ class ImportPanel(QWidget):
         """Handle the close event."""
         # No worker threads to clean up
         super().closeEvent(event)
+        
+    def reset_panel(self):
+        """Reset the panel to initial state when starting a new job."""
+        logger.info("Resetting import panel state")
+        
+        # Clear stored data
+        self.parent_folder = ""
+        self.cam_folders = []
+        self.valid_files = []
+        
+        # Reset UI elements
+        self.folder_path_label.setText("No folder selected")
+        self.status_label.setText("Please select a folder to begin")
+        self.status_label.setStyleSheet("color: #666;")
+        self.cam_list.clear()
+        self.file_list.clear()
+        self.file_count_label.setText("0 files found")
+        self.next_button.setEnabled(False)
+        
+        # Hide progress section if visible
+        self.progress_group.setVisible(False)
 
 # Add a check to prevent direct execution
 if __name__ == "__main__":

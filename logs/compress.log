@@ -48,3 +48,13 @@
 2025-05-14 10:16:41,546 - __main__ - INFO - Starting application with panel index set to 0
 2025-05-14 10:18:27,881 - __main__ - INFO - Main window received 6 files from import panel
 2025-05-14 10:25:18,013 - __main__ - INFO - Main window received compression complete signal
+2025-05-14 11:04:25,688 - __main__ - INFO - Saved window geometry and state
+2025-05-14 11:23:50,294 - __main__ - INFO - Starting Forever Yours Compression Tool
+2025-05-14 11:23:50,416 - __main__ - INFO - Creating main application window
+2025-05-14 11:23:50,432 - __main__ - INFO - Restored window geometry and state from settings
+2025-05-14 11:23:50,549 - __main__ - INFO - Starting application with panel index set to 0
+2025-05-14 11:24:29,954 - __main__ - INFO - Main window received 6 files from import panel
+2025-05-14 11:25:02,656 - __main__ - INFO - Main window received compression complete signal
+2025-05-14 11:25:41,589 - __main__ - INFO - Resetting workflow - clearing queue and going to step 1
+2025-05-14 11:25:41,597 - __main__ - INFO - Current index set to 0
+2025-05-14 11:27:04,267 - __main__ - INFO - Main window received 6 files from import panel

@@ -311,6 +311,25 @@ class ResultsPanel(QWidget):
         """Handle the close event."""
         super().closeEvent(event)
     
+    def reset_panel(self):
+        """Reset the panel to initial state when starting a new job."""
+        logger.info("Resetting results panel state")
+        
+        # Reset stored data
+        self.compression_results = {}
+        
+        # Reset UI elements
+        self.files_count.setText("0")
+        self.time_value.setText("00:00:00")
+        self.space_value.setText("0 MB")
+        self.reduction_value.setText("0%")
+        self.success_label.setText("Successful: 0")
+        self.failed_label.setText("Failed: 0")
+        self.cancelled_label.setText("Cancelled: 0")
+        
+        # Clear the results table
+        self.results_table.setRowCount(0)
+    
     def quit_application(self):
         """Exit the application."""
         logger.info("User requested application exit")

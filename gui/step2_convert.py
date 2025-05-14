@@ -558,6 +558,42 @@ class ConvertPanel(QWidget):
         
         super().closeEvent(event)
     
+    def reset_panel(self):
+        """Reset the panel to initial state when starting a new job."""
+        logger.info("Resetting convert panel state")
+        
+        # Reset stored data
+        self.queued_files = []
+        self.output_dir = ""
+        self.processing = False
+        self.start_time = 0
+        self.current_file = ""
+        
+        # Reset UI elements
+        self.queue_list.clear()
+        self.queue_stats_label.setText("0 files queued")
+        self.size_estimate_label.setText("Estimated savings: 0 MB")
+        self.output_dir_label.setText("Default (same folder as original)")
+        self.current_file_label.setText("None")
+        self.file_progress_bar.setValue(0)
+        self.overall_progress_bar.setValue(0)
+        self.elapsed_time_label.setText("00:00:00")
+        self.remaining_time_label.setText("--:--:--")
+        self.log_output.clear()
+        
+        # Reset button states
+        self.start_button.setText("Start Compression")
+        self.start_button.setEnabled(True)
+        self.back_button.setEnabled(True)
+        self.next_button.setEnabled(False)
+        self.output_dir_button.setEnabled(True)
+        self.use_defaults_checkbox.setEnabled(True)
+        
+        # Stop timer if running
+        if self.timer and self.timer.isActive():
+            self.timer.stop()
+            self.timer = None
+    
     def update_progress(self, current_file, file_progress_percentage, overall_progress_percentage=None):
         """
         Update the progress indicators for the current file.

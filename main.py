@@ -131,6 +131,12 @@ class MainWindow(QMainWindow):
         """Reset the workflow to start a new job."""
         logger.info("Resetting workflow - clearing queue and going to step 1")
         self.queue_manager.clear_queue()
+        
+        # Reset all panel states
+        self.import_panel.reset_panel()
+        self.convert_panel.reset_panel()
+        self.results_panel.reset_panel()
+        
         self.stacked_widget.setCurrentIndex(0)
         logger.info(f"Current index set to {self.stacked_widget.currentIndex()}")
     
