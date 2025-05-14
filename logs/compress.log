@@ -58,3 +58,9 @@
 2025-05-14 11:25:41,589 - __main__ - INFO - Resetting workflow - clearing queue and going to step 1
 2025-05-14 11:25:41,597 - __main__ - INFO - Current index set to 0
 2025-05-14 11:27:04,267 - __main__ - INFO - Main window received 6 files from import panel
+2025-05-14 18:00:55,202 - __main__ - INFO - Starting Forever Yours Compression Tool
+2025-05-14 18:00:55,323 - __main__ - INFO - Creating main application window
+2025-05-14 18:00:55,338 - __main__ - INFO - Restored window geometry and state from settings
+2025-05-14 18:00:55,440 - __main__ - INFO - Starting application with panel index set to 0
+2025-05-14 18:01:35,110 - __main__ - INFO - Main window received 5 files from import panel
+2025-05-14 18:03:24,582 - __main__ - INFO - Main window received compression complete signal
