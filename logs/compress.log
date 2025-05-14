@@ -7323,3 +7323,102 @@
 2025-05-14 02:44:59,761 - __main__ - INFO - Main window received compression complete signal
 2025-05-14 02:44:59,763 - gui.step3_results - INFO - Results display updated
 2025-05-14 02:44:59,763 - gui.step3_results - INFO - Compression results updated in UI
+2025-05-14 03:22:10,664 - gui.step3_results - INFO - User requested application exit
+2025-05-14 03:28:09,305 - __main__ - INFO - Starting Forever Yours Compression Tool
+2025-05-14 03:28:09,435 - __main__ - INFO - Creating main application window
+2025-05-14 03:28:09,435 - core.queue_manager - INFO - Queue manager initialized
+2025-05-14 03:28:09,437 - gui.step1_import - INFO - Initializing import panel
+2025-05-14 03:28:09,545 - gui.step2_convert - INFO - Initializing conversion panel
+2025-05-14 03:28:09,550 - gui.step3_results - INFO - Initializing results panel
+2025-05-14 03:28:09,570 - gui.step2_convert - INFO - Queue manager set in ConvertPanel
+2025-05-14 03:28:09,570 - __main__ - INFO - Starting application with panel index set to 0
+2025-05-14 03:28:15,683 - gui.step1_import - INFO - Browse button clicked, calling select_folder
+2025-05-14 03:28:15,684 - gui.step1_import - INFO - Opening folder selection dialog
+2025-05-14 03:28:44,938 - gui.step1_import - INFO - Folder selection dialog returned: /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah
+2025-05-14 03:28:44,939 - gui.step1_import - INFO - Selected folder: /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah
+2025-05-14 03:28:44,961 - gui.step1_import - INFO - Found 6 valid video files
+2025-05-14 03:28:49,862 - core.file_preparation - INFO - Attempting to rename folder: /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO
+2025-05-14 03:28:49,864 - core.file_preparation - INFO - Renamed folder to: /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old
+2025-05-14 03:28:49,864 - gui.step1_import - INFO - Renamed video folder: /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO to /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old
+2025-05-14 03:28:49,865 - core.file_preparation - INFO - Copying non-CAM folders from /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old to /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO
+2025-05-14 03:28:49,865 - core.file_preparation - INFO - Processing non-CAM folder: DRONE
+2025-05-14 03:28:52,917 - core.file_preparation - INFO - Copied file: DJI_0059.MP4
+2025-05-14 03:28:52,935 - core.file_preparation - INFO - Copied file: .DS_Store
+2025-05-14 03:28:53,429 - core.file_preparation - INFO - Copied file: DJI_0061.MP4
+2025-05-14 03:28:57,119 - core.file_preparation - INFO - Copied file: DJI_0060.MP4
+2025-05-14 03:28:57,119 - core.file_preparation - INFO - Completed copying folder: DRONE
+2025-05-14 03:28:57,119 - core.file_preparation - INFO - Copied 1 non-CAM folders
+2025-05-14 03:28:57,119 - gui.step1_import - INFO - Copied 1 non-CAM folders from /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old to /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO
+2025-05-14 03:28:57,119 - gui.step1_import - INFO - Updated path after rename: /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mov -> /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01240755_C001.mov
+2025-05-14 03:28:57,119 - gui.step1_import - INFO - Updated path after rename: /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mov -> /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C003.mov
+2025-05-14 03:28:57,119 - gui.step1_import - INFO - Updated path after rename: /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mov -> /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C002.mov
+2025-05-14 03:28:57,119 - gui.step1_import - INFO - Updated path after rename: /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_04080255_C079.mov -> /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_04080255_C079.mov
+2025-05-14 03:28:57,119 - gui.step1_import - INFO - Updated path after rename: /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_01242130_C086.mov -> /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_01242130_C086.mov
+2025-05-14 03:28:57,119 - gui.step1_import - INFO - Updated path after rename: /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_01250456_C219.mov -> /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_01250456_C219.mov
+2025-05-14 03:28:57,119 - gui.step1_import - INFO - Updated 6 file paths after renaming directory
+2025-05-14 03:28:57,119 - gui.step1_import - INFO - Adding 6 files to queue
+2025-05-14 03:28:57,119 - __main__ - INFO - Main window received 6 files from import panel
+2025-05-14 03:28:57,119 - core.queue_manager - INFO - Sorting files by camera number and file number
+2025-05-14 03:28:57,119 - core.queue_manager - INFO - Added 6 files to queue
+2025-05-14 03:28:57,120 - gui.step2_convert - INFO - Queue updated with 6 files
+2025-05-14 03:28:57,347 - core.video_compression - INFO - Estimated output size: 13.02 MB
+2025-05-14 03:28:57,436 - core.video_compression - INFO - Estimated output size: 55.81 MB
+2025-05-14 03:28:57,533 - core.video_compression - INFO - Estimated output size: 57.94 MB
+2025-05-14 03:28:57,635 - core.video_compression - INFO - Estimated output size: 176.99 MB
+2025-05-14 03:28:57,739 - core.video_compression - INFO - Estimated output size: 7818.05 MB
+2025-05-14 03:28:57,840 - core.video_compression - INFO - Estimated output size: 1818.31 MB
+2025-05-14 03:29:32,968 - __main__ - INFO - Starting Forever Yours Compression Tool
+2025-05-14 03:29:33,084 - __main__ - INFO - Creating main application window
+2025-05-14 03:29:33,084 - core.queue_manager - INFO - Queue manager initialized
+2025-05-14 03:29:33,085 - gui.step1_import - INFO - Initializing import panel
+2025-05-14 03:29:33,187 - gui.step2_convert - INFO - Initializing conversion panel
+2025-05-14 03:29:33,190 - gui.step3_results - INFO - Initializing results panel
+2025-05-14 03:29:33,208 - gui.step2_convert - INFO - Queue manager set in ConvertPanel
+2025-05-14 03:29:33,208 - __main__ - INFO - Starting application with panel index set to 0
+2025-05-14 03:29:35,509 - gui.step1_import - INFO - Browse button clicked, calling select_folder
+2025-05-14 03:29:35,510 - gui.step1_import - INFO - Opening folder selection dialog
+2025-05-14 03:30:39,134 - gui.step1_import - INFO - Folder selection dialog returned: /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah
+2025-05-14 03:30:39,134 - gui.step1_import - INFO - Selected folder: /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah
+2025-05-14 03:31:05,718 - __main__ - INFO - Starting Forever Yours Compression Tool
+2025-05-14 03:31:05,837 - __main__ - INFO - Creating main application window
+2025-05-14 03:31:05,837 - core.queue_manager - INFO - Queue manager initialized
+2025-05-14 03:31:05,837 - gui.step1_import - INFO - Initializing import panel
+2025-05-14 03:31:05,938 - gui.step2_convert - INFO - Initializing conversion panel
+2025-05-14 03:31:05,942 - gui.step3_results - INFO - Initializing results panel
+2025-05-14 03:31:05,959 - gui.step2_convert - INFO - Queue manager set in ConvertPanel
+2025-05-14 03:31:05,959 - __main__ - INFO - Starting application with panel index set to 0
+2025-05-14 03:31:08,088 - gui.step1_import - INFO - Browse button clicked, calling select_folder
+2025-05-14 03:31:08,089 - gui.step1_import - INFO - Opening folder selection dialog
+2025-05-14 03:31:19,564 - gui.step1_import - INFO - Folder selection dialog returned: /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah
+2025-05-14 03:31:19,564 - gui.step1_import - INFO - Selected folder: /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah
+2025-05-14 03:31:19,576 - gui.step1_import - INFO - Found 6 valid video files
+2025-05-14 03:31:37,981 - core.file_preparation - INFO - Attempting to rename folder: /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO
+2025-05-14 03:31:37,981 - core.file_preparation - INFO - Renamed folder to: /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old
+2025-05-14 03:31:37,981 - gui.step1_import - INFO - Renamed video folder: /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO to /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old
+2025-05-14 03:31:37,981 - core.file_preparation - INFO - Copying non-CAM folders from /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old to /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO
+2025-05-14 03:31:37,981 - core.file_preparation - INFO - Processing non-CAM folder: DRONE
+2025-05-14 03:31:39,489 - core.file_preparation - INFO - Copied file: DJI_0059.MP4
+2025-05-14 03:31:39,489 - core.file_preparation - INFO - Copied file: .DS_Store
+2025-05-14 03:31:39,675 - core.file_preparation - INFO - Copied file: DJI_0061.MP4
+2025-05-14 03:31:41,155 - core.file_preparation - INFO - Copied file: DJI_0060.MP4
+2025-05-14 03:31:41,155 - core.file_preparation - INFO - Completed copying folder: DRONE
+2025-05-14 03:31:41,155 - core.file_preparation - INFO - Copied 1 non-CAM folders
+2025-05-14 03:31:41,155 - gui.step1_import - INFO - Copied 1 non-CAM folders from /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old to /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO
+2025-05-14 03:31:41,155 - gui.step1_import - INFO - Updated path after rename: /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mov -> /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01240755_C001.mov
+2025-05-14 03:31:41,155 - gui.step1_import - INFO - Updated path after rename: /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mov -> /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C003.mov
+2025-05-14 03:31:41,155 - gui.step1_import - INFO - Updated path after rename: /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mov -> /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C002.mov
+2025-05-14 03:31:41,155 - gui.step1_import - INFO - Updated path after rename: /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_04080255_C079.mov -> /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_04080255_C079.mov
+2025-05-14 03:31:41,155 - gui.step1_import - INFO - Updated path after rename: /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_01242130_C086.mov -> /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_01242130_C086.mov
+2025-05-14 03:31:41,155 - gui.step1_import - INFO - Updated path after rename: /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_01250456_C219.mov -> /Volumes/Media HD/Tests/02 Test Project (PY) 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_01250456_C219.mov
+2025-05-14 03:31:41,155 - gui.step1_import - INFO - Updated 6 file paths after renaming directory
+2025-05-14 03:31:41,155 - gui.step1_import - INFO - Adding 6 files to queue
+2025-05-14 03:31:41,156 - __main__ - INFO - Main window received 6 files from import panel
+2025-05-14 03:31:41,156 - core.queue_manager - INFO - Sorting files by camera number and file number
+2025-05-14 03:31:41,156 - core.queue_manager - INFO - Added 6 files to queue
+2025-05-14 03:31:41,156 - gui.step2_convert - INFO - Queue updated with 6 files
+2025-05-14 03:31:41,245 - core.video_compression - INFO - Estimated output size: 13.02 MB
+2025-05-14 03:31:41,329 - core.video_compression - INFO - Estimated output size: 55.81 MB
+2025-05-14 03:31:41,414 - core.video_compression - INFO - Estimated output size: 57.94 MB
+2025-05-14 03:31:41,509 - core.video_compression - INFO - Estimated output size: 176.99 MB
+2025-05-14 03:31:41,604 - core.video_compression - INFO - Estimated output size: 7818.05 MB
+2025-05-14 03:31:41,698 - core.video_compression - INFO - Estimated output size: 1818.31 MB

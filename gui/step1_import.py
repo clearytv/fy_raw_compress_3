@@ -21,7 +21,7 @@ from PyQt6.QtCore import pyqtSignal, Qt, QThread, QObject, pyqtSlot
 from PyQt6.QtGui import QFont, QIcon
 
 # Import core functionality
-from core.file_preparation import scan_directory, validate_video_file, find_cam_folders, rename_video_folder
+from core.file_preparation import scan_directory, validate_video_file, find_cam_folders, rename_video_folder, copy_non_cam_folders
 
 logger = logging.getLogger(__name__)
 
@@ -474,23 +474,23 @@ class ImportPanel(QWidget):
             )
             return
         
-        # If rename option is selected, prompt user to confirm
+        # If rename option is selected, rename the folder without confirmation
         renamed = False
         if self.rename_folders:
-            reply = QMessageBox.question(
-                self,
-                "Confirm Folder Rename",
-                "This will rename '01 VIDEO' folders to '01 VIDEO.old'. Continue?",
-                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
-                QMessageBox.StandardButton.Yes
-            )
+            # Rename video folders
+            video_path = os.path.join(self.parent_folder, "03 MEDIA", "01 VIDEO")
+            renamed_path = rename_video_folder(video_path)
+            logger.info(f"Renamed video folder: {video_path} to {renamed_path}")
             
-            if reply == QMessageBox.StandardButton.Yes:
-                # Rename video folders
-                video_path = os.path.join(self.parent_folder, "03 MEDIA", "01 VIDEO")
-                renamed_path = rename_video_folder(video_path)
-                logger.info(f"Renamed video folder: {video_path} to {renamed_path}")
+            if renamed_path != video_path:  # If the folder was renamed successfully
                 renamed = True
+                
+                # Create the new '01 VIDEO' directory
+                os.makedirs(video_path, exist_ok=True)
+                
+                # Copy contents of non-CAM subfolders from '01 VIDEO.old' to '01 VIDEO'
+                copied = copy_non_cam_folders(renamed_path, video_path)
+                logger.info(f"Copied {copied} non-CAM folders from {renamed_path} to {video_path}")
         
         # If we renamed folders, update the file paths
         updated_files = []

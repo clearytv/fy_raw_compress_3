@@ -336,3 +336,64 @@ def find_cam_folders(root_dir: str) -> List[str]:
     
     logger.info(f"Found {len(cam_folders)} CAM folders")
     return cam_folders
+
+
+def copy_non_cam_folders(old_dir: str, new_dir: str) -> int:
+    """
+    Copy contents of non-CAM subfolders from old directory to new directory.
+    
+    Args:
+        old_dir: Path to the '01 VIDEO.old' directory
+        new_dir: Path to the new '01 VIDEO' directory
+        
+    Returns:
+        Number of folders processed
+    """
+    logger.info(f"Copying non-CAM folders from {old_dir} to {new_dir}")
+    
+    # Create the new directory if it doesn't exist
+    os.makedirs(new_dir, exist_ok=True)
+    
+    folders_copied = 0
+    
+    try:
+        # List all subdirectories in old_dir
+        subdirs = [d for d in os.listdir(old_dir) if os.path.isdir(os.path.join(old_dir, d))]
+        
+        # Filter out folders containing 'CAM' in their name
+        non_cam_folders = [d for d in subdirs if "CAM" not in d.upper()]
+        
+        # Process each non-CAM folder
+        for folder_name in non_cam_folders:
+            src_folder = os.path.join(old_dir, folder_name)
+            dst_folder = os.path.join(new_dir, folder_name)
+            
+            logger.info(f"Processing non-CAM folder: {folder_name}")
+            
+            # Create the destination folder
+            os.makedirs(dst_folder, exist_ok=True)
+            
+            # Copy contents
+            import shutil
+            for item in os.listdir(src_folder):
+                src_item = os.path.join(src_folder, item)
+                dst_item = os.path.join(dst_folder, item)
+                
+                if os.path.isdir(src_item):
+                    # Recursively copy directory
+                    shutil.copytree(src_item, dst_item, dirs_exist_ok=True)
+                    logger.info(f"Copied directory: {item}")
+                else:
+                    # Copy file
+                    shutil.copy2(src_item, dst_item)
+                    logger.info(f"Copied file: {item}")
+            
+            folders_copied += 1
+            logger.info(f"Completed copying folder: {folder_name}")
+        
+        logger.info(f"Copied {folders_copied} non-CAM folders")
+        return folders_copied
+        
+    except Exception as e:
+        logger.error(f"Error copying non-CAM folders: {str(e)}", exc_info=True)
+        return folders_copied
