@@ -213,8 +213,8 @@ def generate_output_filename(input_path: str, output_dir: Optional[str] = None) 
     filename = os.path.basename(input_path)
     name, ext = os.path.splitext(filename)
     
-    # Add suffix to indicate compression
-    new_name = f"{name}_24mbps.mp4"
+    # Use original filename with .mp4 extension for consistency
+    new_name = f"{name}.mp4"
     
     # Determine output directory
     if output_dir:

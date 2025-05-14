@@ -13,6 +13,7 @@ This module handles the compression queue:
 import os
 import logging
 import time
+import re
 from enum import Enum
 from typing import List, Dict, Tuple, Optional, Callable
 
@@ -59,7 +60,9 @@ class QueueManager:
             Number of files successfully added to the queue
         """
         added_count = 0
+        files_to_add = []
         
+        # Process each file path
         for path in file_paths:
             original_path = path
             
@@ -77,10 +80,39 @@ class QueueManager:
                     logger.warning(f"File not found: {path}")
                     continue
             
+            # Only add files that aren't already in the queue
             if path not in self.queue:
+                files_to_add.append(path)
+                added_count += 1
+        
+        # Sort files by camera number and then by file number
+        if files_to_add:
+            # First, extract camera number and file number from each file
+            def extract_file_info(path):
+                """
+                Extract camera number and file number from file path.
+                Returns a tuple of (camera_number, file_number, path)
+                """
+                filename = os.path.basename(path)
+                
+                # Extract CAM number (e.g., CAM 1, CAM 2, etc.)
+                cam_match = re.search(r'CAM\s*(\d+)', filename, re.IGNORECASE)
+                cam_number = int(cam_match.group(1)) if cam_match else 999  # Default to high number if no match
+                
+                # Extract file number (e.g., 001, 002, etc.)
+                file_match = re.search(r'(\d{3,})', filename)  # Match 3 or more digits
+                file_number = int(file_match.group(1)) if file_match else 999999  # Default to high number if no match
+                
+                return (cam_number, file_number, path)
+            
+            # Sort files based on extracted information
+            logger.info("Sorting files by camera number and file number")
+            sorted_files = sorted([extract_file_info(path) for path in files_to_add])
+            
+            # Add sorted files to the queue
+            for _, _, path in sorted_files:
                 self.queue.append(path)
                 self.status[path] = QueueStatus.PENDING
-                added_count += 1
             
         logger.info(f"Added {added_count} files to queue")
         return added_count
