@@ -164,15 +164,20 @@ For development and testing:
 
 1. **Enable Debug Logging**:
    ```python
-   logging.basicConfig(
-       filename='logs/compress.log',
+   from core.log_rotation import get_line_limited_logger
+   
+   # Get a logger with log rotation (100 lines maximum)
+   logger = get_line_limited_logger(
+       __name__,
+       'logs/compress.log',
+       max_lines=100,
        level=logging.DEBUG,  # Change from INFO to DEBUG
-       format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+       log_format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
    )
    ```
 
 2. **Monitor Real-Time Output**:
-   - Check `logs/compress.log` for detailed operation logs
+   - Check `logs/compress.log` for detailed operation logs (limited to most recent 100 entries)
    - Use the "Show Log Output" option in the UI during compression
 
 3. **Handling Edge Cases**:

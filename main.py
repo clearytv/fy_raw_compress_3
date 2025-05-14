@@ -12,15 +12,19 @@ import os
 import logging
 from PyQt6.QtWidgets import QApplication, QMainWindow, QStackedWidget, QVBoxLayout, QWidget
 from PyQt6.QtCore import QSettings, Qt
+from core.log_rotation import get_line_limited_logger
 
 # Set up logging
 os.makedirs('logs', exist_ok=True)
-logging.basicConfig(
-    filename='logs/compress.log',
+# Use custom line count rotating logger instead of basic config
+# This will limit the log file to 100 lines maximum
+logger = get_line_limited_logger(
+    __name__,
+    'logs/compress.log',
+    max_lines=100,
     level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    log_format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
-logger = logging.getLogger(__name__)
 
 # Import GUI components
 from gui.step1_import import ImportPanel

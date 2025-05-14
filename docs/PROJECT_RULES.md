@@ -36,7 +36,8 @@ This project follows strict development and structure rules to ensure it's clean
    - Leave clear TODOs or `# REFACTOR:` comments if needed.
 
 8. **Log Cleanly**
-   - All logging should write to `logs/compress.log`.
+   - All logging should write to `logs/compress.log` (limited to 100 lines maximum).
+   - Use the core.log_rotation module for all file logging.
    - No print() calls outside of test/debug files.
 
 ---

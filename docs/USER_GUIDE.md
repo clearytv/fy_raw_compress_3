@@ -196,7 +196,7 @@ Follow these guidelines to get the best results from the compression tool:
 
 If you encounter issues not covered here:
 
-1. Check the application logs in the `logs/compress.log` file
+1. Check the application logs in the `logs/compress.log` file (contains the most recent 100 log entries)
 2. Take screenshots of any error messages
 3. Note the specific steps that led to the issue
 4. Contact support with these details
@@ -209,3 +209,15 @@ If compression fails midway:
 2. Failed files are clearly marked in the results
 3. You can start a new job to process just the failed files
 4. Check the log output for specific error details
+
+## System Requirements
+
+The following Python packages are required to run the application:
+
+```
+PyQt6>=6.4.0
+psutil>=5.9.0
+ffmpeg-python>=0.2.0
+```
+
+To install these requirements, run: `pip install -r docs/requirements.txt`
