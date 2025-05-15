@@ -1,100 +1,100 @@
-2025-05-14 19:34:25,515 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2' to '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2'
-2025-05-14 19:34:25,516 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05222143_C111.mp4
-2025-05-14 19:34:25,516 - core.queue_manager - INFO - Processing file 360/369: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222143_C111.mov
-2025-05-14 19:34:25,516 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222143_C111.mov
-2025-05-14 19:34:25,640 - core.video_compression - INFO - Video duration: 51.916667 seconds
-2025-05-14 19:34:25,641 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222143_C111.mov
-2025-05-14 19:34:32,938 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05222143_C111.mp4
-2025-05-14 19:34:32,939 - core.queue_manager - INFO - Compression result: 88.5% reduction, saved 483.10 MB
-2025-05-14 19:34:32,939 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222143_C111.mov
-2025-05-14 19:34:32,940 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2' to '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2'
-2025-05-14 19:34:32,940 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05222144_C112.mp4
-2025-05-14 19:34:32,940 - core.queue_manager - INFO - Processing file 361/369: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222144_C112.mov
-2025-05-14 19:34:32,941 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222144_C112.mov
-2025-05-14 19:34:33,068 - core.video_compression - INFO - Video duration: 48.75 seconds
-2025-05-14 19:34:33,069 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222144_C112.mov
-2025-05-14 19:34:39,959 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05222144_C112.mp4
-2025-05-14 19:34:39,960 - core.queue_manager - INFO - Compression result: 90.5% reduction, saved 501.53 MB
-2025-05-14 19:34:39,960 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222144_C112.mov
-2025-05-14 19:34:39,961 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2' to '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2'
-2025-05-14 19:34:39,961 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05222145_C113.mp4
-2025-05-14 19:34:39,961 - core.queue_manager - INFO - Processing file 362/369: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222145_C113.mov
-2025-05-14 19:34:39,961 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222145_C113.mov
-2025-05-14 19:34:40,087 - core.video_compression - INFO - Video duration: 41.833333 seconds
-2025-05-14 19:34:40,088 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222145_C113.mov
-2025-05-14 19:34:46,080 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05222145_C113.mp4
-2025-05-14 19:34:46,081 - core.queue_manager - INFO - Compression result: 90.1% reduction, saved 413.03 MB
-2025-05-14 19:34:46,081 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222145_C113.mov
-2025-05-14 19:34:46,081 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2' to '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2'
-2025-05-14 19:34:46,082 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05222145_C114.mp4
-2025-05-14 19:34:46,082 - core.queue_manager - INFO - Processing file 363/369: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222145_C114.mov
-2025-05-14 19:34:46,082 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222145_C114.mov
-2025-05-14 19:34:46,205 - core.video_compression - INFO - Video duration: 74.75 seconds
-2025-05-14 19:34:46,206 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222145_C114.mov
-2025-05-14 19:34:56,326 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05222145_C114.mp4
-2025-05-14 19:34:56,327 - core.queue_manager - INFO - Compression result: 90.0% reduction, saved 475.80 MB
-2025-05-14 19:34:56,327 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222145_C114.mov
-2025-05-14 19:34:56,328 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2' to '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2'
-2025-05-14 19:34:56,328 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05222146_C115.mp4
-2025-05-14 19:34:56,328 - core.queue_manager - INFO - Processing file 364/369: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222146_C115.mov
-2025-05-14 19:34:56,328 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222146_C115.mov
-2025-05-14 19:34:56,448 - core.video_compression - INFO - Video duration: 40.333333 seconds
-2025-05-14 19:34:56,449 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222146_C115.mov
-2025-05-14 19:35:02,271 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05222146_C115.mp4
-2025-05-14 19:35:02,273 - core.queue_manager - INFO - Compression result: 89.1% reduction, saved 444.12 MB
-2025-05-14 19:35:02,273 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222146_C115.mov
-2025-05-14 19:35:02,273 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2' to '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2'
-2025-05-14 19:35:02,274 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05222222_C116.mp4
-2025-05-14 19:35:02,274 - core.queue_manager - INFO - Processing file 365/369: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222222_C116.mov
-2025-05-14 19:35:02,274 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222222_C116.mov
-2025-05-14 19:35:02,403 - core.video_compression - INFO - Video duration: 217.5 seconds
-2025-05-14 19:35:02,404 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222222_C116.mov
-2025-05-14 19:35:31,073 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05222222_C116.mp4
-2025-05-14 19:35:31,075 - core.queue_manager - INFO - Compression result: 87.6% reduction, saved 2.42 GB
-2025-05-14 19:35:31,075 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05222222_C116.mov
-2025-05-14 19:35:31,075 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2' to '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2'
-2025-05-14 19:35:31,075 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05230030_C117.mp4
-2025-05-14 19:35:31,076 - core.queue_manager - INFO - Processing file 366/369: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05230030_C117.mov
-2025-05-14 19:35:31,076 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05230030_C117.mov
-2025-05-14 19:35:31,207 - core.video_compression - INFO - Video duration: 109.666667 seconds
-2025-05-14 19:35:31,207 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05230030_C117.mov
-2025-05-14 19:35:46,206 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05230030_C117.mp4
-2025-05-14 19:35:46,207 - core.queue_manager - INFO - Compression result: 83.8% reduction, saved 1.36 GB
-2025-05-14 19:35:46,207 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05230030_C117.mov
-2025-05-14 19:35:46,207 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2' to '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2'
-2025-05-14 19:35:46,207 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05230032_C118.mp4
-2025-05-14 19:35:46,208 - core.queue_manager - INFO - Processing file 367/369: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05230032_C118.mov
-2025-05-14 19:35:46,208 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05230032_C118.mov
-2025-05-14 19:35:46,342 - core.video_compression - INFO - Video duration: 70.833333 seconds
-2025-05-14 19:35:46,343 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05230032_C118.mov
-2025-05-14 19:35:56,505 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05230032_C118.mp4
-2025-05-14 19:35:56,506 - core.queue_manager - INFO - Compression result: 79.3% reduction, saved 986.40 MB
-2025-05-14 19:35:56,506 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05230032_C118.mov
-2025-05-14 19:35:56,507 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2' to '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2'
-2025-05-14 19:35:56,507 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05230034_C119.mp4
-2025-05-14 19:35:56,507 - core.queue_manager - INFO - Processing file 368/369: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05230034_C119.mov
-2025-05-14 19:35:56,507 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05230034_C119.mov
-2025-05-14 19:35:56,637 - core.video_compression - INFO - Video duration: 65.0 seconds
-2025-05-14 19:35:56,638 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05230034_C119.mov
-2025-05-14 19:36:05,621 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05230034_C119.mp4
-2025-05-14 19:36:05,622 - core.queue_manager - INFO - Compression result: 85.2% reduction, saved 823.09 MB
-2025-05-14 19:36:05,622 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05230034_C119.mov
-2025-05-14 19:36:05,622 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2' to '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2'
-2025-05-14 19:36:05,622 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05230131_C120.mp4
-2025-05-14 19:36:05,623 - core.queue_manager - INFO - Processing file 369/369: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05230131_C120.mov
-2025-05-14 19:36:05,623 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05230131_C120.mov
-2025-05-14 19:36:05,793 - core.video_compression - INFO - Video duration: 3346.166667 seconds
-2025-05-14 19:36:05,794 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05230131_C120.mov
-2025-05-14 19:43:23,556 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A002_05230131_C120.mp4
-2025-05-14 19:43:23,574 - core.queue_manager - INFO - Compression result: 86.0% reduction, saved 38.98 GB
-2025-05-14 19:43:23,575 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A002_05230131_C120.mov
-2025-05-14 19:43:23,575 - core.queue_manager - INFO - Queue processing completed
-2025-05-14 19:43:23,575 - __main__ - INFO - Main window received compression complete signal
-2025-05-14 19:43:23,576 - gui.step3_results - INFO - Parent folder path set in ResultsPanel: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah
-2025-05-14 19:43:23,576 - __main__ - INFO - Passing parent folder path to ResultsPanel: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah
-2025-05-14 19:43:23,576 - gui.step3_results - INFO - Attempting to set 'Green' Finder label for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah
-2025-05-14 19:43:24,121 - core.macos_utils - INFO - Successfully set Finder label 'Green' for folder: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-06-17 Laura & Sarah (with update command)
-2025-05-14 19:43:24,176 - gui.step3_results - INFO - Results display updated
-2025-05-14 19:43:24,176 - gui.step3_results - INFO - Compression results updated in UI
-2025-05-14 19:45:51,067 - gui.step3_results - INFO - User requested application exit
-2025-05-14 19:45:51,070 - __main__ - INFO - Saved window geometry and state
+2025-05-15 15:16:33,973 - core.verification_utils - INFO - Found 6 media files in converted folder
+2025-05-15 15:16:35,545 - gui.step2b_verify - WARNING - Verification issues found. Originals folder will not be deleted.
+2025-05-15 16:41:43,247 - __main__ - INFO - Saved window geometry and state
+2025-05-15 16:41:47,091 - __main__ - INFO - Starting Forever Yours Compression Tool
+2025-05-15 16:41:47,199 - __main__ - INFO - Creating main application window
+2025-05-15 16:41:47,214 - __main__ - INFO - Restored window geometry and state from settings
+2025-05-15 16:41:47,215 - core.queue_manager - INFO - Queue manager initialized
+2025-05-15 16:41:47,215 - gui.step1_import - INFO - Initializing import panel
+2025-05-15 16:41:47,312 - gui.step2_convert - INFO - Initializing conversion panel
+2025-05-15 16:41:47,313 - gui.step2b_verify - INFO - Initializing verification panel
+2025-05-15 16:41:47,314 - gui.step3_results - INFO - Initializing results panel
+2025-05-15 16:41:47,317 - gui.step2_convert - INFO - Queue manager set in ConvertPanel
+2025-05-15 16:41:47,317 - __main__ - INFO - Starting application with panel index set to 0
+2025-05-15 16:41:51,789 - gui.step1_import - INFO - Browse button clicked, calling select_folder
+2025-05-15 16:41:51,791 - gui.step1_import - INFO - Opening folder selection dialog
+2025-05-15 16:42:00,446 - gui.step1_import - INFO - Folder selection dialog returned: /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah
+2025-05-15 16:42:00,447 - gui.step1_import - INFO - Selected folder: /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah
+2025-05-15 16:42:00,447 - gui.step1_import - INFO - Attempting to clear existing Finder labels for /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah
+2025-05-15 16:42:00,634 - core.macos_utils - INFO - Successfully set Finder label 'None' for folder: /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah (with update command)
+2025-05-15 16:42:00,635 - gui.step1_import - INFO - Attempting to set 'Orange' Finder label for /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah
+2025-05-15 16:42:00,808 - core.macos_utils - INFO - Successfully set Finder label 'Orange' for folder: /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah (with update command)
+2025-05-15 16:42:00,810 - gui.step1_import - INFO - Found 2 CAM folders with 3 video files
+2025-05-15 16:42:03,505 - core.file_preparation - INFO - Attempting to rename folder: /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO
+2025-05-15 16:42:03,507 - core.file_preparation - INFO - Renamed folder to: /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old
+2025-05-15 16:42:03,508 - gui.step1_import - INFO - Renamed video folder: /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO to /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old
+2025-05-15 16:42:03,527 - core.file_preparation - INFO - Copying non-CAM folders from /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old to /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO
+2025-05-15 16:42:03,536 - core.file_preparation - INFO - Processing non-CAM folder: DRONE
+2025-05-15 16:42:04,304 - core.file_preparation - INFO - Copied file: DJI_0059.MP4
+2025-05-15 16:42:04,325 - core.file_preparation - INFO - Copied file: .DS_Store
+2025-05-15 16:42:04,475 - core.file_preparation - INFO - Copied file: DJI_0061.MP4
+2025-05-15 16:42:05,923 - core.file_preparation - INFO - Copied file: DJI_0060.MP4
+2025-05-15 16:42:05,923 - core.file_preparation - INFO - Completed copying folder: DRONE
+2025-05-15 16:42:05,928 - core.file_preparation - INFO - Copied 1 non-CAM folders
+2025-05-15 16:42:05,929 - gui.step1_import - INFO - Copied 1 non-CAM folders from /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old to /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO
+2025-05-15 16:42:05,934 - gui.step1_import - INFO - Updated path after rename: /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mov -> /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C003.mov
+2025-05-15 16:42:05,934 - gui.step1_import - INFO - Updated path after rename: /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mov -> /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C002.mov
+2025-05-15 16:42:05,934 - gui.step1_import - INFO - Updated path after rename: /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_04080255_C079.mov -> /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_04080255_C079.mov
+2025-05-15 16:42:05,935 - gui.step1_import - INFO - Updated 3 file paths after renaming directory
+2025-05-15 16:42:05,935 - gui.step1_import - INFO - Adding 3 files to queue
+2025-05-15 16:42:05,935 - __main__ - INFO - Main window received 3 files from import panel
+2025-05-15 16:42:05,935 - core.queue_manager - INFO - Sorting files by camera number and file number
+2025-05-15 16:42:05,935 - core.queue_manager - INFO - Added 3 files to queue
+2025-05-15 16:42:05,936 - gui.step2_convert - INFO - Queue updated with 3 files
+2025-05-15 16:42:05,941 - gui.step2_convert - INFO - Parent folder path set in ConvertPanel: /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah
+2025-05-15 16:42:05,941 - __main__ - INFO - Passing parent folder path to ConvertPanel: /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah
+2025-05-15 16:42:06,057 - core.video_compression - INFO - Estimated output size: 72.45 MB
+2025-05-15 16:42:06,156 - core.video_compression - INFO - Estimated output size: 75.21 MB
+2025-05-15 16:42:06,255 - core.video_compression - INFO - Estimated output size: 229.76 MB
+2025-05-15 16:42:08,048 - gui.step2_convert - INFO - Starting compression process
+2025-05-15 16:42:08,050 - core.queue_manager - INFO - Starting queue processing
+2025-05-15 16:42:08,050 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1' to '/Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1'
+2025-05-15 16:42:08,050 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mp4
+2025-05-15 16:42:08,051 - core.queue_manager - INFO - Processing file 1/3: /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C002.mov
+2025-05-15 16:42:08,051 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C002.mov
+2025-05-15 16:42:08,159 - core.video_compression - INFO - Video duration: 18.166667 seconds
+2025-05-15 16:42:08,160 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C002.mov
+2025-05-15 16:42:11,226 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mp4
+2025-05-15 16:42:11,227 - core.queue_manager - INFO - Compression result: 88.6% reduction, saved 203.37 MB
+2025-05-15 16:42:11,227 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C002.mov
+2025-05-15 16:42:11,227 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1' to '/Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1'
+2025-05-15 16:42:11,228 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mp4
+2025-05-15 16:42:11,228 - core.queue_manager - INFO - Processing file 2/3: /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C003.mov
+2025-05-15 16:42:11,228 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C003.mov
+2025-05-15 16:42:11,323 - core.video_compression - INFO - Video duration: 17.5 seconds
+2025-05-15 16:42:11,324 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C003.mov
+2025-05-15 16:42:14,270 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mp4
+2025-05-15 16:42:14,271 - core.queue_manager - INFO - Compression result: 85.4% reduction, saved 116.21 MB
+2025-05-15 16:42:14,271 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C003.mov
+2025-05-15 16:42:14,272 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2' to '/Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2'
+2025-05-15 16:42:14,272 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_04080255_C079.mp4
+2025-05-15 16:42:14,272 - core.queue_manager - INFO - Processing file 3/3: /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_04080255_C079.mov
+2025-05-15 16:42:14,272 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_04080255_C079.mov
+2025-05-15 16:42:14,377 - core.video_compression - INFO - Video duration: 55.5 seconds
+2025-05-15 16:42:14,378 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_04080255_C079.mov
+2025-05-15 16:42:22,186 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_04080255_C079.mp4
+2025-05-15 16:42:22,188 - core.queue_manager - INFO - Compression result: 84.3% reduction, saved 868.87 MB
+2025-05-15 16:42:22,188 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_04080255_C079.mov
+2025-05-15 16:42:22,188 - core.queue_manager - INFO - Queue processing completed
+2025-05-15 16:42:22,192 - __main__ - INFO - Main window received 'compression_complete' signal from ConvertPanel. Results: {'/Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C002.mov': {'input_size': 240780192, 'output_size': 27526786, 'size_diff': 213253406, 'reduction_percent': 88.56767005152982, 'input_path': '/Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C002.mov', 'output_path': '/Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mp4', 'duration': 3.175977945327759, 'input_size_human': '229.63 MB', 'output_size_human': '26.25 MB', 'size_diff_human': '203.37 MB'}, '/Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C003.mov': {'input_size': 142635184, 'output_size': 20779315, 'size_diff': 121855869, 'reduction_percent': 85.43184478242058, 'input_path': '/Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C003.mov', 'output_path': '/Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mp4', 'duration': 3.0427987575531006, 'input_size_human': '136.03 MB', 'output_size_human': '19.82 MB', 'size_diff_human': '116.21 MB'}, '/Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_04080255_C079.mov': {'input_size': 1080725476, 'output_size': 169645117, 'size_diff': 911080359, 'reduction_percent': 84.30266327875479, 'input_path': '/Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_04080255_C079.mov', 'output_path': '/Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_04080255_C079.mp4', 'duration': 7.915406703948975, 'input_size_human': '1.01 GB', 'output_size_human': '161.79 MB', 'size_diff_human': '868.87 MB'}}
+2025-05-15 16:42:22,192 - gui.step2_convert - INFO - Compression process finished.
+2025-05-15 16:42:22,193 - __main__ - INFO - Main window received 'compression_complete' signal from ConvertPanel. Results: {}
+2025-05-15 16:42:22,193 - gui.step2_convert - INFO - Using default converted path for verification: /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO
+2025-05-15 16:42:22,193 - gui.step2_convert - INFO - Emitting verification_needed signal with paths: Main='/Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah', Orig='/Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old', Conv='/Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO'
+2025-05-15 16:42:22,193 - __main__ - INFO - Transitioning to Verify Panel. Main: /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah, Orig: /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old, Conv: /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO
+2025-05-15 16:42:22,193 - gui.step2b_verify - INFO - Verification paths set: Main='/Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah', Orig='/Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old', Conv='/Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO'
+2025-05-15 16:42:23,648 - gui.step2b_verify - INFO - Starting media verification process.
+2025-05-15 16:42:23,649 - core.verification_utils - INFO - Recursively searching for media files in: /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old
+2025-05-15 16:42:23,650 - core.verification_utils - INFO - Found 6 media files in original folder
+2025-05-15 16:42:23,650 - core.verification_utils - INFO - Recursively searching for media files in: /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO
+2025-05-15 16:42:23,650 - core.verification_utils - INFO - Found 6 media files in converted folder
+2025-05-15 16:42:25,225 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 55.50s, audio 27.71s
+2025-05-15 16:42:25,227 - gui.step2b_verify - INFO - All files matched. Proceeding with deletion and icon update.
+2025-05-15 16:42:25,298 - gui.step2b_verify - INFO - Successfully deleted folder: /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old
+2025-05-15 16:42:25,299 - gui.step2b_verify - INFO - Attempting to update icon for: /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah
+2025-05-15 16:42:25,488 - core.macos_utils - INFO - Successfully set Finder label 'None' for folder: /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah (with update command)
+2025-05-15 16:42:25,665 - core.macos_utils - INFO - Successfully set Finder label 'Green' for folder: /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah (with update command)
+2025-05-15 16:42:25,669 - gui.step2b_verify - INFO - Successfully set 'Green' label for folder: /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah
+2025-05-15 16:43:20,056 - __main__ - INFO - Transitioning to Results Panel.
+2025-05-15 16:43:20,057 - gui.step3_results - INFO - Parent folder path set in ResultsPanel: /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah
+2025-05-15 16:43:20,057 - __main__ - INFO - Passing parent folder path to ResultsPanel: /Volumes/Media HD/Tests/02 Test Project (PY) Comparrison Test/2023-06-17 Laura & Sarah

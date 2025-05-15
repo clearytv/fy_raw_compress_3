@@ -708,18 +708,23 @@ class ConvertPanel(QWidget):
         self.compression_complete.emit({})
 
         # Determine paths for verification
-        main_project_path = self.parent_folder_path
-        original_media_path = os.path.join(self.parent_folder_path, "01 VIDEO.old")
+        main_project_path = self.parent_folder_path # This is ROOT_PROJECT_PATH, remains correct for overall project context
+
+        # Correctly construct the path to the '01 VIDEO.old' folder within '03 MEDIA'
+        original_media_path = os.path.join(self.parent_folder_path, "03 MEDIA", "01 VIDEO.old")
         
+        # Determine converted_media_path
         if self.queue_manager and hasattr(self.queue_manager, 'output_directory') and self.queue_manager.output_directory:
+            # This path is typically absolute and should already include '03 MEDIA/01 VIDEO' or similar
             converted_media_path = self.queue_manager.output_directory
             logger.info(f"Queue manager output directory for verification: {converted_media_path}")
-        elif self.output_dir: # User specified a custom output directory
+        elif self.output_dir: # User specified a custom output directory (absolute path)
              converted_media_path = self.output_dir
              logger.info(f"Custom output directory used for converted files for verification: {converted_media_path}")
-        else:
-            converted_media_path = os.path.join(self.parent_folder_path, "02 VIDEO")
-            logger.warning(f"Falling back to default converted path for verification: {converted_media_path}. Ensure this is correct.")
+        else: # Default output, relative to project root
+            # The files are actually being saved to '01 VIDEO', not '02 VIDEO'
+            converted_media_path = os.path.join(self.parent_folder_path, "03 MEDIA", "01 VIDEO")
+            logger.info(f"Using default converted path for verification: {converted_media_path}")
 
         if not main_project_path or not os.path.isdir(main_project_path):
             logger.error(f"Main project path is invalid ('{main_project_path}') or not set for verification.")

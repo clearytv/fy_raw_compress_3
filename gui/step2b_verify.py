@@ -15,10 +15,10 @@ import logging
 from PyQt6.QtWidgets import (
     QWidget, QPushButton, QVBoxLayout, QHBoxLayout, QLabel, QListWidget,
     QListWidgetItem, QGroupBox, QTextEdit, QMessageBox, QTableWidget, QTableWidgetItem,
-    QHeaderView
+    QHeaderView, QAbstractItemView
 )
 from PyQt6.QtCore import pyqtSignal, Qt
-from PyQt6.QtGui import QFont
+from PyQt6.QtGui import QFont, QColor
 
 # Import core functionality
 from core.verification_utils import verify_media_conversions
@@ -67,10 +67,40 @@ class VerifyPanel(QWidget):
         self.results_table = QTableWidget()
         self.results_table.setColumnCount(4)
         self.results_table.setHorizontalHeaderLabels(["Original File", "Converted File", "Status", "Details"])
-        self.results_table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+        
+        # Make columns interactively resizable
+        self.results_table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Interactive)
+        
+        # Set reasonable default widths for columns
+        self.results_table.setColumnWidth(0, 200)  # Original File
+        self.results_table.setColumnWidth(1, 200)  # Converted File
+        self.results_table.setColumnWidth(2, 100)  # Status
+        self.results_table.setColumnWidth(3, 400)  # Details - wider
+        
+        # Make the last column stretch to fill remaining space
         self.results_table.horizontalHeader().setStretchLastSection(True)
-        self.results_table.setMinimumHeight(200)
-        self.results_table.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers) # Read-only
+        
+        # Enable sorting
+        self.results_table.setSortingEnabled(True)
+        
+        # Set minimum height for the table
+        self.results_table.setMinimumHeight(250)
+        
+        # Make the table read-only
+        self.results_table.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
+        
+        # Enable tooltips
+        self.results_table.setMouseTracking(True)
+        
+        # Set alternating row colors for better readability
+        self.results_table.setAlternatingRowColors(True)
+        
+        # Enable text wrapping for the details column
+        self.results_table.setWordWrap(True)
+        
+        # Allow the rows to expand vertically to fit wrapped text
+        self.results_table.verticalHeader().setSectionResizeMode(QHeaderView.ResizeMode.ResizeToContents)
+        
         results_layout.addWidget(self.results_table)
         layout.addWidget(results_group)
 
@@ -173,6 +203,12 @@ class VerifyPanel(QWidget):
                 self.original_media_folder_path,
                 self.converted_media_folder_path
             )
+            
+            # Ensure verification_results is a list
+            if self.verification_results is None:
+                self.verification_results = []
+                logger.warning("verify_media_conversions returned None instead of a list")
+                
         except Exception as e:
             logger.error(f"Critical error during verify_media_conversions call: {e}", exc_info=True)
             QMessageBox.critical(self, "Verification Error", f"An unexpected error occurred: {e}")
@@ -180,12 +216,24 @@ class VerifyPanel(QWidget):
             self.run_verification_button.setEnabled(True) # Allow retry
             return
 
-        self._populate_results_table()
-        self._check_overall_status_and_proceed()
+        try:
+            self._populate_results_table()
+            self._check_overall_status_and_proceed()
+        except Exception as e:
+            logger.error(f"Error processing verification results: {e}", exc_info=True)
+            QMessageBox.critical(self, "Verification Processing Error",
+                               f"An error occurred while processing verification results: {e}")
+            self.overall_status_label.setText("Error processing verification results.")
+            self.run_verification_button.setEnabled(True)
+            return
+            
         self.next_button.setEnabled(True) # Enable next step regardless of outcome for now, user can review
 
     def _populate_results_table(self):
         """Fills the table with verification results."""
+        # Disable sorting temporarily while populating
+        self.results_table.setSortingEnabled(False)
+        
         self.results_table.setRowCount(0) # Clear previous results
         if not self.verification_results:
             self.overall_status_label.setText("No verification results returned.")
@@ -193,18 +241,60 @@ class VerifyPanel(QWidget):
             return
 
         for i, item in enumerate(self.verification_results):
-            self.results_table.insertRow(i)
-            self.results_table.setItem(i, 0, QTableWidgetItem(os.path.basename(item.get('original_file', 'N/A'))))
-            self.results_table.setItem(i, 1, QTableWidgetItem(os.path.basename(item.get('converted_file', 'N/A'))))
-            
-            status_item = QTableWidgetItem(item.get('status', 'UNKNOWN'))
-            # TODO: Add color coding for status items if desired
-            self.results_table.setItem(i, 2, status_item)
-            
-            mismatches_str = "; ".join(item.get('mismatches', []))
-            self.results_table.setItem(i, 3, QTableWidgetItem(mismatches_str if mismatches_str else "No issues"))
+            try:
+                self.results_table.insertRow(i)
+                
+                # Safely get original file path and handle None values
+                orig_file = item.get('original_file', 'N/A')
+                orig_basename = os.path.basename(orig_file) if orig_file and orig_file != 'N/A' else 'N/A'
+                orig_item = QTableWidgetItem(orig_basename)
+                orig_item.setToolTip(orig_file if orig_file else "N/A")  # Full path as tooltip
+                self.results_table.setItem(i, 0, orig_item)
+                
+                # Safely get converted file path and handle None values
+                conv_file = item.get('converted_file', 'N/A')
+                conv_basename = os.path.basename(conv_file) if conv_file and conv_file != 'N/A' else 'N/A'
+                conv_item = QTableWidgetItem(conv_basename)
+                conv_item.setToolTip(conv_file if conv_file else "N/A")  # Full path as tooltip
+                self.results_table.setItem(i, 1, conv_item)
+                
+                # Status with color coding
+                status_text = item.get('status', 'UNKNOWN')
+                status_item = QTableWidgetItem(status_text)
+                
+                # Color coding for status
+                if status_text == "MATCH":
+                    status_item.setBackground(Qt.GlobalColor.green)
+                elif status_text == "MISMATCH":
+                    status_item.setBackground(Qt.GlobalColor.yellow)
+                elif "ERROR" in status_text or "MISSING" in status_text:
+                    status_item.setBackground(Qt.GlobalColor.red)
+                
+                self.results_table.setItem(i, 2, status_item)
+                
+                # Safely join mismatches list
+                mismatches = item.get('mismatches', [])
+                if not isinstance(mismatches, list):
+                    mismatches = [str(mismatches)]
+                
+                # Display the full text in the details column
+                mismatches_str = "; ".join(mismatches)
+                display_str = mismatches_str if mismatches_str else "No issues"
+                
+                details_item = QTableWidgetItem(display_str)
+                details_item.setToolTip(mismatches_str)  # Full text as tooltip
+                
+                # Set text alignment to top-left for better readability with wrapped text
+                details_item.setTextAlignment(Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignLeft)
+                
+                self.results_table.setItem(i, 3, details_item)
+                
+            except Exception as e:
+                logger.error(f"Error adding item {i} to results table: {e}", exc_info=True)
+                # Continue with next item
 
-        self.results_table.resizeColumnsToContents()
+        # Re-enable sorting after populating
+        self.results_table.setSortingEnabled(True)
 
 
     def _check_overall_status_and_proceed(self):

@@ -188,9 +188,24 @@ def compare_media_properties(original_props, converted_props):
         conv_audio_duration = conv_audio.get('duration', 0.0)
         if abs(orig_audio_duration - conv_audio_duration) > DURATION_TOLERANCE_SECONDS:
              mismatches.append(f"Audio stream duration mismatch: original {orig_audio_duration:.2f}s, converted {conv_audio_duration:.2f}s")
-        # Also check if audio duration significantly deviates from video duration within the same file
+        
+        # Check if audio and video durations match within the original file
+        if abs(orig_video_duration - orig_audio_duration) > DURATION_TOLERANCE_SECONDS:
+            logger.warning(f"Original file has audio/video duration mismatch: video {orig_video_duration:.2f}s, audio {orig_audio_duration:.2f}s")
+            # We don't add this to mismatches since it's an issue with the original file, not the conversion
+        
+        # Check if audio and video durations match within the converted file
+        # Only report this as a mismatch if the original file didn't have the same issue
         if abs(conv_video_duration - conv_audio_duration) > DURATION_TOLERANCE_SECONDS:
-            mismatches.append(f"Converted file audio/video duration mismatch: video {conv_video_duration:.2f}s, audio {conv_audio_duration:.2f}s")
+            # Only flag as an issue if the original didn't have this problem
+            if abs(orig_video_duration - orig_audio_duration) <= DURATION_TOLERANCE_SECONDS:
+                mismatches.append(f"Converted file has audio/video duration mismatch (original didn't): video {conv_video_duration:.2f}s, audio {conv_audio_duration:.2f}s")
+            else:
+                # Both files have audio/video mismatch, check if the mismatch is similar
+                orig_mismatch = abs(orig_video_duration - orig_audio_duration)
+                conv_mismatch = abs(conv_video_duration - conv_audio_duration)
+                if abs(orig_mismatch - conv_mismatch) > DURATION_TOLERANCE_SECONDS:
+                    mismatches.append(f"Audio/video duration mismatch differs between files: original mismatch {orig_mismatch:.2f}s, converted mismatch {conv_mismatch:.2f}s")
 
     elif original_props.get('audio_streams') and not converted_props.get('audio_streams'):
         mismatches.append("Converted file is missing audio stream(s).")
@@ -199,6 +214,47 @@ def compare_media_properties(original_props, converted_props):
 
     return mismatches
 
+
+def find_media_files(folder_path, extensions=None):
+    """
+    Recursively find all media files in a folder and its subfolders.
+    
+    Args:
+        folder_path (str): Path to the folder to search
+        extensions (list, optional): List of file extensions to include (e.g., ['.mp4', '.mov'])
+                                    If None, include all files
+    
+    Returns:
+        dict: Dictionary with lowercase basename (without extension) as key and full path as value
+    """
+    if extensions is None:
+        # Common video file extensions
+        extensions = ['.mp4', '.mov', '.avi', '.mkv', '.webm', '.wmv', '.flv', '.ts', '.m4v']
+    
+    result = {}
+    
+    if not os.path.isdir(folder_path):
+        return result
+        
+    for root, dirs, files in os.walk(folder_path):
+        for file in files:
+            # Skip hidden files and system files
+            if file.startswith('.') or file == 'Thumbs.db':
+                continue
+                
+            # Check if file has a media extension
+            _, ext = os.path.splitext(file)
+            if extensions and ext.lower() not in extensions:
+                continue
+                
+            # Use the filename without extension as the key
+            base = os.path.splitext(file)[0].lower()
+            full_path = os.path.join(root, file)
+            
+            # Store in the result dictionary
+            result[base] = full_path
+            
+    return result
 
 def verify_media_conversions(original_folder_path, converted_folder_path):
     """
@@ -216,7 +272,7 @@ def verify_media_conversions(original_folder_path, converted_folder_path):
               - 'converted_file' (str or None)
               - 'original_properties' (dict or None)
               - 'converted_properties' (dict or None)
-              - 'status' (str: "MATCH", "MISMATCH", "ORIGINAL_MISSING", 
+              - 'status' (str: "MATCH", "MISMATCH", "ORIGINAL_MISSING",
                           "CONVERTED_MISSING", "ORIGINAL_ERROR", "CONVERTED_ERROR", "FFPROBE_NOT_FOUND")
               - 'mismatches' (list of str)
     """
@@ -257,12 +313,11 @@ def verify_media_conversions(original_folder_path, converted_folder_path):
         logger.warning(f"Converted folder not found: {converted_folder_path}. All files will be marked as CONVERTED_MISSING.")
         # We can still proceed to list originals and mark them as missing converted counterparts
 
-
-    original_files = {}
+    # Recursively find all media files in both folders
     try:
-        for f_name in os.listdir(original_folder_path):
-            base, _ = os.path.splitext(f_name)
-            original_files[base.lower()] = os.path.join(original_folder_path, f_name)
+        logger.info(f"Recursively searching for media files in: {original_folder_path}")
+        original_files = find_media_files(original_folder_path)
+        logger.info(f"Found {len(original_files)} media files in original folder")
     except OSError as e:
         logger.error(f"Error listing files in original folder {original_folder_path}: {e}")
         report.append({
@@ -275,13 +330,12 @@ def verify_media_conversions(original_folder_path, converted_folder_path):
         })
         return report
 
-
     converted_files = {}
     if os.path.isdir(converted_folder_path):
         try:
-            for f_name in os.listdir(converted_folder_path):
-                base, _ = os.path.splitext(f_name)
-                converted_files[base.lower()] = os.path.join(converted_folder_path, f_name)
+            logger.info(f"Recursively searching for media files in: {converted_folder_path}")
+            converted_files = find_media_files(converted_folder_path)
+            logger.info(f"Found {len(converted_files)} media files in converted folder")
         except OSError as e:
             logger.error(f"Error listing files in converted folder {converted_folder_path}: {e}")
             # Continue, but converted files might be missing from comparison
@@ -299,6 +353,12 @@ def verify_media_conversions(original_folder_path, converted_folder_path):
             'mismatches': []
         }
 
+        # Skip directories - only process actual files
+        if os.path.isdir(orig_path):
+            logger.info(f"Skipping directory: {orig_path}")
+            continue
+            
+        # Get media properties
         orig_props = get_media_properties(orig_path)
         if orig_props is None:
             report_item['status'] = "ORIGINAL_ERROR"
@@ -312,6 +372,14 @@ def verify_media_conversions(original_folder_path, converted_folder_path):
             report_item['converted_file'] = conv_path
             processed_converted_stems.add(orig_base_lower)
             
+            # Skip directories - only process actual files
+            if os.path.isdir(conv_path):
+                logger.info(f"Skipping directory: {conv_path}")
+                report_item['status'] = "CONVERTED_ERROR"
+                report_item['mismatches'].append(f"Converted path is a directory, not a file: {conv_path}")
+                report.append(report_item)
+                continue
+                
             conv_props = get_media_properties(conv_path)
             if conv_props is None:
                 report_item['status'] = "CONVERTED_ERROR"
@@ -333,6 +401,11 @@ def verify_media_conversions(original_folder_path, converted_folder_path):
     # Check for converted files that don't have an original counterpart (orphans)
     for conv_base_lower, conv_path in converted_files.items():
         if conv_base_lower not in processed_converted_stems:
+            # Skip directories - only process actual files
+            if os.path.isdir(conv_path):
+                logger.info(f"Skipping directory: {conv_path}")
+                continue
+                
             conv_props = get_media_properties(conv_path) # Get props for context, even if no original
             report.append({
                 'original_file': None,
