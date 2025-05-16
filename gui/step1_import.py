@@ -353,72 +353,9 @@ class ImportPanel(QWidget):
             )
             return
         
-        # If rename option is selected, rename the folder without confirmation
-        renamed = False
-        if self.rename_folders:
-            # Rename video folders
-            video_path = os.path.join(self.parent_folder, "03 MEDIA", "01 VIDEO")
-            renamed_path = rename_video_folder(video_path)
-            logger.info(f"Renamed video folder: {video_path} to {renamed_path}")
-            
-            if renamed_path != video_path:  # If the folder was renamed successfully
-                renamed = True
-                
-                # Create the new '01 VIDEO' directory
-                os.makedirs(video_path, exist_ok=True)
-                
-                # Show progress section
-                self.progress_group.setVisible(True)
-                self.copy_progress_bar.setValue(0)
-                self.copy_status_label.setText("Preparing to copy folders...")
-                self.next_button.setEnabled(False)  # Disable next button during copy
-                QApplication.processEvents()  # Ensure UI updates
-                
-                # Progress callback for folder copying
-                def update_copy_progress(percent, message):
-                    self.copy_progress_bar.setValue(int(percent))
-                    self.copy_status_label.setText(message)
-                    QApplication.processEvents()  # Ensure UI updates
-                
-                # Copy contents of non-CAM subfolders from '01 VIDEO.old' to '01 VIDEO'
-                copied = copy_non_cam_folders(renamed_path, video_path, update_copy_progress)
-                logger.info(f"Copied {copied} non-CAM folders from {renamed_path} to {video_path}")
-                
-                # Update progress to show completion
-                self.copy_progress_bar.setValue(100)
-                self.copy_status_label.setText(f"Completed copying {copied} folders")
-                QApplication.processEvents()  # Ensure UI updates
-                
-                # Re-enable next button
-                self.next_button.setEnabled(True)
-        
-        # If we renamed folders, update the file paths
-        updated_files = []
-        if renamed:
-            for file_path in self.valid_files:
-                if "/01 VIDEO/" in file_path:
-                    updated_path = file_path.replace("/01 VIDEO/", "/01 VIDEO.old/")
-                    if os.path.exists(updated_path):
-                        logger.info(f"Updated path after rename: {file_path} -> {updated_path}")
-                        updated_files.append(updated_path)
-                    else:
-                        # Still include the original path - the queue manager will handle it
-                        logger.warning(f"Could not find updated path for: {file_path}")
-                        updated_files.append(file_path)
-                else:
-                    updated_files.append(file_path)
-            logger.info(f"Updated {len(updated_files)} file paths after renaming directory")
-        else:
-            updated_files = self.valid_files
-        
         # Emit signal with validated files
-        logger.info(f"Adding {len(updated_files)} files to queue")
-        self.files_selected.emit(updated_files)
-        
-        # Hide the progress bar after completion (if it was shown)
-        if self.progress_group.isVisible():
-            # Keep it visible for a moment so the user can see it completed
-            QTimer.singleShot(1500, lambda: self.progress_group.setVisible(False))
+        logger.info(f"Adding {len(self.valid_files)} files to queue")
+        self.files_selected.emit(self.valid_files)
         
         # Emit signal to navigate to next panel
         self.next_clicked.emit()
@@ -436,6 +373,7 @@ class ImportPanel(QWidget):
         self.parent_folder = ""
         self.cam_folders = []
         self.valid_files = []
+        self.rename_folders = True  # Reset to default checked state
         
         # Reset UI elements
         self.folder_path_label.setText("No folder selected")
@@ -445,6 +383,7 @@ class ImportPanel(QWidget):
         self.file_list.clear()
         self.file_count_label.setText("0 files found")
         self.next_button.setEnabled(False)
+        self.rename_checkbox.setChecked(True)  # Reset checkbox to checked state
         
         # Hide progress section if visible
         self.progress_group.setVisible(False)

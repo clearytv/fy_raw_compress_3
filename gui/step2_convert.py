@@ -129,6 +129,7 @@ class ConvertPanel(QWidget):
         self.timer = None
         self.queue_manager = None
         self.parent_folder_path = "" # To store the path from Step 1
+        self.rename_folders = True  # Default value for renaming folders
         
         # Create worker thread and estimation worker
         self.estimation_thread = QThread()
@@ -472,6 +473,67 @@ class ConvertPanel(QWidget):
         # Reset progress
         self.file_progress_bar.setValue(0)
         self.overall_progress_bar.setValue(0)
+        
+        # Import core function for folder renaming and copying
+        from core.file_preparation import rename_video_folder, copy_non_cam_folders
+        
+        # If rename option is selected, rename the folder without confirmation
+        renamed = False
+        if self.rename_folders:
+            self.log_output.append("Preparing folder structure...")
+            # Show log automatically
+            self.show_log_checkbox.setChecked(True)
+            self._toggle_log_visibility(True)
+            
+            # Rename video folders
+            video_path = os.path.join(self.parent_folder_path, "03 MEDIA", "01 VIDEO")
+            renamed_path = rename_video_folder(video_path)
+            logger.info(f"Renamed video folder: {video_path} to {renamed_path}")
+            self.log_output.append(f"Renamed folder: {video_path} to {renamed_path}")
+            
+            if renamed_path != video_path:  # If the folder was renamed successfully
+                renamed = True
+                
+                # Create the new '01 VIDEO' directory
+                os.makedirs(video_path, exist_ok=True)
+                self.log_output.append("Created new '01 VIDEO' directory")
+                
+                # Progress callback for folder copying
+                def update_copy_progress(percent, message):
+                    self.log_output.append(f"Copying: {message} ({int(percent)}%)")
+                    self.file_progress_bar.setValue(int(percent))
+                
+                # Copy contents of non-CAM subfolders from '01 VIDEO.old' to '01 VIDEO'
+                self.log_output.append("Copying non-CAM folders...")
+                copied = copy_non_cam_folders(renamed_path, video_path, update_copy_progress)
+                logger.info(f"Copied {copied} non-CAM folders from {renamed_path} to {video_path}")
+                self.log_output.append(f"Completed copying {copied} non-CAM folders")
+        
+        # If we renamed folders, update the file paths in the queue
+        if renamed:
+            updated_files = []
+            for file_path in self.queued_files:
+                if "/01 VIDEO/" in file_path:
+                    updated_path = file_path.replace("/01 VIDEO/", "/01 VIDEO.old/")
+                    if os.path.exists(updated_path):
+                        logger.info(f"Updated path after rename: {file_path} -> {updated_path}")
+                        updated_files.append(updated_path)
+                    else:
+                        # Still include the original path - the queue manager will handle it
+                        logger.warning(f"Could not find updated path for: {file_path}")
+                        updated_files.append(file_path)
+                else:
+                    updated_files.append(file_path)
+                    
+            # Update the queue manager with the new file paths
+            logger.info(f"Updated {len(updated_files)} file paths after renaming directory")
+            self.log_output.append(f"Updated {len(updated_files)} file paths after folder rename")
+            self.queue_manager.clear_queue()
+            self.queue_manager.add_files(updated_files)
+            self.queued_files = updated_files
+        
+        self.file_progress_bar.setValue(0)  # Reset after folder copying
+        self.overall_progress_bar.setValue(0)
         self.start_time = time.time()
         
         # Start timer for updating elapsed time
@@ -479,14 +541,7 @@ class ConvertPanel(QWidget):
         self.timer.timeout.connect(self._update_elapsed_time)
         self.timer.start(1000)  # Update every second
         
-        # Use the queue manager that was set
-        if not self.queue_manager:
-            logger.error("Queue manager not set in ConvertPanel")
-            self.log_output.append("ERROR: Queue manager not set")
-            self.processing = False
-            return
-            
-        queue_manager = self.queue_manager
+        queue_manager = self.queue_manager  # Already verified above
         
         # Log queue status
         stats = queue_manager.get_queue_status()
@@ -565,6 +620,11 @@ class ConvertPanel(QWidget):
         """Sets the path of the parent folder being processed."""
         self.parent_folder_path = path
         logger.info(f"Parent folder path set in ConvertPanel: {path}")
+        
+    def set_rename_option(self, rename_folders: bool):
+        """Sets whether to rename '01 VIDEO' folders to '01 VIDEO.old'."""
+        self.rename_folders = rename_folders
+        logger.info(f"Rename folders option set in ConvertPanel: {rename_folders}")
     
     def reset_panel(self):
         """Reset the panel to initial state when starting a new job."""
@@ -576,6 +636,7 @@ class ConvertPanel(QWidget):
         self.processing = False
         self.start_time = 0
         self.current_file = ""
+        self.rename_folders = True  # Reset to default value
         # self.parent_folder_path = "" # Reset parent folder path # This line was already present, ensuring it's correct
         
         # Reset UI elements

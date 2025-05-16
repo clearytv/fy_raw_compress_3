@@ -141,6 +141,11 @@ class MainWindow(QMainWindow):
         else:
             logger.warning("No parent folder path available from ImportPanel to pass to ConvertPanel.")
         
+        # Pass the rename folders preference from Step 1 to Step 2
+        rename_folders_option = self.import_panel.rename_folders
+        self.convert_panel.set_rename_option(rename_folders_option)
+        logger.info(f"Passing rename folders option to ConvertPanel: {rename_folders_option}")
+        
         self.stacked_widget.setCurrentIndex(1) # ConvertPanel is index 1
 
     def go_to_verify_panel(self, main_path, original_path, converted_path):
