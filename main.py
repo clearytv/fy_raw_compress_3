@@ -175,6 +175,10 @@ class MainWindow(QMainWindow):
         else:
             logger.warning("No parent folder path available to pass to ResultsPanel.")
         
+        # Get total compression duration from ConvertPanel
+        total_duration = self.convert_panel.total_compression_duration
+        logger.info(f"Total compression duration: {total_duration:.2f} seconds")
+        
         # Convert verification results to format expected by ResultsPanel
         compression_results = {}
         
@@ -228,7 +232,7 @@ class MainWindow(QMainWindow):
                             'input_size_human': format_size(orig_size),
                             'output_size_human': format_size(conv_size),
                             'size_diff_human': format_size(size_diff),
-                            'duration': 0  # We don't have duration info
+                            'duration': total_duration  # Use the duration from the compression process
                         }
                     else:
                         logger.error(f"Converted file not found: {converted_file}")

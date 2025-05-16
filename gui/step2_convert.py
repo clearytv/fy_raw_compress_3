@@ -130,6 +130,8 @@ class ConvertPanel(QWidget):
         self.queue_manager = None
         self.parent_folder_path = "" # To store the path from Step 1
         self.rename_folders = True  # Default value for renaming folders
+        self.total_compression_duration = 0  # Track total processing time
+        self.total_compression_duration = 0  # Track the total compression time
         
         # Create worker thread and estimation worker
         self.estimation_thread = QThread()
@@ -567,12 +569,20 @@ class ConvertPanel(QWidget):
     def _run_compression(self, queue_manager, output_dir, settings):
         """Run the compression process in a background thread."""
         try:
+            # Start time tracking for the entire compression process
+            import time
+            start_time = time.time()
+            
             # Run compression with progress updates
             result = queue_manager.process_queue(
                 output_dir=output_dir,
                 settings=settings,
                 progress_callback=self.update_progress
             )
+            
+            # Calculate total duration
+            self.total_compression_duration = time.time() - start_time
+            logger.info(f"Total compression duration: {self.total_compression_duration:.2f} seconds")
             
             # Get results after completion
             results = queue_manager.get_results()
@@ -637,6 +647,7 @@ class ConvertPanel(QWidget):
         self.start_time = 0
         self.current_file = ""
         self.rename_folders = True  # Reset to default value
+        self.total_compression_duration = 0  # Reset compression duration
         # self.parent_folder_path = "" # Reset parent folder path # This line was already present, ensuring it's correct
         
         # Reset UI elements
