@@ -673,7 +673,7 @@ class ConvertPanel(QWidget):
         self.start_time = 0
         self.current_file = ""
         self.rename_folders = True  # Reset to default value
-        self.auto_mode = False  # Reset to default value
+        self.auto_mode = True  # Reset to default value
         self.total_compression_duration = 0  # Reset compression duration
         # self.parent_folder_path = "" # Reset parent folder path # This line was already present, ensuring it's correct
         

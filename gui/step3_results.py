@@ -207,12 +207,20 @@ class ResultsPanel(QWidget):
         cancelled_files = 0
         total_input_size = 0
         total_output_size = 0
-        total_duration = 0
+        total_duration = 0  # Will be overridden if special duration entry is found
         
         # Update table
         self.results_table.setRowCount(total_files)
         row = 0
         
+        # Check for special duration info entry
+        if "total_duration_info" in self.compression_results:
+            duration_info = self.compression_results.pop("total_duration_info")
+            if duration_info.get('is_duration_info', False):
+                total_duration = duration_info.get('duration', 0)
+                logger.info(f"Found special duration info entry with total_duration={total_duration:.2f}s")
+        
+        # Process regular file entries
         for file_path, result in self.compression_results.items():
             file_name = os.path.basename(file_path)
             
@@ -262,10 +270,10 @@ class ResultsPanel(QWidget):
                 size_diff = result['size_diff']
                 percentage = result['reduction_percent']
                 
-                # Track totals
+                # Track totals (but not duration - we get that from the special entry)
                 total_input_size += input_size
                 total_output_size += output_size
-                total_duration += result.get('duration', 0)
+                # Don't accumulate duration here anymore - we use the total value from ConvertPanel
                 
                 # Add items to table
                 input_item = QTableWidgetItem(result['input_size_human'])

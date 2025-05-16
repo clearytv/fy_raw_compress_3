@@ -49,7 +49,7 @@ class ImportPanel(QWidget):
         self.cam_folders = []
         self.valid_files = []
         self.rename_folders = True
-        self.auto_mode = False
+        self.auto_mode = True
 
         # Create UI components
         self._init_ui()
@@ -120,7 +120,7 @@ class ImportPanel(QWidget):
         
         # Auto mode checkbox
         self.auto_mode_checkbox = QCheckBox("Auto Mode: Automatically run compression, verification, and proceed to results")
-        self.auto_mode_checkbox.setChecked(False)
+        self.auto_mode_checkbox.setChecked(True)
         self.auto_mode_checkbox.stateChanged.connect(self.toggle_auto_mode)
         cam_layout.addWidget(self.auto_mode_checkbox)
         
@@ -396,8 +396,8 @@ class ImportPanel(QWidget):
         self.file_count_label.setText("0 files found")
         self.next_button.setEnabled(False)
         self.rename_checkbox.setChecked(True)  # Reset checkbox to checked state
-        self.auto_mode_checkbox.setChecked(False)  # Reset auto mode checkbox to unchecked
-        self.auto_mode = False  # Reset auto mode value
+        self.auto_mode_checkbox.setChecked(True)  # Reset auto mode checkbox to checked by default
+        self.auto_mode = True  # Reset auto mode value to default
         
         # Hide progress section if visible
         self.progress_group.setVisible(False)

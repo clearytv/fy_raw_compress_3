@@ -248,7 +248,7 @@ class MainWindow(QMainWindow):
                             'input_size_human': format_size(orig_size),
                             'output_size_human': format_size(conv_size),
                             'size_diff_human': format_size(size_diff),
-                            'duration': total_duration  # Use the duration from the compression process
+                            'duration': 0  # Set to zero for all files, we'll use a different approach
                         }
                     else:
                         logger.error(f"Converted file not found: {converted_file}")
@@ -269,9 +269,23 @@ class MainWindow(QMainWindow):
                     'error': error_message
                 }
         
+        # Create special entry with just the duration info to avoid double-counting
+        duration_key = "total_duration_info"
+        compression_results[duration_key] = {
+            'input_size': 0,
+            'output_size': 0,
+            'size_diff': 0,
+            'reduction_percent': 0,
+            'input_size_human': "0 MB",
+            'output_size_human': "0 MB",
+            'size_diff_human': "0 MB",
+            'duration': total_duration,  # Store the total duration in a single entry
+            'is_duration_info': True  # Flag for ResultsPanel to identify this special entry
+        }
+        
         # Pass the results to the ResultsPanel
         self.results_panel.set_compression_results(compression_results)
-        logger.info(f"Passed {len(compression_results)} results to ResultsPanel")
+        logger.info(f"Passed {len(compression_results)} results to ResultsPanel with total_duration={total_duration:.2f}s")
         
         self.stacked_widget.setCurrentIndex(3) # Results Panel is index 3
         
