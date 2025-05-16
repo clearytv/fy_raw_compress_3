@@ -146,6 +146,11 @@ class MainWindow(QMainWindow):
         self.convert_panel.set_rename_option(rename_folders_option)
         logger.info(f"Passing rename folders option to ConvertPanel: {rename_folders_option}")
         
+        # Pass the auto mode preference from Step 1 to Step 2
+        auto_mode_option = self.import_panel.auto_mode
+        self.convert_panel.set_auto_mode(auto_mode_option)
+        logger.info(f"Passing auto mode option to ConvertPanel: {auto_mode_option}")
+        
         self.stacked_widget.setCurrentIndex(1) # ConvertPanel is index 1
 
     def go_to_verify_panel(self, main_path, original_path, converted_path):
@@ -157,9 +162,20 @@ class MainWindow(QMainWindow):
             from PyQt6.QtWidgets import QMessageBox
             QMessageBox.critical(self, "Path Error", "Cannot proceed to verification due to missing folder path information.")
             return
+            
+        # Pass auto mode setting from ConvertPanel to VerifyPanel
+        auto_mode_option = self.convert_panel.auto_mode
+        self.verify_panel.set_auto_mode(auto_mode_option)
+        logger.info(f"Passing auto mode option to VerifyPanel: {auto_mode_option}")
+        
         self.verify_panel.set_paths(main_path, original_path, converted_path)
         self.stacked_widget.setCurrentIndex(2) # Verify Panel is index 2
-        # Verification is triggered by a button inside VerifyPanel now.
+        
+        # If auto mode is enabled, automatically run verification after a delay
+        if auto_mode_option:
+            from PyQt6.QtCore import QTimer
+            logger.info("Auto mode enabled: Will automatically run verification after 2-second delay")
+            QTimer.singleShot(2000, self.verify_panel.process_verification)
 
     def go_to_results_panel(self):
         """Transition to the Results panel, typically from Verify panel."""

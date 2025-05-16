@@ -116,6 +116,9 @@ class ConvertPanel(QWidget):
     next_clicked = pyqtSignal() # This might be deprecated or repurposed if VerifyPanel always follows
     verification_needed = pyqtSignal(str, str, str) # main_project_path, original_media_path, converted_media_path
     
+    # Signal for detection of panel becoming visible
+    shown = pyqtSignal()
+    
     def __init__(self, parent=None):
         """Initialize the conversion panel with compression options."""
         super().__init__(parent)
@@ -130,6 +133,7 @@ class ConvertPanel(QWidget):
         self.queue_manager = None
         self.parent_folder_path = "" # To store the path from Step 1
         self.rename_folders = True  # Default value for renaming folders
+        self.auto_mode = False  # Default value for auto mode
         self.total_compression_duration = 0  # Track total processing time
         self.total_compression_duration = 0  # Track the total compression time
         
@@ -152,6 +156,9 @@ class ConvertPanel(QWidget):
         self._init_ui()
         # Connect signals and slots
         self._connect_signals()
+        
+        # Connect shown signal to check for auto mode
+        self.shown.connect(self.check_auto_mode)
     
     def _init_ui(self):
         """Set up the user interface components."""
@@ -325,6 +332,20 @@ class ConvertPanel(QWidget):
         """Connect UI signals to their respective slots."""
         # Most connections are handled in _init_ui
         pass
+        
+    def showEvent(self, event):
+        """Handle the show event when the panel becomes visible."""
+        super().showEvent(event)
+        # Emit the shown signal when the panel becomes visible
+        self.shown.emit()
+        
+    def check_auto_mode(self):
+        """Check if auto mode is enabled and start compression if it is."""
+        if self.auto_mode and not self.processing and self.queued_files:
+            logger.info("Auto mode enabled: Starting compression automatically")
+            # Add a small delay to ensure UI is fully loaded
+            from PyQt6.QtCore import QTimer
+            QTimer.singleShot(500, self.start_compression)
     
     def _toggle_log_visibility(self, state):
         """Toggle the visibility of the log output window."""
@@ -635,6 +656,11 @@ class ConvertPanel(QWidget):
         """Sets whether to rename '01 VIDEO' folders to '01 VIDEO.old'."""
         self.rename_folders = rename_folders
         logger.info(f"Rename folders option set in ConvertPanel: {rename_folders}")
+        
+    def set_auto_mode(self, auto_mode: bool):
+        """Sets whether to use auto mode for compression workflow."""
+        self.auto_mode = auto_mode
+        logger.info(f"Auto mode set in ConvertPanel: {auto_mode}")
     
     def reset_panel(self):
         """Reset the panel to initial state when starting a new job."""
@@ -647,6 +673,7 @@ class ConvertPanel(QWidget):
         self.start_time = 0
         self.current_file = ""
         self.rename_folders = True  # Reset to default value
+        self.auto_mode = False  # Reset to default value
         self.total_compression_duration = 0  # Reset compression duration
         # self.parent_folder_path = "" # Reset parent folder path # This line was already present, ensuring it's correct
         
@@ -810,6 +837,12 @@ class ConvertPanel(QWidget):
         # The verification utility is designed to handle these cases.
 
         logger.info(f"Emitting verification_needed signal with paths: Main='{main_project_path}', Orig='{original_media_path}', Conv='{converted_media_path}'")
+        
+        # If auto mode is enabled, log that verification will be run automatically
+        if self.auto_mode:
+            logger.info("Auto mode enabled: Verification will be run automatically after transition to VerifyPanel")
+            self.log_output.append("Auto Mode: Proceeding to verification automatically...")
+            
         self.verification_needed.emit(main_project_path, original_media_path, converted_media_path)
     
     def _update_elapsed_time(self):

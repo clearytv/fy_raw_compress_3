@@ -49,6 +49,7 @@ class ImportPanel(QWidget):
         self.cam_folders = []
         self.valid_files = []
         self.rename_folders = True
+        self.auto_mode = False
 
         # Create UI components
         self._init_ui()
@@ -116,6 +117,12 @@ class ImportPanel(QWidget):
         self.rename_checkbox.setChecked(True)
         self.rename_checkbox.stateChanged.connect(self.toggle_rename_option)
         cam_layout.addWidget(self.rename_checkbox)
+        
+        # Auto mode checkbox
+        self.auto_mode_checkbox = QCheckBox("Auto Mode: Automatically run compression, verification, and proceed to results")
+        self.auto_mode_checkbox.setChecked(False)
+        self.auto_mode_checkbox.stateChanged.connect(self.toggle_auto_mode)
+        cam_layout.addWidget(self.auto_mode_checkbox)
         
         layout.addWidget(cam_group)
         
@@ -185,6 +192,11 @@ class ImportPanel(QWidget):
         """Toggle whether to rename 01 VIDEO folders."""
         self.rename_folders = bool(state)
         logger.info(f"Rename folders option set to: {self.rename_folders}")
+    
+    def toggle_auto_mode(self, state):
+        """Toggle whether to use auto mode for compression workflow."""
+        self.auto_mode = bool(state)
+        logger.info(f"Auto mode set to: {self.auto_mode}")
     
     def safe_select_folder(self):
         """
@@ -384,6 +396,8 @@ class ImportPanel(QWidget):
         self.file_count_label.setText("0 files found")
         self.next_button.setEnabled(False)
         self.rename_checkbox.setChecked(True)  # Reset checkbox to checked state
+        self.auto_mode_checkbox.setChecked(False)  # Reset auto mode checkbox to unchecked
+        self.auto_mode = False  # Reset auto mode value
         
         # Hide progress section if visible
         self.progress_group.setVisible(False)

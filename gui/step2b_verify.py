@@ -42,6 +42,7 @@ class VerifyPanel(QWidget):
         self.converted_media_folder_path = "" # e.g., ".../02 VIDEO"
         self.verification_results = []
         self.all_files_matched = False
+        self.auto_mode = False  # Default value for auto mode
 
         self._init_ui()
         self._connect_signals()
@@ -173,6 +174,11 @@ class VerifyPanel(QWidget):
         logger.info(f"Verification paths set: Main='{main_project_path}', Orig='{original_media_path}', Conv='{converted_media_path}'")
         # Reset UI for new paths
         self.reset_panel_state()
+        
+    def set_auto_mode(self, auto_mode: bool):
+        """Sets whether to use auto mode for verification workflow."""
+        self.auto_mode = auto_mode
+        logger.info(f"Auto mode set in VerifyPanel: {auto_mode}")
 
     def reset_panel_state(self):
         """Resets the panel to its initial state for new data."""
@@ -184,6 +190,7 @@ class VerifyPanel(QWidget):
         self.next_button.setEnabled(False)
         self.run_verification_button.setEnabled(True)
         self.all_files_matched = False
+        # Auto mode is not reset here as it's passed from previous panel
 
 
     def process_verification(self):
@@ -319,6 +326,12 @@ class VerifyPanel(QWidget):
             self.overall_status_label.setText("All files verified successfully. Proceeding with cleanup.")
             logger.info("All files matched. Proceeding with deletion and icon update.")
             self._perform_conditional_deletion()
+            
+            # If auto mode is enabled and verification passed, automatically proceed to results panel after 2 seconds
+            if self.auto_mode:
+                logger.info("Auto mode enabled: Will automatically proceed to results after 2-second delay")
+                from PyQt6.QtCore import QTimer
+                QTimer.singleShot(2000, self.next_clicked.emit)
         elif not self.verification_results:
              self.overall_status_label.setText("No files were processed by verification.")
              self.deletion_status_label.setText("Folder deletion skipped (no files verified).")
