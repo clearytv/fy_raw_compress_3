@@ -170,13 +170,83 @@ class MainWindow(QMainWindow):
         else:
             logger.warning("No parent folder path available to pass to ResultsPanel.")
         
-        # If VerifyPanel generates a summary or status, pass it to ResultsPanel
-        # For example:
-        # verification_summary = self.verify_panel.get_summary()
-        # self.results_panel.set_verification_summary(verification_summary)
+        # Convert verification results to format expected by ResultsPanel
+        compression_results = {}
         
-        # For now, set_compression_results might be less relevant if verification is the primary source of truth
-        # self.results_panel.set_compression_results({}) # Pass an empty dict or relevant data
+        # Get verification results from VerifyPanel
+        verification_results = self.verify_panel.verification_results
+        
+        # Process each verification result into the format expected by ResultsPanel
+        for item in verification_results:
+            original_file = item.get('original_file', '')
+            converted_file = item.get('converted_file', '')
+            status = item.get('status', '')
+            mismatches = item.get('mismatches', [])
+            
+            # Skip entries without both files
+            if not original_file or not converted_file:
+                continue
+                
+            # For each file pair, create an entry in compression_results
+            if status == "MATCH":
+                try:
+                    # Function to format sizes in human-readable form
+                    def format_size(size_bytes):
+                        if size_bytes >= 1024*1024*1024:
+                            return f"{size_bytes/(1024*1024*1024):.2f} GB"
+                        else:
+                            return f"{size_bytes/(1024*1024):.2f} MB"
+                    
+                    # Check if the converted file exists
+                    if os.path.exists(converted_file):
+                        conv_size = os.path.getsize(converted_file)
+                        
+                        # Try to get original file size if it exists
+                        if os.path.exists(original_file):
+                            orig_size = os.path.getsize(original_file)
+                        else:
+                            # Original file probably deleted after verification passed
+                            # Get size info from properties if available
+                            original_props = item.get('original_properties', {})
+                            # Convert to bytes (approximate if not available)
+                            # Bit rate * duration / 8 (to convert bits to bytes)
+                            orig_size = conv_size * 3  # Default to 3x if no better estimate available
+                        
+                        size_diff = orig_size - conv_size
+                        reduction_percent = (size_diff / orig_size * 100) if orig_size > 0 else 0
+                        
+                        compression_results[converted_file] = {  # Use converted_file as key since original may not exist
+                            'input_size': orig_size,
+                            'output_size': conv_size,
+                            'size_diff': size_diff,
+                            'reduction_percent': reduction_percent,
+                            'input_size_human': format_size(orig_size),
+                            'output_size_human': format_size(conv_size),
+                            'size_diff_human': format_size(size_diff),
+                            'duration': 0  # We don't have duration info
+                        }
+                    else:
+                        logger.error(f"Converted file not found: {converted_file}")
+                        compression_results[converted_file] = {
+                            'error': f"Converted file not found: {os.path.basename(converted_file)}"
+                        }
+                except Exception as e:
+                    logger.error(f"Error processing file sizes for {converted_file}: {e}")
+                    compression_results[converted_file] = {
+                        'error': f"Error processing data: {str(e)}"
+                    }
+            else:
+                # For non-matches, add as error
+                error_message = f"Verification {status}: {'; '.join(mismatches)}"
+                # Use converted_file as key if available, otherwise use original_file
+                key_file = converted_file if converted_file else original_file
+                compression_results[key_file] = {
+                    'error': error_message
+                }
+        
+        # Pass the results to the ResultsPanel
+        self.results_panel.set_compression_results(compression_results)
+        logger.info(f"Passed {len(compression_results)} results to ResultsPanel")
         
         self.stacked_widget.setCurrentIndex(3) # Results Panel is index 3
         
