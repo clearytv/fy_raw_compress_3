@@ -1,100 +1,100 @@
-2025-05-17 15:22:17,807 - core.video_compression - INFO - Video duration: 4.083333 seconds
-2025-05-17 15:22:17,808 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Mary & John/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mov
-2025-05-17 15:22:17,808 - core.queue_manager - ERROR - Error during queue processing: 'codec'
-Traceback (most recent call last):
-  File "/Users/chriscleary/Sites/Github/fy_raw_compress_3/core/queue_manager.py", line 218, in process_queue
-    success = compress_video(
-  File "/Users/chriscleary/Sites/Github/fy_raw_compress_3/core/video_compression.py", line 152, in compress_video
-    cmd = build_ffmpeg_command(input_path, output_path, settings)
-  File "/Users/chriscleary/Sites/Github/fy_raw_compress_3/core/video_compression.py", line 71, in build_ffmpeg_command
-    "-c:v", settings["codec"],
-KeyError: 'codec'
-2025-05-17 15:22:17,808 - core.queue_manager - INFO - Queue processing completed
-2025-05-17 15:22:17,809 - core.project_manager - INFO - Project '2023-06-17 Mary & John' (ID: project_1747491731_2) processing completed with errors in 0.11 seconds
-2025-05-17 15:22:17,809 - gui.project_queue_panel - WARNING - Project project_1747491731_2 (2023-06-17 Mary & John) failed
-2025-05-17 15:22:17,809 - core.project_queue_manager - ERROR - Failed to process project project_1747491731_2
-2025-05-17 15:22:17,810 - core.project_queue_manager - INFO - Queue state saved to /Users/chriscleary/.forever_yours/project_queue_state.json
-2025-05-17 15:22:17,811 - core.project_queue_manager - INFO - Project queue processing completed with errors
-2025-05-17 15:22:17,811 - core.project_queue_manager - INFO - Queue state saved to /Users/chriscleary/.forever_yours/project_queue_state.json
-2025-05-17 16:15:17,789 - __main__ - INFO - Starting Forever Yours Compression Tool
-2025-05-17 16:15:17,916 - __main__ - INFO - Creating main application window
-2025-05-17 16:15:17,932 - __main__ - INFO - Restored window geometry and state from settings
-2025-05-17 16:15:17,933 - core.queue_manager - INFO - Queue manager initialized
-2025-05-17 16:15:17,933 - core.project_queue_manager - INFO - Project queue manager initialized
-2025-05-17 16:15:17,934 - core.queue_manager - INFO - Queue manager initialized
-2025-05-17 16:15:17,934 - core.project_manager - INFO - Project manager initialized
-2025-05-17 16:15:17,935 - gui.step1_import - INFO - Initializing import panel
-2025-05-17 16:15:18,032 - gui.step2_convert - INFO - Initializing conversion panel
-2025-05-17 16:15:18,033 - gui.step2b_verify - INFO - Initializing verification panel
-2025-05-17 16:15:18,034 - gui.step3_results - INFO - Initializing results panel
-2025-05-17 16:15:18,036 - gui.project_queue_panel - INFO - Initializing project queue panel
-2025-05-17 16:15:18,036 - core.project_manager - INFO - Progress callback registered
-2025-05-17 16:15:18,036 - core.project_manager - INFO - Project completion callback registered
-2025-05-17 16:15:18,039 - gui.step2_convert - INFO - Queue manager set in ConvertPanel
-2025-05-17 16:15:18,040 - __main__ - INFO - Starting application with panel index set to 4
-2025-05-17 16:15:42,338 - gui.project_queue_panel - INFO - Add project requested - emitting signal for project creation workflow
-2025-05-17 16:15:42,339 - __main__ - INFO - Handling add project request - adding project to queue directly
-2025-05-17 16:15:46,554 - __main__ - INFO - Selected folder: /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Brad & Angelina
-2025-05-17 16:15:46,559 - core.project_queue_manager - INFO - Added project '2023-06-17 Brad & Angelina' with ID project_1747494946_0 to queue
-2025-05-17 16:15:46,560 - core.project_queue_manager - INFO - Queue state saved to /Users/chriscleary/.forever_yours/project_queue_state.json
-2025-05-17 16:15:46,561 - __main__ - INFO - Added new project project_1747494946_0 with 5 files to queue
-2025-05-17 16:15:49,702 - gui.project_queue_panel - INFO - Add project requested - emitting signal for project creation workflow
-2025-05-17 16:15:49,704 - __main__ - INFO - Handling add project request - adding project to queue directly
-2025-05-17 16:15:58,887 - __main__ - INFO - Selected folder: /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Laura & Sarah
-2025-05-17 16:15:58,896 - core.project_queue_manager - INFO - Added project '2023-06-17 Laura & Sarah' with ID project_1747494958_1 to queue
-2025-05-17 16:15:58,896 - core.project_queue_manager - INFO - Queue state saved to /Users/chriscleary/.forever_yours/project_queue_state.json
-2025-05-17 16:15:58,897 - __main__ - INFO - Added new project project_1747494958_1 with 5 files to queue
-2025-05-17 16:16:02,435 - gui.project_queue_panel - INFO - Add project requested - emitting signal for project creation workflow
-2025-05-17 16:16:02,437 - __main__ - INFO - Handling add project request - adding project to queue directly
-2025-05-17 16:16:07,009 - __main__ - INFO - Selected folder: /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Mary & John
-2025-05-17 16:16:07,013 - core.project_queue_manager - INFO - Added project '2023-06-17 Mary & John' with ID project_1747494967_2 to queue
-2025-05-17 16:16:07,014 - core.project_queue_manager - INFO - Queue state saved to /Users/chriscleary/.forever_yours/project_queue_state.json
-2025-05-17 16:16:07,015 - __main__ - INFO - Added new project project_1747494967_2 with 5 files to queue
-2025-05-17 16:16:20,803 - core.project_queue_manager - INFO - Processing project 1/3: 2023-06-17 Brad & Angelina (ID: project_1747494946_0)
-2025-05-17 16:16:20,803 - core.project_queue_manager - INFO - Started processing project queue at index 0
-2025-05-17 16:16:20,806 - core.project_queue_manager - INFO - Queue state saved to /Users/chriscleary/.forever_yours/project_queue_state.json
-2025-05-17 16:16:20,806 - core.project_manager - INFO - Started processing project queue
-2025-05-17 16:16:20,806 - core.project_manager - INFO - Processing project '2023-06-17 Brad & Angelina' (ID: project_1747494946_0) with 5 files
-2025-05-17 16:16:20,807 - gui.project_queue_panel - INFO - Started processing project queue
-2025-05-17 16:16:20,807 - core.queue_manager - INFO - Queue cleared
-2025-05-17 16:16:20,808 - core.queue_manager - INFO - Sorting files by camera number and file number
-2025-05-17 16:16:20,809 - core.queue_manager - INFO - Added 5 files to queue
-2025-05-17 16:16:20,809 - core.project_manager - INFO - Added 5 files to file queue for project project_1747494946_0
-2025-05-17 16:16:20,809 - core.queue_manager - INFO - Starting queue processing
-2025-05-17 16:16:20,810 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Brad & Angelina/03 MEDIA/01 VIDEO Compressed/A001_01240755_C001.mp4
-2025-05-17 16:16:20,810 - core.queue_manager - INFO - Processing file 1/5: /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Brad & Angelina/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mov
-2025-05-17 16:16:20,810 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Brad & Angelina/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mov
-2025-05-17 16:16:20,934 - core.video_compression - INFO - Video duration: 4.083333 seconds
-2025-05-17 16:16:20,935 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Brad & Angelina/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mov
-2025-05-17 16:16:22,195 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Brad & Angelina/03 MEDIA/01 VIDEO Compressed/A001_01240755_C001.mp4
-2025-05-17 16:16:22,201 - core.queue_manager - INFO - Compression result: 90.9% reduction, saved 16.18 MB
-2025-05-17 16:16:22,202 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Brad & Angelina/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mov
-2025-05-17 16:16:22,203 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Brad & Angelina/03 MEDIA/01 VIDEO Compressed/A001_01241858_C002.mp4
-2025-05-17 16:16:22,203 - core.queue_manager - INFO - Processing file 2/5: /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Brad & Angelina/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mov
-2025-05-17 16:16:22,204 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Brad & Angelina/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mov
-2025-05-17 16:16:22,327 - core.video_compression - INFO - Video duration: 18.166667 seconds
-2025-05-17 16:16:22,327 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Brad & Angelina/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mov
-2025-05-17 16:16:25,360 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Brad & Angelina/03 MEDIA/01 VIDEO Compressed/A001_01241858_C002.mp4
-2025-05-17 16:16:25,366 - core.queue_manager - INFO - Compression result: 88.6% reduction, saved 203.37 MB
-2025-05-17 16:16:25,366 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Brad & Angelina/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mov
-2025-05-17 16:16:25,367 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Brad & Angelina/03 MEDIA/01 VIDEO Compressed/A001_01241858_C003.mp4
-2025-05-17 16:16:25,368 - core.queue_manager - INFO - Processing file 3/5: /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Brad & Angelina/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mov
-2025-05-17 16:16:25,368 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Brad & Angelina/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mov
-2025-05-17 16:16:25,486 - core.video_compression - INFO - Video duration: 17.5 seconds
-2025-05-17 16:16:25,487 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Brad & Angelina/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mov
-2025-05-17 16:16:28,412 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Brad & Angelina/03 MEDIA/01 VIDEO Compressed/A001_01241858_C003.mp4
-2025-05-17 16:16:28,414 - core.queue_manager - INFO - Compression result: 85.4% reduction, saved 116.21 MB
-2025-05-17 16:16:28,414 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Brad & Angelina/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mov
-2025-05-17 16:16:28,414 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Brad & Angelina/03 MEDIA/01 VIDEO Compressed/A001_01250456_C219.mp4
-2025-05-17 16:16:28,415 - core.queue_manager - INFO - Processing file 4/5: /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Brad & Angelina/03 MEDIA/01 VIDEO/CAM 2/A001_01250456_C219.mov
-2025-05-17 16:16:28,415 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Brad & Angelina/03 MEDIA/01 VIDEO/CAM 2/A001_01250456_C219.mov
-2025-05-17 16:16:28,546 - core.video_compression - INFO - Video duration: 570.166667 seconds
-2025-05-17 16:16:28,547 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Brad & Angelina/03 MEDIA/01 VIDEO/CAM 2/A001_01250456_C219.mov
-2025-05-17 16:17:43,621 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Brad & Angelina/03 MEDIA/01 VIDEO Compressed/A001_01250456_C219.mp4
-2025-05-17 16:17:43,630 - core.queue_manager - INFO - Compression result: 78.5% reduction, saved 7.61 GB
-2025-05-17 16:17:43,630 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Brad & Angelina/03 MEDIA/01 VIDEO/CAM 2/A001_01250456_C219.mov
-2025-05-17 16:17:43,631 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Brad & Angelina/03 MEDIA/01 VIDEO Compressed/A001_04080255_C079.mp4
-2025-05-17 16:17:43,631 - core.queue_manager - INFO - Processing file 5/5: /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Brad & Angelina/03 MEDIA/01 VIDEO/CAM 2/A001_04080255_C079.mov
-2025-05-17 16:17:43,631 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Brad & Angelina/03 MEDIA/01 VIDEO/CAM 2/A001_04080255_C079.mov
-2025-05-17 16:17:43,765 - core.video_compression - INFO - Video duration: 55.5 seconds
-2025-05-17 16:17:43,765 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Brad & Angelina/03 MEDIA/01 VIDEO/CAM 2/A001_04080255_C079.mov
+2025-05-17 16:17:51,802 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mov
+2025-05-17 16:17:51,923 - core.video_compression - INFO - Video duration: 4.083333 seconds
+2025-05-17 16:17:51,923 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mov
+2025-05-17 16:17:53,200 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO Compressed/A001_01240755_C001.mp4
+2025-05-17 16:17:53,205 - core.queue_manager - INFO - Compression result: 90.9% reduction, saved 16.18 MB
+2025-05-17 16:17:53,206 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mov
+2025-05-17 16:17:53,206 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO Compressed/A001_01241858_C002.mp4
+2025-05-17 16:17:53,206 - core.queue_manager - INFO - Processing file 2/5: /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mov
+2025-05-17 16:17:53,206 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mov
+2025-05-17 16:17:53,330 - core.video_compression - INFO - Video duration: 18.166667 seconds
+2025-05-17 16:17:53,331 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mov
+2025-05-17 16:17:56,353 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO Compressed/A001_01241858_C002.mp4
+2025-05-17 16:17:56,355 - core.queue_manager - INFO - Compression result: 88.6% reduction, saved 203.37 MB
+2025-05-17 16:17:56,355 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mov
+2025-05-17 16:17:56,355 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO Compressed/A001_01241858_C003.mp4
+2025-05-17 16:17:56,355 - core.queue_manager - INFO - Processing file 3/5: /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mov
+2025-05-17 16:17:56,355 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mov
+2025-05-17 16:17:56,474 - core.video_compression - INFO - Video duration: 17.5 seconds
+2025-05-17 16:17:56,475 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mov
+2025-05-17 16:17:59,416 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO Compressed/A001_01241858_C003.mp4
+2025-05-17 16:17:59,418 - core.queue_manager - INFO - Compression result: 85.4% reduction, saved 116.21 MB
+2025-05-17 16:17:59,418 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mov
+2025-05-17 16:17:59,419 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO Compressed/A001_01250456_C219.mp4
+2025-05-17 16:17:59,419 - core.queue_manager - INFO - Processing file 4/5: /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_01250456_C219.mov
+2025-05-17 16:17:59,419 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_01250456_C219.mov
+2025-05-17 16:17:59,556 - core.video_compression - INFO - Video duration: 570.166667 seconds
+2025-05-17 16:17:59,557 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_01250456_C219.mov
+2025-05-17 16:19:13,965 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO Compressed/A001_01250456_C219.mp4
+2025-05-17 16:19:13,966 - core.queue_manager - INFO - Compression result: 78.5% reduction, saved 7.61 GB
+2025-05-17 16:19:13,968 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_01250456_C219.mov
+2025-05-17 16:19:13,970 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO Compressed/A001_04080255_C079.mp4
+2025-05-17 16:19:13,976 - core.queue_manager - INFO - Processing file 5/5: /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_04080255_C079.mov
+2025-05-17 16:19:13,976 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_04080255_C079.mov
+2025-05-17 16:19:14,110 - core.video_compression - INFO - Video duration: 55.5 seconds
+2025-05-17 16:19:14,111 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_04080255_C079.mov
+2025-05-17 16:19:21,948 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO Compressed/A001_04080255_C079.mp4
+2025-05-17 16:19:21,950 - core.queue_manager - INFO - Compression result: 84.3% reduction, saved 868.87 MB
+2025-05-17 16:19:21,951 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_04080255_C079.mov
+2025-05-17 16:19:21,951 - core.queue_manager - INFO - Queue processing completed
+2025-05-17 16:19:21,951 - core.project_manager - INFO - Project '2023-06-17 Laura & Sarah' (ID: project_1747494958_1) processing completed successfully in 90.15 seconds
+2025-05-17 16:19:21,951 - core.project_manager - INFO - Processed 5 files, reduced size by 8.79 GB, average reduction: 79.3%
+2025-05-17 16:19:21,951 - gui.project_queue_panel - INFO - Project project_1747494958_1 (2023-06-17 Laura & Sarah) completed successfully
+2025-05-17 16:19:21,951 - core.project_queue_manager - INFO - Successfully processed project project_1747494958_1 in 90.16 seconds
+2025-05-17 16:19:21,953 - core.project_queue_manager - INFO - Queue state saved to /Users/chriscleary/.forever_yours/project_queue_state.json
+2025-05-17 16:19:21,953 - core.project_queue_manager - INFO - Processing project 3/3: 2023-06-17 Mary & John (ID: project_1747494967_2)
+2025-05-17 16:19:21,954 - core.project_queue_manager - INFO - Queue state saved to /Users/chriscleary/.forever_yours/project_queue_state.json
+2025-05-17 16:19:21,954 - core.project_manager - INFO - Processing project '2023-06-17 Mary & John' (ID: project_1747494967_2) with 5 files
+2025-05-17 16:19:21,954 - core.queue_manager - INFO - Queue cleared
+2025-05-17 16:19:21,954 - core.queue_manager - INFO - Sorting files by camera number and file number
+2025-05-17 16:19:21,955 - core.queue_manager - INFO - Added 5 files to queue
+2025-05-17 16:19:21,955 - core.project_manager - INFO - Added 5 files to file queue for project project_1747494967_2
+2025-05-17 16:19:21,956 - core.queue_manager - INFO - Starting queue processing
+2025-05-17 16:19:21,956 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Mary & John/03 MEDIA/01 VIDEO Compressed/A001_01240755_C001.mp4
+2025-05-17 16:19:21,956 - core.queue_manager - INFO - Processing file 1/5: /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Mary & John/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mov
+2025-05-17 16:19:21,956 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Mary & John/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mov
+2025-05-17 16:19:22,084 - core.video_compression - INFO - Video duration: 4.083333 seconds
+2025-05-17 16:19:22,085 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Mary & John/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mov
+2025-05-17 16:19:23,339 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Mary & John/03 MEDIA/01 VIDEO Compressed/A001_01240755_C001.mp4
+2025-05-17 16:19:23,341 - core.queue_manager - INFO - Compression result: 90.9% reduction, saved 16.18 MB
+2025-05-17 16:19:23,341 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Mary & John/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mov
+2025-05-17 16:19:23,341 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Mary & John/03 MEDIA/01 VIDEO Compressed/A001_01241858_C002.mp4
+2025-05-17 16:19:23,341 - core.queue_manager - INFO - Processing file 2/5: /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Mary & John/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mov
+2025-05-17 16:19:23,341 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Mary & John/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mov
+2025-05-17 16:19:23,465 - core.video_compression - INFO - Video duration: 18.166667 seconds
+2025-05-17 16:19:23,465 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Mary & John/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mov
+2025-05-17 16:19:26,505 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Mary & John/03 MEDIA/01 VIDEO Compressed/A001_01241858_C002.mp4
+2025-05-17 16:19:26,507 - core.queue_manager - INFO - Compression result: 88.6% reduction, saved 203.37 MB
+2025-05-17 16:19:26,508 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Mary & John/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mov
+2025-05-17 16:19:26,508 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Mary & John/03 MEDIA/01 VIDEO Compressed/A001_01241858_C003.mp4
+2025-05-17 16:19:26,508 - core.queue_manager - INFO - Processing file 3/5: /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Mary & John/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mov
+2025-05-17 16:19:26,509 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Mary & John/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mov
+2025-05-17 16:19:26,626 - core.video_compression - INFO - Video duration: 17.5 seconds
+2025-05-17 16:19:26,626 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Mary & John/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mov
+2025-05-17 16:19:29,564 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Mary & John/03 MEDIA/01 VIDEO Compressed/A001_01241858_C003.mp4
+2025-05-17 16:19:29,566 - core.queue_manager - INFO - Compression result: 85.4% reduction, saved 116.21 MB
+2025-05-17 16:19:29,567 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Mary & John/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mov
+2025-05-17 16:19:29,567 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Mary & John/03 MEDIA/01 VIDEO Compressed/A001_01250456_C219.mp4
+2025-05-17 16:19:29,568 - core.queue_manager - INFO - Processing file 4/5: /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Mary & John/03 MEDIA/01 VIDEO/CAM 2/A001_01250456_C219.mov
+2025-05-17 16:19:29,568 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Mary & John/03 MEDIA/01 VIDEO/CAM 2/A001_01250456_C219.mov
+2025-05-17 16:19:29,702 - core.video_compression - INFO - Video duration: 570.166667 seconds
+2025-05-17 16:19:29,702 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Mary & John/03 MEDIA/01 VIDEO/CAM 2/A001_01250456_C219.mov
+2025-05-17 16:20:44,021 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Mary & John/03 MEDIA/01 VIDEO Compressed/A001_01250456_C219.mp4
+2025-05-17 16:20:44,024 - core.queue_manager - INFO - Compression result: 78.5% reduction, saved 7.61 GB
+2025-05-17 16:20:44,025 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Mary & John/03 MEDIA/01 VIDEO/CAM 2/A001_01250456_C219.mov
+2025-05-17 16:20:44,025 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Mary & John/03 MEDIA/01 VIDEO Compressed/A001_04080255_C079.mp4
+2025-05-17 16:20:44,025 - core.queue_manager - INFO - Processing file 5/5: /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Mary & John/03 MEDIA/01 VIDEO/CAM 2/A001_04080255_C079.mov
+2025-05-17 16:20:44,025 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Mary & John/03 MEDIA/01 VIDEO/CAM 2/A001_04080255_C079.mov
+2025-05-17 16:20:44,174 - core.video_compression - INFO - Video duration: 55.5 seconds
+2025-05-17 16:20:44,174 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Mary & John/03 MEDIA/01 VIDEO/CAM 2/A001_04080255_C079.mov
+2025-05-17 16:20:52,034 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Mary & John/03 MEDIA/01 VIDEO Compressed/A001_04080255_C079.mp4
+2025-05-17 16:20:52,036 - core.queue_manager - INFO - Compression result: 84.3% reduction, saved 868.87 MB
+2025-05-17 16:20:52,036 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Tests/02 Test Project/2023-06-17 Mary & John/03 MEDIA/01 VIDEO/CAM 2/A001_04080255_C079.mov
+2025-05-17 16:20:52,037 - core.queue_manager - INFO - Queue processing completed
+2025-05-17 16:20:52,037 - core.project_manager - INFO - Project '2023-06-17 Mary & John' (ID: project_1747494967_2) processing completed successfully in 90.08 seconds
+2025-05-17 16:20:52,037 - core.project_manager - INFO - Processed 5 files, reduced size by 8.79 GB, average reduction: 79.3%
+2025-05-17 16:20:52,037 - gui.project_queue_panel - INFO - Project project_1747494967_2 (2023-06-17 Mary & John) completed successfully
+2025-05-17 16:20:52,037 - core.project_queue_manager - INFO - Successfully processed project project_1747494967_2 in 90.08 seconds
+2025-05-17 16:20:52,039 - core.project_queue_manager - INFO - Queue state saved to /Users/chriscleary/.forever_yours/project_queue_state.json
+2025-05-17 16:20:52,039 - core.project_queue_manager - INFO - Project queue processing completed successfully
+2025-05-17 16:20:52,040 - core.project_queue_manager - INFO - Queue state saved to /Users/chriscleary/.forever_yours/project_queue_state.json
