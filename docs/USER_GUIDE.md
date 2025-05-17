@@ -3,6 +3,12 @@
 ## Table of Contents
 - [Introduction](#introduction)
 - [Getting Started](#getting-started)
+- [Project Queue System](#project-queue-system)
+  - [Understanding the Project Queue](#understanding-the-project-queue)
+  - [Adding Projects to the Queue](#adding-projects-to-the-queue)
+  - [Managing the Queue](#managing-the-queue)
+  - [Queue Controls](#queue-controls)
+  - [Project Statuses](#project-statuses)
 - [Detailed Workflow](#detailed-workflow)
   - [Step 1: Import Folder](#step-1-import-folder)
   - [Step 2: Convert Files](#step-2-convert-files)
@@ -30,9 +36,75 @@ To launch the application:
 2. Navigate to the application directory
 3. Run the command: `python main.py`
 
+## Project Queue System
+
+The Forever Yours RAW Compression Tool includes a project queue system that allows you to add multiple projects for sequential processing. This feature is especially useful when you have multiple weddings or events to process and want to set them up for batch processing.
+
+### Understanding the Project Queue
+
+The project queue system allows you to:
+- Add multiple projects to a processing queue
+- Process projects sequentially (one at a time)
+- Monitor status and progress of each project
+- View detailed results for completed projects
+- Manage the order of projects in the queue
+
+When you launch the application, you'll first see the Project Queue panel, which serves as the main dashboard for managing your compression projects.
+
+### Adding Projects to the Queue
+
+To add a project to the queue:
+
+1. From the Project Queue panel, click **Add Project**
+2. Click **Browse** to select your wedding footage parent folder
+3. Configure the project settings (rename options, compression settings)
+4. Click **Add to Queue**
+
+The project will appear in the queue list with a "PENDING" status.
+
+### Managing the Queue
+
+The Project Queue panel provides several options for managing your projects:
+
+- **View Project Details**: Right-click on a project and select "View Details" to see information about the project including files to be processed, settings, and results (if completed)
+- **Edit Project**: Right-click on a pending project and select "Edit Project" to modify its settings
+- **Remove Project**: Select a project and click "Remove Selected" or right-click and select "Remove Project"
+- **Reorder Projects**: Select a project and use the "Move Up" or "Move Down" buttons to change its position in the queue
+- **Clear Queue**: Click "Clear Queue" to remove all projects (only available when no projects are being processed)
+
+### Queue Controls
+
+The following controls are available for managing queue execution:
+
+- **Start Queue**: Begins processing the projects in the queue sequentially
+- **Cancel Queue**: Stops the current processing and returns all remaining projects to "PENDING" status
+
+When the queue is processing, you'll see:
+- Current project name and progress
+- Overall queue progress
+- Time elapsed and estimated time remaining
+
+### Project Statuses
+
+Projects in the queue can have the following statuses:
+
+| Status | Description |
+|--------|-------------|
+| PENDING | Project is waiting to be processed |
+| PROCESSING | Project is currently being processed |
+| COMPLETED | Project has been successfully processed |
+| FAILED | Project processing encountered an error |
+| CANCELED | Project was manually canceled |
+
+Once a project is completed, you can view its results including:
+- Files processed
+- Total size reduction
+- Average reduction percentage
+- Processing time
+
 ## Detailed Workflow
 
-The compression workflow consists of three simple steps:
+The compression workflow for each project consists of three simple steps:
 
 ### Step 1: Import Folder
 

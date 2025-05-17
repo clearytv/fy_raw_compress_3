@@ -401,6 +401,79 @@ class ImportPanel(QWidget):
         
         # Hide progress section if visible
         self.progress_group.setVisible(False)
+    
+    def set_selected_files(self, files):
+        """
+        Set the list of selected files programmatically.
+        
+        Used when editing an existing project from the project queue.
+        
+        Args:
+            files: List of file paths
+        """
+        logger.info(f"Setting selected files programmatically: {len(files)} files")
+        
+        # Store the files
+        self.valid_files = files
+        
+        # Update the UI
+        self.file_list.clear()
+        for file_path in files:
+            item = QListWidgetItem(os.path.basename(file_path))
+            self.file_list.addItem(item)
+        
+        # Update file count
+        file_count = len(files)
+        self.file_count_label.setText(f"{file_count} files found")
+        
+        # Enable next button if we have files
+        if file_count > 0:
+            self.next_button.setEnabled(True)
+            self.status_label.setText(f"Project loaded with {file_count} video files")
+            self.status_label.setStyleSheet("color: green;")
+        else:
+            self.next_button.setEnabled(False)
+            self.status_label.setText("No valid video files found")
+            self.status_label.setStyleSheet("color: orange;")
+    
+    def set_parent_folder(self, folder):
+        """
+        Set the parent folder programmatically.
+        
+        Used when editing an existing project from the project queue.
+        
+        Args:
+            folder: Path to the parent folder
+        """
+        if folder and os.path.exists(folder):
+            logger.info(f"Setting parent folder programmatically: {folder}")
+            self.parent_folder = folder
+            self.folder_path_label.setText(folder)
+            
+            # We don't need to scan for CAM folders since we already have the files
+            # But we can try to infer which folders are CAM folders from the file paths
+            try:
+                # Get unique directories from file paths
+                directories = set()
+                for file_path in self.valid_files:
+                    if os.path.exists(file_path):  # Make sure file exists
+                        directories.add(os.path.dirname(file_path))
+                
+                # Update CAM folders list
+                self.cam_folders = list(directories)
+                self.cam_list.clear()
+                for cam_folder in self.cam_folders:
+                    self.cam_list.addItem(cam_folder)
+                    
+                # Update status
+                if self.cam_folders:
+                    folder_text = "folders" if len(self.cam_folders) > 1 else "folder"
+                    self.status_label.setText(f"Loaded project with {len(self.cam_folders)} {folder_text}")
+                    self.status_label.setStyleSheet("color: green;")
+                
+            except Exception as e:
+                logger.error(f"Error setting CAM folders: {str(e)}", exc_info=True)
+                # Not a critical error, we can still proceed with files
 
 # Add a check to prevent direct execution
 if __name__ == "__main__":

@@ -1,100 +1,100 @@
-2025-05-16 21:22:33,177 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 2/A002_06102155_C047.mov
-2025-05-16 21:24:04,934 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 2/A002_06102155_C047.mp4
-2025-05-16 21:24:04,937 - core.queue_manager - INFO - Compression result: 75.8% reduction, saved 8.95 GB
-2025-05-16 21:24:04,938 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 2/A002_06102155_C047.mov
-2025-05-16 21:24:04,938 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 2' to '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 2'
-2025-05-16 21:24:04,939 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 2/A002_06102201_C048.mp4
-2025-05-16 21:24:04,939 - core.queue_manager - INFO - Processing file 337/351: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 2/A002_06102201_C048.mov
-2025-05-16 21:24:04,939 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 2/A002_06102201_C048.mov
-2025-05-16 21:24:05,084 - core.video_compression - INFO - Video duration: 56.25 seconds
-2025-05-16 21:24:05,085 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 2/A002_06102201_C048.mov
-2025-05-16 21:24:13,463 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 2/A002_06102201_C048.mp4
-2025-05-16 21:24:13,465 - core.queue_manager - INFO - Compression result: 78.9% reduction, saved 824.50 MB
-2025-05-16 21:24:13,465 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 2/A002_06102201_C048.mov
-2025-05-16 21:24:13,466 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 2' to '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 2'
-2025-05-16 21:24:13,466 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 2/A002_06102202_C049.mp4
-2025-05-16 21:24:13,466 - core.queue_manager - INFO - Processing file 338/351: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 2/A002_06102202_C049.mov
-2025-05-16 21:24:13,466 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 2/A002_06102202_C049.mov
-2025-05-16 21:24:13,618 - core.video_compression - INFO - Video duration: 71.333333 seconds
-2025-05-16 21:24:13,619 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 2/A002_06102202_C049.mov
-2025-05-16 21:24:24,020 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 2/A002_06102202_C049.mp4
-2025-05-16 21:24:24,022 - core.queue_manager - INFO - Compression result: 80.2% reduction, saved 1.04 GB
-2025-05-16 21:24:24,022 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 2/A002_06102202_C049.mov
-2025-05-16 21:24:24,022 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 2' to '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 2'
-2025-05-16 21:24:24,022 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 2/A002_06102203_C050.mp4
-2025-05-16 21:24:24,023 - core.queue_manager - INFO - Processing file 339/351: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 2/A002_06102203_C050.mov
-2025-05-16 21:24:24,023 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 2/A002_06102203_C050.mov
-2025-05-16 21:24:24,154 - core.video_compression - INFO - Video duration: 254.75 seconds
-2025-05-16 21:24:24,155 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 2/A002_06102203_C050.mov
-2025-05-16 21:24:59,897 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 2/A002_06102203_C050.mp4
-2025-05-16 21:24:59,899 - core.queue_manager - INFO - Compression result: 78.6% reduction, saved 3.63 GB
-2025-05-16 21:24:59,899 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 2/A002_06102203_C050.mov
-2025-05-16 21:24:59,899 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 2' to '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 2'
-2025-05-16 21:24:59,900 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 2/A002_06102206_C051.mp4
-2025-05-16 21:24:59,900 - core.queue_manager - INFO - Processing file 340/351: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 2/A002_06102206_C051.mov
-2025-05-16 21:24:59,900 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 2/A002_06102206_C051.mov
-2025-05-16 21:25:00,034 - core.video_compression - INFO - Video duration: 37.666667 seconds
-2025-05-16 21:25:00,035 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 2/A002_06102206_C051.mov
-2025-05-16 21:25:05,896 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 2/A002_06102206_C051.mp4
-2025-05-16 21:25:05,897 - core.queue_manager - INFO - Compression result: 87.4% reduction, saved 611.06 MB
-2025-05-16 21:25:05,897 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 2/A002_06102206_C051.mov
-2025-05-16 21:25:05,898 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3' to '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 3'
-2025-05-16 21:25:05,898 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 3/A003_06120944_C001.mp4
-2025-05-16 21:25:05,898 - core.queue_manager - INFO - Processing file 341/351: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3/A003_06120944_C001.mov
-2025-05-16 21:25:05,898 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3/A003_06120944_C001.mov
-2025-05-16 21:25:06,040 - core.video_compression - INFO - Video duration: 35.166667 seconds
-2025-05-16 21:25:06,040 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3/A003_06120944_C001.mov
-2025-05-16 21:25:11,305 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 3/A003_06120944_C001.mp4
-2025-05-16 21:25:11,309 - core.queue_manager - INFO - Compression result: 93.1% reduction, saved 608.15 MB
-2025-05-16 21:25:11,309 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3/A003_06120944_C001.mov
-2025-05-16 21:25:11,310 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3' to '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 3'
-2025-05-16 21:25:11,310 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 3/A003_06120945_C002.mp4
-2025-05-16 21:25:11,310 - core.queue_manager - INFO - Processing file 342/351: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3/A003_06120945_C002.mov
-2025-05-16 21:25:11,310 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3/A003_06120945_C002.mov
-2025-05-16 21:25:11,432 - core.video_compression - INFO - Video duration: 80.333333 seconds
-2025-05-16 21:25:11,433 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3/A003_06120945_C002.mov
-2025-05-16 21:25:22,573 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 3/A003_06120945_C002.mp4
-2025-05-16 21:25:22,574 - core.queue_manager - INFO - Compression result: 89.6% reduction, saved 1.26 GB
-2025-05-16 21:25:22,574 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3/A003_06120945_C002.mov
-2025-05-16 21:25:22,574 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3' to '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 3'
-2025-05-16 21:25:22,575 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 3/A003_06120947_C003.mp4
-2025-05-16 21:25:22,575 - core.queue_manager - INFO - Processing file 343/351: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3/A003_06120947_C003.mov
-2025-05-16 21:25:22,575 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3/A003_06120947_C003.mov
-2025-05-16 21:25:22,735 - core.video_compression - INFO - Video duration: 35.833333 seconds
-2025-05-16 21:25:22,736 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3/A003_06120947_C003.mov
-2025-05-16 21:25:28,442 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 3/A003_06120947_C003.mp4
-2025-05-16 21:25:28,443 - core.queue_manager - INFO - Compression result: 61.5% reduction, saved 409.56 MB
-2025-05-16 21:25:28,443 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3/A003_06120947_C003.mov
-2025-05-16 21:25:28,444 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3' to '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 3'
-2025-05-16 21:25:28,444 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 3/A003_06121018_C004.mp4
-2025-05-16 21:25:28,444 - core.queue_manager - INFO - Processing file 344/351: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3/A003_06121018_C004.mov
-2025-05-16 21:25:28,444 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3/A003_06121018_C004.mov
-2025-05-16 21:25:28,588 - core.video_compression - INFO - Video duration: 158.5 seconds
-2025-05-16 21:25:28,589 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3/A003_06121018_C004.mov
-2025-05-16 21:25:49,992 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 3/A003_06121018_C004.mp4
-2025-05-16 21:25:49,993 - core.queue_manager - INFO - Compression result: 91.6% reduction, saved 2.63 GB
-2025-05-16 21:25:49,994 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3/A003_06121018_C004.mov
-2025-05-16 21:25:49,994 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3' to '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 3'
-2025-05-16 21:25:49,994 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 3/A003_06121037_C005.mp4
-2025-05-16 21:25:49,994 - core.queue_manager - INFO - Processing file 345/351: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3/A003_06121037_C005.mov
-2025-05-16 21:25:49,995 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3/A003_06121037_C005.mov
-2025-05-16 21:25:50,139 - core.video_compression - INFO - Video duration: 55.833333 seconds
-2025-05-16 21:25:50,139 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3/A003_06121037_C005.mov
-2025-05-16 21:25:57,959 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 3/A003_06121037_C005.mp4
-2025-05-16 21:25:57,960 - core.queue_manager - INFO - Compression result: 89.2% reduction, saved 924.53 MB
-2025-05-16 21:25:57,960 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3/A003_06121037_C005.mov
-2025-05-16 21:25:57,961 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3' to '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 3'
-2025-05-16 21:25:57,961 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 3/A003_06121038_C006.mp4
-2025-05-16 21:25:57,961 - core.queue_manager - INFO - Processing file 346/351: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3/A003_06121038_C006.mov
-2025-05-16 21:25:57,961 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3/A003_06121038_C006.mov
-2025-05-16 21:25:58,121 - core.video_compression - INFO - Video duration: 3361.583333 seconds
-2025-05-16 21:25:58,122 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3/A003_06121038_C006.mov
-2025-05-16 21:33:56,708 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 3/A003_06121038_C006.mp4
-2025-05-16 21:33:56,733 - core.queue_manager - INFO - Compression result: 68.4% reduction, saved 41.69 GB
-2025-05-16 21:33:56,733 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3/A003_06121038_C006.mov
-2025-05-16 21:33:56,734 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3' to '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 3'
-2025-05-16 21:33:56,734 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO/CAM 3/A003_06121106_C007.mp4
-2025-05-16 21:33:56,735 - core.queue_manager - INFO - Processing file 347/351: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3/A003_06121106_C007.mov
-2025-05-16 21:33:56,735 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3/A003_06121106_C007.mov
-2025-05-16 21:33:56,889 - core.video_compression - INFO - Video duration: 1290.75 seconds
-2025-05-16 21:33:56,890 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old/CAM 3/A003_06121106_C007.mov
+2025-05-16 22:08:20,239 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 6.08s, audio 3.00s
+2025-05-16 22:08:20,396 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 21.58s, audio 10.75s
+2025-05-16 22:08:20,549 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 20.25s, audio 10.08s
+2025-05-16 22:08:20,708 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 27.92s, audio 13.92s
+2025-05-16 22:08:20,864 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 2.92s, audio 1.42s
+2025-05-16 22:08:21,016 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 10.33s, audio 5.12s
+2025-05-16 22:08:21,175 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 11.75s, audio 5.83s
+2025-05-16 22:08:21,335 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 229.83s, audio 114.88s
+2025-05-16 22:08:21,483 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 9.00s, audio 4.46s
+2025-05-16 22:08:21,636 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 4.75s, audio 2.33s
+2025-05-16 22:08:21,789 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 13.25s, audio 6.58s
+2025-05-16 22:08:21,939 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 32.75s, audio 16.33s
+2025-05-16 22:08:22,094 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 10.33s, audio 5.12s
+2025-05-16 22:08:22,249 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 42.33s, audio 21.12s
+2025-05-16 22:08:22,407 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 5.08s, audio 2.50s
+2025-05-16 22:08:22,562 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 4.75s, audio 2.33s
+2025-05-16 22:08:22,717 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 48.25s, audio 24.08s
+2025-05-16 22:08:22,868 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 29.50s, audio 14.71s
+2025-05-16 22:08:23,023 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 12.08s, audio 6.00s
+2025-05-16 22:08:23,179 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 32.42s, audio 16.17s
+2025-05-16 22:08:26,658 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 158.50s, audio 79.21s
+2025-05-16 22:08:26,820 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 1633.92s, audio 816.92s
+2025-05-16 22:08:26,975 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 35.83s, audio 17.88s
+2025-05-16 22:08:27,134 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 1290.75s, audio 645.33s
+2025-05-16 22:08:27,288 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 55.83s, audio 27.88s
+2025-05-16 22:08:27,466 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 7009.00s, audio 3504.46s
+2025-05-16 22:08:27,620 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 80.33s, audio 40.12s
+2025-05-16 22:08:27,785 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 3212.58s, audio 1606.25s
+2025-05-16 22:08:27,947 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 3361.58s, audio 1680.75s
+2025-05-16 22:08:28,098 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 35.17s, audio 17.54s
+2025-05-16 22:08:28,278 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 2119.33s, audio 1059.62s
+2025-05-16 22:08:28,426 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 27.42s, audio 13.67s
+2025-05-16 22:08:28,574 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 51.50s, audio 25.71s
+2025-05-16 22:08:28,732 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 28.08s, audio 14.00s
+2025-05-16 22:08:28,896 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 30.92s, audio 15.42s
+2025-05-16 22:08:29,221 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 369.00s, audio 184.46s
+2025-05-16 22:08:29,380 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 39.67s, audio 19.79s
+2025-05-16 22:08:29,536 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 39.67s, audio 19.79s
+2025-05-16 22:08:29,693 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 25.50s, audio 12.71s
+2025-05-16 22:08:29,854 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 160.75s, audio 80.33s
+2025-05-16 22:08:30,008 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 25.92s, audio 12.92s
+2025-05-16 22:08:30,161 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 37.33s, audio 18.62s
+2025-05-16 22:08:30,315 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 52.17s, audio 26.04s
+2025-05-16 22:08:30,479 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 254.75s, audio 127.33s
+2025-05-16 22:08:30,650 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 3299.67s, audio 1649.79s
+2025-05-16 22:08:30,810 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 34.50s, audio 17.21s
+2025-05-16 22:08:30,973 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 651.08s, audio 325.50s
+2025-05-16 22:08:31,136 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 2748.17s, audio 1374.04s
+2025-05-16 22:08:31,291 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 41.00s, audio 20.46s
+2025-05-16 22:08:31,456 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 458.67s, audio 229.29s
+2025-05-16 22:08:31,604 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 125.67s, audio 62.79s
+2025-05-16 22:08:31,761 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 264.58s, audio 132.25s
+2025-05-16 22:08:31,919 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 45.50s, audio 22.71s
+2025-05-16 22:08:32,082 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 86.42s, audio 43.17s
+2025-05-16 22:08:32,239 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 55.58s, audio 27.75s
+2025-05-16 22:08:32,401 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 17.92s, audio 8.92s
+2025-05-16 22:08:32,558 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 60.75s, audio 30.33s
+2025-05-16 22:08:32,718 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 32.67s, audio 16.29s
+2025-05-16 22:08:32,874 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 99.00s, audio 49.46s
+2025-05-16 22:08:33,035 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 310.75s, audio 155.33s
+2025-05-16 22:08:33,186 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 56.25s, audio 28.08s
+2025-05-16 22:08:33,358 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 5654.83s, audio 2827.38s
+2025-05-16 22:08:33,507 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 21.00s, audio 10.46s
+2025-05-16 22:08:33,660 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 35.42s, audio 17.67s
+2025-05-16 22:08:33,817 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 104.75s, audio 52.33s
+2025-05-16 22:08:33,975 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 34.83s, audio 17.38s
+2025-05-16 22:08:34,138 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 71.33s, audio 35.62s
+2025-05-16 22:08:34,291 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 348.00s, audio 173.96s
+2025-05-16 22:08:34,448 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 53.25s, audio 26.58s
+2025-05-16 22:08:34,602 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 67.17s, audio 33.54s
+2025-05-16 22:08:34,757 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 28.17s, audio 14.04s
+2025-05-16 22:08:34,914 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 37.67s, audio 18.79s
+2025-05-16 22:08:35,069 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 73.75s, audio 36.83s
+2025-05-16 22:08:35,228 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 46.00s, audio 22.96s
+2025-05-16 22:08:35,386 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 47.08s, audio 23.50s
+2025-05-16 22:08:35,551 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 130.25s, audio 65.08s
+2025-05-16 22:08:35,713 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 11.92s, audio 5.92s
+2025-05-16 22:08:35,876 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 1902.83s, audio 951.38s
+2025-05-16 22:08:36,024 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 35.42s, audio 17.67s
+2025-05-16 22:08:36,182 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 349.00s, audio 174.46s
+2025-05-16 22:08:36,340 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 1006.42s, audio 503.17s
+2025-05-16 22:08:36,360 - gui.step2b_verify - INFO - All files matched. Proceeding with deletion and icon update.
+2025-05-16 22:08:36,678 - gui.step2b_verify - INFO - Successfully deleted folder: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old
+2025-05-16 22:08:36,678 - gui.step2b_verify - INFO - Attempting to update icon for: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie
+2025-05-16 22:08:36,994 - core.macos_utils - INFO - Successfully set Finder label 'None' for folder: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie (with update command)
+2025-05-16 22:08:37,170 - core.macos_utils - INFO - Successfully set Finder label 'Green' for folder: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie (with update command)
+2025-05-16 22:08:37,171 - gui.step2b_verify - INFO - Successfully set 'Green' label for folder: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie
+2025-05-16 22:08:37,172 - gui.step2b_verify - INFO - Auto mode enabled: Will automatically proceed to results after 2-second delay
+2025-05-16 22:08:39,274 - __main__ - INFO - Transitioning to Results Panel.
+2025-05-16 22:08:39,276 - gui.step3_results - INFO - Parent folder path set in ResultsPanel: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie
+2025-05-16 22:08:39,277 - __main__ - INFO - Passing parent folder path to ResultsPanel: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie
+2025-05-16 22:08:39,277 - __main__ - INFO - Total compression duration: 8694.15 seconds
+2025-05-16 22:08:39,282 - gui.step3_results - INFO - Attempting to set 'Green' Finder label for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie
+2025-05-16 22:08:39,451 - core.macos_utils - INFO - Successfully set Finder label 'Green' for folder: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie (with update command)
+2025-05-16 22:08:39,452 - gui.step3_results - INFO - Found special duration info entry with total_duration=8694.15s
+2025-05-16 22:08:39,492 - gui.step3_results - INFO - Results display updated
+2025-05-16 22:08:39,492 - gui.step3_results - INFO - Compression results updated in UI
+2025-05-16 22:08:39,492 - __main__ - INFO - Passed 360 results to ResultsPanel with total_duration=8694.15s
+2025-05-17 10:51:32,473 - gui.step3_results - INFO - User requested application exit
+2025-05-17 10:51:32,475 - __main__ - INFO - Saved window geometry and state

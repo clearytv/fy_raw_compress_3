@@ -36,9 +36,12 @@ from gui.step1_import import ImportPanel
 from gui.step2_convert import ConvertPanel
 from gui.step2b_verify import VerifyPanel # New verification panel
 from gui.step3_results import ResultsPanel
+from gui.project_queue_panel import ProjectQueuePanel  # New project queue panel
 
 # Import core functionality
 from core.queue_manager import QueueManager
+from core.project_queue_manager import ProjectQueueManager
+from core.project_manager import ProjectManager
 
 
 class MainWindow(QMainWindow):
@@ -63,8 +66,10 @@ class MainWindow(QMainWindow):
         # Restore window geometry from previous session
         self.restore_window_geometry()
         
-        # Create queue manager to share between panels
-        self.queue_manager = QueueManager()
+        # Create managers for handling projects and files
+        self.queue_manager = QueueManager()  # For managing files within a single project
+        self.project_queue_manager = ProjectQueueManager()  # For managing multiple projects
+        self.project_manager = ProjectManager(self.project_queue_manager)  # Interface between project queue and file queue
         
         # Create central widget and layout
         central_widget = QWidget()
@@ -78,14 +83,16 @@ class MainWindow(QMainWindow):
         # Create workflow step panels
         self.import_panel = ImportPanel(self)
         self.convert_panel = ConvertPanel(self)
-        self.verify_panel = VerifyPanel(self) # Instantiate new panel
+        self.verify_panel = VerifyPanel(self) # Instantiate verification panel
         self.results_panel = ResultsPanel(self)
+        self.project_queue_panel = ProjectQueuePanel(self, self.project_manager)  # Create project queue panel
         
         # Add panels to stacked widget
         self.stacked_widget.addWidget(self.import_panel)  # Index 0
         self.stacked_widget.addWidget(self.convert_panel) # Index 1
         self.stacked_widget.addWidget(self.verify_panel)  # Index 2
         self.stacked_widget.addWidget(self.results_panel) # Index 3
+        self.stacked_widget.addWidget(self.project_queue_panel) # Index 4
         
         # Set queue manager in panels that need it
         self.convert_panel.set_queue_manager(self.queue_manager)
@@ -93,8 +100,8 @@ class MainWindow(QMainWindow):
         # Connect signals between panels
         self._connect_signals()
         
-        # Start with first panel
-        self.stacked_widget.setCurrentIndex(0)
+        # Start with project queue panel
+        self.stacked_widget.setCurrentIndex(4)  # Start with project queue panel
         logger.info(f"Starting application with panel index set to {self.stacked_widget.currentIndex()}")
         
     def _connect_signals(self):
@@ -119,6 +126,10 @@ class MainWindow(QMainWindow):
         
         # Results panel signals
         self.results_panel.new_job_requested.connect(self.reset_workflow)
+        
+        # Project queue panel signals
+        self.project_queue_panel.back_clicked.connect(lambda: self.go_to_import_panel())
+        self.project_queue_panel.project_selected.connect(self.edit_project)
         
     def on_files_selected(self, files):
         """Handle files selected from import panel."""
@@ -190,6 +201,22 @@ class MainWindow(QMainWindow):
             logger.info(f"Passing parent folder path to ResultsPanel: {parent_folder_path_for_results}")
         else:
             logger.warning("No parent folder path available to pass to ResultsPanel.")
+            
+        # Update project status if this is a project from the queue
+        if hasattr(self, 'current_project_id') and self.current_project_id:
+            # Create project results from verification results
+            project_results = self._build_project_results_from_verification()
+            
+            # Add project results to the queue manager
+            self.project_queue_manager.results[self.current_project_id] = project_results
+            
+            # Update project status to completed
+            self.project_queue_manager.status[self.current_project_id] = ProjectStatus.COMPLETED
+            
+            logger.info(f"Updated project {self.current_project_id} status to COMPLETED with results")
+            
+            # Save the queue state
+            self.project_queue_manager.save_state()
         
         # Get total compression duration from ConvertPanel
         total_duration = self.convert_panel.total_compression_duration
@@ -282,29 +309,100 @@ class MainWindow(QMainWindow):
             'duration': total_duration,  # Store the total duration in a single entry
             'is_duration_info': True  # Flag for ResultsPanel to identify this special entry
         }
-        
         # Pass the results to the ResultsPanel
         self.results_panel.set_compression_results(compression_results)
         logger.info(f"Passed {len(compression_results)} results to ResultsPanel with total_duration={total_duration:.2f}s")
         
         self.stacked_widget.setCurrentIndex(3) # Results Panel is index 3
+    
+    def _build_project_results_from_verification(self):
+        """
+        Build project results from verification results.
         
-    def on_compression_complete(self, results):
+        Returns:
+            Dictionary with project statistics
         """
-        Handle compression completion from convert panel.
-        This signal is emitted by ConvertPanel when its processing queue finishes,
-        BEFORE it emits 'verification_needed'.
-        Its primary role now is for logging or if any immediate data from 'results'
-        (currently an empty dict) needs to be handled.
-        Actual navigation to the next step (VerifyPanel) is triggered by 'verification_needed'.
-        """
-        logger.info(f"Main window received 'compression_complete' signal from ConvertPanel. Results: {results}")
-        # No direct navigation from here anymore.
-        # ConvertPanel.finish_compression will emit 'verification_needed' if successful,
-        # which then calls self.go_to_verify_panel.
-        # This method can be used if there's any specific action to take right after
-        # the queue_manager finishes, but before verification paths are determined.
-        pass
+        # Get verification results
+        verification_results = self.verify_panel.verification_results
+        
+        # Initialize statistics
+        stats = {
+            "files_processed": 0,
+            "files_failed": 0,
+            "total_input_size": 0,
+            "total_output_size": 0,
+            "total_size_reduction": 0,
+            "average_reduction_percent": 0,
+            "processing_time": self.convert_panel.total_compression_duration
+        }
+        
+        # Process verification results
+        for item in verification_results:
+            original_file = item.get('original_file', '')
+            converted_file = item.get('converted_file', '')
+            status = item.get('status', '')
+            
+            if status == "MATCH" and os.path.exists(converted_file):
+                stats["files_processed"] += 1
+                
+                # Get file sizes
+                conv_size = os.path.getsize(converted_file)
+                stats["total_output_size"] += conv_size
+                
+                # Try to get original file size
+                if os.path.exists(original_file):
+                    orig_size = os.path.getsize(original_file)
+                else:
+                    # Use approximate size if original doesn't exist
+                    orig_size = conv_size * 3  # Default multiplier
+                    
+                stats["total_input_size"] += orig_size
+            else:
+                stats["files_failed"] += 1
+                
+        # Calculate reduction
+        stats["total_size_reduction"] = stats["total_input_size"] - stats["total_output_size"]
+        
+        # Calculate average reduction percentage
+        if stats["total_input_size"] > 0:
+            stats["average_reduction_percent"] = (stats["total_size_reduction"] / stats["total_input_size"]) * 100
+            
+        # Format human-readable sizes
+        def format_size(size_bytes):
+            if size_bytes < 0:
+                return "0 B"
+            
+            suffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB']
+            suffix_index = 0
+            
+            while size_bytes >= 1024 and suffix_index < len(suffixes) - 1:
+                size_bytes /= 1024.0
+                suffix_index += 1
+                
+            return f"{size_bytes:.2f} {suffixes[suffix_index]}"
+            
+        stats.update({
+            "total_input_size_human": format_size(stats["total_input_size"]),
+            "total_output_size_human": format_size(stats["total_output_size"]),
+            "total_size_reduction_human": format_size(stats["total_size_reduction"])
+        })
+        
+        return stats
+        
+        def on_compression_complete(self, results):
+            """
+            Handle compression completion from convert panel.
+            This signal is emitted by ConvertPanel when its processing queue finishes,
+            BEFORE it emits 'verification_needed'.
+            Its primary role now is for logging or if any immediate data from 'results'
+            (currently an empty dict) needs to be handled.
+            Actual navigation to the next step (VerifyPanel) is triggered by 'verification_needed'.
+            """
+            logger.info(f"Main window received 'compression_complete' signal from ConvertPanel. Results: {results}")
+            # No direct navigation from here anymore.
+            # ConvertPanel.finish_compression will emit 'verification_needed' if successful,
+            # which then calls self.go_to_verify_panel.
+    
 
     def reset_workflow(self):
         """Reset the workflow to start a new job."""
@@ -317,10 +415,65 @@ class MainWindow(QMainWindow):
         if hasattr(self, 'verify_panel'): # Check if verify_panel exists
             self.verify_panel.reset_panel_state()
         self.results_panel.reset_panel()
+        if hasattr(self, 'project_queue_panel'):
+            self.project_queue_panel.reset_panel()
         
-        self.stacked_widget.setCurrentIndex(0)
+        # Clear current project reference
+        if hasattr(self, 'current_project_id'):
+            self.current_project_id = None
+        
+        # Return to project queue panel instead of import panel
+        self.stacked_widget.setCurrentIndex(4)  # Project queue panel
         logger.info(f"Current index set to {self.stacked_widget.currentIndex()}")
     
+    def go_to_import_panel(self):
+        """Navigate to the import panel to start a single project workflow."""
+        logger.info("Transitioning to Import Panel to create a new project.")
+        self.stacked_widget.setCurrentIndex(0)  # Import panel index
+    
+    def go_to_project_queue_panel(self):
+        """Navigate back to the project queue panel."""
+        logger.info("Returning to Project Queue Panel.")
+        self.stacked_widget.setCurrentIndex(4)  # Project queue panel index
+    
+    def edit_project(self, project_id):
+        """
+        Start editing an existing project.
+        
+        Args:
+            project_id: ID of the project to edit
+        """
+        logger.info(f"Starting to edit project with ID {project_id}")
+        
+        # Get project from queue manager
+        project = self.project_queue_manager.get_project(project_id)
+        if not project:
+            logger.warning(f"Project with ID {project_id} not found")
+            return
+        
+        # Store current project ID for reference
+        self.current_project_id = project_id
+        
+        # Extract project data
+        input_files = project.get("input_files", [])
+        output_dir = project.get("output_dir", "")
+        
+        # Set up ImportPanel with project data
+        # For now, we'll just pass the files to the import panel
+        if input_files:
+            self.queue_manager.clear_queue()
+            self.queue_manager.add_files(input_files)
+            self.import_panel.set_selected_files(input_files)
+            
+            # If project has a parent folder, set it
+            if "parent_folder" in project:
+                self.import_panel.set_parent_folder(project["parent_folder"])
+                
+            # Navigate to the import panel
+            self.stacked_widget.setCurrentIndex(0)
+        else:
+            logger.warning(f"Project {project_id} has no input files to edit")
+            
     def save_window_geometry(self):
         """Save the window's geometry (size and position)"""
         settings = QSettings("ForeverYours", "CompressionTool")
