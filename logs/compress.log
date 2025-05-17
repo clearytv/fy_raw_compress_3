@@ -1,100 +1,100 @@
-2025-05-16 22:08:20,239 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 6.08s, audio 3.00s
-2025-05-16 22:08:20,396 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 21.58s, audio 10.75s
-2025-05-16 22:08:20,549 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 20.25s, audio 10.08s
-2025-05-16 22:08:20,708 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 27.92s, audio 13.92s
-2025-05-16 22:08:20,864 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 2.92s, audio 1.42s
-2025-05-16 22:08:21,016 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 10.33s, audio 5.12s
-2025-05-16 22:08:21,175 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 11.75s, audio 5.83s
-2025-05-16 22:08:21,335 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 229.83s, audio 114.88s
-2025-05-16 22:08:21,483 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 9.00s, audio 4.46s
-2025-05-16 22:08:21,636 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 4.75s, audio 2.33s
-2025-05-16 22:08:21,789 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 13.25s, audio 6.58s
-2025-05-16 22:08:21,939 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 32.75s, audio 16.33s
-2025-05-16 22:08:22,094 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 10.33s, audio 5.12s
-2025-05-16 22:08:22,249 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 42.33s, audio 21.12s
-2025-05-16 22:08:22,407 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 5.08s, audio 2.50s
-2025-05-16 22:08:22,562 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 4.75s, audio 2.33s
-2025-05-16 22:08:22,717 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 48.25s, audio 24.08s
-2025-05-16 22:08:22,868 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 29.50s, audio 14.71s
-2025-05-16 22:08:23,023 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 12.08s, audio 6.00s
-2025-05-16 22:08:23,179 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 32.42s, audio 16.17s
-2025-05-16 22:08:26,658 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 158.50s, audio 79.21s
-2025-05-16 22:08:26,820 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 1633.92s, audio 816.92s
-2025-05-16 22:08:26,975 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 35.83s, audio 17.88s
-2025-05-16 22:08:27,134 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 1290.75s, audio 645.33s
-2025-05-16 22:08:27,288 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 55.83s, audio 27.88s
-2025-05-16 22:08:27,466 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 7009.00s, audio 3504.46s
-2025-05-16 22:08:27,620 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 80.33s, audio 40.12s
-2025-05-16 22:08:27,785 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 3212.58s, audio 1606.25s
-2025-05-16 22:08:27,947 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 3361.58s, audio 1680.75s
-2025-05-16 22:08:28,098 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 35.17s, audio 17.54s
-2025-05-16 22:08:28,278 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 2119.33s, audio 1059.62s
-2025-05-16 22:08:28,426 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 27.42s, audio 13.67s
-2025-05-16 22:08:28,574 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 51.50s, audio 25.71s
-2025-05-16 22:08:28,732 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 28.08s, audio 14.00s
-2025-05-16 22:08:28,896 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 30.92s, audio 15.42s
-2025-05-16 22:08:29,221 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 369.00s, audio 184.46s
-2025-05-16 22:08:29,380 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 39.67s, audio 19.79s
-2025-05-16 22:08:29,536 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 39.67s, audio 19.79s
-2025-05-16 22:08:29,693 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 25.50s, audio 12.71s
-2025-05-16 22:08:29,854 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 160.75s, audio 80.33s
-2025-05-16 22:08:30,008 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 25.92s, audio 12.92s
-2025-05-16 22:08:30,161 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 37.33s, audio 18.62s
-2025-05-16 22:08:30,315 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 52.17s, audio 26.04s
-2025-05-16 22:08:30,479 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 254.75s, audio 127.33s
-2025-05-16 22:08:30,650 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 3299.67s, audio 1649.79s
-2025-05-16 22:08:30,810 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 34.50s, audio 17.21s
-2025-05-16 22:08:30,973 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 651.08s, audio 325.50s
-2025-05-16 22:08:31,136 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 2748.17s, audio 1374.04s
-2025-05-16 22:08:31,291 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 41.00s, audio 20.46s
-2025-05-16 22:08:31,456 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 458.67s, audio 229.29s
-2025-05-16 22:08:31,604 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 125.67s, audio 62.79s
-2025-05-16 22:08:31,761 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 264.58s, audio 132.25s
-2025-05-16 22:08:31,919 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 45.50s, audio 22.71s
-2025-05-16 22:08:32,082 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 86.42s, audio 43.17s
-2025-05-16 22:08:32,239 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 55.58s, audio 27.75s
-2025-05-16 22:08:32,401 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 17.92s, audio 8.92s
-2025-05-16 22:08:32,558 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 60.75s, audio 30.33s
-2025-05-16 22:08:32,718 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 32.67s, audio 16.29s
-2025-05-16 22:08:32,874 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 99.00s, audio 49.46s
-2025-05-16 22:08:33,035 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 310.75s, audio 155.33s
-2025-05-16 22:08:33,186 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 56.25s, audio 28.08s
-2025-05-16 22:08:33,358 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 5654.83s, audio 2827.38s
-2025-05-16 22:08:33,507 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 21.00s, audio 10.46s
-2025-05-16 22:08:33,660 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 35.42s, audio 17.67s
-2025-05-16 22:08:33,817 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 104.75s, audio 52.33s
-2025-05-16 22:08:33,975 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 34.83s, audio 17.38s
-2025-05-16 22:08:34,138 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 71.33s, audio 35.62s
-2025-05-16 22:08:34,291 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 348.00s, audio 173.96s
-2025-05-16 22:08:34,448 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 53.25s, audio 26.58s
-2025-05-16 22:08:34,602 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 67.17s, audio 33.54s
-2025-05-16 22:08:34,757 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 28.17s, audio 14.04s
-2025-05-16 22:08:34,914 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 37.67s, audio 18.79s
-2025-05-16 22:08:35,069 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 73.75s, audio 36.83s
-2025-05-16 22:08:35,228 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 46.00s, audio 22.96s
-2025-05-16 22:08:35,386 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 47.08s, audio 23.50s
-2025-05-16 22:08:35,551 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 130.25s, audio 65.08s
-2025-05-16 22:08:35,713 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 11.92s, audio 5.92s
-2025-05-16 22:08:35,876 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 1902.83s, audio 951.38s
-2025-05-16 22:08:36,024 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 35.42s, audio 17.67s
-2025-05-16 22:08:36,182 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 349.00s, audio 174.46s
-2025-05-16 22:08:36,340 - core.verification_utils - WARNING - Original file has audio/video duration mismatch: video 1006.42s, audio 503.17s
-2025-05-16 22:08:36,360 - gui.step2b_verify - INFO - All files matched. Proceeding with deletion and icon update.
-2025-05-16 22:08:36,678 - gui.step2b_verify - INFO - Successfully deleted folder: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie/03 MEDIA/01 VIDEO.old
-2025-05-16 22:08:36,678 - gui.step2b_verify - INFO - Attempting to update icon for: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie
-2025-05-16 22:08:36,994 - core.macos_utils - INFO - Successfully set Finder label 'None' for folder: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie (with update command)
-2025-05-16 22:08:37,170 - core.macos_utils - INFO - Successfully set Finder label 'Green' for folder: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie (with update command)
-2025-05-16 22:08:37,171 - gui.step2b_verify - INFO - Successfully set 'Green' label for folder: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie
-2025-05-16 22:08:37,172 - gui.step2b_verify - INFO - Auto mode enabled: Will automatically proceed to results after 2-second delay
-2025-05-16 22:08:39,274 - __main__ - INFO - Transitioning to Results Panel.
-2025-05-16 22:08:39,276 - gui.step3_results - INFO - Parent folder path set in ResultsPanel: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie
-2025-05-16 22:08:39,277 - __main__ - INFO - Passing parent folder path to ResultsPanel: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie
-2025-05-16 22:08:39,277 - __main__ - INFO - Total compression duration: 8694.15 seconds
-2025-05-16 22:08:39,282 - gui.step3_results - INFO - Attempting to set 'Green' Finder label for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie
-2025-05-16 22:08:39,451 - core.macos_utils - INFO - Successfully set Finder label 'Green' for folder: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-15 Alex & Charlie (with update command)
-2025-05-16 22:08:39,452 - gui.step3_results - INFO - Found special duration info entry with total_duration=8694.15s
-2025-05-16 22:08:39,492 - gui.step3_results - INFO - Results display updated
-2025-05-16 22:08:39,492 - gui.step3_results - INFO - Compression results updated in UI
-2025-05-16 22:08:39,492 - __main__ - INFO - Passed 360 results to ResultsPanel with total_duration=8694.15s
-2025-05-17 10:51:32,473 - gui.step3_results - INFO - User requested application exit
-2025-05-17 10:51:32,475 - __main__ - INFO - Saved window geometry and state
+2025-05-17 12:54:28,661 - gui.step3_results - INFO - Initializing results panel
+2025-05-17 12:54:28,662 - gui.project_queue_panel - INFO - Initializing project queue panel
+2025-05-17 12:54:28,662 - core.project_manager - INFO - Progress callback registered
+2025-05-17 12:54:28,663 - core.project_manager - INFO - Project completion callback registered
+2025-05-17 12:54:28,665 - gui.step2_convert - INFO - Queue manager set in ConvertPanel
+2025-05-17 12:54:28,666 - __main__ - INFO - Starting application with panel index set to 4
+2025-05-17 12:55:01,543 - __main__ - INFO - Transitioning to Import Panel to create a new project.
+2025-05-17 12:55:03,730 - gui.step1_import - INFO - Auto mode set to: False
+2025-05-17 12:55:04,752 - gui.step1_import - INFO - Auto mode set to: True
+2025-05-17 12:55:07,483 - gui.step1_import - INFO - Browse button clicked, calling select_folder
+2025-05-17 12:55:07,485 - gui.step1_import - INFO - Opening folder selection dialog
+2025-05-17 12:56:49,836 - gui.step1_import - INFO - Folder selection dialog returned: /Volumes/Media HD/Tests/02 Test Project 2
+2025-05-17 12:56:49,837 - gui.step1_import - INFO - Selected folder: /Volumes/Media HD/Tests/02 Test Project 2
+2025-05-17 12:56:49,837 - gui.step1_import - INFO - Attempting to clear existing Finder labels for /Volumes/Media HD/Tests/02 Test Project 2
+2025-05-17 12:56:50,036 - core.macos_utils - INFO - Successfully set Finder label 'None' for folder: /Volumes/Media HD/Tests/02 Test Project 2 (with update command)
+2025-05-17 12:56:50,036 - gui.step1_import - INFO - Attempting to set 'Orange' Finder label for /Volumes/Media HD/Tests/02 Test Project 2
+2025-05-17 12:56:50,207 - core.macos_utils - INFO - Successfully set Finder label 'Orange' for folder: /Volumes/Media HD/Tests/02 Test Project 2 (with update command)
+2025-05-17 12:57:05,699 - gui.step1_import - INFO - Browse button clicked, calling select_folder
+2025-05-17 12:57:05,701 - gui.step1_import - INFO - Opening folder selection dialog
+2025-05-17 12:57:15,261 - gui.step1_import - INFO - Folder selection dialog returned: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah
+2025-05-17 12:57:15,262 - gui.step1_import - INFO - Selected folder: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah
+2025-05-17 12:57:15,262 - gui.step1_import - INFO - Attempting to clear existing Finder labels for /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah
+2025-05-17 12:57:15,437 - core.macos_utils - INFO - Successfully set Finder label 'None' for folder: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah (with update command)
+2025-05-17 12:57:15,438 - gui.step1_import - INFO - Attempting to set 'Orange' Finder label for /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah
+2025-05-17 12:57:15,612 - core.macos_utils - INFO - Successfully set Finder label 'Orange' for folder: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah (with update command)
+2025-05-17 12:57:15,614 - gui.step1_import - INFO - Found 2 CAM folders with 5 video files
+2025-05-17 12:57:18,030 - gui.step1_import - INFO - Adding 5 files to queue
+2025-05-17 12:57:18,033 - __main__ - INFO - Main window received 5 files from import panel
+2025-05-17 12:57:18,034 - core.queue_manager - INFO - Sorting files by camera number and file number
+2025-05-17 12:57:18,035 - core.queue_manager - INFO - Added 5 files to queue
+2025-05-17 12:57:18,037 - gui.step2_convert - INFO - Queue updated with 5 files
+2025-05-17 12:57:18,045 - gui.step2_convert - INFO - Parent folder path set in ConvertPanel: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah
+2025-05-17 12:57:18,046 - __main__ - INFO - Passing parent folder path to ConvertPanel: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah
+2025-05-17 12:57:18,047 - gui.step2_convert - INFO - Rename folders option set in ConvertPanel: True
+2025-05-17 12:57:18,047 - __main__ - INFO - Passing rename folders option to ConvertPanel: True
+2025-05-17 12:57:18,048 - gui.step2_convert - INFO - Auto mode set in ConvertPanel: True
+2025-05-17 12:57:18,048 - __main__ - INFO - Passing auto mode option to ConvertPanel: True
+2025-05-17 12:57:18,051 - gui.step2_convert - INFO - Auto mode enabled: Starting compression automatically
+2025-05-17 12:57:18,262 - core.video_compression - INFO - Estimated output size: 16.90 MB
+2025-05-17 12:57:18,364 - core.video_compression - INFO - Estimated output size: 72.45 MB
+2025-05-17 12:57:18,461 - core.video_compression - INFO - Estimated output size: 75.21 MB
+2025-05-17 12:57:18,559 - core.file_preparation - INFO - Attempting to rename folder: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO
+2025-05-17 12:57:18,560 - core.file_preparation - INFO - Renamed folder to: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old
+2025-05-17 12:57:18,560 - gui.step2_convert - INFO - Renamed video folder: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO to /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old
+2025-05-17 12:57:18,561 - core.file_preparation - INFO - Copying non-CAM folders from /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old to /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO
+2025-05-17 12:57:18,562 - core.file_preparation - INFO - Processing non-CAM folder: DRONE
+2025-05-17 12:57:18,562 - core.video_compression - INFO - Estimated output size: 229.76 MB
+2025-05-17 12:57:18,622 - core.video_compression - ERROR - Failed to get video duration: Command '['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', '/Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_01250456_C219.mov']' returned non-zero exit status 1.
+2025-05-17 12:57:18,623 - core.video_compression - WARNING - Could not determine video duration for size estimation
+2025-05-17 12:57:20,490 - core.file_preparation - INFO - Copied file: DJI_0059.MP4
+2025-05-17 12:57:20,502 - core.file_preparation - INFO - Copied file: .DS_Store
+2025-05-17 12:57:20,837 - core.file_preparation - INFO - Copied file: DJI_0061.MP4
+2025-05-17 12:57:22,469 - core.file_preparation - INFO - Copied file: DJI_0060.MP4
+2025-05-17 12:57:22,470 - core.file_preparation - INFO - Completed copying folder: DRONE
+2025-05-17 12:57:22,471 - core.file_preparation - INFO - Copied 1 non-CAM folders
+2025-05-17 12:57:22,472 - gui.step2_convert - INFO - Copied 1 non-CAM folders from /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old to /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO
+2025-05-17 12:57:22,472 - gui.step2_convert - INFO - Updated path after rename: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mov -> /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01240755_C001.mov
+2025-05-17 12:57:22,472 - gui.step2_convert - INFO - Updated path after rename: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mov -> /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C003.mov
+2025-05-17 12:57:22,472 - gui.step2_convert - INFO - Updated path after rename: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mov -> /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C002.mov
+2025-05-17 12:57:22,473 - gui.step2_convert - INFO - Updated path after rename: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_04080255_C079.mov -> /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_04080255_C079.mov
+2025-05-17 12:57:22,473 - gui.step2_convert - INFO - Updated path after rename: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_01250456_C219.mov -> /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_01250456_C219.mov
+2025-05-17 12:57:22,473 - gui.step2_convert - INFO - Updated 5 file paths after renaming directory
+2025-05-17 12:57:22,474 - core.queue_manager - INFO - Queue cleared
+2025-05-17 12:57:22,474 - core.queue_manager - INFO - Sorting files by camera number and file number
+2025-05-17 12:57:22,474 - core.queue_manager - INFO - Added 5 files to queue
+2025-05-17 12:57:22,475 - gui.step2_convert - INFO - Starting compression process
+2025-05-17 12:57:22,476 - core.queue_manager - INFO - Starting queue processing
+2025-05-17 12:57:22,476 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1' to '/Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1'
+2025-05-17 12:57:22,476 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mp4
+2025-05-17 12:57:22,477 - core.queue_manager - INFO - Processing file 1/5: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01240755_C001.mov
+2025-05-17 12:57:22,477 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01240755_C001.mov
+2025-05-17 12:57:22,572 - core.video_compression - INFO - Video duration: 4.083333 seconds
+2025-05-17 12:57:22,572 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01240755_C001.mov
+2025-05-17 12:57:23,836 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mp4
+2025-05-17 12:57:23,837 - core.queue_manager - INFO - Compression result: 90.9% reduction, saved 16.18 MB
+2025-05-17 12:57:23,837 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01240755_C001.mov
+2025-05-17 12:57:23,837 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1' to '/Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1'
+2025-05-17 12:57:23,837 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mp4
+2025-05-17 12:57:23,837 - core.queue_manager - INFO - Processing file 2/5: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C002.mov
+2025-05-17 12:57:23,838 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C002.mov
+2025-05-17 12:57:23,954 - core.video_compression - INFO - Video duration: 18.166667 seconds
+2025-05-17 12:57:23,955 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C002.mov
+2025-05-17 12:57:26,976 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mp4
+2025-05-17 12:57:26,977 - core.queue_manager - INFO - Compression result: 88.6% reduction, saved 203.37 MB
+2025-05-17 12:57:26,977 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C002.mov
+2025-05-17 12:57:26,977 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1' to '/Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1'
+2025-05-17 12:57:26,978 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mp4
+2025-05-17 12:57:26,978 - core.queue_manager - INFO - Processing file 3/5: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C003.mov
+2025-05-17 12:57:26,978 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C003.mov
+2025-05-17 12:57:27,085 - core.video_compression - INFO - Video duration: 17.5 seconds
+2025-05-17 12:57:27,085 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C003.mov
+2025-05-17 12:57:30,019 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mp4
+2025-05-17 12:57:30,021 - core.queue_manager - INFO - Compression result: 85.4% reduction, saved 116.21 MB
+2025-05-17 12:57:30,021 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C003.mov
+2025-05-17 12:57:30,021 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2' to '/Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2'
+2025-05-17 12:57:30,021 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_01250456_C219.mp4
+2025-05-17 12:57:30,022 - core.queue_manager - INFO - Processing file 4/5: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_01250456_C219.mov
+2025-05-17 12:57:30,022 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_01250456_C219.mov
+2025-05-17 12:57:30,149 - core.video_compression - INFO - Video duration: 570.166667 seconds
+2025-05-17 12:57:30,149 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_01250456_C219.mov

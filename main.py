@@ -40,7 +40,7 @@ from gui.project_queue_panel import ProjectQueuePanel  # New project queue panel
 
 # Import core functionality
 from core.queue_manager import QueueManager
-from core.project_queue_manager import ProjectQueueManager
+from core.project_queue_manager import ProjectQueueManager, ProjectStatus
 from core.project_manager import ProjectManager
 
 
@@ -389,19 +389,19 @@ class MainWindow(QMainWindow):
         
         return stats
         
-        def on_compression_complete(self, results):
-            """
-            Handle compression completion from convert panel.
-            This signal is emitted by ConvertPanel when its processing queue finishes,
-            BEFORE it emits 'verification_needed'.
-            Its primary role now is for logging or if any immediate data from 'results'
-            (currently an empty dict) needs to be handled.
-            Actual navigation to the next step (VerifyPanel) is triggered by 'verification_needed'.
-            """
-            logger.info(f"Main window received 'compression_complete' signal from ConvertPanel. Results: {results}")
-            # No direct navigation from here anymore.
-            # ConvertPanel.finish_compression will emit 'verification_needed' if successful,
-            # which then calls self.go_to_verify_panel.
+    def on_compression_complete(self, results):
+        """
+        Handle compression completion from convert panel.
+        This signal is emitted by ConvertPanel when its processing queue finishes,
+        BEFORE it emits 'verification_needed'.
+        Its primary role now is for logging or if any immediate data from 'results'
+        (currently an empty dict) needs to be handled.
+        Actual navigation to the next step (VerifyPanel) is triggered by 'verification_needed'.
+        """
+        logger.info(f"Main window received 'compression_complete' signal from ConvertPanel. Results: {results}")
+        # No direct navigation from here anymore.
+        # ConvertPanel.finish_compression will emit 'verification_needed' if successful,
+        # which then calls self.go_to_verify_panel.
     
 
     def reset_workflow(self):
