@@ -1,100 +1,100 @@
-2025-05-17 12:54:28,661 - gui.step3_results - INFO - Initializing results panel
-2025-05-17 12:54:28,662 - gui.project_queue_panel - INFO - Initializing project queue panel
-2025-05-17 12:54:28,662 - core.project_manager - INFO - Progress callback registered
-2025-05-17 12:54:28,663 - core.project_manager - INFO - Project completion callback registered
-2025-05-17 12:54:28,665 - gui.step2_convert - INFO - Queue manager set in ConvertPanel
-2025-05-17 12:54:28,666 - __main__ - INFO - Starting application with panel index set to 4
-2025-05-17 12:55:01,543 - __main__ - INFO - Transitioning to Import Panel to create a new project.
-2025-05-17 12:55:03,730 - gui.step1_import - INFO - Auto mode set to: False
-2025-05-17 12:55:04,752 - gui.step1_import - INFO - Auto mode set to: True
-2025-05-17 12:55:07,483 - gui.step1_import - INFO - Browse button clicked, calling select_folder
-2025-05-17 12:55:07,485 - gui.step1_import - INFO - Opening folder selection dialog
-2025-05-17 12:56:49,836 - gui.step1_import - INFO - Folder selection dialog returned: /Volumes/Media HD/Tests/02 Test Project 2
-2025-05-17 12:56:49,837 - gui.step1_import - INFO - Selected folder: /Volumes/Media HD/Tests/02 Test Project 2
-2025-05-17 12:56:49,837 - gui.step1_import - INFO - Attempting to clear existing Finder labels for /Volumes/Media HD/Tests/02 Test Project 2
-2025-05-17 12:56:50,036 - core.macos_utils - INFO - Successfully set Finder label 'None' for folder: /Volumes/Media HD/Tests/02 Test Project 2 (with update command)
-2025-05-17 12:56:50,036 - gui.step1_import - INFO - Attempting to set 'Orange' Finder label for /Volumes/Media HD/Tests/02 Test Project 2
-2025-05-17 12:56:50,207 - core.macos_utils - INFO - Successfully set Finder label 'Orange' for folder: /Volumes/Media HD/Tests/02 Test Project 2 (with update command)
-2025-05-17 12:57:05,699 - gui.step1_import - INFO - Browse button clicked, calling select_folder
-2025-05-17 12:57:05,701 - gui.step1_import - INFO - Opening folder selection dialog
-2025-05-17 12:57:15,261 - gui.step1_import - INFO - Folder selection dialog returned: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah
-2025-05-17 12:57:15,262 - gui.step1_import - INFO - Selected folder: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah
-2025-05-17 12:57:15,262 - gui.step1_import - INFO - Attempting to clear existing Finder labels for /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah
-2025-05-17 12:57:15,437 - core.macos_utils - INFO - Successfully set Finder label 'None' for folder: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah (with update command)
-2025-05-17 12:57:15,438 - gui.step1_import - INFO - Attempting to set 'Orange' Finder label for /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah
-2025-05-17 12:57:15,612 - core.macos_utils - INFO - Successfully set Finder label 'Orange' for folder: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah (with update command)
-2025-05-17 12:57:15,614 - gui.step1_import - INFO - Found 2 CAM folders with 5 video files
-2025-05-17 12:57:18,030 - gui.step1_import - INFO - Adding 5 files to queue
-2025-05-17 12:57:18,033 - __main__ - INFO - Main window received 5 files from import panel
-2025-05-17 12:57:18,034 - core.queue_manager - INFO - Sorting files by camera number and file number
-2025-05-17 12:57:18,035 - core.queue_manager - INFO - Added 5 files to queue
-2025-05-17 12:57:18,037 - gui.step2_convert - INFO - Queue updated with 5 files
-2025-05-17 12:57:18,045 - gui.step2_convert - INFO - Parent folder path set in ConvertPanel: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah
-2025-05-17 12:57:18,046 - __main__ - INFO - Passing parent folder path to ConvertPanel: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah
-2025-05-17 12:57:18,047 - gui.step2_convert - INFO - Rename folders option set in ConvertPanel: True
-2025-05-17 12:57:18,047 - __main__ - INFO - Passing rename folders option to ConvertPanel: True
-2025-05-17 12:57:18,048 - gui.step2_convert - INFO - Auto mode set in ConvertPanel: True
-2025-05-17 12:57:18,048 - __main__ - INFO - Passing auto mode option to ConvertPanel: True
-2025-05-17 12:57:18,051 - gui.step2_convert - INFO - Auto mode enabled: Starting compression automatically
-2025-05-17 12:57:18,262 - core.video_compression - INFO - Estimated output size: 16.90 MB
-2025-05-17 12:57:18,364 - core.video_compression - INFO - Estimated output size: 72.45 MB
-2025-05-17 12:57:18,461 - core.video_compression - INFO - Estimated output size: 75.21 MB
-2025-05-17 12:57:18,559 - core.file_preparation - INFO - Attempting to rename folder: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO
-2025-05-17 12:57:18,560 - core.file_preparation - INFO - Renamed folder to: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old
-2025-05-17 12:57:18,560 - gui.step2_convert - INFO - Renamed video folder: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO to /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old
-2025-05-17 12:57:18,561 - core.file_preparation - INFO - Copying non-CAM folders from /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old to /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO
-2025-05-17 12:57:18,562 - core.file_preparation - INFO - Processing non-CAM folder: DRONE
-2025-05-17 12:57:18,562 - core.video_compression - INFO - Estimated output size: 229.76 MB
-2025-05-17 12:57:18,622 - core.video_compression - ERROR - Failed to get video duration: Command '['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', '/Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_01250456_C219.mov']' returned non-zero exit status 1.
-2025-05-17 12:57:18,623 - core.video_compression - WARNING - Could not determine video duration for size estimation
-2025-05-17 12:57:20,490 - core.file_preparation - INFO - Copied file: DJI_0059.MP4
-2025-05-17 12:57:20,502 - core.file_preparation - INFO - Copied file: .DS_Store
-2025-05-17 12:57:20,837 - core.file_preparation - INFO - Copied file: DJI_0061.MP4
-2025-05-17 12:57:22,469 - core.file_preparation - INFO - Copied file: DJI_0060.MP4
-2025-05-17 12:57:22,470 - core.file_preparation - INFO - Completed copying folder: DRONE
-2025-05-17 12:57:22,471 - core.file_preparation - INFO - Copied 1 non-CAM folders
-2025-05-17 12:57:22,472 - gui.step2_convert - INFO - Copied 1 non-CAM folders from /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old to /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO
-2025-05-17 12:57:22,472 - gui.step2_convert - INFO - Updated path after rename: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mov -> /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01240755_C001.mov
-2025-05-17 12:57:22,472 - gui.step2_convert - INFO - Updated path after rename: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mov -> /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C003.mov
-2025-05-17 12:57:22,472 - gui.step2_convert - INFO - Updated path after rename: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mov -> /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C002.mov
-2025-05-17 12:57:22,473 - gui.step2_convert - INFO - Updated path after rename: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_04080255_C079.mov -> /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_04080255_C079.mov
-2025-05-17 12:57:22,473 - gui.step2_convert - INFO - Updated path after rename: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_01250456_C219.mov -> /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_01250456_C219.mov
-2025-05-17 12:57:22,473 - gui.step2_convert - INFO - Updated 5 file paths after renaming directory
-2025-05-17 12:57:22,474 - core.queue_manager - INFO - Queue cleared
-2025-05-17 12:57:22,474 - core.queue_manager - INFO - Sorting files by camera number and file number
-2025-05-17 12:57:22,474 - core.queue_manager - INFO - Added 5 files to queue
-2025-05-17 12:57:22,475 - gui.step2_convert - INFO - Starting compression process
-2025-05-17 12:57:22,476 - core.queue_manager - INFO - Starting queue processing
-2025-05-17 12:57:22,476 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1' to '/Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1'
-2025-05-17 12:57:22,476 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mp4
-2025-05-17 12:57:22,477 - core.queue_manager - INFO - Processing file 1/5: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01240755_C001.mov
-2025-05-17 12:57:22,477 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01240755_C001.mov
-2025-05-17 12:57:22,572 - core.video_compression - INFO - Video duration: 4.083333 seconds
-2025-05-17 12:57:22,572 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01240755_C001.mov
-2025-05-17 12:57:23,836 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mp4
-2025-05-17 12:57:23,837 - core.queue_manager - INFO - Compression result: 90.9% reduction, saved 16.18 MB
-2025-05-17 12:57:23,837 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01240755_C001.mov
-2025-05-17 12:57:23,837 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1' to '/Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1'
-2025-05-17 12:57:23,837 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mp4
-2025-05-17 12:57:23,837 - core.queue_manager - INFO - Processing file 2/5: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C002.mov
-2025-05-17 12:57:23,838 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C002.mov
-2025-05-17 12:57:23,954 - core.video_compression - INFO - Video duration: 18.166667 seconds
-2025-05-17 12:57:23,955 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C002.mov
-2025-05-17 12:57:26,976 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mp4
-2025-05-17 12:57:26,977 - core.queue_manager - INFO - Compression result: 88.6% reduction, saved 203.37 MB
-2025-05-17 12:57:26,977 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C002.mov
-2025-05-17 12:57:26,977 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1' to '/Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1'
-2025-05-17 12:57:26,978 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mp4
-2025-05-17 12:57:26,978 - core.queue_manager - INFO - Processing file 3/5: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C003.mov
-2025-05-17 12:57:26,978 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C003.mov
-2025-05-17 12:57:27,085 - core.video_compression - INFO - Video duration: 17.5 seconds
-2025-05-17 12:57:27,085 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C003.mov
-2025-05-17 12:57:30,019 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mp4
-2025-05-17 12:57:30,021 - core.queue_manager - INFO - Compression result: 85.4% reduction, saved 116.21 MB
-2025-05-17 12:57:30,021 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C003.mov
-2025-05-17 12:57:30,021 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2' to '/Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2'
-2025-05-17 12:57:30,021 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO/CAM 2/A001_01250456_C219.mp4
-2025-05-17 12:57:30,022 - core.queue_manager - INFO - Processing file 4/5: /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_01250456_C219.mov
-2025-05-17 12:57:30,022 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_01250456_C219.mov
-2025-05-17 12:57:30,149 - core.video_compression - INFO - Video duration: 570.166667 seconds
-2025-05-17 12:57:30,149 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project 2/2023-06-17 Laura & Sarah/03 MEDIA/01 VIDEO.old/CAM 2/A001_01250456_C219.mov
+2025-05-17 13:54:32,865 - core.video_compression - ERROR - Failed to get video duration: Command '['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 1/A001_02161527_C416.mov']' returned non-zero exit status 1.
+2025-05-17 13:54:32,865 - core.video_compression - WARNING - Could not determine video duration for size estimation
+2025-05-17 13:54:32,925 - core.video_compression - ERROR - Failed to get video duration: Command '['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 1/A001_02161944_C558.mov']' returned non-zero exit status 1.
+2025-05-17 13:54:32,925 - core.video_compression - WARNING - Could not determine video duration for size estimation
+2025-05-17 13:54:32,991 - core.video_compression - ERROR - Failed to get video duration: Command '['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 1/A001_02162052_C590.mov']' returned non-zero exit status 1.
+2025-05-17 13:54:32,992 - core.video_compression - WARNING - Could not determine video duration for size estimation
+2025-05-17 13:54:33,053 - core.video_compression - ERROR - Failed to get video duration: Command '['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 1/A001_02161625_C462.mov']' returned non-zero exit status 1.
+2025-05-17 13:54:33,053 - core.video_compression - WARNING - Could not determine video duration for size estimation
+2025-05-17 13:54:33,115 - core.video_compression - ERROR - Failed to get video duration: Command '['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 1/A001_02161243_C327.mov']' returned non-zero exit status 1.
+2025-05-17 13:54:33,116 - core.video_compression - WARNING - Could not determine video duration for size estimation
+2025-05-17 13:54:33,176 - core.video_compression - ERROR - Failed to get video duration: Command '['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 1/A001_02161313_C350.mov']' returned non-zero exit status 1.
+2025-05-17 13:54:33,177 - core.video_compression - WARNING - Could not determine video duration for size estimation
+2025-05-17 13:54:33,241 - core.video_compression - ERROR - Failed to get video duration: Command '['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 1/A001_02162040_C577.mov']' returned non-zero exit status 1.
+2025-05-17 13:54:33,241 - core.video_compression - WARNING - Could not determine video duration for size estimation
+2025-05-17 13:54:33,311 - core.video_compression - ERROR - Failed to get video duration: Command '['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 1/A001_02161636_C485.mov']' returned non-zero exit status 1.
+2025-05-17 13:54:33,312 - core.video_compression - WARNING - Could not determine video duration for size estimation
+2025-05-17 13:54:33,382 - core.video_compression - ERROR - Failed to get video duration: Command '['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 3/A003_06180529_C012.mov']' returned non-zero exit status 1.
+2025-05-17 13:54:33,383 - core.video_compression - WARNING - Could not determine video duration for size estimation
+2025-05-17 13:54:33,450 - core.video_compression - ERROR - Failed to get video duration: Command '['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 3/A003_06180529_C013.mov']' returned non-zero exit status 1.
+2025-05-17 13:54:33,450 - core.video_compression - WARNING - Could not determine video duration for size estimation
+2025-05-17 13:54:33,512 - core.video_compression - ERROR - Failed to get video duration: Command '['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 3/A003_06180532_C014.mov']' returned non-zero exit status 1.
+2025-05-17 13:54:33,513 - core.video_compression - WARNING - Could not determine video duration for size estimation
+2025-05-17 13:54:33,576 - core.video_compression - ERROR - Failed to get video duration: Command '['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 3/A003_06180532_C015.mov']' returned non-zero exit status 1.
+2025-05-17 13:54:33,576 - core.video_compression - WARNING - Could not determine video duration for size estimation
+2025-05-17 13:54:33,636 - core.video_compression - ERROR - Failed to get video duration: Command '['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 3/A003_06180540_C016.mov']' returned non-zero exit status 1.
+2025-05-17 13:54:33,636 - core.video_compression - WARNING - Could not determine video duration for size estimation
+2025-05-17 13:54:33,705 - core.video_compression - ERROR - Failed to get video duration: Command '['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 3/A003_06180845_C018.mov']' returned non-zero exit status 1.
+2025-05-17 13:54:33,705 - core.video_compression - WARNING - Could not determine video duration for size estimation
+2025-05-17 13:54:33,774 - core.video_compression - ERROR - Failed to get video duration: Command '['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 3/A003_06180546_C017.mov']' returned non-zero exit status 1.
+2025-05-17 13:54:33,775 - core.video_compression - WARNING - Could not determine video duration for size estimation
+2025-05-17 13:54:33,837 - core.video_compression - ERROR - Failed to get video duration: Command '['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 2/A002_06171231_C054.mov']' returned non-zero exit status 1.
+2025-05-17 13:54:33,837 - core.video_compression - WARNING - Could not determine video duration for size estimation
+2025-05-17 13:54:33,899 - core.video_compression - ERROR - Failed to get video duration: Command '['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 2/A002_06171230_C052.mov']' returned non-zero exit status 1.
+2025-05-17 13:54:33,900 - core.video_compression - WARNING - Could not determine video duration for size estimation
+2025-05-17 13:54:33,976 - core.video_compression - ERROR - Failed to get video duration: Command '['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 2/A002_06171231_C053.mov']' returned non-zero exit status 1.
+2025-05-17 13:54:33,976 - core.video_compression - WARNING - Could not determine video duration for size estimation
+2025-05-17 13:54:34,050 - core.video_compression - ERROR - Failed to get video duration: Command '['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 2/A002_06171254_C060.mov']' returned non-zero exit status 1.
+2025-05-17 13:54:34,051 - core.video_compression - WARNING - Could not determine video duration for size estimation
+2025-05-17 13:54:34,123 - core.video_compression - ERROR - Failed to get video duration: Command '['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 2/A002_06171249_C058.mov']' returned non-zero exit status 1.
+2025-05-17 13:54:34,124 - core.video_compression - WARNING - Could not determine video duration for size estimation
+2025-05-17 13:54:34,190 - core.video_compression - ERROR - Failed to get video duration: Command '['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 2/A002_06171411_C061.mov']' returned non-zero exit status 1.
+2025-05-17 13:54:34,190 - core.video_compression - WARNING - Could not determine video duration for size estimation
+2025-05-17 13:54:34,251 - core.video_compression - ERROR - Failed to get video duration: Command '['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 2/A002_06171233_C056.mov']' returned non-zero exit status 1.
+2025-05-17 13:54:34,252 - core.video_compression - WARNING - Could not determine video duration for size estimation
+2025-05-17 13:54:34,309 - core.video_compression - ERROR - Failed to get video duration: Command '['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 2/A002_06171715_C063.mov']' returned non-zero exit status 1.
+2025-05-17 13:54:34,310 - core.video_compression - WARNING - Could not determine video duration for size estimation
+2025-05-17 13:54:34,366 - core.video_compression - ERROR - Failed to get video duration: Command '['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 2/A002_06171444_C062.mov']' returned non-zero exit status 1.
+2025-05-17 13:54:34,367 - core.video_compression - WARNING - Could not determine video duration for size estimation
+2025-05-17 13:54:34,426 - core.video_compression - ERROR - Failed to get video duration: Command '['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 2/A002_06171232_C055.mov']' returned non-zero exit status 1.
+2025-05-17 13:54:34,427 - core.video_compression - WARNING - Could not determine video duration for size estimation
+2025-05-17 13:54:34,485 - core.video_compression - ERROR - Failed to get video duration: Command '['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 2/A002_06171731_C064.mov']' returned non-zero exit status 1.
+2025-05-17 13:54:34,485 - core.video_compression - WARNING - Could not determine video duration for size estimation
+2025-05-17 13:54:34,545 - core.video_compression - ERROR - Failed to get video duration: Command '['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 2/A002_06171250_C059.mov']' returned non-zero exit status 1.
+2025-05-17 13:54:34,545 - core.video_compression - WARNING - Could not determine video duration for size estimation
+2025-05-17 13:54:34,606 - core.video_compression - ERROR - Failed to get video duration: Command '['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 2/A002_06171249_C057.mov']' returned non-zero exit status 1.
+2025-05-17 13:54:34,607 - core.video_compression - WARNING - Could not determine video duration for size estimation
+2025-05-17 13:54:34,879 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 1/A001_02161218_C293.mp4
+2025-05-17 13:54:34,881 - core.queue_manager - INFO - Compression result: 96.6% reduction, saved 409.69 MB
+2025-05-17 13:54:34,881 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO.old/CAM 1/A001_02161218_C293.mov
+2025-05-17 13:54:34,881 - core.file_preparation - INFO - Converting path from '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO.old/CAM 1' to '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 1'
+2025-05-17 13:54:34,881 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 1/A001_02161219_C294.mp4
+2025-05-17 13:54:34,881 - core.queue_manager - INFO - Processing file 5/331: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO.old/CAM 1/A001_02161219_C294.mov
+2025-05-17 13:54:34,881 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO.old/CAM 1/A001_02161219_C294.mov
+2025-05-17 13:54:35,003 - core.video_compression - INFO - Video duration: 22.75 seconds
+2025-05-17 13:54:35,003 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO.old/CAM 1/A001_02161219_C294.mov
+2025-05-17 13:54:37,760 - gui.step2_convert - INFO - Cancelling compression
+2025-05-17 13:54:37,761 - core.queue_manager - INFO - Cancelling queue processing
+2025-05-17 13:54:37,761 - core.video_compression - INFO - Terminating active compression process
+2025-05-17 13:54:37,981 - core.video_compression - INFO - Cancelling compression due to user request
+2025-05-17 13:54:38,020 - core.video_compression - INFO - Removed partial output file due to cancellation: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 1/A001_02161219_C294.mp4
+2025-05-17 13:54:38,020 - core.queue_manager - INFO - Compression of /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO.old/CAM 1/A001_02161219_C294.mov was cancelled by user
+2025-05-17 13:54:38,021 - core.queue_manager - INFO - Queue processing was cancelled
+2025-05-17 13:54:38,021 - core.queue_manager - INFO - Queue processing completed
+2025-05-17 13:54:38,021 - gui.step2_convert - INFO - Total compression duration: 19.55 seconds
+2025-05-17 13:54:38,031 - core.queue_manager - INFO - Active compression process terminated
+2025-05-17 13:54:38,032 - core.queue_manager - INFO - Marked current file as cancelled: /Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO.old/CAM 1/A001_02161219_C295.mov
+2025-05-17 13:54:38,039 - __main__ - INFO - Main window received 'compression_complete' signal from ConvertPanel. Results: {'/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO.old/CAM 1/A001_02161216_C290.mov': {'input_size': 800741440, 'output_size': 38939781, 'size_diff': 761801659, 'reduction_percent': 95.13703437154444, 'input_path': '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO.old/CAM 1/A001_02161216_C290.mov', 'output_path': '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 1/A001_02161216_C290.mp4', 'duration': 6.458662033081055, 'input_size_human': '763.65 MB', 'output_size_human': '37.14 MB', 'size_diff_human': '726.51 MB'}, '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO.old/CAM 1/A001_02161216_C291.mov': {'input_size': 222304268, 'output_size': 14097883, 'size_diff': 208206385, 'reduction_percent': 93.6582940458885, 'input_path': '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO.old/CAM 1/A001_02161216_C291.mov', 'output_path': '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 1/A001_02161216_C291.mp4', 'duration': 2.369596004486084, 'input_size_human': '212.01 MB', 'output_size_human': '13.44 MB', 'size_diff_human': '198.56 MB'}, '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO.old/CAM 1/A001_02161218_C292.mov': {'input_size': 387820708, 'output_size': 16176543, 'size_diff': 371644165, 'reduction_percent': 95.82886043310508, 'input_path': '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO.old/CAM 1/A001_02161218_C292.mov', 'output_path': '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 1/A001_02161218_C292.mp4', 'duration': 3.5139687061309814, 'input_size_human': '369.85 MB', 'output_size_human': '15.43 MB', 'size_diff_human': '354.43 MB'}, '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO.old/CAM 1/A001_02161218_C293.mov': {'input_size': 444616252, 'output_size': 15029735, 'size_diff': 429586517, 'reduction_percent': 96.61961636975879, 'input_path': '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO.old/CAM 1/A001_02161218_C293.mov', 'output_path': '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO/CAM 1/A001_02161218_C293.mp4', 'duration': 4.062467098236084, 'input_size_human': '424.02 MB', 'output_size_human': '14.33 MB', 'size_diff_human': '409.69 MB'}, '/Volumes/Media HD/Our Dropbox/ARCHIVE/2023/VIDEO/WEDDINGS/2023-07-22 Kelly & Robert/03 MEDIA/01 VIDEO.old/CAM 1/A001_02161219_C294.mov': {'error': 'Cancelled By User'}}
+2025-05-17 13:54:38,040 - gui.step2_convert - INFO - Compression was cancelled. Verification step will be skipped.
+2025-05-17 13:55:04,088 - __main__ - INFO - Saved window geometry and state
+2025-05-17 13:55:08,898 - __main__ - INFO - Starting Forever Yours Compression Tool
+2025-05-17 13:55:09,018 - __main__ - INFO - Creating main application window
+2025-05-17 13:55:09,034 - __main__ - INFO - Restored window geometry and state from settings
+2025-05-17 13:55:09,034 - core.queue_manager - INFO - Queue manager initialized
+2025-05-17 13:55:09,034 - core.project_queue_manager - INFO - Project queue manager initialized
+2025-05-17 13:55:09,034 - core.queue_manager - INFO - Queue manager initialized
+2025-05-17 13:55:09,035 - core.project_manager - INFO - Project manager initialized
+2025-05-17 13:55:09,035 - gui.step1_import - INFO - Initializing import panel
+2025-05-17 13:55:09,135 - gui.step2_convert - INFO - Initializing conversion panel
+2025-05-17 13:55:09,136 - gui.step2b_verify - INFO - Initializing verification panel
+2025-05-17 13:55:09,137 - gui.step3_results - INFO - Initializing results panel
+2025-05-17 13:55:09,138 - gui.project_queue_panel - INFO - Initializing project queue panel
+2025-05-17 13:55:09,139 - core.project_manager - INFO - Progress callback registered
+2025-05-17 13:55:09,139 - core.project_manager - INFO - Project completion callback registered
+2025-05-17 13:55:09,141 - gui.step2_convert - INFO - Queue manager set in ConvertPanel
+2025-05-17 13:55:09,142 - __main__ - INFO - Starting application with panel index set to 4
+2025-05-17 13:55:12,516 - gui.project_queue_panel - INFO - Add project requested - emitting signal for project creation workflow
+2025-05-17 13:55:12,517 - __main__ - INFO - Handling add project request - starting project creation workflow
+2025-05-17 13:55:12,518 - core.queue_manager - INFO - Queue cleared
+2025-05-17 13:55:12,518 - gui.step1_import - INFO - Resetting import panel state
+2025-05-17 13:55:12,518 - __main__ - INFO - Transitioning to Import Panel to create a new project.

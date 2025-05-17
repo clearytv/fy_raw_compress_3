@@ -10,6 +10,7 @@ This file initializes the GUI and connects core functionality.
 import sys
 import os
 import logging
+from datetime import datetime
 from PyQt6.QtWidgets import QApplication, QMainWindow, QStackedWidget, QVBoxLayout, QWidget
 from PyQt6.QtCore import QSettings, Qt
 from core.log_rotation import get_line_limited_logger
@@ -130,6 +131,7 @@ class MainWindow(QMainWindow):
         # Project queue panel signals
         self.project_queue_panel.back_clicked.connect(lambda: self.go_to_import_panel())
         self.project_queue_panel.project_selected.connect(self.edit_project)
+        self.project_queue_panel.add_project_requested.connect(self.handle_add_project_request)
         
     def on_files_selected(self, files):
         """Handle files selected from import panel."""
@@ -217,6 +219,38 @@ class MainWindow(QMainWindow):
             
             # Save the queue state
             self.project_queue_manager.save_state()
+        
+        # Handle case when we're creating a new project for the queue
+        elif hasattr(self, 'creating_project_for_queue') and self.creating_project_for_queue:
+            logger.info("Creating new project for queue from completed workflow")
+            
+            # Create a new project from the current workflow
+            if self.queue_manager.files:
+                project_id = self.project_queue_manager.generate_id()
+                parent_folder = self.convert_panel.parent_folder_path
+                
+                project = {
+                    "id": project_id,
+                    "name": os.path.basename(parent_folder) if parent_folder else "Untitled Project",
+                    "status": "pending",
+                    "input_files": self.queue_manager.files.copy(),
+                    "parent_folder": parent_folder,
+                    "created_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                }
+                
+                # Add to queue
+                self.project_queue_manager.add_project(project_id, project)
+                logger.info(f"Added new project {project_id} to queue")
+                
+                # Save the queue state
+                self.project_queue_manager.save_state()
+                
+                # Reset flag
+                self.creating_project_for_queue = False
+                
+                # Return to queue panel
+                self.stacked_widget.setCurrentIndex(4)  # Project queue panel
+                return  # Skip the normal transition to ResultsPanel
         
         # Get total compression duration from ConvertPanel
         total_duration = self.convert_panel.total_compression_duration
@@ -421,6 +455,10 @@ class MainWindow(QMainWindow):
         # Clear current project reference
         if hasattr(self, 'current_project_id'):
             self.current_project_id = None
+            
+        # Clear project creation flag
+        if hasattr(self, 'creating_project_for_queue'):
+            self.creating_project_for_queue = False
         
         # Return to project queue panel instead of import panel
         self.stacked_widget.setCurrentIndex(4)  # Project queue panel
@@ -435,6 +473,10 @@ class MainWindow(QMainWindow):
         """Navigate back to the project queue panel."""
         logger.info("Returning to Project Queue Panel.")
         self.stacked_widget.setCurrentIndex(4)  # Project queue panel index
+        
+        # If we just added a project to the queue, refresh the panel
+        if hasattr(self, 'project_queue_panel'):
+            self.project_queue_panel.refresh_projects()
     
     def edit_project(self, project_id):
         """
@@ -473,6 +515,23 @@ class MainWindow(QMainWindow):
             self.stacked_widget.setCurrentIndex(0)
         else:
             logger.warning(f"Project {project_id} has no input files to edit")
+            
+    def handle_add_project_request(self):
+        """
+        Handle request to add a new project to the queue.
+        This method is called when the user clicks 'Add Project' in the ProjectQueuePanel.
+        """
+        logger.info("Handling add project request - starting project creation workflow")
+        
+        # Set flag to indicate we're creating a project for the queue
+        self.creating_project_for_queue = True
+        
+        # Reset any previous state
+        self.queue_manager.clear_queue()
+        self.import_panel.reset_panel()
+        
+        # Switch to the import panel to begin project creation
+        self.go_to_import_panel()
             
     def save_window_geometry(self):
         """Save the window's geometry (size and position)"""

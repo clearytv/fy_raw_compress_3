@@ -47,6 +47,9 @@ class ProjectQueuePanel(QWidget):
     # Signal to notify when the queue status changes
     queue_status_changed = pyqtSignal(dict)
     
+    # Signal to notify main window when user wants to add a new project
+    add_project_requested = pyqtSignal()
+    
     def __init__(self, parent=None, project_manager=None):
         """
         Initialize the project queue panel.
@@ -570,15 +573,10 @@ class ProjectQueuePanel(QWidget):
             self.refresh_projects()
     
     def _add_project_dialog(self):
-        """Show dialog to add a new project to the queue."""
-        # This is a placeholder - in a real implementation, this would open a dialog
-        # to allow the user to select files and settings for a new project
-        QMessageBox.information(
-            self,
-            "Add Project",
-            "This feature would normally open the project creation workflow.\n\n"
-            "Currently, please use the main workflow to create projects."
-        )
+        """Signal that the user wants to add a new project to the queue."""
+        # Emit the signal to notify the parent window to start the project creation workflow
+        logger.info("Add project requested - emitting signal for project creation workflow")
+        self.add_project_requested.emit()
     
     def _toggle_queue_processing(self):
         """Start or pause queue processing."""
