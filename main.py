@@ -520,18 +520,127 @@ class MainWindow(QMainWindow):
         """
         Handle request to add a new project to the queue.
         This method is called when the user clicks 'Add Project' in the ProjectQueuePanel.
+        
+        Modified to directly add projects to the queue without processing:
+        - Shows a folder selection dialog
+        - Adds the selected folder as a pending project to the queue
+        - Returns to the ProjectQueuePanel
         """
-        logger.info("Handling add project request - starting project creation workflow")
+        logger.info("Handling add project request - adding project to queue directly")
         
-        # Set flag to indicate we're creating a project for the queue
-        self.creating_project_for_queue = True
+        # Open folder dialog to select project folder(s)
+        from PyQt6.QtWidgets import QFileDialog
         
-        # Reset any previous state
-        self.queue_manager.clear_queue()
-        self.import_panel.reset_panel()
+        folder = QFileDialog.getExistingDirectory(
+            self,
+            "Select Wedding Footage Folder",
+            os.path.expanduser("~"),
+            QFileDialog.Option.ShowDirsOnly
+        )
         
-        # Switch to the import panel to begin project creation
-        self.go_to_import_panel()
+        if not folder:
+            logger.info("No folder selected, canceling project addition")
+            return
+            
+        logger.info(f"Selected folder: {folder}")
+        
+        # Find video files in the project structure (similar to ImportPanel.select_folder)
+        try:
+            # Expected standard structure
+            media_path = os.path.join(folder, "03 MEDIA")
+            video_path = os.path.join(media_path, "01 VIDEO")
+            cam_folders = []
+            input_files = []
+            
+            if not os.path.exists(media_path):
+                from PyQt6.QtWidgets import QMessageBox
+                QMessageBox.warning(
+                    self,
+                    "Invalid Folder Structure",
+                    f"'03 MEDIA' folder not found in {folder}.\n\nPlease select a folder with the standard wedding structure."
+                )
+                return
+                
+            if not os.path.exists(video_path):
+                from PyQt6.QtWidgets import QMessageBox
+                QMessageBox.warning(
+                    self,
+                    "Invalid Folder Structure",
+                    f"'01 VIDEO' folder not found in '03 MEDIA'.\n\nPlease select a folder with the standard wedding structure."
+                )
+                return
+            
+            # Find CAM folders
+            for item in os.listdir(video_path):
+                item_path = os.path.join(video_path, item)
+                if os.path.isdir(item_path) and "CAM" in item.upper():
+                    cam_folders.append(item_path)
+            
+            if not cam_folders:
+                from PyQt6.QtWidgets import QMessageBox
+                QMessageBox.warning(
+                    self,
+                    "No CAM Folders",
+                    "No CAM folders found in the '01 VIDEO' directory.\n\nPlease select a folder with the standard wedding structure."
+                )
+                return
+                
+            # Find video files in CAM folders
+            for cam_folder in cam_folders:
+                for file_name in os.listdir(cam_folder):
+                    file_path = os.path.join(cam_folder, file_name)
+                    if os.path.isfile(file_path):
+                        _, ext = os.path.splitext(file_path)
+                        if ext.lower() in ['.mov', '.mp4']:
+                            input_files.append(file_path)
+            
+            if not input_files:
+                from PyQt6.QtWidgets import QMessageBox
+                QMessageBox.warning(
+                    self,
+                    "No Video Files",
+                    "No valid video files found in CAM folders.\n\nPlease select a folder with video files."
+                )
+                return
+                
+            # Create a new project and add to queue
+            project_name = os.path.basename(folder)
+            
+            # Import the default compression settings
+            from core.video_compression import get_compression_settings
+            
+            project = {
+                "name": project_name,
+                "input_files": input_files,
+                "parent_folder": folder,
+                "created_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                "output_dir": os.path.join(folder, "03 MEDIA", "01 VIDEO Compressed"),
+                "settings": get_compression_settings()  # Add default compression settings
+            }
+            
+            # Add to queue without processing - this returns the project_id
+            project_id = self.project_queue_manager.add_project(project)
+            logger.info(f"Added new project {project_id} with {len(input_files)} files to queue")
+            
+            # Refresh the project queue panel
+            self.project_queue_panel.refresh_projects()
+            
+            # Show confirmation
+            from PyQt6.QtWidgets import QMessageBox
+            QMessageBox.information(
+                self,
+                "Project Added",
+                f"Project '{project_name}' with {len(input_files)} video files has been added to the queue."
+            )
+            
+        except Exception as e:
+            logger.error(f"Error adding project to queue: {str(e)}", exc_info=True)
+            from PyQt6.QtWidgets import QMessageBox
+            QMessageBox.critical(
+                self,
+                "Error",
+                f"An error occurred while adding the project to the queue:\n\n{str(e)}"
+            )
             
     def save_window_geometry(self):
         """Save the window's geometry (size and position)"""

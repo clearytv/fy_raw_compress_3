@@ -50,6 +50,14 @@ class ProjectQueuePanel(QWidget):
     # Signal to notify main window when user wants to add a new project
     add_project_requested = pyqtSignal()
     
+    # Signal for thread-safe progress updates (emitted from background thread)
+    # Parameters: project_id, project_name, project_progress, overall_progress
+    progress_update = pyqtSignal(str, str, float, float)
+    
+    # Signal for thread-safe project completion notification
+    # Parameters: project_id, project_name, success
+    project_complete = pyqtSignal(str, str, bool)
+    
     def __init__(self, parent=None, project_manager=None):
         """
         Initialize the project queue panel.
@@ -78,6 +86,10 @@ class ProjectQueuePanel(QWidget):
         # Register callbacks with project manager
         self.project_manager.register_progress_callback(self._handle_progress_update)
         self.project_manager.register_on_project_complete_callback(self._handle_project_complete)
+        
+        # Connect signals to UI update slots (ensures UI updates happen on main thread)
+        self.progress_update.connect(self._update_ui_progress)
+        self.project_complete.connect(self._update_ui_project_complete)
         
         # Create UI components
         self._init_ui()
@@ -680,14 +692,17 @@ class ProjectQueuePanel(QWidget):
         self.refresh_projects()
     
     def _handle_progress_update(
-        self, 
-        project_id: str, 
-        project: dict, 
-        project_progress: float, 
+        self,
+        project_id: str,
+        project: dict,
+        project_progress: float,
         overall_progress: float
     ):
         """
         Handle progress updates from ProjectManager.
+        
+        This method is called from a background thread, so we emit a signal
+        to ensure UI updates happen on the main thread.
         
         Args:
             project_id: ID of the current project
@@ -695,8 +710,31 @@ class ProjectQueuePanel(QWidget):
             project_progress: Progress of the current project (0.0-1.0)
             overall_progress: Overall progress of the queue (0.0-1.0)
         """
-        # Update current project label
+        # Get project name
         project_name = project.get("name", "Unnamed Project")
+        
+        # Emit signal to update UI on main thread
+        self.progress_update.emit(project_id, project_name, project_progress, overall_progress)
+    
+    def _update_ui_progress(
+        self,
+        project_id: str,
+        project_name: str,
+        project_progress: float,
+        overall_progress: float
+    ):
+        """
+        Update UI components with progress information.
+        
+        This method is connected to the progress_update signal and runs on the main thread.
+        
+        Args:
+            project_id: ID of the current project
+            project_name: Name of the current project
+            project_progress: Progress of the current project (0.0-1.0)
+            overall_progress: Overall progress of the queue (0.0-1.0)
+        """
+        # Update current project label
         self.current_project_label.setText(f"{project_name} (ID: {project_id})")
         
         # Update progress bars
@@ -719,7 +757,7 @@ class ProjectQueuePanel(QWidget):
             elapsed_seconds = time.time() - self.start_time
             
             # Only estimate if we have enough data (at least 5% progress)
-            if overall_progress >= 0.05:  
+            if overall_progress >= 0.05:
                 total_seconds_estimate = elapsed_seconds / overall_progress
                 remaining_seconds = total_seconds_estimate - elapsed_seconds
                 
@@ -734,16 +772,37 @@ class ProjectQueuePanel(QWidget):
         """
         Handle project completion notification from ProjectManager.
         
+        This method is called from a background thread, so we emit a signal
+        to ensure UI updates happen on the main thread.
+        
         Args:
             project_id: ID of the completed project
             project: Project dictionary
             success: Whether the project completed successfully
         """
-        if success:
-            logger.info(f"Project {project_id} ({project.get('name', 'Unnamed')}) completed successfully")
-        else:
-            logger.warning(f"Project {project_id} ({project.get('name', 'Unnamed')}) failed")
+        # Get project name
+        project_name = project.get('name', 'Unnamed')
         
+        # Log completion
+        if success:
+            logger.info(f"Project {project_id} ({project_name}) completed successfully")
+        else:
+            logger.warning(f"Project {project_id} ({project_name}) failed")
+        
+        # Emit signal to update UI on main thread
+        self.project_complete.emit(project_id, project_name, success)
+    
+    def _update_ui_project_complete(self, project_id: str, project_name: str, success: bool):
+        """
+        Update UI after project completion.
+        
+        This method is connected to the project_complete signal and runs on the main thread.
+        
+        Args:
+            project_id: ID of the completed project
+            project_name: Name of the completed project
+            success: Whether the project completed successfully
+        """
         # Refresh the project table to show updated statuses
         self.refresh_projects()
         

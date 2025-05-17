@@ -602,6 +602,15 @@ class ProjectQueueManager:
         
         return None
 
+    def generate_id(self) -> str:
+        """
+        Generate a unique project ID.
+        
+        Returns:
+            str: A unique project identifier
+        """
+        return f"project_{int(time.time())}_{len(self.projects)}"
+    
     def get_results_summary(self) -> Dict[str, Any]:
         """
         Get a summary of project processing results.
