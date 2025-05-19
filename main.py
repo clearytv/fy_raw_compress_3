@@ -614,7 +614,7 @@ class MainWindow(QMainWindow):
                 "input_files": input_files,
                 "parent_folder": folder,
                 "created_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                "output_dir": os.path.join(folder, "03 MEDIA", "01 VIDEO Compressed"),
+                "output_dir": os.path.join(folder, "03 MEDIA", "01 VIDEO"),
                 "settings": get_compression_settings()  # Add default compression settings
             }
             
