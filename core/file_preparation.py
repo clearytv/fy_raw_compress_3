@@ -218,9 +218,28 @@ def generate_output_filename(input_path: str, output_dir: Optional[str] = None) 
     
     # Determine output directory
     if output_dir:
-        # Create the directory if it doesn't exist
-        os.makedirs(output_dir, exist_ok=True)
-        output_path = os.path.join(output_dir, new_name)
+        # Preserve the original folder structure when using a specified output directory
+        # Extract the relative path of the input file from its source directory
+        input_dir_path = os.path.dirname(input_path)
+        
+        # Check if the input path contains a CAM folder
+        cam_folder = None
+        path_parts = input_dir_path.split(os.path.sep)
+        for part in path_parts:
+            if "CAM" in part.upper():
+                cam_folder = part
+                break
+        
+        if cam_folder:
+            # If we found a CAM folder, preserve that structure
+            cam_output_dir = os.path.join(output_dir, cam_folder)
+            os.makedirs(cam_output_dir, exist_ok=True)
+            output_path = os.path.join(cam_output_dir, new_name)
+            logger.info(f"Preserving CAM folder structure: {cam_folder}")
+        else:
+            # If no CAM folder, just use the output directory
+            os.makedirs(output_dir, exist_ok=True)
+            output_path = os.path.join(output_dir, new_name)
     else:
         # Handle the case where input is in "/01 VIDEO.old/" but output should be in "/01 VIDEO/"
         dir_path = os.path.dirname(input_path)
