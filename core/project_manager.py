@@ -408,6 +408,77 @@ class ProjectManager:
                 logger.info(f"Processed {stats['files_processed']} files, "
                            f"reduced size by {stats['total_size_reduction_human']}, "
                            f"average reduction: {stats['average_reduction_percent']:.1f}%")
+                
+                # Add verification and deletion step here if processing was successful
+                # Update project status to VERIFYING in the project queue manager
+                from core.project_queue_manager import ProjectStatus
+                if project_id in self.project_queue_manager.status:
+                    self.project_queue_manager.status[project_id] = ProjectStatus.VERIFYING
+                    logger.info(f"Project '{name}' (ID: {project_id}) status updated to VERIFYING")
+                
+                # Get the folders to verify (original and converted)
+                if parent_folder_path and renamed_path:
+                    # Only proceed with verification if folders are available
+                    media_dir = os.path.join(parent_folder_path, "03 MEDIA")
+                    original_media_folder_path = renamed_path  # 01 VIDEO.old
+                    converted_media_folder_path = os.path.join(media_dir, "01 VIDEO")  # 01 VIDEO
+                    
+                    logger.info(f"Starting verification between original folder '{original_media_folder_path}' and converted folder '{converted_media_folder_path}'")
+                    
+                    # Import verification utility
+                    from core.verification_utils import verify_media_conversions
+                    
+                    try:
+                        # Perform verification
+                        verification_results = verify_media_conversions(
+                            original_media_folder_path,
+                            converted_media_folder_path
+                        )
+                        
+                        # Add verification status to results
+                        stats["verification_performed"] = True
+                        stats["verification_results"] = verification_results
+                        
+                        # Check if all files matched
+                        all_files_matched = verification_results and all(
+                            item.get('status') == "MATCH" for item in verification_results
+                        )
+                        
+                        stats["verification_all_matched"] = all_files_matched
+                        
+                        if all_files_matched:
+                            logger.info(f"All files verified successfully for project '{name}' (ID: {project_id}). Proceeding with deletion of original folder.")
+                            
+                            # Attempt to delete the original folder
+                            try:
+                                import shutil
+                                shutil.rmtree(original_media_folder_path)
+                                logger.info(f"Successfully deleted original folder: {original_media_folder_path}")
+                                stats["original_folder_deleted"] = True
+                                
+                                # Update main project folder icon from Orange to Green
+                                if parent_folder_path:
+                                    from core.macos_utils import set_finder_label
+                                    # Remove Orange label and set Green
+                                    set_finder_label(parent_folder_path, "None")  # Clear existing labels
+                                    success_icon = set_finder_label(parent_folder_path, "Green")
+                                    logger.info(f"Project folder icon updated to Green: {success_icon}")
+                                    stats["folder_icon_updated"] = success_icon
+                            except Exception as e:
+                                logger.error(f"Failed to delete original folder {original_media_folder_path}: {e}", exc_info=True)
+                                stats["original_folder_deleted"] = False
+                                stats["deletion_error"] = str(e)
+                        else:
+                            logger.warning(f"Verification failed - not all files matched for project '{name}' (ID: {project_id}). Original folder not deleted.")
+                            stats["original_folder_deleted"] = False
+                            stats["deletion_skipped_reason"] = "verification_mismatch"
+                    except Exception as e:
+                        logger.error(f"Verification error for project '{name}' (ID: {project_id}): {e}", exc_info=True)
+                        stats["verification_error"] = str(e)
+                else:
+                    logger.warning(f"Cannot perform verification for project '{name}' (ID: {project_id}): Missing folder information")
+                    stats["verification_performed"] = False
+                    stats["verification_skipped_reason"] = "missing_folder_information"
             
             # Signal completion if callback is registered
             if self._on_project_complete_callback:

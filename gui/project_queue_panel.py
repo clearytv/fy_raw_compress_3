@@ -274,7 +274,6 @@ class ProjectQueuePanel(QWidget):
             # Status column
             status_str = project.get("status", "pending")
             status_item = QTableWidgetItem(status_str.upper())
-            
             # Set status color
             if status_str == "completed":
                 status_item.setForeground(QBrush(QColor("green")))
@@ -282,6 +281,9 @@ class ProjectQueuePanel(QWidget):
                 status_item.setForeground(QBrush(QColor("red")))
             elif status_str == "processing":
                 status_item.setForeground(QBrush(QColor("blue")))
+            elif status_str == "verifying":
+                status_item.setForeground(QBrush(QColor("purple")))
+                
                 
             self.project_table.setItem(row, 2, status_item)
             
@@ -310,6 +312,10 @@ class ProjectQueuePanel(QWidget):
             elif status_str == "processing":
                 # Set a default value for processing if we don't have actual progress
                 progress_widget.setValue(50)
+            elif status_str == "verifying":
+                # Use a higher value for verification to indicate it's further along than processing
+                progress_widget.setValue(75)
+                progress_widget.setFormat("Verifying")
             elif status_str == "failed" or status_str == "canceled":
                 progress_widget.setValue(0)
                 progress_widget.setFormat("Failed")
@@ -338,10 +344,12 @@ class ProjectQueuePanel(QWidget):
         
         total = stats.get("total", 0)
         pending = stats.get("pending", 0)
+        processing = stats.get("processing", 0)
+        verifying = stats.get("verifying", 0)
         completed = stats.get("completed", 0)
         failed = stats.get("failed", 0)
         
-        stats_text = f"{total} projects queued ({pending} pending, {completed} completed, {failed} failed)"
+        stats_text = f"{total} projects queued ({pending} pending, {processing} processing, {verifying} verifying, {completed} completed, {failed} failed)"
         self.queue_stats_label.setText(stats_text)
         
         # Emit signal with stats
@@ -370,7 +378,7 @@ class ProjectQueuePanel(QWidget):
         
         # Add edit action only for pending projects
         edit_action = None
-        if status_str == "pending":
+        if status_str == "pending":  # Only allow editing of projects that are still pending
             edit_action = menu.addAction("Edit Project")
             
         # Add remove action
@@ -481,6 +489,30 @@ class ProjectQueuePanel(QWidget):
                 if "processing_time" in results:
                     time_sec = results["processing_time"]
                     results_layout.addRow("Processing Time:", QLabel(f"{time_sec:.2f} seconds"))
+                    
+                # Add verification information if available
+                if "verification_performed" in results:
+                    if results["verification_performed"]:
+                        results_layout.addRow("Verification:", QLabel("Performed"))
+                        
+                        if "verification_all_matched" in results:
+                            matched = "All Files Matched" if results["verification_all_matched"] else "Some Files Mismatched"
+                            results_layout.addRow("Verification Result:", QLabel(matched))
+                        
+                        if "original_folder_deleted" in results:
+                            deleted = "Yes" if results["original_folder_deleted"] else "No"
+                            results_layout.addRow("Original Folder Deleted:", QLabel(deleted))
+                            
+                            if not results["original_folder_deleted"] and "deletion_skipped_reason" in results:
+                                results_layout.addRow("Reason:", QLabel(results["deletion_skipped_reason"]))
+                                
+                        if "folder_icon_updated" in results:
+                            icon_updated = "Updated to Green" if results["folder_icon_updated"] else "Not Updated"
+                            results_layout.addRow("Project Icon:", QLabel(icon_updated))
+                    else:
+                        results_layout.addRow("Verification:", QLabel("Skipped"))
+                        if "verification_skipped_reason" in results:
+                            results_layout.addRow("Reason:", QLabel(results["verification_skipped_reason"]))
             else:
                 results_layout.addRow("Error:", QLabel(results["error"]))
                 

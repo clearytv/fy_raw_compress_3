@@ -26,6 +26,7 @@ class ProjectStatus(Enum):
     """Enum representing the status of a project in the queue."""
     PENDING = "pending"
     PROCESSING = "processing"
+    VERIFYING = "verifying"   # Added verification status
     COMPLETED = "completed"
     FAILED = "failed"
     CANCELED = "canceled"
@@ -581,6 +582,7 @@ class ProjectQueueManager:
             "total": len(self.projects),
             "pending": sum(1 for s in self.status.values() if s == ProjectStatus.PENDING),
             "processing": sum(1 for s in self.status.values() if s == ProjectStatus.PROCESSING),
+            "verifying": sum(1 for s in self.status.values() if s == ProjectStatus.VERIFYING),
             "completed": sum(1 for s in self.status.values() if s == ProjectStatus.COMPLETED),
             "failed": sum(1 for s in self.status.values() if s == ProjectStatus.FAILED),
             "canceled": sum(1 for s in self.status.values() if s == ProjectStatus.CANCELED),
