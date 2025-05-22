@@ -314,10 +314,11 @@ def rename_video_folder(folder_path: str) -> str:
         new_path = os.path.join(parent_dir, new_name)
         
         try:
-            # Check if .old folder already exists
+            # Handle case where .old folder already exists
             if os.path.exists(new_path):
-                logger.warning(f"Cannot rename: {new_path} already exists")
-                return folder_path
+                import shutil
+                logger.warning(f"{new_path} already exists. Removing it before renaming.")
+                shutil.rmtree(new_path)
                 
             os.rename(folder_path, new_path)
             logger.info(f"Renamed folder to: {new_path}")

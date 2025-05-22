@@ -508,44 +508,82 @@ class ConvertPanel(QWidget):
             self.show_log_checkbox.setChecked(True)
             self._toggle_log_visibility(True)
             
-            # Rename video folders
-            video_path = os.path.join(self.parent_folder_path, "03 MEDIA", "01 VIDEO")
-            renamed_path = rename_video_folder(video_path)
-            logger.info(f"Renamed video folder: {video_path} to {renamed_path}")
-            self.log_output.append(f"Renamed folder: {video_path} to {renamed_path}")
+            # Validate parent folder path exists
+            if not self.parent_folder_path or not os.path.exists(self.parent_folder_path):
+                logger.error(f"Invalid parent folder path: {self.parent_folder_path}")
+                self.log_output.append(f"Error: Invalid parent folder path: {self.parent_folder_path}")
+                return
+                
+            # Construct the video path using proper path separators
+            media_dir = os.path.join(self.parent_folder_path, "03 MEDIA")
+            video_path = os.path.join(media_dir, "01 VIDEO")
             
-            if renamed_path != video_path:  # If the folder was renamed successfully
-                renamed = True
+            logger.info(f"Processing video folder at: {video_path}")
+            self.log_output.append(f"Processing video folder at: {video_path}")
+            
+            # Check if the video path exists
+            if not os.path.exists(video_path):
+                logger.warning(f"Video folder does not exist: {video_path}")
+                self.log_output.append(f"Warning: Video folder does not exist: {video_path}")
+            else:
+                # Rename video folders
+                renamed_path = rename_video_folder(video_path)
+                logger.info(f"Renamed video folder: {video_path} to {renamed_path}")
+                self.log_output.append(f"Renamed folder: {video_path} to {renamed_path}")
                 
-                # Create the new '01 VIDEO' directory
-                os.makedirs(video_path, exist_ok=True)
-                self.log_output.append("Created new '01 VIDEO' directory")
-                
-                # Progress callback for folder copying
-                def update_copy_progress(percent, message):
-                    self.log_output.append(f"Copying: {message} ({int(percent)}%)")
-                    self.file_progress_bar.setValue(int(percent))
-                
-                # Copy contents of non-CAM subfolders from '01 VIDEO.old' to '01 VIDEO'
-                self.log_output.append("Copying non-CAM folders...")
-                copied = copy_non_cam_folders(renamed_path, video_path, update_copy_progress)
-                logger.info(f"Copied {copied} non-CAM folders from {renamed_path} to {video_path}")
-                self.log_output.append(f"Completed copying {copied} non-CAM folders")
+                if renamed_path != video_path:  # If the folder was renamed successfully
+                    renamed = True
+                    
+                    # Create the new '01 VIDEO' directory
+                    os.makedirs(video_path, exist_ok=True)
+                    logger.info(f"Created new '01 VIDEO' directory at: {video_path}")
+                    self.log_output.append(f"Created new '01 VIDEO' directory at: {video_path}")
+                    
+                    # Progress callback for folder copying
+                    def update_copy_progress(percent, message):
+                        self.log_output.append(f"Copying: {message} ({int(percent)}%)")
+                        self.file_progress_bar.setValue(int(percent))
+                    
+                    # Copy contents of non-CAM subfolders from '01 VIDEO.old' to '01 VIDEO'
+                    self.log_output.append("Copying non-CAM folders...")
+                    copied = copy_non_cam_folders(renamed_path, video_path, update_copy_progress)
+                    logger.info(f"Copied {copied} non-CAM folders from {renamed_path} to {video_path}")
+                    self.log_output.append(f"Completed copying {copied} non-CAM folders")
         
         # If we renamed folders, update the file paths in the queue
         if renamed:
+            logger.info("Updating file paths in queue after folder rename")
+            self.log_output.append("Updating file paths in queue after folder rename")
+            
             updated_files = []
             for file_path in self.queued_files:
-                if "/01 VIDEO/" in file_path:
-                    updated_path = file_path.replace("/01 VIDEO/", "/01 VIDEO.old/")
+                # Use OS-specific path separators
+                video_dir = os.path.sep + "01 VIDEO" + os.path.sep
+                video_dir_end = os.path.sep + "01 VIDEO"
+                video_old_dir = os.path.sep + "01 VIDEO.old" + os.path.sep
+                video_old_dir_end = os.path.sep + "01 VIDEO.old"
+                
+                # Handle both cases: path in the middle or at the end
+                if video_dir in file_path or file_path.endswith(video_dir_end):
+                    # Replace all occurrences of "01 VIDEO" with "01 VIDEO.old"
+                    if video_dir in file_path:
+                        updated_path = file_path.replace(video_dir, video_old_dir)
+                    else:  # Handle end of path case
+                        updated_path = file_path.replace(video_dir_end, video_old_dir_end)
+                    
+                    logger.info(f"Path replacement: {file_path} -> {updated_path}")
+                    
                     if os.path.exists(updated_path):
                         logger.info(f"Updated path after rename: {file_path} -> {updated_path}")
+                        self.log_output.append(f"Updated path: {os.path.basename(file_path)}")
                         updated_files.append(updated_path)
                     else:
                         # Still include the original path - the queue manager will handle it
                         logger.warning(f"Could not find updated path for: {file_path}")
+                        self.log_output.append(f"Warning: Could not find updated path for: {os.path.basename(file_path)}")
                         updated_files.append(file_path)
                 else:
+                    logger.info(f"Path unchanged: {file_path}")
                     updated_files.append(file_path)
                     
             # Update the queue manager with the new file paths
