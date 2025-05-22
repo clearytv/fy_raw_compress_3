@@ -213,15 +213,149 @@ class ProjectManager:
             settings = project.get("settings", {})
             
             logger.info(f"Processing project '{name}' (ID: {project_id}) with {len(input_files)} files")
+            logger.info(f"Queue processing: Starting workflow for project '{name}' with folder renaming")
             
             # Store current project
             self.current_project = project
             
+            # Get the parent folder path from the first input file's directory
+            # This is needed for the folder renaming process
+            parent_folder_path = None
+            if input_files:
+                # Try to determine the project root directory from the input files
+                # We're looking for the parent folder that contains '03 MEDIA/01 VIDEO'
+                logger.info(f"Queue processing: Analyzing {len(input_files)} input files to find parent folder path")
+                
+                for file_path in input_files:
+                    logger.info(f"Queue processing: Examining file path: {file_path}")
+                    path_parts = os.path.normpath(file_path).split(os.path.sep)
+                    
+                    # Look for '03 MEDIA' in the path
+                    for i, part in enumerate(path_parts):
+                        if part == "03 MEDIA" and i > 0:
+                            # The parent folder is one level above '03 MEDIA'
+                            parent_folder_path = os.path.sep.join(path_parts[:i])
+                            logger.info(f"Queue processing: Found parent folder path: {parent_folder_path}")
+                            break
+                    
+                    if parent_folder_path:
+                        break
+                
+                if not parent_folder_path:
+                    logger.warning(f"Queue processing: Could not find parent folder path with '03 MEDIA' in any input file")
+            
+            # Perform folder renaming if we found a valid parent folder
+            renamed = False
+            renamed_path = ""
+            updated_files = input_files.copy()
+            
+            if parent_folder_path:
+                # Import the folder renaming functions
+                from core.file_preparation import rename_video_folder, copy_non_cam_folders
+                
+                logger.info(f"Queue processing: Starting folder rename workflow for project '{name}' (ID: {project_id})")
+                
+                # Construct the video path
+                media_dir = os.path.join(parent_folder_path, "03 MEDIA")
+                video_path = os.path.join(media_dir, "01 VIDEO")
+                
+                logger.info(f"Queue processing: Checking for video folder to rename: {video_path}")
+                
+                # Check if the video path exists and rename it to .old
+                if not os.path.exists(video_path):
+                    logger.warning(f"Queue processing: Video folder does not exist: {video_path}")
+                else:
+                    # Rename video folder
+                    logger.info(f"Queue processing: Calling rename_video_folder on: {video_path}")
+                    renamed_path = rename_video_folder(video_path)
+                    logger.info(f"Queue processing: Rename operation completed - from: {video_path} to: {renamed_path}")
+                    
+                    # Check if the renaming was successful
+                    if renamed_path == video_path:
+                        logger.warning(f"Queue processing: Folder renaming failed or unnecessary for: {video_path}")
+                    else:  # If the folder was renamed successfully
+                        logger.info(f"Queue processing: Successfully renamed folder to: {renamed_path}")
+                        renamed = True
+                        
+                        # Create a new empty "01 VIDEO" folder
+                        os.makedirs(video_path, exist_ok=True)
+                        logger.info(f"Queue processing: Created new '01 VIDEO' directory at: {video_path}")
+                        
+                        # Copy non-CAM folders from "01 VIDEO.old" to the new "01 VIDEO"
+                        logger.info("Queue processing: Starting to copy non-CAM folders...")
+                        copied = copy_non_cam_folders(renamed_path, video_path)
+                        logger.info(f"Queue processing: Copied {copied} non-CAM folders from {renamed_path} to {video_path}")
+                        
+                        # Update file paths to point to renamed folder for CAM files
+                        if renamed:
+                            logger.info(f"Queue processing: Updating file paths in queue after folder rename for {len(input_files)} files")
+                            
+                            video_path_normalized = os.path.normpath(video_path)
+                            renamed_path_normalized = os.path.normpath(renamed_path)
+                            
+                            logger.info(f"Queue processing: Looking for paths containing '{video_path_normalized}' to replace with '{renamed_path_normalized}'")
+                            
+                            cam_files_count = 0
+                            updated_count = 0
+                            
+                            for i, file_path in enumerate(input_files):
+                                # Create a normalized path string
+                                normalized_path = os.path.normpath(file_path)
+                                
+                                # Check if this file is in a CAM folder
+                                path_parts = normalized_path.split(os.path.sep)
+                                is_cam_folder = any("CAM" in part.upper() for part in path_parts)
+                                
+                                # If it's a CAM file, update the path to point to the renamed folder
+                                if is_cam_folder:
+                                    cam_files_count += 1
+                                    logger.info(f"Queue processing: File {i+1}/{len(input_files)} is in a CAM folder: {file_path}")
+                                    
+                                    # Replace the original video path with the renamed path
+                                    updated_path = normalized_path.replace(video_path_normalized, renamed_path_normalized)
+                                    logger.info(f"Queue processing: Path replacement attempt: {normalized_path} -> {updated_path}")
+                                    
+                                    if os.path.exists(updated_path):
+                                        logger.info(f"Queue processing: Updated path exists: {updated_path}")
+                                        updated_files[i] = updated_path
+                                        updated_count += 1
+                                    else:
+                                        logger.warning(f"Queue processing: Updated path does not exist: {updated_path}")
+                                        # Try to fix the path if it's not found
+                                        found = False
+                                        for part in path_parts:
+                                            if "CAM" in part.upper():
+                                                # Try to find the file in the renamed folder structure
+                                                cam_path = os.path.join(renamed_path_normalized, part)
+                                                logger.info(f"Queue processing: Looking for file in alternate CAM path: {cam_path}")
+                                                
+                                                # Find all files with the same name in the expected location
+                                                file_name = os.path.basename(file_path)
+                                                possible_file = os.path.join(cam_path, file_name)
+                                                
+                                                if os.path.exists(possible_file):
+                                                    updated_path = possible_file
+                                                    updated_files[i] = updated_path
+                                                    found = True
+                                                    updated_count += 1
+                                                    logger.info(f"Queue processing: Found file at alternative path: {updated_path}")
+                                                    break
+                                                else:
+                                                    logger.info(f"Queue processing: File not found at alternative path: {possible_file}")
+                                        
+                                        if not found:
+                                            logger.warning(f"Queue processing: Updated path not found after all attempts: {updated_path}")
+                                else:
+                                    logger.info(f"Queue processing: File {i+1}/{len(input_files)} is not in a CAM folder, path unchanged: {file_path}")
+                            
+                            # Log the path changes summary
+                            logger.info(f"Queue processing: Found {cam_files_count} CAM files, successfully updated {updated_count} paths")
+            
             # Reset the file queue manager
             self.file_queue_manager.clear_queue()
             
-            # Add files to the file queue
-            files_added = self.file_queue_manager.add_files(input_files)
+            # Add files to the file queue (using updated paths if renamed)
+            files_added = self.file_queue_manager.add_files(updated_files)
             
             if files_added == 0:
                 logger.warning(f"No valid files to process in project {project_id}")

@@ -9,11 +9,12 @@ This module handles validation and preparation of video files:
 - Extracting video metadata
 - Preparing files for compression
 """
-
 import os
 import logging
 import subprocess
+import re
 from typing import List, Dict, Tuple, Optional, Union
+
 
 logger = logging.getLogger(__name__)
 
@@ -241,23 +242,50 @@ def generate_output_filename(input_path: str, output_dir: Optional[str] = None) 
             os.makedirs(output_dir, exist_ok=True)
             output_path = os.path.join(output_dir, new_name)
     else:
-        # Handle the case where input is in "/01 VIDEO.old/" but output should be in "/01 VIDEO/"
+        # Handle the case where input is in "/01 VIDEO.old/" or "/01 VIDEO.old.TIMESTAMP/"
+        # but output should be in "/01 VIDEO/"
         dir_path = os.path.dirname(input_path)
         
-        # Check for different OS path separators and the "01 VIDEO.old" pattern
-        # This will work with both Unix-style and Windows-style paths
-        video_old_pattern = os.path.sep + "01 VIDEO.old" + os.path.sep
-        video_old_end_pattern = os.path.sep + "01 VIDEO.old"
-        video_pattern = os.path.sep + "01 VIDEO" + os.path.sep
+        # Extract CAM folder if it exists
+        cam_folder = None
+        path_parts = dir_path.split(os.path.sep)
+        for part in path_parts:
+            if "CAM" in part.upper():
+                cam_folder = part
+                break
         
-        # Handle paths that contain the pattern
-        if video_old_pattern in dir_path or dir_path.endswith(video_old_end_pattern):
-            # Create the corresponding "/01 VIDEO/" directory
-            new_dir_path = dir_path.replace("01 VIDEO.old", "01 VIDEO")
+        # Look for any version of "01 VIDEO.old" including with timestamps
+        video_old_regex = r'01 VIDEO\.old(?:\.\d{8}_\d{6})?'
+        
+        # Find the path components
+        path_str = os.path.normpath(dir_path)
+        path_parts = path_str.split(os.path.sep)
+        
+        # Check if any part of the path matches our pattern
+        video_dir_idx = -1
+        for i, part in enumerate(path_parts):
+            if re.match(video_old_regex, part):
+                video_dir_idx = i
+                break
+        
+        if video_dir_idx >= 0:
+            # Reconstruct the path with "01 VIDEO" instead of "01 VIDEO.old[.timestamp]"
+            # and preserve the CAM folder structure if it exists
+            new_path_parts = path_parts.copy()
+            new_path_parts[video_dir_idx] = "01 VIDEO"
+            
+            # If there are parts after the "01 VIDEO.old" part, keep only the CAM folder
+            if cam_folder and video_dir_idx < len(path_parts) - 1:
+                # Keep only up to the "01 VIDEO" part and then add the CAM folder
+                new_path_parts = new_path_parts[:video_dir_idx + 1]
+                new_path_parts.append(cam_folder)
+            
+            new_dir_path = os.path.sep.join(new_path_parts)
             logger.info(f"Converting path from '{dir_path}' to '{new_dir_path}'")
             os.makedirs(new_dir_path, exist_ok=True)
             output_path = os.path.join(new_dir_path, new_name)
         else:
+            # If no match found, just use the original directory
             output_path = os.path.join(dir_path, new_name)
     
     logger.info(f"Generated output filename: {output_path}")
@@ -307,27 +335,36 @@ def rename_video_folder(folder_path: str) -> str:
         logger.warning(f"Cannot rename non-existent directory: {folder_path}")
         return folder_path
     
-    folder_name = os.path.basename(folder_path)
-    if folder_name.upper() == "01 VIDEO":
+    # Check if the path contains "01 VIDEO" as the final directory
+    # This is more reliable than just checking the basename
+    if folder_path.rstrip(os.path.sep).endswith("01 VIDEO"):
         parent_dir = os.path.dirname(folder_path)
-        new_name = folder_name + ".old"
-        new_path = os.path.join(parent_dir, new_name)
+        new_path = os.path.join(parent_dir, "01 VIDEO.old")
+        logger.info(f"Will rename {folder_path} to {new_path}")
         
         try:
             # Handle case where .old folder already exists
             if os.path.exists(new_path):
-                import shutil
-                logger.warning(f"{new_path} already exists. Removing it before renaming.")
-                shutil.rmtree(new_path)
+                import datetime
+                current_time = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+                timestamped_path = os.path.join(parent_dir, f"01 VIDEO.old.{current_time}")
+                logger.warning(f"{new_path} already exists. Using timestamped path: {timestamped_path}")
                 
-            os.rename(folder_path, new_path)
-            logger.info(f"Renamed folder to: {new_path}")
-            return new_path
+                # Actually perform the rename with timestamp
+                os.rename(folder_path, timestamped_path)
+                logger.info(f"Successfully renamed folder to: {timestamped_path}")
+                return timestamped_path
+            else:
+                # Actually perform the rename
+                os.rename(folder_path, new_path)
+                logger.info(f"Successfully renamed folder to: {new_path}")
+                return new_path
         except OSError as e:
             logger.error(f"Failed to rename folder {folder_path}: {str(e)}")
             return folder_path
-    
-    return folder_path
+    else:
+        logger.warning(f"Path {folder_path} does not end with '01 VIDEO', no rename performed")
+        return folder_path
 
 
 def find_cam_folders(root_dir: str) -> List[str]:

@@ -502,6 +502,8 @@ class ConvertPanel(QWidget):
         
         # If rename option is selected, rename the folder without confirmation
         renamed = False
+        renamed_path = ""
+        
         if self.rename_folders:
             self.log_output.append("Preparing folder structure...")
             # Show log automatically
@@ -509,6 +511,9 @@ class ConvertPanel(QWidget):
             self._toggle_log_visibility(True)
             
             # Validate parent folder path exists
+            logger.info(f"Parent folder path: {self.parent_folder_path}")
+            self.log_output.append(f"Parent folder path: {self.parent_folder_path}")
+            
             if not self.parent_folder_path or not os.path.exists(self.parent_folder_path):
                 logger.error(f"Invalid parent folder path: {self.parent_folder_path}")
                 self.log_output.append(f"Error: Invalid parent folder path: {self.parent_folder_path}")
@@ -521,24 +526,26 @@ class ConvertPanel(QWidget):
             logger.info(f"Processing video folder at: {video_path}")
             self.log_output.append(f"Processing video folder at: {video_path}")
             
-            # Check if the video path exists
+            # Step 1: Check if the video path exists and rename it to .old
             if not os.path.exists(video_path):
                 logger.warning(f"Video folder does not exist: {video_path}")
                 self.log_output.append(f"Warning: Video folder does not exist: {video_path}")
             else:
-                # Rename video folders
+                # Rename video folders - using the improved function
+                # This should happen BEFORE any file processing begins
                 renamed_path = rename_video_folder(video_path)
-                logger.info(f"Renamed video folder: {video_path} to {renamed_path}")
-                self.log_output.append(f"Renamed folder: {video_path} to {renamed_path}")
+                logger.info(f"Rename operation completed - from: {video_path} to: {renamed_path}")
+                self.log_output.append(f"Rename operation completed - from: {video_path} to: {renamed_path}")
                 
                 if renamed_path != video_path:  # If the folder was renamed successfully
                     renamed = True
                     
-                    # Create the new '01 VIDEO' directory
+                    # Step 2: Create a new empty "01 VIDEO" folder
                     os.makedirs(video_path, exist_ok=True)
                     logger.info(f"Created new '01 VIDEO' directory at: {video_path}")
                     self.log_output.append(f"Created new '01 VIDEO' directory at: {video_path}")
                     
+                    # Step 3: Copy non-CAM folders from "01 VIDEO.old" to the new "01 VIDEO"
                     # Progress callback for folder copying
                     def update_copy_progress(percent, message):
                         self.log_output.append(f"Copying: {message} ({int(percent)}%)")
@@ -550,26 +557,29 @@ class ConvertPanel(QWidget):
                     logger.info(f"Copied {copied} non-CAM folders from {renamed_path} to {video_path}")
                     self.log_output.append(f"Completed copying {copied} non-CAM folders")
         
-        # If we renamed folders, update the file paths in the queue
+        # If we renamed folders, update the file paths in the queue to point to the renamed folder
         if renamed:
             logger.info("Updating file paths in queue after folder rename")
             self.log_output.append("Updating file paths in queue after folder rename")
             
+            # Step 4: Update file paths to point to renamed folder
             updated_files = []
+            video_path_normalized = os.path.normpath(video_path)
+            renamed_path_normalized = os.path.normpath(renamed_path)
+            
             for file_path in self.queued_files:
-                # Use OS-specific path separators
-                video_dir = os.path.sep + "01 VIDEO" + os.path.sep
-                video_dir_end = os.path.sep + "01 VIDEO"
-                video_old_dir = os.path.sep + "01 VIDEO.old" + os.path.sep
-                video_old_dir_end = os.path.sep + "01 VIDEO.old"
+                # Create a normalized path string for reliable replacement
+                normalized_path = os.path.normpath(file_path)
                 
-                # Handle both cases: path in the middle or at the end
-                if video_dir in file_path or file_path.endswith(video_dir_end):
-                    # Replace all occurrences of "01 VIDEO" with "01 VIDEO.old"
-                    if video_dir in file_path:
-                        updated_path = file_path.replace(video_dir, video_old_dir)
-                    else:  # Handle end of path case
-                        updated_path = file_path.replace(video_dir_end, video_old_dir_end)
+                # Only process paths that potentially contain CAM folders
+                # Check if this file is in a CAM folder
+                path_parts = normalized_path.split(os.path.sep)
+                is_cam_folder = any("CAM" in part.upper() for part in path_parts)
+                
+                # If it's a CAM file, update the path to point to the renamed folder
+                if is_cam_folder:
+                    # Replace the original video path with the renamed path
+                    updated_path = normalized_path.replace(video_path_normalized, renamed_path_normalized)
                     
                     logger.info(f"Path replacement: {file_path} -> {updated_path}")
                     
@@ -578,17 +588,38 @@ class ConvertPanel(QWidget):
                         self.log_output.append(f"Updated path: {os.path.basename(file_path)}")
                         updated_files.append(updated_path)
                     else:
-                        # Still include the original path - the queue manager will handle it
-                        logger.warning(f"Could not find updated path for: {file_path}")
-                        self.log_output.append(f"Warning: Could not find updated path for: {os.path.basename(file_path)}")
-                        updated_files.append(file_path)
+                        # Try to fix the path if it's not found
+                        # This could happen if we used a timestamped folder name
+                        found = False
+                        for part in path_parts:
+                            if "CAM" in part.upper():
+                                # Try to find the file in the renamed folder structure
+                                # by reconstructing the path with the renamed folder and the CAM folder
+                                cam_path = os.path.join(renamed_path_normalized, part)
+                                # Find all files with the same name in the expected location
+                                file_name = os.path.basename(file_path)
+                                possible_file = os.path.join(cam_path, file_name)
+                                if os.path.exists(possible_file):
+                                    updated_path = possible_file
+                                    found = True
+                                    logger.info(f"Found file at alternative path: {updated_path}")
+                                    break
+                        
+                        if not found:
+                            # Log a warning and still try to use the updated path
+                            logger.warning(f"Updated path not found: {updated_path}, will still use it")
+                            self.log_output.append(f"Note: Updated path not found, will still use: {os.path.basename(updated_path)}")
+                        
+                        updated_files.append(updated_path)
                 else:
-                    logger.info(f"Path unchanged: {file_path}")
+                    logger.info(f"Path unchanged (not in a CAM folder): {file_path}")
                     updated_files.append(file_path)
-                    
-            # Update the queue manager with the new file paths
+            
+            # Log the path changes clearly
             logger.info(f"Updated {len(updated_files)} file paths after renaming directory")
             self.log_output.append(f"Updated {len(updated_files)} file paths after folder rename")
+            
+            # Update the queue manager with the new file paths
             self.queue_manager.clear_queue()
             self.queue_manager.add_files(updated_files)
             self.queued_files = updated_files
@@ -693,7 +724,14 @@ class ConvertPanel(QWidget):
     def set_rename_option(self, rename_folders: bool):
         """Sets whether to rename '01 VIDEO' folders to '01 VIDEO.old'."""
         self.rename_folders = rename_folders
+        
+        # Direct console output for debugging
+        print(f"INFO: Rename folders option set in ConvertPanel: {rename_folders}")
         logger.info(f"Rename folders option set in ConvertPanel: {rename_folders}")
+        
+        # Write to a debug file for direct visibility
+        with open("/tmp/convert_debug.txt", "a") as f:
+            f.write(f"set_rename_option called with: {rename_folders}\n")
         
     def set_auto_mode(self, auto_mode: bool):
         """Sets whether to use auto mode for compression workflow."""

@@ -1,100 +1,100 @@
-2025-05-19 04:52:43,965 - __main__ - INFO - Starting application with panel index set to 4
-2025-05-19 04:53:03,118 - gui.project_queue_panel - INFO - Add project requested - emitting signal for project creation workflow
-2025-05-19 04:53:03,120 - __main__ - INFO - Handling add project request - adding project to queue directly
-2025-05-19 04:53:14,826 - __main__ - INFO - No folder selected, canceling project addition
-2025-05-19 04:57:28,914 - gui.project_queue_panel - INFO - Add project requested - emitting signal for project creation workflow
-2025-05-19 04:57:28,915 - __main__ - INFO - Handling add project request - adding project to queue directly
-2025-05-19 04:57:35,799 - __main__ - INFO - Selected folder: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Test & Results
-2025-05-19 04:57:35,800 - core.project_queue_manager - INFO - Added project '2023-01-01 Test & Results' with ID project_1747627055_0 to queue
-2025-05-19 04:57:35,801 - core.project_queue_manager - INFO - Queue state saved to /Users/chriscleary/.forever_yours/project_queue_state.json
-2025-05-19 04:57:35,801 - __main__ - INFO - Added new project project_1747627055_0 with 6 files to queue
-2025-05-19 04:57:39,419 - gui.project_queue_panel - INFO - Add project requested - emitting signal for project creation workflow
-2025-05-19 04:57:39,421 - __main__ - INFO - Handling add project request - adding project to queue directly
-2025-05-19 04:57:46,718 - __main__ - INFO - Selected folder: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Tester & Resultser
-2025-05-19 04:57:46,720 - core.project_queue_manager - INFO - Added project '2023-01-01 Tester & Resultser' with ID project_1747627066_1 to queue
-2025-05-19 04:57:46,720 - core.project_queue_manager - INFO - Queue state saved to /Users/chriscleary/.forever_yours/project_queue_state.json
-2025-05-19 04:57:46,721 - __main__ - INFO - Added new project project_1747627066_1 with 6 files to queue
-2025-05-19 04:57:49,963 - gui.project_queue_panel - INFO - Add project requested - emitting signal for project creation workflow
-2025-05-19 04:57:49,965 - __main__ - INFO - Handling add project request - adding project to queue directly
-2025-05-19 04:57:59,873 - __main__ - INFO - Selected folder: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Testie & Resultsie & Results
-2025-05-19 04:57:59,874 - core.project_queue_manager - INFO - Added project '2023-01-01 Testie & Resultsie & Results' with ID project_1747627079_2 to queue
-2025-05-19 04:57:59,874 - core.project_queue_manager - INFO - Queue state saved to /Users/chriscleary/.forever_yours/project_queue_state.json
-2025-05-19 04:57:59,875 - __main__ - INFO - Added new project project_1747627079_2 with 6 files to queue
-2025-05-19 04:58:14,894 - core.project_queue_manager - INFO - Processing project 1/3: 2023-01-01 Test & Results (ID: project_1747627055_0)
-2025-05-19 04:58:14,895 - core.project_queue_manager - INFO - Started processing project queue at index 0
-2025-05-19 04:58:14,897 - core.project_queue_manager - INFO - Queue state saved to /Users/chriscleary/.forever_yours/project_queue_state.json
-2025-05-19 04:58:14,897 - core.project_manager - INFO - Started processing project queue
-2025-05-19 04:58:14,897 - core.project_manager - INFO - Processing project '2023-01-01 Test & Results' (ID: project_1747627055_0) with 6 files
-2025-05-19 04:58:14,898 - gui.project_queue_panel - INFO - Started processing project queue
-2025-05-19 04:58:14,898 - core.queue_manager - INFO - Queue cleared
-2025-05-19 04:58:14,899 - core.queue_manager - INFO - Sorting files by camera number and file number
-2025-05-19 04:58:14,900 - core.queue_manager - INFO - Added 6 files to queue
-2025-05-19 04:58:14,900 - core.project_manager - INFO - Added 6 files to file queue for project project_1747627055_0
-2025-05-19 04:58:14,900 - core.queue_manager - INFO - Starting queue processing
-2025-05-19 04:58:14,901 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Test & Results/03 MEDIA/01 VIDEO/A001_01240755_C001.mp4
-2025-05-19 04:58:14,902 - core.queue_manager - INFO - Processing file 1/6: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Test & Results/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mp4
-2025-05-19 04:58:14,902 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Test & Results/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mp4
-2025-05-19 04:58:15,014 - core.video_compression - INFO - Video duration: 4.083333 seconds
-2025-05-19 04:58:15,015 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Test & Results/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mp4
-2025-05-19 04:58:16,298 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Test & Results/03 MEDIA/01 VIDEO/A001_01240755_C001.mp4
-2025-05-19 04:58:16,299 - core.queue_manager - INFO - Compression result: 60.2% reduction, saved 1.26 MB
-2025-05-19 04:58:16,299 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Test & Results/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mp4
-2025-05-19 04:58:16,300 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Test & Results/03 MEDIA/01 VIDEO/A001_01241858_C002.mp4
-2025-05-19 04:58:16,300 - core.queue_manager - INFO - Processing file 2/6: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Test & Results/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mp4
-2025-05-19 04:58:16,300 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Test & Results/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mp4
-2025-05-19 04:58:16,363 - core.video_compression - INFO - Video duration: 18.166667 seconds
-2025-05-19 04:58:16,364 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Test & Results/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mp4
-2025-05-19 04:58:19,400 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Test & Results/03 MEDIA/01 VIDEO/A001_01241858_C002.mp4
-2025-05-19 04:58:19,401 - core.queue_manager - INFO - Compression result: 63.9% reduction, saved 30.94 MB
-2025-05-19 04:58:19,402 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Test & Results/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mp4
-2025-05-19 04:58:19,402 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Test & Results/03 MEDIA/01 VIDEO/A001_01241858_C003.mp4
-2025-05-19 04:58:19,402 - core.queue_manager - INFO - Processing file 3/6: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Test & Results/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mp4
-2025-05-19 04:58:19,402 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Test & Results/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mp4
-2025-05-19 04:58:19,472 - core.video_compression - INFO - Video duration: 17.5 seconds
-2025-05-19 04:58:19,473 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Test & Results/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mp4
-2025-05-19 04:58:22,448 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Test & Results/03 MEDIA/01 VIDEO/A001_01241858_C003.mp4
-2025-05-19 04:58:22,450 - core.queue_manager - INFO - Compression result: 63.9% reduction, saved 27.89 MB
-2025-05-19 04:58:22,451 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Test & Results/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mp4
-2025-05-19 04:58:22,451 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Test & Results/03 MEDIA/01 VIDEO/A001_01242130_C086.mp4
-2025-05-19 04:58:22,451 - core.queue_manager - INFO - Processing file 4/6: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Test & Results/03 MEDIA/01 VIDEO/CAM 2/A001_01242130_C086.mp4
-2025-05-19 04:58:22,452 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Test & Results/03 MEDIA/01 VIDEO/CAM 2/A001_01242130_C086.mp4
-2025-05-19 04:58:22,518 - core.video_compression - INFO - Video duration: 2451.5 seconds
-2025-05-19 04:58:22,520 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Test & Results/03 MEDIA/01 VIDEO/CAM 2/A001_01242130_C086.mp4
-2025-05-19 05:02:46,578 - core.queue_manager - INFO - Cancelling queue processing
-2025-05-19 05:02:46,581 - core.video_compression - INFO - Terminating active compression process
-2025-05-19 05:02:46,789 - core.video_compression - INFO - Cancelling compression due to user request
-2025-05-19 05:02:46,852 - core.queue_manager - INFO - Active compression process terminated
-2025-05-19 05:02:46,853 - core.queue_manager - INFO - Marked current file as cancelled: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Test & Results/03 MEDIA/01 VIDEO/CAM 2/A001_01242130_C086.mp4
-2025-05-19 05:02:46,853 - core.project_queue_manager - INFO - Canceling project queue processing
-2025-05-19 05:02:46,853 - core.project_manager - INFO - Canceled all processing
-2025-05-19 05:02:46,869 - gui.project_queue_panel - INFO - Canceled queue processing
-2025-05-19 05:02:46,951 - core.video_compression - INFO - Removed partial output file due to cancellation: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Test & Results/03 MEDIA/01 VIDEO/A001_01242130_C086.mp4
-2025-05-19 05:02:46,952 - core.queue_manager - INFO - Compression of /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Test & Results/03 MEDIA/01 VIDEO/CAM 2/A001_01242130_C086.mp4 was cancelled by user
-2025-05-19 05:02:46,952 - core.queue_manager - INFO - Queue processing was cancelled
-2025-05-19 05:02:46,955 - core.queue_manager - INFO - Queue processing completed
-2025-05-19 05:02:46,955 - core.project_manager - INFO - Project '2023-01-01 Test & Results' (ID: project_1747627055_0) processing completed successfully in 272.06 seconds
-2025-05-19 05:02:46,956 - core.project_manager - INFO - Processed 3 files, reduced size by 60.10 MB, average reduction: 63.8%
-2025-05-19 05:02:46,956 - gui.project_queue_panel - INFO - Project project_1747627055_0 (2023-01-01 Test & Results) completed successfully
-2025-05-19 05:02:46,956 - core.project_queue_manager - INFO - Successfully processed project project_1747627055_0 in 272.06 seconds
-2025-05-19 05:02:46,956 - core.project_queue_manager - INFO - Queue state saved to /Users/chriscleary/.forever_yours/project_queue_state.json
-2025-05-19 05:02:46,957 - core.project_queue_manager - INFO - Queue processing was canceled
-2025-05-19 05:02:46,957 - core.project_queue_manager - INFO - Queue state saved to /Users/chriscleary/.forever_yours/project_queue_state.json
-2025-05-19 05:02:46,957 - core.project_queue_manager - INFO - Project queue processing completed successfully
-2025-05-19 05:02:46,958 - core.project_queue_manager - INFO - Queue state saved to /Users/chriscleary/.forever_yours/project_queue_state.json
-2025-05-19 05:02:50,069 - __main__ - INFO - Saved window geometry and state
-2025-05-21 15:44:58,286 - __main__ - INFO - Starting Forever Yours Compression Tool
-2025-05-21 15:44:58,415 - __main__ - INFO - Creating main application window
-2025-05-21 15:44:58,433 - __main__ - INFO - Restored window geometry and state from settings
-2025-05-21 15:44:58,433 - core.queue_manager - INFO - Queue manager initialized
-2025-05-21 15:44:58,433 - core.project_queue_manager - INFO - Project queue manager initialized
-2025-05-21 15:44:58,433 - core.queue_manager - INFO - Queue manager initialized
-2025-05-21 15:44:58,434 - core.project_manager - INFO - Project manager initialized
-2025-05-21 15:44:58,436 - gui.step1_import - INFO - Initializing import panel
-2025-05-21 15:44:58,539 - gui.step2_convert - INFO - Initializing conversion panel
-2025-05-21 15:44:58,543 - gui.step2b_verify - INFO - Initializing verification panel
-2025-05-21 15:44:58,549 - gui.step3_results - INFO - Initializing results panel
-2025-05-21 15:44:58,550 - gui.project_queue_panel - INFO - Initializing project queue panel
-2025-05-21 15:44:58,550 - core.project_manager - INFO - Progress callback registered
-2025-05-21 15:44:58,550 - core.project_manager - INFO - Project completion callback registered
-2025-05-21 15:44:58,553 - gui.step2_convert - INFO - Queue manager set in ConvertPanel
-2025-05-21 15:44:58,554 - __main__ - INFO - Starting application with panel index set to 4
+2025-05-22 18:29:29,892 - core.project_manager - INFO - Processing project '2023-01-01 Saz & Sazzie' (ID: project_1747934872_1) with 5 files
+2025-05-22 18:29:29,894 - core.project_manager - INFO - Queue processing: Starting workflow for project '2023-01-01 Saz & Sazzie' with folder renaming
+2025-05-22 18:29:29,895 - core.project_manager - INFO - Queue processing: Analyzing 5 input files to find parent folder path
+2025-05-22 18:29:29,895 - core.project_manager - INFO - Queue processing: Examining file path: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mov
+2025-05-22 18:29:29,895 - core.project_manager - INFO - Queue processing: Found parent folder path: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie
+2025-05-22 18:29:29,895 - core.project_manager - INFO - Queue processing: Starting folder rename workflow for project '2023-01-01 Saz & Sazzie' (ID: project_1747934872_1)
+2025-05-22 18:29:29,895 - core.project_manager - INFO - Queue processing: Checking for video folder to rename: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO
+2025-05-22 18:29:29,895 - core.project_manager - INFO - Queue processing: Calling rename_video_folder on: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO
+2025-05-22 18:29:29,895 - core.file_preparation - INFO - Attempting to rename folder: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO
+2025-05-22 18:29:29,896 - core.file_preparation - INFO - Will rename /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO to /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old
+2025-05-22 18:29:29,896 - core.file_preparation - INFO - Successfully renamed folder to: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old
+2025-05-22 18:29:29,897 - core.project_manager - INFO - Queue processing: Rename operation completed - from: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO to: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old
+2025-05-22 18:29:29,897 - core.project_manager - INFO - Queue processing: Successfully renamed folder to: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old
+2025-05-22 18:29:29,897 - core.project_manager - INFO - Queue processing: Created new '01 VIDEO' directory at: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO
+2025-05-22 18:29:29,897 - core.project_manager - INFO - Queue processing: Starting to copy non-CAM folders...
+2025-05-22 18:29:29,897 - core.file_preparation - INFO - Copying non-CAM folders from /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old to /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO
+2025-05-22 18:29:29,898 - core.file_preparation - INFO - Processing non-CAM folder: DRONE
+2025-05-22 18:29:31,546 - core.file_preparation - INFO - Copied file: DJI_0059.MP4
+2025-05-22 18:29:31,561 - core.file_preparation - INFO - Copied file: .DS_Store
+2025-05-22 18:29:31,787 - core.file_preparation - INFO - Copied file: DJI_0061.MP4
+2025-05-22 18:29:33,315 - core.file_preparation - INFO - Copied file: DJI_0060.MP4
+2025-05-22 18:29:33,316 - core.file_preparation - INFO - Completed copying folder: DRONE
+2025-05-22 18:29:33,316 - core.file_preparation - INFO - Copied 1 non-CAM folders
+2025-05-22 18:29:33,317 - core.project_manager - INFO - Queue processing: Copied 1 non-CAM folders from /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old to /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO
+2025-05-22 18:29:33,317 - core.project_manager - INFO - Queue processing: Updating file paths in queue after folder rename for 5 files
+2025-05-22 18:29:33,317 - core.project_manager - INFO - Queue processing: Looking for paths containing '/Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO' to replace with '/Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old'
+2025-05-22 18:29:33,317 - core.project_manager - INFO - Queue processing: File 1/5 is in a CAM folder: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mov
+2025-05-22 18:29:33,317 - core.project_manager - INFO - Queue processing: Path replacement attempt: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mov -> /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old/CAM 1/A001_01240755_C001.mov
+2025-05-22 18:29:33,317 - core.project_manager - INFO - Queue processing: Updated path exists: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old/CAM 1/A001_01240755_C001.mov
+2025-05-22 18:29:33,318 - core.project_manager - INFO - Queue processing: File 2/5 is in a CAM folder: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mov
+2025-05-22 18:29:33,318 - core.project_manager - INFO - Queue processing: Path replacement attempt: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mov -> /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C003.mov
+2025-05-22 18:29:33,318 - core.project_manager - INFO - Queue processing: Updated path exists: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C003.mov
+2025-05-22 18:29:33,318 - core.project_manager - INFO - Queue processing: File 3/5 is in a CAM folder: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mov
+2025-05-22 18:29:33,318 - core.project_manager - INFO - Queue processing: Path replacement attempt: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mov -> /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C002.mov
+2025-05-22 18:29:33,319 - core.project_manager - INFO - Queue processing: Updated path exists: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C002.mov
+2025-05-22 18:29:33,319 - core.project_manager - INFO - Queue processing: File 4/5 is in a CAM folder: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO/CAM 2/A001_04080255_C079.mov
+2025-05-22 18:29:33,319 - core.project_manager - INFO - Queue processing: Path replacement attempt: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO/CAM 2/A001_04080255_C079.mov -> /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old/CAM 2/A001_04080255_C079.mov
+2025-05-22 18:29:33,319 - core.project_manager - INFO - Queue processing: Updated path exists: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old/CAM 2/A001_04080255_C079.mov
+2025-05-22 18:29:33,320 - core.project_manager - INFO - Queue processing: File 5/5 is in a CAM folder: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO/CAM 2/A001_01250456_C219.mov
+2025-05-22 18:29:33,320 - core.project_manager - INFO - Queue processing: Path replacement attempt: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO/CAM 2/A001_01250456_C219.mov -> /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old/CAM 2/A001_01250456_C219.mov
+2025-05-22 18:29:33,320 - core.project_manager - INFO - Queue processing: Updated path exists: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old/CAM 2/A001_01250456_C219.mov
+2025-05-22 18:29:33,320 - core.project_manager - INFO - Queue processing: Found 5 CAM files, successfully updated 5 paths
+2025-05-22 18:29:33,320 - core.queue_manager - INFO - Queue cleared
+2025-05-22 18:29:33,321 - core.queue_manager - INFO - Sorting files by camera number and file number
+2025-05-22 18:29:33,321 - core.queue_manager - INFO - Added 5 files to queue
+2025-05-22 18:29:33,321 - core.project_manager - INFO - Added 5 files to file queue for project project_1747934872_1
+2025-05-22 18:29:33,321 - core.queue_manager - INFO - Starting queue processing
+2025-05-22 18:29:33,321 - core.file_preparation - INFO - Preserving CAM folder structure: CAM 1
+2025-05-22 18:29:33,321 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mp4
+2025-05-22 18:29:33,322 - core.queue_manager - INFO - Processing file 1/5: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old/CAM 1/A001_01240755_C001.mov
+2025-05-22 18:29:33,322 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old/CAM 1/A001_01240755_C001.mov
+2025-05-22 18:29:33,425 - core.video_compression - INFO - Video duration: 4.083333 seconds
+2025-05-22 18:29:33,425 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old/CAM 1/A001_01240755_C001.mov
+2025-05-22 18:29:34,794 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mp4
+2025-05-22 18:29:34,796 - core.queue_manager - INFO - Compression result: 90.9% reduction, saved 16.18 MB
+2025-05-22 18:29:34,797 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old/CAM 1/A001_01240755_C001.mov
+2025-05-22 18:29:34,797 - core.file_preparation - INFO - Preserving CAM folder structure: CAM 1
+2025-05-22 18:29:34,797 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mp4
+2025-05-22 18:29:34,797 - core.queue_manager - INFO - Processing file 2/5: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C002.mov
+2025-05-22 18:29:34,797 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C002.mov
+2025-05-22 18:29:34,918 - core.video_compression - INFO - Video duration: 18.166667 seconds
+2025-05-22 18:29:34,919 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C002.mov
+2025-05-22 18:29:38,019 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mp4
+2025-05-22 18:29:38,021 - core.queue_manager - INFO - Compression result: 88.6% reduction, saved 203.37 MB
+2025-05-22 18:29:38,021 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C002.mov
+2025-05-22 18:29:38,021 - core.file_preparation - INFO - Preserving CAM folder structure: CAM 1
+2025-05-22 18:29:38,022 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mp4
+2025-05-22 18:29:38,022 - core.queue_manager - INFO - Processing file 3/5: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C003.mov
+2025-05-22 18:29:38,022 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C003.mov
+2025-05-22 18:29:38,141 - core.video_compression - INFO - Video duration: 17.5 seconds
+2025-05-22 18:29:38,142 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C003.mov
+2025-05-22 18:29:41,112 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mp4
+2025-05-22 18:29:41,114 - core.queue_manager - INFO - Compression result: 85.4% reduction, saved 116.21 MB
+2025-05-22 18:29:41,114 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C003.mov
+2025-05-22 18:29:41,114 - core.file_preparation - INFO - Preserving CAM folder structure: CAM 2
+2025-05-22 18:29:41,114 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO/CAM 2/A001_01250456_C219.mp4
+2025-05-22 18:29:41,115 - core.queue_manager - INFO - Processing file 4/5: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old/CAM 2/A001_01250456_C219.mov
+2025-05-22 18:29:41,115 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old/CAM 2/A001_01250456_C219.mov
+2025-05-22 18:29:41,242 - core.video_compression - INFO - Video duration: 570.166667 seconds
+2025-05-22 18:29:41,243 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old/CAM 2/A001_01250456_C219.mov
+2025-05-22 18:30:55,639 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO/CAM 2/A001_01250456_C219.mp4
+2025-05-22 18:30:55,643 - core.queue_manager - INFO - Compression result: 78.5% reduction, saved 7.61 GB
+2025-05-22 18:30:55,643 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old/CAM 2/A001_01250456_C219.mov
+2025-05-22 18:30:55,643 - core.file_preparation - INFO - Preserving CAM folder structure: CAM 2
+2025-05-22 18:30:55,644 - core.file_preparation - INFO - Generated output filename: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO/CAM 2/A001_04080255_C079.mp4
+2025-05-22 18:30:55,644 - core.queue_manager - INFO - Processing file 5/5: /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old/CAM 2/A001_04080255_C079.mov
+2025-05-22 18:30:55,644 - core.video_compression - INFO - Starting compression of /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old/CAM 2/A001_04080255_C079.mov
+2025-05-22 18:30:55,797 - core.video_compression - INFO - Video duration: 55.5 seconds
+2025-05-22 18:30:55,797 - core.video_compression - INFO - Building FFmpeg command for /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old/CAM 2/A001_04080255_C079.mov
+2025-05-22 18:31:03,703 - core.video_compression - INFO - Successfully compressed to /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO/CAM 2/A001_04080255_C079.mp4
+2025-05-22 18:31:03,705 - core.queue_manager - INFO - Compression result: 84.3% reduction, saved 868.87 MB
+2025-05-22 18:31:03,705 - core.queue_manager - INFO - Successfully compressed /Volumes/Media HD/Tests/02 Test Project/2023-01-01 Saz & Sazzie/03 MEDIA/01 VIDEO.old/CAM 2/A001_04080255_C079.mov
+2025-05-22 18:31:03,705 - core.queue_manager - INFO - Queue processing completed
+2025-05-22 18:31:03,706 - core.project_manager - INFO - Project '2023-01-01 Saz & Sazzie' (ID: project_1747934872_1) processing completed successfully in 90.38 seconds
+2025-05-22 18:31:03,706 - core.project_manager - INFO - Processed 5 files, reduced size by 8.79 GB, average reduction: 79.3%
+2025-05-22 18:31:03,706 - gui.project_queue_panel - INFO - Project project_1747934872_1 (2023-01-01 Saz & Sazzie) completed successfully
+2025-05-22 18:31:03,707 - core.project_queue_manager - INFO - Successfully processed project project_1747934872_1 in 93.81 seconds
+2025-05-22 18:31:03,708 - core.project_queue_manager - INFO - Queue state saved to /Users/chriscleary/.forever_yours/project_queue_state.json
+2025-05-22 18:31:03,708 - core.project_queue_manager - INFO - Project queue processing completed successfully
+2025-05-22 18:31:03,710 - core.project_queue_manager - INFO - Queue state saved to /Users/chriscleary/.forever_yours/project_queue_state.json
