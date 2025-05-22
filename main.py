@@ -625,13 +625,8 @@ class MainWindow(QMainWindow):
             # Refresh the project queue panel
             self.project_queue_panel.refresh_projects()
             
-            # Show confirmation
-            from PyQt6.QtWidgets import QMessageBox
-            QMessageBox.information(
-                self,
-                "Project Added",
-                f"Project '{project_name}' with {len(input_files)} video files has been added to the queue."
-            )
+            # Log project added (no dialog)
+            logger.info(f"Project '{project_name}' with {len(input_files)} video files added to queue")
             
         except Exception as e:
             logger.error(f"Error adding project to queue: {str(e)}", exc_info=True)
@@ -662,6 +657,13 @@ class MainWindow(QMainWindow):
     def closeEvent(self, event):
         """Override close event to save window geometry before closing"""
         self.save_window_geometry()
+        
+        # Save project queue column widths if panel exists
+        if hasattr(self, 'project_queue_panel') and self.project_queue_panel:
+            # Save column widths
+            self.project_queue_panel._save_column_widths()
+            logger.info("Saved project queue column widths")
+            
         super().closeEvent(event)
 
 

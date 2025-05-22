@@ -20,7 +20,7 @@ from PyQt6.QtWidgets import (
     QGroupBox, QSplitter, QHeaderView, QMenu, QMessageBox,
     QFileDialog, QDialog, QFormLayout, QLineEdit
 )
-from PyQt6.QtCore import pyqtSignal, Qt, QTimer, QObject
+from PyQt6.QtCore import pyqtSignal, Qt, QTimer, QObject, QSettings
 from PyQt6.QtGui import QFont, QAction, QColor, QBrush
 
 # Import core functionality
@@ -83,6 +83,9 @@ class ProjectQueuePanel(QWidget):
         self.elapsed_timer.timeout.connect(self._update_elapsed_time)
         self.start_time = 0
         
+        # Settings for persistent storage
+        self.settings = QSettings("ForeverYours", "CompressionTool")
+        
         # Register callbacks with project manager
         self.project_manager.register_progress_callback(self._handle_progress_update)
         self.project_manager.register_on_project_complete_callback(self._handle_project_complete)
@@ -120,7 +123,16 @@ class ProjectQueuePanel(QWidget):
         self.project_table = QTableWidget()
         self.project_table.setColumnCount(6)  # ID, Name, Status, Files, Progress, Actions
         self.project_table.setHorizontalHeaderLabels(["ID", "Project Name", "Status", "Files", "Progress", "Actions"])
-        self.project_table.horizontalHeader().setSectionResizeMode(1, QHeaderView.ResizeMode.Stretch)  # Name column stretches
+        
+        # Make all columns interactively resizable
+        for i in range(self.project_table.columnCount()):
+            self.project_table.horizontalHeader().setSectionResizeMode(i, QHeaderView.ResizeMode.Interactive)
+        
+        # Connect to section resize event
+        self.project_table.horizontalHeader().sectionResized.connect(self._save_column_widths)
+        
+        # Restore column widths from settings
+        self._restore_column_widths()
         self.project_table.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
         self.project_table.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
         self.project_table.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
@@ -331,9 +343,12 @@ class ProjectQueuePanel(QWidget):
         # Update queue statistics
         self._update_queue_stats()
         
-        # Resize columns to fit content
-        self.project_table.resizeColumnsToContents()
-        self.project_table.horizontalHeader().setSectionResizeMode(1, QHeaderView.ResizeMode.Stretch)
+        # Do NOT reset column widths here - user saved preferences will be maintained
+        # If this is the first time loading (no saved widths), _restore_column_widths was called during initialization
+        
+        # Make sure Clear Queue button is always enabled if there are any projects
+        if self.project_table.rowCount() > 0 and not self.is_processing:
+            self.clear_queue_button.setEnabled(True)
     
     def _update_queue_stats(self):
         """Update the queue statistics label."""
@@ -602,19 +617,10 @@ class ProjectQueuePanel(QWidget):
     
     def _clear_queue(self):
         """Clear the entire project queue."""
-        # Confirm clearing
-        confirm = QMessageBox.question(
-            self,
-            "Clear Queue",
-            "Are you sure you want to clear all projects from the queue?",
-            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
-            QMessageBox.StandardButton.No
-        )
-        
-        if confirm == QMessageBox.StandardButton.Yes:
-            self.project_queue_manager.clear_queue()
-            logger.info("Cleared project queue")
-            self.refresh_projects()
+        # Clear without confirmation
+        self.project_queue_manager.clear_queue()
+        logger.info("Cleared project queue")
+        self.refresh_projects()
     
     def _add_project_dialog(self):
         """Signal that the user wants to add a new project to the queue."""
@@ -634,11 +640,7 @@ class ProjectQueuePanel(QWidget):
         # Check if there are pending projects
         stats = self.project_queue_manager.get_queue_status()
         if stats.get("pending", 0) == 0:
-            QMessageBox.information(
-                self,
-                "Start Queue",
-                "No pending projects in queue to process."
-            )
+            logger.info("No pending projects in queue to process")
             return
         
         # Start processing
@@ -662,39 +664,21 @@ class ProjectQueuePanel(QWidget):
             
             logger.info("Started processing project queue")
         else:
-            QMessageBox.warning(
-                self,
-                "Start Queue",
-                "Failed to start queue processing. Please check the logs for details."
-            )
+            logger.error("Failed to start queue processing")
     
     def _pause_queue(self):
         """Pause queue processing (not implemented yet)."""
-        QMessageBox.information(
-            self,
-            "Pause Queue",
-            "Queue pausing is not supported in this version.\n\n"
-            "You can cancel the current queue processing."
-        )
+        logger.info("Queue pausing requested - not implemented in this version")
+        # Future implementation would go here
     
     def _cancel_queue(self):
         """Cancel queue processing."""
-        confirm = QMessageBox.question(
-            self,
-            "Cancel Queue",
-            "Are you sure you want to cancel the queue processing?\n\n"
-            "The current project will be canceled and you will need to restart the queue.",
-            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
-            QMessageBox.StandardButton.No
-        )
-        
-        if confirm == QMessageBox.StandardButton.Yes:
-            success = self.project_manager.cancel_processing()
-            if success:
-                self._on_processing_stopped()
-                logger.info("Canceled queue processing")
-            else:
-                logger.warning("Failed to cancel queue processing")
+        success = self.project_manager.cancel_processing()
+        if success:
+            self._on_processing_stopped()
+            logger.info("Canceled queue processing")
+        else:
+            logger.warning("Failed to cancel queue processing")
     
     def _on_processing_stopped(self):
         """Update UI when processing is stopped for any reason."""
@@ -838,6 +822,30 @@ class ProjectQueuePanel(QWidget):
         # Refresh the project table to show updated statuses
         self.refresh_projects()
         
+    def _save_column_widths(self):
+        """Save column widths to QSettings when they change."""
+        for i in range(self.project_table.columnCount()):
+            width = self.project_table.columnWidth(i)
+            self.settings.setValue(f"project_queue/column_width_{i}", width)
+        logger.debug("Saved project queue table column widths to settings")
+    
+    def _restore_column_widths(self):
+        """Restore column widths from QSettings."""
+        for i in range(self.project_table.columnCount()):
+            # Get saved width with a default value appropriate for each column
+            default_width = 80  # Default width for most columns
+            
+            if i == 1:  # Project Name column
+                default_width = 250
+            elif i == 2:  # Status column
+                default_width = 100
+            elif i == 4:  # Progress column
+                default_width = 120
+                
+            width = self.settings.value(f"project_queue/column_width_{i}", default_width, type=int)
+            self.project_table.setColumnWidth(i, width)
+        logger.debug("Restored project queue table column widths from settings")
+        
     def _update_elapsed_time(self):
         """Update the elapsed time label."""
         if self.start_time > 0:
@@ -876,6 +884,9 @@ class ProjectQueuePanel(QWidget):
         
         # Stop timer
         self.elapsed_timer.stop()
+        
+        # Save column widths before resetting
+        self._save_column_widths()
         
         # Refresh projects
         self.refresh_projects()
