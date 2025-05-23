@@ -54,8 +54,9 @@ class ProjectManager:
         # Whether a project is currently being processed
         self.is_processing = False
         
-        # Completion callback
+        # Completion callbacks
         self._on_project_complete_callback = None
+        self._on_queue_complete_callback = None
         
         # Progress callback
         self._progress_callback = None
@@ -74,6 +75,19 @@ class ProjectManager:
         """
         self._on_project_complete_callback = callback
         logger.info("Project completion callback registered")
+    
+    def register_on_queue_complete_callback(
+        self, callback: Callable[[bool], None]
+    ) -> None:
+        """
+        Register a callback function to be called when the entire queue is completed.
+        
+        Args:
+            callback: Function to call when queue processing is completed.
+                It receives a single boolean parameter indicating if all projects were successful.
+        """
+        self._on_queue_complete_callback = callback
+        logger.info("Queue completion callback registered")
     
     def register_progress_callback(
         self, callback: Callable[[str, Dict[str, Any], float, float], None]
@@ -159,7 +173,8 @@ class ProjectManager:
         # Start processing the queue
         success = self.project_queue_manager.start_processing(
             process_project_func=self._process_project,
-            progress_callback=self._handle_queue_progress
+            progress_callback=self._handle_queue_progress,
+            completion_callback=self._handle_queue_complete
         )
         
         if success:
@@ -192,6 +207,22 @@ class ProjectManager:
         logger.info("Canceled all processing")
         
         return True
+    
+    def _handle_queue_complete(self, all_successful: bool) -> None:
+        """
+        Handle completion of the entire project queue.
+        
+        Args:
+            all_successful: Whether all projects completed successfully
+        """
+        logger.info(f"Project queue processing completed {'successfully' if all_successful else 'with some failures'}")
+        
+        # Update processing state
+        self.is_processing = False
+        
+        # Call the callback if registered
+        if self._on_queue_complete_callback:
+            self._on_queue_complete_callback(all_successful)
     
     def _process_project(self, project: Dict[str, Any]) -> Tuple[bool, Dict[str, Any]]:
         """

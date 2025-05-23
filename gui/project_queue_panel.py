@@ -58,6 +58,10 @@ class ProjectQueuePanel(QWidget):
     # Parameters: project_id, project_name, success
     project_complete = pyqtSignal(str, str, bool)
     
+    # Signal for thread-safe queue completion notification
+    # Parameters: all_successful
+    queue_complete = pyqtSignal(bool)
+    
     def __init__(self, parent=None, project_manager=None):
         """
         Initialize the project queue panel.
@@ -89,10 +93,12 @@ class ProjectQueuePanel(QWidget):
         # Register callbacks with project manager
         self.project_manager.register_progress_callback(self._handle_progress_update)
         self.project_manager.register_on_project_complete_callback(self._handle_project_complete)
+        self.project_manager.register_on_queue_complete_callback(self._handle_queue_complete)
         
         # Connect signals to UI update slots (ensures UI updates happen on main thread)
         self.progress_update.connect(self._update_ui_progress)
         self.project_complete.connect(self._update_ui_project_complete)
+        self.queue_complete.connect(self._update_ui_queue_complete)
         
         # Create UI components
         self._init_ui()
@@ -821,6 +827,35 @@ class ProjectQueuePanel(QWidget):
         """
         # Refresh the project table to show updated statuses
         self.refresh_projects()
+    
+    def _handle_queue_complete(self, all_successful: bool) -> None:
+        """
+        Handle completion of the entire queue.
+        
+        This method is called from a background thread, so we emit a signal
+        to ensure UI updates happen on the main thread.
+        
+        Args:
+            all_successful: Whether all projects completed successfully
+        """
+        logger.info(f"Queue processing completed {'successfully' if all_successful else 'with errors'}")
+        
+        # Emit signal to update UI on main thread
+        self.queue_complete.emit(all_successful)
+    
+    def _update_ui_queue_complete(self, all_successful: bool) -> None:
+        """
+        Update UI after queue completion.
+        
+        This method is connected to the queue_complete signal and runs on the main thread.
+        
+        Args:
+            all_successful: Whether all projects completed successfully
+        """
+        logger.info(f"Updating UI after queue completion (success: {all_successful})")
+        
+        # Update UI to reflect queue completion
+        self._on_processing_stopped()
         
     def _save_column_widths(self):
         """Save column widths to QSettings when they change."""

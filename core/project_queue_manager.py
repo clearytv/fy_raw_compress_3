@@ -375,9 +375,10 @@ class ProjectQueueManager:
             return False
     
     def start_processing(
-        self, 
+        self,
         process_project_func: Callable[[Dict[str, Any]], Tuple[bool, Dict[str, Any]]],
-        progress_callback: Optional[Callable[[str, Dict[str, Any], float], None]] = None
+        progress_callback: Optional[Callable[[str, Dict[str, Any], float], None]] = None,
+        completion_callback: Optional[Callable[[bool], None]] = None
     ) -> bool:
         """
         Start processing projects in the queue sequentially.
@@ -422,7 +423,7 @@ class ProjectQueueManager:
         import threading
         thread = threading.Thread(
             target=self._process_queue,
-            args=(process_project_func, progress_callback),
+            args=(process_project_func, progress_callback, completion_callback),
             daemon=True
         )
         thread.start()
@@ -431,9 +432,10 @@ class ProjectQueueManager:
         return True
     
     def _process_queue(
-        self, 
+        self,
         process_project_func: Callable[[Dict[str, Any]], Tuple[bool, Dict[str, Any]]],
-        progress_callback: Optional[Callable[[str, Dict[str, Any], float], None]] = None
+        progress_callback: Optional[Callable[[str, Dict[str, Any], float], None]] = None,
+        completion_callback: Optional[Callable[[bool], None]] = None
     ) -> bool:
         """
         Process all projects in the queue sequentially.
@@ -552,8 +554,12 @@ class ProjectQueueManager:
             
             # Final save state
             self.save_state()
+            # Call the completion callback if provided
+            if completion_callback:
+                completion_callback(all_success)
             
             return all_success
+    
     
     def cancel_processing(self) -> bool:
         """
