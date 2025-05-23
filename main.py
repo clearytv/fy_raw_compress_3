@@ -58,8 +58,10 @@ class MainWindow(QMainWindow):
         
         self.setWindowTitle("Forever Yours Compression")
         
-        # Set window to stay on top
-        self.setWindowFlags(self.windowFlags() | Qt.WindowType.WindowStaysOnTopHint)
+        # Initially bring window to front without forcing it to always stay on top
+        # This will allow it to be covered by other windows later
+        self.activateWindow()
+        self.raise_()
         
         # Initialize with default size if settings don't exist
         self.resize(800, 600)

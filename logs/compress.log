@@ -1,22 +1,3 @@
-2025-05-23 13:55:29,727 - core.file_preparation - INFO - Copied file: .DS_Store
-2025-05-23 13:55:30,058 - core.file_preparation - INFO - Copied file: DJI_0061.MP4
-2025-05-23 13:55:32,376 - core.file_preparation - INFO - Copied file: DJI_0060.MP4
-2025-05-23 13:55:32,377 - core.file_preparation - INFO - Completed copying folder: DRONE
-2025-05-23 13:55:32,377 - core.file_preparation - INFO - Copied 1 non-CAM folders
-2025-05-23 13:55:32,377 - core.project_manager - INFO - Queue processing: Copied 1 non-CAM folders from /Volumes/Media HD/Tests/02 Test Project (Original) copy/2023-01-01 Jo & Joey/03 MEDIA/01 VIDEO.old to /Volumes/Media HD/Tests/02 Test Project (Original) copy/2023-01-01 Jo & Joey/03 MEDIA/01 VIDEO
-2025-05-23 13:55:32,378 - core.project_manager - INFO - Queue processing: Updating file paths in queue after folder rename for 5 files
-2025-05-23 13:55:32,378 - core.project_manager - INFO - Queue processing: Looking for paths containing '/Volumes/Media HD/Tests/02 Test Project (Original) copy/2023-01-01 Jo & Joey/03 MEDIA/01 VIDEO' to replace with '/Volumes/Media HD/Tests/02 Test Project (Original) copy/2023-01-01 Jo & Joey/03 MEDIA/01 VIDEO.old'
-2025-05-23 13:55:32,378 - core.project_manager - INFO - Queue processing: File 1/5 is in a CAM folder: /Volumes/Media HD/Tests/02 Test Project (Original) copy/2023-01-01 Jo & Joey/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mov
-2025-05-23 13:55:32,378 - core.project_manager - INFO - Queue processing: Path replacement attempt: /Volumes/Media HD/Tests/02 Test Project (Original) copy/2023-01-01 Jo & Joey/03 MEDIA/01 VIDEO/CAM 1/A001_01240755_C001.mov -> /Volumes/Media HD/Tests/02 Test Project (Original) copy/2023-01-01 Jo & Joey/03 MEDIA/01 VIDEO.old/CAM 1/A001_01240755_C001.mov
-2025-05-23 13:55:32,378 - core.project_manager - INFO - Queue processing: Updated path exists: /Volumes/Media HD/Tests/02 Test Project (Original) copy/2023-01-01 Jo & Joey/03 MEDIA/01 VIDEO.old/CAM 1/A001_01240755_C001.mov
-2025-05-23 13:55:32,379 - core.project_manager - INFO - Queue processing: File 2/5 is in a CAM folder: /Volumes/Media HD/Tests/02 Test Project (Original) copy/2023-01-01 Jo & Joey/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mov
-2025-05-23 13:55:32,379 - core.project_manager - INFO - Queue processing: Path replacement attempt: /Volumes/Media HD/Tests/02 Test Project (Original) copy/2023-01-01 Jo & Joey/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C003.mov -> /Volumes/Media HD/Tests/02 Test Project (Original) copy/2023-01-01 Jo & Joey/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C003.mov
-2025-05-23 13:55:32,379 - core.project_manager - INFO - Queue processing: Updated path exists: /Volumes/Media HD/Tests/02 Test Project (Original) copy/2023-01-01 Jo & Joey/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C003.mov
-2025-05-23 13:55:32,379 - core.project_manager - INFO - Queue processing: File 3/5 is in a CAM folder: /Volumes/Media HD/Tests/02 Test Project (Original) copy/2023-01-01 Jo & Joey/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mov
-2025-05-23 13:55:32,379 - core.project_manager - INFO - Queue processing: Path replacement attempt: /Volumes/Media HD/Tests/02 Test Project (Original) copy/2023-01-01 Jo & Joey/03 MEDIA/01 VIDEO/CAM 1/A001_01241858_C002.mov -> /Volumes/Media HD/Tests/02 Test Project (Original) copy/2023-01-01 Jo & Joey/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C002.mov
-2025-05-23 13:55:32,379 - core.project_manager - INFO - Queue processing: Updated path exists: /Volumes/Media HD/Tests/02 Test Project (Original) copy/2023-01-01 Jo & Joey/03 MEDIA/01 VIDEO.old/CAM 1/A001_01241858_C002.mov
-2025-05-23 13:55:32,380 - core.project_manager - INFO - Queue processing: File 4/5 is in a CAM folder: /Volumes/Media HD/Tests/02 Test Project (Original) copy/2023-01-01 Jo & Joey/03 MEDIA/01 VIDEO/CAM 2/A001_04080255_C079.mov
-2025-05-23 13:55:32,380 - core.project_manager - INFO - Queue processing: Path replacement attempt: /Volumes/Media HD/Tests/02 Test Project (Original) copy/2023-01-01 Jo & Joey/03 MEDIA/01 VIDEO/CAM 2/A001_04080255_C079.mov -> /Volumes/Media HD/Tests/02 Test Project (Original) copy/2023-01-01 Jo & Joey/03 MEDIA/01 VIDEO.old/CAM 2/A001_04080255_C079.mov
 2025-05-23 13:55:32,380 - core.project_manager - INFO - Queue processing: Updated path exists: /Volumes/Media HD/Tests/02 Test Project (Original) copy/2023-01-01 Jo & Joey/03 MEDIA/01 VIDEO.old/CAM 2/A001_04080255_C079.mov
 2025-05-23 13:55:32,381 - core.project_manager - INFO - Queue processing: File 5/5 is in a CAM folder: /Volumes/Media HD/Tests/02 Test Project (Original) copy/2023-01-01 Jo & Joey/03 MEDIA/01 VIDEO/CAM 2/A001_01250456_C219.mov
 2025-05-23 13:55:32,381 - core.project_manager - INFO - Queue processing: Path replacement attempt: /Volumes/Media HD/Tests/02 Test Project (Original) copy/2023-01-01 Jo & Joey/03 MEDIA/01 VIDEO/CAM 2/A001_01250456_C219.mov -> /Volumes/Media HD/Tests/02 Test Project (Original) copy/2023-01-01 Jo & Joey/03 MEDIA/01 VIDEO.old/CAM 2/A001_01250456_C219.mov
@@ -98,3 +79,22 @@
 2025-05-23 14:05:52,325 - core.project_queue_manager - INFO - Project queue cleared
 2025-05-23 14:05:52,328 - core.project_queue_manager - INFO - Queue state saved to /Users/chriscleary/.forever_yours/project_queue_state.json
 2025-05-23 14:05:52,328 - gui.project_queue_panel - INFO - Cleared project queue
+2025-05-23 14:23:12,877 - __main__ - INFO - Starting Forever Yours Compression Tool
+2025-05-23 14:23:13,010 - __main__ - INFO - Creating main application window
+2025-05-23 14:23:13,013 - __main__ - INFO - Restored window geometry and state from settings
+2025-05-23 14:23:13,013 - core.queue_manager - INFO - Queue manager initialized
+2025-05-23 14:23:13,017 - core.project_queue_manager - INFO - Project queue manager initialized
+2025-05-23 14:23:13,017 - core.queue_manager - INFO - Queue manager initialized
+2025-05-23 14:23:13,017 - core.project_manager - INFO - Project manager initialized
+2025-05-23 14:23:13,019 - gui.step1_import - INFO - Initializing import panel
+2025-05-23 14:23:13,127 - gui.step2_convert - INFO - Initializing conversion panel
+2025-05-23 14:23:13,131 - gui.step2b_verify - INFO - Initializing verification panel
+2025-05-23 14:23:13,138 - gui.step3_results - INFO - Initializing results panel
+2025-05-23 14:23:13,153 - gui.project_queue_panel - INFO - Initializing project queue panel
+2025-05-23 14:23:13,154 - core.project_manager - INFO - Progress callback registered
+2025-05-23 14:23:13,154 - core.project_manager - INFO - Project completion callback registered
+2025-05-23 14:23:13,154 - core.project_manager - INFO - Queue completion callback registered
+2025-05-23 14:23:13,158 - gui.step2_convert - INFO - Queue manager set in ConvertPanel
+2025-05-23 14:23:13,160 - __main__ - INFO - Starting application with panel index set to 4
+2025-05-23 14:23:25,686 - __main__ - INFO - Saved window geometry and state
+2025-05-23 14:23:25,687 - __main__ - INFO - Saved project queue column widths
